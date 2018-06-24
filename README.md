@@ -184,12 +184,19 @@ Oni is not included as its configuration is blended within a JavaScript file.
 A few screenshots:
 
 1.  Terminal
+
     [<img alt="Terminal" src="screenshots/terminal.png" width="300" />](screenshots/terminal.png)
+
 2.  Sublime
+
     [<img alt="Sublime" src="screenshots/sublime.png" width="300" />](screenshots/sublime.png)
+
 3.  SpaceVim
+
     [<img alt="SpaceVim" src="screenshots/vi.png" width="300" />](screenshots/vi.png)
+
 4.  IntelliJ
+
     [<img alt="IntelliJ" src="screenshots/intellij.png" width="300" />](screenshots/intellij.png)
 
 #### [web](.dotfiles/tag-smu/modules/web)
