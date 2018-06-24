@@ -219,8 +219,11 @@ An updater of the provided sources (W.I.P. 😉).
 ### How does it work?
 
 > Hamid: What's that?
+
 > Rambo: It's blue light.
+
 > Hamid: What does it do?
+
 > Rambo: It turns blue.
 
 **TL;DR;** It symlinks all dotfiles and stupidly runs shell scripts.
