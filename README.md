@@ -11,7 +11,7 @@ No matter how you obtain `smu`, as a sane developer you should take a look at th
 
 ### Use the blueprint
 
-The recommended way to obtain `set-me-up` is by forking the [blueprint setup](https://github.com/omares/set-me-up-blueprint), which is an own lean repo that comes preconfigured with a [tag](#using-rcm) and module.
+The recommended way to obtain `set-me-up` is by forking the [blueprint setup](https://github.com/nicholasadamou/set-me-up-blueprint), which is an own lean repo that comes preconfigured with a [tag](#using-rcm) and module.
 
 You might wonder why not work directly with this repo? Having an own repo for your dotfiles and `set-me-up` customizations has a few advantages:
 
@@ -26,7 +26,7 @@ You might wonder why not work directly with this repo? Having an own repo for yo
 
 Either use your blueprint or the default installer to obtain `set-me-up` . This will put all files into ~/ `set-me-up` , the default `smu` home directory. In case you decided against an own blueprint you can run following command in your console.
 
-    bash <(curl --progress-bar -L https://raw.githubusercontent.com/omares/set-me-up/master/.dotfiles/tag-smu/modules/install.sh)
+    bash <(curl --progress-bar -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/tag-smu/modules/install.sh)
 
 You can change the `smu` home directory by setting an environment variable called `SMU_HOME_DIR`. Please keep the variable declared as else the `smu` scripts are unable to pickup the sources.
 
@@ -75,7 +75,7 @@ Use the `smu --lsrc` command to show how `rcm` would manage your dotfiles and to
 
 ### ??? I am confused
 
-[Go to the blue print repo](https://github.com/omares/set-me-up-blueprint#how-to-use). Fork it. Apply your changes using the techniques from above. Use the installer inside your forked repo to obtain everything. Provision your machine through the `smu` script.
+[Go to the blue print repo](https://github.com/nicholasadamou/set-me-up-blueprint#how-to-use). Fork it. Apply your changes using the techniques from above. Use the installer inside your forked repo to obtain everything. Provision your machine through the `smu` script.
 
 ## A closer look
 
