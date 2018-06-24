@@ -1,6 +1,6 @@
 # `set-me-up`
 
-`set-me-up` aims to simplify the dull setup and maintenance of macOS development environments.
+`set-me-up` aims to simplify the dull setup and maintenance of Mac OS development environments.
 It does so by automating the process through a collection of dotfiles and shell scripts [bundled into modules](#available-modules).
 
 Instead of enforcing a certain setup it tries to act as a solid template that is highly customizable to your needs.
