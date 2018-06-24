@@ -75,7 +75,7 @@ Use the `smu --lsrc` command to show how `rcm` would manage your dotfiles and to
 
 ### Wait! I am confused 😕
 
-[Go to the blue print repo](https://github.com/nicholasadamou/set-me-up-blueprint#how-to-use). Fork it. Apply your changes using the techniques from above. Use the installer inside your forked repo to obtain everything. Provision your machine through the `smu` script.
+[Go to the blueprint repo](https://github.com/nicholasadamou/set-me-up-blueprint#how-to-use). Fork it. Apply your changes using the techniques from above. Use the installer inside your forked repo to obtain everything. Provision your machine through the `smu` script.
 
 ## A closer look
 
