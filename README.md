@@ -24,7 +24,7 @@ You might wonder why not work directly with this repo? Having remote and externa
 
 ### Obtaining `set-me-up`
 
-Either use your blueprint or the default installer to obtain `set-me-up` . This will put all files into `~/set-me-up` , the default `smu` home directory. In case you decided against an own blueprint you can run following command in your console.
+Either use your blueprint or the default installer to obtain `set-me-up` . This will put all files into `~/set-me-up` , the default `smu` home directory. In case you decided against using your own blueprint, you can run the following command in your console.
 
     bash <(curl --progress-bar -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/tag-smu/modules/install.sh)
 
