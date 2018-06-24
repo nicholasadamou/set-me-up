@@ -53,13 +53,13 @@ curl -sLf https://spacevim.org/install.sh | bash
 
 if [[ ! -e "${sublime_package_control}" ]]; then
     echo "------------------------------"
-    echo "Installing Sublime3 package control"
+    echo "Installing Sublime Text 3 package control"
 
     curl -fsSL "https://packagecontrol.io/Package%20Control.sublime-package" > "${sublime_package_control}"
 fi
 
 echo "------------------------------"
-echo "Merging Sublime3 settings"
+echo "Merging Sublime Text 3 settings"
 
 for settings in ./sublime/*.sublime-settings; do
     sublime_merge_setting "${settings}"
