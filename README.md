@@ -11,7 +11,7 @@ No matter how you obtain `smu`, as a sane developer you should take a look at th
 
 ### Use the blueprint
 
-The recommended way to obtain `set-me-up` is by forking the [blueprint setup](https://github.com/omares/ `set-me-up` -blueprint), which is an own lean repo that comes preconfigured with a [tag](#using-rcm) and module.
+The recommended way to obtain `set-me-up` is by forking the [blueprint setup](https://github.com/omares/set-me-up-blueprint), which is an own lean repo that comes preconfigured with a [tag](#using-rcm) and module.
 
 You might wonder why not work directly with this repo? Having an own repo for your dotfiles and `set-me-up` customizations has a few advantages:
 
