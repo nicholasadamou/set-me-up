@@ -205,20 +205,20 @@ echo "";
 
 modules=("${_arg_modules[@]}")
 
-# by default run the base module as early as possible
+# By default run the base module as early as possible.
 if [[ ${_arg_base} == "on" ]]; then
     modules=("base" "${modules[@]}")
 fi
 
-# check if macosupdate is contained in module list and if so queue it at the beginning
+# Check if macosupdate is contained in module list and if so, queue it at the beginning.
 if [[ " ${modules[@]} " =~ " macosupdate " ]]; then
     modules=("macosupdate" "${modules[@]}")
 fi
 
-# list of executed modules, so we only one run them once
+# List of executed modules, so we can only run them once.
 done=()
 
-# run modules
+# Run modules
 for module in "${modules[@]}"
 do
     if [[ ! " ${done[@]} " =~ " ${module} " ]]; then

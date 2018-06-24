@@ -1,6 +1,6 @@
 # zsh plugins managed via https://github.com/zdharma/zplugin
 
-# Load a few plugins synchronously for a nice terminal experience
+# For a nice terminal experience load a few plugins synchronously
 
 # https://github.com/zimfw/zimfw/blob/master/modules/environment/
 zplugin ice lucid

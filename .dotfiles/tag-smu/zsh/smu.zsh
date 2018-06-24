@@ -11,7 +11,7 @@ export ZSH_CACHE_DIR=${SMU_ZSH_DIR}/cache
 alias vi="nvim"
 alias vim="nvim"
 
-# disabled for now as this puts zsh into vi mode
+# disabled for now because this puts zsh into vi mode
 #export VISUAL="nvim"
 export EDITOR="nvim"
 

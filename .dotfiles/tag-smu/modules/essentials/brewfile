@@ -32,10 +32,17 @@ brew "zopfli"
 brew "pngcrush"
 brew "imagemagick", args: ["with-webp"]
 
-# vcs related
+# VCS related
 brew "git"
 brew "git-lfs"
 brew "hub"
+brew "gitsh"
+
+# file/directory management
+brew "fzf"
+brew "fzy"
+brew "z"
+brew "goto"
 
 # compression utilities
 brew "p7zip"
@@ -47,7 +54,7 @@ brew "xz"
 brew "libxml2"
 brew "libxslt"
 
-# other
+# misc.
 brew "lua"
 brew "pv"
 brew "rename"
@@ -56,21 +63,35 @@ brew "ssh-copy-id"
 brew "tree"
 brew "pandoc"
 brew "httpie"
+brew "reattach-to-user-namespace"
+brew "thefuck"
+brew "asciinema"
+brew "wifi-password"
 
-# browsers
+# core development casks
+cask "alfred"
+cask "iterm2"
+cask "codekit"
+cask "tower"
+cask "dash"
+cask "imageoptim"
+
+# web browsers
 cask "google-chrome"
 cask "firefox"
-brew "lynx"
 
 # database management
 cask "sequel-pro"
 cask "psequel"
 cask "pgadmin4"
 
-# Everything container related
+# Everything VM related
 cask "virtualbox"
+cask "virtualbox-extension-pack"
 cask "vagrant"
+cask "vagrant-manager"
 brew "docker"
+brew "boot2docker"
 
 # Install developer friendly quick look plugins; see https://github.com/sindresorhus/quick-look-plugins
 cask "qlcolorcode"
@@ -83,6 +104,7 @@ cask "suspicious-package"
 cask "quicklookase"
 cask "qlvideo"
 
-# mac store applications
+# Mac App Store applications
 # Example:
 # mas "The Unarchiver", id: 425424353
+brew "mas"

@@ -2,12 +2,12 @@
 
 if [[ "${EUID}" -ne 0 ]]; then
   echo "This module requires sudo rights."
-  echo "You should run this module using the smuu script."
+  echo "You should run this module using the smu script."
   exit 1
 fi
 
 echo "------------------------------"
-echo "Updating macOS. If this requires a restart, run the script again."
+echo "Updating Mac OS. If this requires a restart, run the script again."
 echo "------------------------------"
 echo ""
 

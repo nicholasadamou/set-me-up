@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# github user/repo value of your set-me-up blueprint. E.g.: omares/set-me-up-blueprint
-# set this value when  the installer should additionally obtain your blueprint
+# GitHub user/repo value of your set-me-up blueprint (e.g.: nicholasadamou/set-me-up-blueprint)
+# Set this value when the installer should additionally obtain your blueprint
 readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
 
-# the set-me-up version to download
+# The set-me-up version to download
 readonly SMU_VERSION=${SMU_VERSION:-"1.0.0"}
 
-# where to install set-me-up
+# Where to install set-me-up
 SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
 
-readonly smu_download="https://github.com/omares/set-me-up/tarball/${SMU_VERSION}"
+readonly smu_download="https://github.com/nicholasadamou/set-me-up/tarball/${SMU_VERSION}"
 readonly smu_blueprint_download="https://github.com/${SMU_BLUEPRINT}/tarball/master"
 
 function mkcd() {
@@ -113,4 +113,4 @@ function main() {
     esac
 }
 
-main $@
+main "$@"
