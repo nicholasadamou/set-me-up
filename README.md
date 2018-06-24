@@ -20,7 +20,7 @@ You might wonder why not work directly with this repo? Having an own repo for yo
 - It is easier to make your setup private because there are no direct ties to the blueprint or `set-me-up` repo.
 - Your commit history and file list will stay clean.
 - The referenced `set-me-up` version is fixated in the installer, ensuring that your setup will work even when the master advances. Advancing to the next version is easy by bumping the version in the installer.
-- Its fancy, at least I think so 😉
+- Its fancy, at least I think so 😉.
 
 ### Obtaining `set-me-up`
 
