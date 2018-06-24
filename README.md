@@ -32,18 +32,18 @@ You can change the `smu` home directory by setting an environment variable calle
 
 ### Running `set-me-up`
 
-1.  Use the `smu` script, which you find inside the `smu` home directory, to run the base module. Check the [base module documentation](#base) for more insights.
+1.  Use the `smu` script (which you will find inside the `smu` home directory) to run the base module. Check out the [base module documentation](#base) for more insights.
 
         smu -p -m base
 
-    After running the base module moving the source folder is not recommended due to the usage of symlinks.
+    ⚠️ Please note that after running the base module, moving the source folder is not recommended due to the usage of symlinks.
 
-2.  Afterwards provision your machine with [further modules](#available-modules) via the `smu` script. Repeat the `-m` switch to specify more then one module.
+2.  Afterwards, provision your machine with [further modules](#available-modules) via the `smu` script. Repeat the `-m` switch to specify more then one module.
 
         smu -p -m essentials -m terminal -m php
 
-    As a general rule of thumb only pick the modules you need, running all modules can take quite some time.
-    Fear not, all modules can be installed to a later point of time when you need it.
+    As a general rule of thumb, only pick the modules you need, running all modules can take quite some time.
+    Fear not, all modules can be installed when you need it.
 
 ### Customize `set-me-up`
 
