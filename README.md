@@ -11,9 +11,9 @@ No matter how you obtain `smu`, as a sane developer you should take a look at th
 
 ### Use the blueprint
 
-The recommended way to obtain `set-me-up` is by forking the [blueprint setup](https://github.com/nicholasadamou/set-me-up-blueprint), which is an own lean repo that comes preconfigured with a [tag](#using-rcm) and module.
+The recommended way to obtain `set-me-up` is by forking the [blueprint setup](https://github.com/nicholasadamou/set-me-up-blueprint), which is its own lean repo that comes preconfigured with a [tag](#using-rcm) and module.
 
-You might wonder why not work directly with this repo? Having remote and external repo for your dotfiles and `set-me-up` customizations has a few advantages:
+You might wonder why not work directly with this repo? Having a remote and external repo for your dotfiles and `set-me-up` customizations has a few advantages:
 
 - It is loosely coupled, making your life way easier. The only connection between your repo and `set-me-up` is through the installer.
 - You can easily walk away from using `set-me-up` but can keep your precious dotfiles and shell scripts.
@@ -210,7 +210,7 @@ When the terminal module is used, the `node` installation will work-out-of-the-b
 #### [The smu script](smu)
 
 The `smu` script is wrapped with auto-generated [argbash.io](https://argbash.io/) code. It aims to make the use of `set-me-up` as pleasant as possible.
-It runs the given modules by sourcing the appropriate scripts and ensuring a few constraints: always run the base module and prioritize the Mac OS update to the beginning of the list.
+It runs the given modules by sourcing the appropriate scripts and ensuring a few constraints: a) always run the base module and b) prioritize the Mac OS updater script over all other modules.
 
 #### [update.sh](.dotfiles/tag-smu/modules/update.sh)
 
@@ -233,8 +233,8 @@ An updater of the provided sources (W.I.P. 😉).
 Depending on the module, further applications will be installed by "automating" their installation through other bash scripts.
 In most cases `set-me-up` delegates the legwork to tools that are meant to be used for the job (e.g. installing `zplugin` for zsh plugin management).
 
-Nothing describes the actual functionality better than the code. It is recommended to check the appropriate module script to get insights as to what it exactly does
-.
+Nothing describes the actual functionality better than the code. It is recommended to check the appropriate module script to gain insights as to what it exactly does.
+
 `set-me-up` is a plain collection of bash scripts and tools that you probably already worked with, therefore understanding what is happening will be easy 😄.
 
 ## Credits
