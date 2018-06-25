@@ -37,10 +37,10 @@ _arg_lsrc="off"
 
 print_help ()
 {
-	printf '%s\n' "set-me-up installer"
+	printf '%s\n' "'set-me-up' installer"
 	printf 'Usage: %s [-b|--(no-)base] [--(no-)selfupdate] [-p|--(no-)provision] [-m|--modules <arg>] [--(no-)lsrc] [-h|--help]\n' "$0"
 	printf '\t%s\n' "-b,--base,--no-base: Run base module (on by default)"
-	printf '\t%s\n' "--selfupdate,--no-selfupdate: Update set-me-up (off by default)"
+	printf '\t%s\n' "--selfupdate,--no-selfupdate: Update 'set-me-up' (off by default)"
 	printf '\t%s\n' "-p,--provision,--no-provision: Provision given modules (off by default)"
 	printf '\t%s\n' "-m,--modules: Modules to provision (empty by default)"
 	printf '\t%s\n' "--lsrc,--no-lsrc: List files that will be symlinked via rcm into your home directory (off by default)"
@@ -195,11 +195,11 @@ if [[ ${_arg_selfupdate} == "on" ]]; then
 fi
 
 if ! provision_enabled ; then
-    _PRINT_HELP=yes die "Please provide the --provision switch to run set-me-up." 1
+    _PRINT_HELP=yes die "Please provide the --provision switch to run 'set-me-up'." 1
     exit 0
 fi
 
-read -p "set-me-up may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+read -p "'set-me-up' may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
 echo "";
 [[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
 
@@ -228,7 +228,7 @@ do
 done
 
 echo "------------------------------"
-echo "Completed running set-me-up, restart your computer to ensure all updates take effect."
+echo "Completed running 'set-me-up', restart your computer to ensure all updates take effect."
 echo "------------------------------"
 
 
