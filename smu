@@ -144,8 +144,8 @@ stop_sudo() {
 }
 
 provision_module() {
-    # source base from installation directory
-    # this enables smu to work on first time installations
+    # Source base from installation directory.
+    # This enables smu to work on first time installations.
     if [[ "${module}" == "base" ]]; then
         local -r path="${SMU_HOME_DIR}/.dotfiles/base"
     else

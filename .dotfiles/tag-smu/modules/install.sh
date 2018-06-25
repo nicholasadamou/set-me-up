@@ -28,8 +28,8 @@ function is_git_repo() {
 }
 
 function confirm() {
-    echo "➜ Will download set-me-up to ${SMU_HOME_DIR}"
-    read -p "Are you ok with that? (y/n) " -n 1;
+    echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
+    read -p "Would you like 'set-me-up' to configure in that directory? (y/n) " -n 1;
     echo "";
 
     [[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
@@ -45,11 +45,11 @@ function use_curl() {
     confirm
     mkcd "${SMU_HOME_DIR}"
 
-    echo "➜ Obtaining set-me-up."
+    echo "➜ Obtaining 'set-me-up'."
     obtain "${smu_download}"
 
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
-        echo "➜ Obtaining your set-me-up blueprint."
+        echo "➜ Obtaining your 'set-me-up' blueprint."
         obtain "${smu_blueprint_download}"
     fi
 
@@ -60,15 +60,15 @@ function use_git() {
     confirm
     mkcd "${SMU_HOME_DIR}"
 
-    echo "➜ Obtaining set-me-up."
+    echo "➜ Obtaining 'set-me-up'."
     obtain "${smu_download}"
 
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo; then
-            echo "➜ Updating your set-me-up blueprint."
+            echo "➜ Updating your 'set-me-up' blueprint."
             git pull --ff -r
         else
-            echo "➜ Cloning your set-me-up blueprint."
+            echo "➜ Cloning your 'set-me-up' blueprint."
             git init
             git remote add origin "git@github.com:${SMU_BLUEPRINT}.git"
             git fetch
