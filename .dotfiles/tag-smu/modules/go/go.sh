@@ -7,6 +7,9 @@ echo "Running go module"
 echo "------------------------------"
 echo ""
 
+echo "------------------------------"
+echo "Installing brew dependencies"
+
 brew bundle install -v --file="./brewfile"
 
 echo "------------------------------"

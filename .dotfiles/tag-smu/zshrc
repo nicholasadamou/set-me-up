@@ -12,4 +12,5 @@ autoload -Uz _zplugin
 
 # fake sdkman installation so we can move it to its own file
 # sdkman-init.sh
+
 [ -f ~/.fzf.colors ] && source ~/.fzf.colors

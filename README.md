@@ -151,6 +151,10 @@ Installs [rbenv](https://github.com/rbenv/rbenv) for version management and [bun
 
 When the terminal module is used, the `ruby` installation will work out-of-the-box because the required `rbenv` code is already in place.
 
+#### [Rust](.dotfiles/tag-smu/modules/rust)
+
+I primarily install the the Rust toolchain because I like to use the `cargo` package manager. I then can gain access to an easy install of [`topgrade`](https://github.com/r-darwish/topgrade) which simply _upgrades all the things_ on your Linux or Mac OS system.
+
 #### [terminal](.dotfiles/tag-smu/modules/terminal)
 
 Configures `zsh` as your default shell with sane `zsh` options and provides you with a list of useful plugins managed via [zplugin](https://github.com/zdharma/zplugin).
