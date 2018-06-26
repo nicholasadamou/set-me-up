@@ -153,7 +153,7 @@ When the terminal module is used, the `ruby` installation will work out-of-the-b
 
 #### [Rust](.dotfiles/tag-smu/modules/rust)
 
-I primarily install the the Rust toolchain because I like to use the `cargo` package manager. I then can gain access to an easy install of [`topgrade`](https://github.com/r-darwish/topgrade) which simply _upgrades all the things_ on your Linux or Mac OS system.
+I primarily install the Rust toolchain because I like to use the `cargo` package manager. I then can gain access to an easy install of [`topgrade`](https://github.com/r-darwish/topgrade) which simply _upgrades all the things_ on your Linux or Mac OS system.
 
 #### [terminal](.dotfiles/tag-smu/modules/terminal)
 
