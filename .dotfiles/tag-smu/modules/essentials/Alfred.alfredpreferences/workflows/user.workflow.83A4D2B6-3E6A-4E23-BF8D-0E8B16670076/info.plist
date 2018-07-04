@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.fooligan.lock1password</string>
+	<key>connections</key>
+	<dict>
+		<key>4AFDFDBD-8C48-49CD-B9D9-9A94A390E31A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E6F2027A-F467-4323-BA35-716E49EC1D28</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>E6F2027A-F467-4323-BA35-716E49EC1D28</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B7E148AA-12D1-4660-8D43-F21B03AEF9BC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Fooligan</string>
+	<key>description</key>
+	<string>Lock 1Password</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Lock 1Password</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>1Password has been locked</string>
+				<key>title</key>
+				<string>Lock 1Password</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>B7E148AA-12D1-4660-8D43-F21B03AEF9BC</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>open x-onepassword-agent://extension/lock
+return "1Password has been locked."</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E6F2027A-F467-4323-BA35-716E49EC1D28</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>lock</string>
+				<key>text</key>
+				<string>Lock 1Password</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>4AFDFDBD-8C48-49CD-B9D9-9A94A390E31A</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>4AFDFDBD-8C48-49CD-B9D9-9A94A390E31A</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>B7E148AA-12D1-4660-8D43-F21B03AEF9BC</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>E6F2027A-F467-4323-BA35-716E49EC1D28</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://discussions.agilebits.com/profile/56849/Fooligan</string>
+</dict>
+</plist>

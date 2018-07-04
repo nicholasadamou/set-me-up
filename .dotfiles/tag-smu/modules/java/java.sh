@@ -9,6 +9,7 @@ readonly gradle4=${gradle4:-"4.7"}
 readonly sbt1=${sbt1:-"1.1.4"}
 
 sdk_install() {
+
     local -r candidate="${1}"
     local -r version="${2}"
 
@@ -16,6 +17,7 @@ sdk_install() {
     echo "Installing ${candidate} ${version}"
 
     printf "\n" | sdk install "${candidate}" "${version}"
+
 }
 
 echo "------------------------------"

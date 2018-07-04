@@ -1,0 +1,6 @@
+[submodule ".dotfiles/tag-smu/modules/editor/vscode"]
+	path = .dotfiles/tag-smu/modules/editor/vscode
+	url = https://github.com/nicholasadamou/vs-code-setup
+[submodule ".dotfiles/tag-smu/tmux/plugins/tpm"]
+	path = .dotfiles/tag-smu/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm

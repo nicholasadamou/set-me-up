@@ -7,7 +7,7 @@ brew "neovim"
 
 # IDEs
 cask "intellij-idea"
-cask "sublime-text"
+cask "visual-studio-code"
 cask "macdown"
 cask "oni"
 

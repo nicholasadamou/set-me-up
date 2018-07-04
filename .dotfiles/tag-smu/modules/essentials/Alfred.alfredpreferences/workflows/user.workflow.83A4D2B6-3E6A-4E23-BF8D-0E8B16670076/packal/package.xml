@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>Lock 1Password</name>
+  <version>1.0</version>
+  <bundle>com.fooligan.lock1password</bundle>
+  <updated>1422815936</updated>
+  <file>lock_1password.alfredworkflow</file>
+</workflow>

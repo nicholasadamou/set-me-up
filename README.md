@@ -95,15 +95,11 @@ You can use `smu --lsrc` command to show which files will be symlink'ed to your 
 
 The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`. Should you enjoy using `vi` outside your terminal you can use [oni](https://www.onivim.io/). [SpaceVim](https://spacevim.org/) provides a good configuration base and is referenced in all three `vi` editors.
 
-For tasks you don't want to solve in `vi` you can use [Intellij IDEA ultimate](https://www.jetbrains.com/idea/) or [Sublime Text 3](https://www.sublimetext.com/). The Sublime Text configuration comes with a few [useful plugins](.dotfiles/tag-smu/modules/editor/editor.sh#L8-L19) that are managed via [Package Control](https://packagecontrol.io/).
+For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/) or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/tag-smu/modules/editor/vscode).
 
 [Macdown](https://macdown.uranusjr.com/) for Markdown editing, [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) for merging/diffing and [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) as default git difftool are also part of the editor module.
 
-Apart from theme and fonts, all editors come preconfigured, except Intellij. ([SpaceVim](.dotfiles/tag-smu/SpaceVim.d), [Oni](.dotfiles/tag-smu/config/oni), [Sublime](.dotfiles/tag-smu/modules/editor/sublime)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
-
-Why not use Atom or Visual Studio Code?
-
-The above editors fulfill my daily needs and neither Atom nor Visual Studio Code were able to handle **large** files in multiple attempts. Not having an incentive to switch, I am continuing to use Sublime Text.
+Apart from theme and fonts, all editors come pre-configured, except Intellij. ([SpaceVim](.dotfiles/tag-smu/SpaceVim.d), [Oni](.dotfiles/tag-smu/config/oni), [VSCode](.dotfiles/tag-smu/modules/editor/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
 
 #### [essentials](.dotfiles/tag-smu/modules/essentials)
 
@@ -157,51 +153,18 @@ I primarily install the Rust toolchain because I like to use the `cargo` package
 
 #### [terminal](.dotfiles/tag-smu/modules/terminal)
 
-Configures `zsh` as your default shell with sane `zsh` options and provides you with a list of useful plugins managed via [zplugin](https://github.com/zdharma/zplugin).
-
-For flexibility and speed reasons `set-me-up` does not rely on any of the popular frameworks, but picks a few plugins from these. To keep the console snappy all plugins are [loaded asynchronously](https://github.com/zdharma/zplugin#turbo-mode-zsh--53).
+Configures `fish` as your default shell with sane `fish` options and provides you with a list of useful plugins managed via [Fisherman](https://fisherman.github.io) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish).
 
 Some of the installed plugins are:
 
-- zsh-autosuggestions
-- zsh-completions
-- zsh-you-should-use
-- fast-syntax-highlighting
-- fasd
 - fzf
+- fnm
+- z
+- fzy
+- bass
 - ... and more.
 
-**⚠️ Note**: _Take a look at the [zplugin file](.dotfiles/tag-smu/zsh/zplugin.zsh) for a full overview._
-
-By default the terminal module does not come with any theme or fancy prompt. Take a look at the theme module for that.
-
-#### [theme](.dotfiles/tag-smu/modules/theme)
-
-The [base16 material-darker theme](http://chriskempson.com/projects/base16/) and the [Nerd Font version of "Fira Code" called "Fura Code"](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode) are the two pillars of the theme module. For better readability the **light** version of the font will be configured and ligatures will be enabled if possible.
-
-[base16-manager](https://github.com/AuditeMarlow/base16-manager) is used to apply the theme to shell, `vim` and `fzf`. Font and/or theme for Sublime Text, SpaceVim, IDEA Intellij and iterm2 are applied programmatically by adapting the appropriate configuration files.
-
-In case you are using the [SMU terminal module](#terminal), [Spaceship ZSH prompt](https://github.com/denysdovhan/spaceship-prompt) will be enabled with a [custom configuration](.dotfiles/tag-smu/modules/theme/spaceship.plugin.zsh) that tries to not be in your way.
-
-Oni is not included as its configuration is blended within a JavaScript file.
-
-A few screenshots:
-
-1.  Terminal
-
-    [<img alt="Terminal" src="screenshots/terminal.png" width="300" />](screenshots/terminal.png)
-
-2.  Sublime
-
-    [<img alt="Sublime" src="screenshots/sublime.png" width="300" />](screenshots/sublime.png)
-
-3.  SpaceVim
-
-    [<img alt="SpaceVim" src="screenshots/vi.png" width="300" />](screenshots/vi.png)
-
-4.  IntelliJ
-
-    [<img alt="IntelliJ" src="screenshots/intellij.png" width="300" />](screenshots/intellij.png)
+**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/tag-smu/terminal/terminal.sh) for a full overview._
 
 #### [web](.dotfiles/tag-smu/modules/web)
 
@@ -247,8 +210,6 @@ Nothing describes the actual functionality better than the code. It is recommend
 - [mathiasbynens](https://github.com/mathiasbynens/dotfiles) for his popular [macOS script](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
 - [argbash.io](https://argbash.io/) enabling library free and sane argument parsing.
 - [brew](https://brew.sh/) and [brew bundle](https://github.com/Homebrew/homebrew-bundle) for the awesome package management.
-- The great people who provide `brew` formulas and `zsh` plugins.
-- Especially [zimf](https://github.com/zimfw/zimfw), [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh/) and [prezto](https://github.com/sorin-ionescu/prezto) as I utilize plugins from these frameworks. And `zplugin` that gives the highest flexibility when it comes to `zsh` plugin management.
 - [thoughtbot rcm](https://github.com/thoughtbot/rcm) for easy dotfile management.
 - All of the authors of the installed applications via `set-me-up` , I am in no way connected to any of them.
 
