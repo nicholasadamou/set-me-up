@@ -164,7 +164,7 @@ Some of the installed plugins are:
 - bass
 - ... and more.
 
-**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/tag-smu/terminal/terminal.sh) for a full overview._
+**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/tag-smu/modules/terminal/terminal.sh#L181) for a full overview._
 
 #### [web](.dotfiles/tag-smu/modules/web)
 
