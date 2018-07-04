@@ -179,10 +179,6 @@ When the terminal module is used, the `node` installation will work-out-of-the-b
 The `smu` script is wrapped with auto-generated [argbash.io](https://argbash.io/) code. It aims to make the use of `set-me-up` as pleasant as possible.
 It runs the given modules by sourcing the appropriate scripts and ensuring a few constraints: a) always run the base module and b) prioritize the Mac OS updater script over all other modules.
 
-#### [update.sh](.dotfiles/tag-smu/modules/update.sh)
-
-An updater of the provided sources (W.I.P. 😉).
-
 ### How does it work?
 
 > Hamid: What's that?
