@@ -37,3 +37,30 @@ nodenv global "${node10}"
 
 nodenv rehash
 
+echo "------------------------------"
+echo "Installing npm packages"
+
+sudo npm install -g \
+n \
+yarn \
+bower \
+parcel-bundler \
+gulp \
+google-font-installer \
+now \
+fkill-cli \
+manage-wifi-cli \
+gitmoji-cli \
+wallpaper-cli \
+empty-trash-cli \
+emma-cli \
+is-up-cli \
+carbon-now-cli \
+speed-test \
+svgo \
+spot \
+gtop \
+ghwd \
+ghub \
+tldr
+

@@ -45,6 +45,7 @@ brew "fzf"
 brew "fzy"
 brew "z"
 brew "goto"
+brew "bat"
 
 # compression utilities
 brew "p7zip"
