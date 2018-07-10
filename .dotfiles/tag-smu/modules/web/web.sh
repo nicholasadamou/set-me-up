@@ -3,15 +3,21 @@
 readonly node8=${node8:-"8.11.1"}
 readonly node10=${node10:-"10.0.0"}
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 echo "------------------------------"
 echo "Running web module"
 echo "------------------------------"
 echo ""
 
+# Install `brew` dependencies
+
 echo "------------------------------"
 echo "Installing brew dependencies"
 
 brew bundle install -v --file="./brewfile"
+
+# Initialize `nodenv`
 
 echo "------------------------------"
 nodenv init
@@ -23,19 +29,41 @@ if [[ -z "${SMU_FISH_DIR+x}" ]]; then
     echo ""
 fi
 
+# Install Node version 8.11.1
 
 echo "------------------------------"
-echo "Installing node ${node8}"
+echo "Installing node v${node8} using (nodenv)"
 
 nodenv install "${node8}" -s
 
+# Install Node version 10.0.0
+# Set Node version 10.0.0 as global version
+
 echo "------------------------------"
-echo "Installing node ${node10} and setting as global version"
+echo "Installing node v${node10} and setting as global version using (nodeenv)"
 
 nodenv install "${node10}" -s
 nodenv global "${node10}"
 
 nodenv rehash
+
+# Install `nvm` to manage Node versions
+
+echo "------------------------------"
+echo "Installing nvm"
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+
+# Install Node & NPM LTS using `nvm`
+
+echo "------------------------------"
+echo "Installing node & npm LTS using (nvm)"
+
+. "$HOME"/.bashrc \
+    && nvm install --lts \
+    && nvm install-latest-npm
+
+# Install NPM packages
 
 echo "------------------------------"
 echo "Installing npm packages"

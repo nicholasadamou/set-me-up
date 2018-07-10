@@ -1,16 +1,75 @@
 #!/bin/bash
 
-readonly go1=${go1:-"1.10.1"}
+# GoEnv helper functions
+
+install_latest_stable_go() {
+
+    # Install `go` and add the necessary
+    # configs in the local shell config file.
+
+    local latest_version
+    local current_version
+    local release_list="https://golang.org/doc/devel/release.html"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Check if `go` is installed
+
+    if ! command -v "go" &>/dev/null; then
+        return 1
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Check if `goenv` is installed
+
+    if ! command -v "goenv" &>/dev/null; then
+        return 1
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    latest_version="$(
+        curl --silent $release_list | \
+        grep -E -o 'go[0-9\.]+' | \
+        grep -E -o '[0-9]\.[0-9]+(\.[0-9]+)?' | \
+        sort -V | \
+        uniq | \
+        tail -1
+    )"
+    current_version="$(
+        go version | \
+        cut -d " " -f3 | \
+        sed "s/go//g"
+    )"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if ! [ -d "$HOME/.goenv/versions/$latest_version" ]; then
+        if [ "$current_version" != "$latest_version" ]; then
+            . "$HOME/.bashrc" \
+                && goenv install "$latest_version" \
+                && goenv global "$latest_version"
+        fi
+    fi
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 echo "------------------------------"
 echo "Running go module"
 echo "------------------------------"
 echo ""
 
+# Install `brew` dependencies
+
 echo "------------------------------"
 echo "Installing brew dependencies"
 
 brew bundle install -v --file="./brewfile"
+
+# Initialize `goenv`
 
 echo "------------------------------"
 goenv init
@@ -22,10 +81,11 @@ if [[ -z "${SMU_FISH_DIR+x}" ]]; then
     echo ""
 fi
 
-echo "------------------------------"
-echo "Installing go ${go1} and setting as global version"
+# Install the latest Go version using `goenv`
 
-goenv install "${go1}" -s
-goenv global "${go1}"
+echo "------------------------------"
+echo "Installing the latest version of go"
+
+install_latest_stable_go
 
 goenv rehash

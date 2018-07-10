@@ -3,15 +3,21 @@
 readonly python2=${python2:-"2.7.14"}
 readonly python3=${python3:-"3.6.5"}
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 echo "------------------------------"
 echo "Running python module"
 echo "------------------------------"
 echo ""
 
+# Install `brew` dependencies
+
 echo "------------------------------"
 echo "Installing brew dependencies"
 
 brew bundle install -v --file="./brewfile"
+
+# Initialize `pyenv`
 
 echo "------------------------------"
 pyenv init
@@ -23,11 +29,15 @@ if [[ -z "${SMU_FISH_DIR+x}" ]]; then
     echo ""
 fi
 
+# Install Python version 2.7.14 using `pyenv`
 
 echo "------------------------------"
 echo "Installing python ${python2}"
 
 pyenv install "${python2}" -s
+
+# Install Python version 3.6.5 using `pyenv`
+# Set Python version 3.6.5 as global version using `pyenv`
 
 echo "------------------------------"
 echo "Installing python ${python3} and setting as global version"

@@ -6,6 +6,7 @@ alias cd.. "cd .."
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 alias :q "exit"
+alias cat "bat"
 alias c "clear"
 alias e "vim --"
 alias myip "curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+'"

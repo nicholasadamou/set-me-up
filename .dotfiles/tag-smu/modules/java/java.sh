@@ -8,6 +8,10 @@ readonly maven3=${maven3:-"3.5.3"}
 readonly gradle4=${gradle4:-"4.7"}
 readonly sbt1=${sbt1:-"1.1.4"}
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Android helper functions
+
 sdk_install() {
 
     local -r candidate="${1}"
@@ -19,6 +23,8 @@ sdk_install() {
     printf "\n" | sdk install "${candidate}" "${version}"
 
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 echo "------------------------------"
 echo "Running java module"
@@ -52,9 +58,14 @@ sdk_install "maven" "${maven3}"
 sdk_install "gradle" "${gradle4}"
 sdk_install "sbt" "${sbt1}"
 
+# Install Java version 8.0.171 using `sdk`
+# Set Java version 8.0.171 as global version using `sdk`
+
 echo "------------------------------"
 echo "Setting java ${java8} as global version"
 sdk default "java" "${java8}"
+
+# Install `brew` dependencies
 
 echo "------------------------------"
 echo "Installing brew dependencies"

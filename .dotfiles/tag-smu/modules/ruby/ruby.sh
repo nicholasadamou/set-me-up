@@ -1,16 +1,55 @@
 #!/bin/bash
 
-readonly ruby2=${ruby2:-"2.5.1"}
+install_latest_stable_ruby() {
+
+    # Install the latest stable version of Ruby
+    # (this will also set it as the default).
+
+    # Determine which version is the LTS version of ruby
+    # see: https://stackoverflow.com/a/30191850/5290011
+
+    local latest_version
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Check if `rbenv` is installed
+
+    if ! command -v "rbenv" &>/dev/null; then
+        return 1
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    latest_version="$(
+        . $HOME/.bashrc \
+        && rbenv install -l | \
+        grep -v - | \
+        tail -1
+    )"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    . "$HOME/.bashrc" \
+        && rbenv install "$latest_version" \
+        && rbenv global "$latest_version"
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 echo "------------------------------"
 echo "Running ruby module"
 echo "------------------------------"
 echo ""
 
+# Install `brew` dependencies
+
 echo "------------------------------"
 echo "Installing brew dependencies"
 
 brew bundle install -v --file="./brewfile"
+
+# Initialize `rbenv`
 
 echo "------------------------------"
 rbenv init
@@ -22,17 +61,21 @@ if [[ -z "${SMU_FISH_DIR+x}" ]]; then
     echo ""
 fi
 
-echo "------------------------------"
-echo "Installing ruby ${ruby2} and setting as global version"
+# Install the latest Ruby version using `rbenv`
 
-rbenv install "${ruby2}" -s
-rbenv global "${ruby2}"
+echo "------------------------------"
+echo "Installing the latest version of ruby"
+
+install_latest_stable_ruby
 
 rbenv rehash
 
-echo "------------------------------"
-echo "Installing bundler gem"
+# Install Ruby gems
 
-gem install bundler
+echo "------------------------------"
+echo "Installing ruby gems"
+
+gem install \
+bundler
 
 rbenv rehash

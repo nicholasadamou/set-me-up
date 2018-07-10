@@ -6,6 +6,8 @@ echo "This might awhile to complete because some formulae need to be installed f
 echo "------------------------------"
 echo ""
 
+# Install `brew` dependencies
+
 echo "------------------------------"
 echo "Installing brew dependencies"
 

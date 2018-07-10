@@ -5,15 +5,21 @@ echo "Running editor module"
 echo "------------------------------"
 echo ""
 
+# Install `brew` dependencies
+
 echo "------------------------------"
 echo "Installing brew dependencies"
 
 brew bundle install -v --file="./brewfile"
 
+# Install SpaceVim
+
 echo "------------------------------"
 echo "Installing spacevim"
 
 curl -sLf https://spacevim.org/install.sh | bash
+
+# Configure Visual Studio Code
 
 echo "------------------------------"
 echo "Configuring Visual Studio Code"
@@ -21,6 +27,8 @@ echo "Configuring Visual Studio Code"
 if [[ $(command -v code) ]]; then
     code --install-extension CodeSync
 fi
+
+# Install Diff- and merge tools
 
 echo "------------------------------"
 echo "Installing diff- and merge tools"

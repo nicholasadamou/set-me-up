@@ -2,6 +2,10 @@
 
 readonly phpswitch_executable="/usr/local/bin/phpswitch"
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# PHP helper functions
+
 get_php_ini() {
     echo `php -i 2> /dev/null | grep 'Loaded Configuration File' | sed 's/Loaded Configuration File => //'`
 }
@@ -53,12 +57,14 @@ memcached_install() {
     echo "extension=\"memcached.so\"" > "${ini_dir}/memcached.ini"
 }
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 echo "------------------------------"
 echo "Running PHP module"
 echo "------------------------------"
 echo ""
 
-# xcode zlib is required for the memcached extension
+# 'xcode' and 'zlib' are required for the 'memcached' extension
 if [[ -z $(xcode-select -p) ]]; then
     echo "------------------------------"
     echo "Installing Xcode Command Line Tools."
@@ -66,21 +72,29 @@ if [[ -z $(xcode-select -p) ]]; then
     xcode-select --install
 fi
 
+# Install `brew` dependencies
+
 echo "------------------------------"
 echo "Installing brew dependencies"
 
 brew bundle install -v --file="./brewfile"
 
+# Install PHP Version Switcher
+
 echo "------------------------------"
-echo "Installing php version switcher..."
+echo "Installing php version switcher"
 
 curl -fsSL https://raw.githubusercontent.com/philcook/brew-php-switcher/master/phpswitch.sh > "${phpswitch_executable}"
 chmod +x "${phpswitch_executable}"
 
-echo "------------------------------"
-echo "Installing PHP 5.6 extensions..."
-( source "./php56_extensions.sh" )
+# Install PHP 5.6 extensions
 
 echo "------------------------------"
-echo "Installing PHP 7.2 extensions..."
+echo "Installing PHP 5.6 extensions"
+( source "./php56_extensions.sh" )
+
+# Install PHP 7.2 extensions
+
+echo "------------------------------"
+echo "Installing PHP 7.2 extensions"
 ( source "./php72_extensions.sh" )

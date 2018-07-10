@@ -153,7 +153,7 @@ fi
 
 if [[ $SHELL != "${fish_executable}" ]]; then
     echo "------------------------------"
-    echo "Setting fish as default shell..."
+    echo "Setting fish as default shell."
     chsh -s "${fish_executable}"
 fi
 
@@ -164,14 +164,12 @@ fi
 echo "------------------------------"
 echo "Installing Oh-My-Fish"
 
-is_omf_installed || {
-
+if ! is_omf_installed; then
     curl -L github.com/oh-my-fish/oh-my-fish/raw/master/bin/install > install \
         && chmod +x install \
         && ./install --noninteractive --path="$HOME"/.local/share/omf --config="$HOME"/.config/omf \
         && rm -rf install
-
-}
+fi
 
 # Install Oh-My-Fish packages
 
@@ -196,11 +194,9 @@ omf_update
 echo "------------------------------"
 echo "Installing Fisherman"
 
-is_fisher_installed || {
-
+if ! is_fisher_installed; then
     curl -Lo "$HOME"/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-
-}
+fi
 
 # Install Fisherman packages
 
@@ -211,7 +207,6 @@ fisher_install "edc/bass"
 fisher_install "fzf"
 fisher_install "fzy"
 fisher_install "z"
-fisher_install "fnm"
 fisher_install "gitignore"
 fisher_install "joseluisq/gitnow"
 fisher_install "laughedelic/brew-completions"
@@ -219,6 +214,7 @@ fisher_install "rbenv"
 fisher_install "pyenv"
 fisher_install "yamadayuki/goenv"
 fisher_install "nodenv"
+fisher_install "nvm"
 
 # Update Fisherman
 
@@ -234,12 +230,11 @@ fisher_update
 echo "------------------------------"
 echo "Installing Tacklebox"
 
-is_tacklebox_installed || {
+if ! is_tacklebox_installed; then
 
     git clone https://github.com/justinmayer/tacklebox "$HOME"/.tacklebox \
         && git clone https://github.com/justinmayer/tackle "$HOME"/.tackle
-
-}
+fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
