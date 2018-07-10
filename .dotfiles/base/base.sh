@@ -5,7 +5,7 @@ readonly SMU_PATH="$HOME/set-me-up"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 if [[ $(command -v brew) == "" ]]; then
-    echo "Installing homebrew..."
+    echo "Installing homebrew"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
     echo "Updating homebrew"
