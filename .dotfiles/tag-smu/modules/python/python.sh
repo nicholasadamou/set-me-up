@@ -46,3 +46,21 @@ pyenv install "${python3}" -s
 pyenv global "${python3}"
 
 pyenv rehash
+
+# Install pip packages
+
+echo "------------------------------"
+echo "Installing pip packages"
+
+pip install --quiet \
+cheat \
+pip-review
+
+# Install pip3 packages
+
+echo "------------------------------"
+echo "Installing pip3 packages"
+
+pip3 install --quiet \
+thefuck \
+pip-review

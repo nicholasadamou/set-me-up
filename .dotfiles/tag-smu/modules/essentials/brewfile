@@ -74,6 +74,7 @@ brew "hh"
 brew "ripgrep"
 brew "peco"
 brew "tig"
+brew "asdf"
 
 # core development casks
 cask "alfred"
