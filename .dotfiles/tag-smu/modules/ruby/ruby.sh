@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# rbenv helper functions
+
 install_latest_stable_ruby() {
 
     # Install the latest stable version of Ruby
@@ -21,16 +23,14 @@ install_latest_stable_ruby() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     latest_version="$(
-        . $HOME/.bashrc \
-        && rbenv install -l | \
+        rbenv install -l | \
         grep -v - | \
         tail -1
     )"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    . "$HOME/.bashrc" \
-        && rbenv install "$latest_version" \
+    rbenv install "$latest_version" \
         && rbenv global "$latest_version"
 
 }

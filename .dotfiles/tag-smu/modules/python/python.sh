@@ -5,6 +5,54 @@ readonly python3=${python3:-"3.6.5"}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# PyEnv helper functions
+
+install_latest_stable_python() {
+
+    # Install the latest stable version of Python
+    # (this will also set it as the default).
+
+    # Determine which version is the LTS version of Python
+    # see: https://stackoverflow.com/a/33423958/5290011
+
+    # Determine the current version of Python installed
+    # see: https://stackoverflow.com/a/30261215/5290011
+
+    local latest_version
+    local current_version
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Check if `pyenv` is installed
+
+    if ! command -v "pyenv" &>/dev/null; then
+        return 1
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    latest_version="$(
+        pyenv install --list | \
+        grep -v - | \
+        grep -v b | \
+        tail -1 | \
+        tr -d '[:space:]'
+    )"
+    current_version="$(
+        python -V 2>&1 | cut -d " " -f2
+    )"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ "$current_version" != "$latest_version" ]; then
+        pyenv install $latest_version \
+            && pyenv global $latest_version
+    fi
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 echo "------------------------------"
 echo "Running python module"
 echo "------------------------------"
@@ -29,21 +77,12 @@ if [[ -z "${SMU_FISH_DIR+x}" ]]; then
     echo ""
 fi
 
-# Install Python version 2.7.14 using `pyenv`
+# Install the latest Python version using `pyenv`
 
 echo "------------------------------"
-echo "Installing python ${python2}"
+echo "Installing the latest version of python"
 
-pyenv install "${python2}" -s
-
-# Install Python version 3.6.5 using `pyenv`
-# Set Python version 3.6.5 as global version using `pyenv`
-
-echo "------------------------------"
-echo "Installing python ${python3} and setting as global version"
-
-pyenv install "${python3}" -s
-pyenv global "${python3}"
+install_latest_stable_python
 
 pyenv rehash
 

@@ -47,8 +47,7 @@ install_latest_stable_go() {
 
     if ! [ -d "$HOME/.goenv/versions/$latest_version" ]; then
         if [ "$current_version" != "$latest_version" ]; then
-            . "$HOME/.bashrc" \
-                && goenv install "$latest_version" \
+            goenv install "$latest_version" \
                 && goenv global "$latest_version"
         fi
     fi
