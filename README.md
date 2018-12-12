@@ -93,7 +93,7 @@ You can use `smu --lsrc` command to show which files will be symlink'ed to your 
 
 #### [editor](.dotfiles/tag-smu/modules/editor)
 
-The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`. Should you enjoy using `vi` outside your terminal you can use [oni](https://www.onivim.io/). [SpaceVim](https://spacevim.org/) provides a good configuration base and is referenced in all three `vi` editors.
+The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`.
 
 For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/) or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/tag-smu/modules/editor/vscode).
 
