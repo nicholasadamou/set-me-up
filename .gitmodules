@@ -1,3 +1,6 @@
+[submodule "src/symlinks/.config/bash-sensible"]
+	path = src/symlinks/.config/bash-sensible
+	url = https://github.com/mrzool/bash-sensible
 [submodule ".dotfiles/tag-smu/modules/editor/vscode"]
 	path = .dotfiles/tag-smu/modules/editor/vscode
 	url = https://github.com/nicholasadamou/vs-code-setup
