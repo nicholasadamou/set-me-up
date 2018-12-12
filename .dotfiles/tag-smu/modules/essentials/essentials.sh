@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "------------------------------"
+echo "Running Essentials module"
 echo "Installing essential homebrew formulae and apps."
 echo "This might awhile to complete because some formulae need to be installed from source."
 echo "------------------------------"

@@ -65,7 +65,9 @@ export PATH
 }
 
 echo "------------------------------"
-echo "Installing newer version of Bash"
+echo "Running bash module"
+echo "------------------------------"
+echo ""
 
 brew_install "bash" \
     && change_default_bash
