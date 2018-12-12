@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Easily commit all changes to the local Git Repository.
+bind '"\C-g":"git add -A && git commit -v && git push \C-m"'

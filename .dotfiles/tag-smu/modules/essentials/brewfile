@@ -2,6 +2,7 @@ cask_args appdir: "/Applications"
 
 tap "homebrew/versions"
 tap "bramstein/webfonttools"
+tap "buo/cask-upgrade"
 
 brew "coreutils"
 
@@ -25,6 +26,11 @@ brew "screen"
 brew "ack"
 brew "dark-mode"
 brew "htop-osx", args: ["with-ncurses"]
+brew "googler"
+brew "buku"
+brew "exa"
+brew "shellcheck"
+brew "yarn", args: ["without-node"]
 
 # image processing
 brew "webkit2png"
@@ -58,6 +64,9 @@ brew "libxml2"
 brew "libxslt"
 
 # misc.
+brew "tmux"
+brew "tmuxinator-completions"
+brew "the_silver_searcher"
 brew "lua"
 brew "pv"
 brew "rename"
@@ -75,6 +84,14 @@ brew "ripgrep"
 brew "peco"
 brew "tig"
 brew "asdf"
+brew "wallpaper"
+brew "task"
+brew "taskd"
+brew "tasksh"
+brew "cmus"
+brew "most"
+brew "ripgrep"
+brew "travis"
 
 # core development casks
 cask "alfred"

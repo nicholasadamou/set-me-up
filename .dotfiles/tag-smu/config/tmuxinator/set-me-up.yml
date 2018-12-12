@@ -1,0 +1,10 @@
+name: set-me-up
+windows:
+    - "~/dev/set-me-up":
+          layout: main-vertical
+          panes:
+              - cd /Users/nicholas/dev/set-me-up
+    - "~/dev/set-me-up-blueprint":
+          layout: main-vertical
+          panes:
+              - cd /Users/nicholas/dev/set-me-up-blueprint

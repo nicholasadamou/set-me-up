@@ -69,9 +69,15 @@ omf_update() {
 
 # Fisherman helper functions
 
+does_fishfile_exist() {
+
+    [ -f "$HOME"/.config/fish/fishfile ]
+
+}
+
 is_fisher_installed() {
 
-    if ! fish_cmd_exists "fisher"; then
+    if ! fish_cmd_exists "fisher" && ! does_fishfile_exist; then
         return 1
     fi
 
@@ -79,15 +85,13 @@ is_fisher_installed() {
 
 is_fisher_pkg_installed() {
 
-    fish -c "fisher ls | grep $1" &> /dev/null
+    does_fishfile_exist && fish -c "fisher ls | grep $1" &> /dev/null
 
 }
 
 fisher_install() {
 
-    declare -r PACKAGE
-
-    PACKAGE="$(echo "$1" | cut -d '/' -f 2)"
+    declare -r PACKAGE="$1"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -100,7 +104,7 @@ fisher_install() {
     # Install the specified package.
 
     if ! is_fisher_pkg_installed "$PACKAGE"; then
-        fish -c "fisher $PACKAGE"
+        fish -c "fisher add $PACKAGE"
     fi
 
 }
@@ -115,7 +119,7 @@ fisher_update() {
 
     # Update package(s)
 
-    fish -c "fisher up"
+    fish -c "fisher ;and fisher self-update"
 
 }
 
@@ -151,11 +155,12 @@ if ! grep -q "${fish_executable}" "/etc/shells"; then
     echo "${fish_executable}" | sudo tee -a /etc/shells
 fi
 
-if [[ $SHELL != "${fish_executable}" ]]; then
-    echo "------------------------------"
-    echo "Setting fish as default shell."
-    chsh -s "${fish_executable}"
-fi
+# Keep bash as default shell.
+# if [[ $SHELL != "${fish_executable}" ]]; then
+#    echo "------------------------------"
+#    echo "Setting fish as default shell."
+#    chsh -s "${fish_executable}"
+# fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -177,7 +182,7 @@ echo "------------------------------"
 echo "Installing Oh-My-Fish packages"
 
 omf_install "z"
-omf_install "simple-ass-prompt"
+omf_install "spacefish"
 
 
 # Update Oh-My-Fish
@@ -203,18 +208,15 @@ fi
 echo "------------------------------"
 echo "Installing Fisherman packages"
 
-fisher_install "edc/bass"
-fisher_install "fzf"
-fisher_install "fzy"
-fisher_install "z"
-fisher_install "gitignore"
-fisher_install "joseluisq/gitnow"
-fisher_install "laughedelic/brew-completions"
-fisher_install "rbenv"
-fisher_install "pyenv"
-fisher_install "yamadayuki/goenv"
-fisher_install "nodenv"
-fisher_install "nvm"
+does_fishfile_exist && {
+    cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
+        fisher_install "$PACKAGE"
+    done
+}
+
+printf "\n"
+
+fisher_update
 
 # Update Fisherman
 

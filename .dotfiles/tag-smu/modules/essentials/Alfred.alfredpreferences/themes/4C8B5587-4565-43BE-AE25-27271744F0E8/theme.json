@@ -4,41 +4,41 @@
       "textSpacing" : 4,
       "subtext" : {
         "size" : 11,
-        "colorSelected" : "#EBEBEBFF",
-        "font" : "Lucida Grande",
-        "color" : "#929292FF"
+        "colorSelected" : "#D9D7CEFF",
+        "font" : "Operator Mono",
+        "color" : "#575857FF"
       },
       "shortcut" : {
         "size" : 16,
-        "colorSelected" : "#EBEBEBFF",
-        "font" : "Lucida Grande",
-        "color" : "#929292FF"
+        "colorSelected" : "#47484CFF",
+        "font" : "Operator Mono",
+        "color" : "#47484CFF"
       },
       "backgroundSelected" : "#0000004C",
       "text" : {
-        "size" : 13,
-        "colorSelected" : "#FFFFFFFF",
-        "font" : "Lucida Grande",
-        "color" : "#5F5F5FFF"
+        "size" : 12,
+        "colorSelected" : "#D9D7CEFF",
+        "font" : "Operator Mono",
+        "color" : "#D7D5CCFF"
       },
       "iconPaddingHorizontal" : 5,
       "paddingVertical" : 2,
-      "iconSize" : 40
+      "iconSize" : 39
     },
     "search" : {
       "paddingVertical" : 2,
-      "background" : "#FFFFFF00",
+      "background" : "#212633FF",
       "spacing" : 10,
       "text" : {
         "size" : 32,
         "colorSelected" : "#000000FF",
-        "font" : "Lucida Grande",
-        "color" : "#333333FF"
+        "font" : "Operator Mono",
+        "color" : "#EFF0EFFF"
       },
       "backgroundSelected" : "#D8D8DBFF"
     },
     "window" : {
-      "color" : "#FFFFFFCC",
+      "color" : "#212633FF",
       "paddingHorizontal" : 10,
       "width" : 620,
       "borderPadding" : 10,

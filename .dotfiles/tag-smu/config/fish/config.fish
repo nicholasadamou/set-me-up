@@ -4,13 +4,19 @@
 # load fish variables
 . "$HOME/.config/fish/variables/variables.fish"
 
+# load fish keybindings
+. ~/.config/fish/keybindings/keybindings.fish
+
+# load local fish configurations
+. ~/.fish.local
+
 # asdf - Extendable version manager with support for Ruby, Node.js, Elixir, Erlang & more.
 # see: https://github.com/asdf-vm/asdf#setup
 . "$HOME/.asdf/asdf.fish"
 
 # thefuck - Magnificent app which corrects your previous console command.
 # see: https://github.com/nvbn/thefuck/wiki/Shell-aliases#fish
-# thefuck --alias | source
+thefuck --alias | source
 
 # load Tacklebox configuration
 # see: https://github.com/justinmayer/tacklebox
@@ -32,8 +38,8 @@ if test -e "$HOME/.base16-manager/chriskempson/base16-shell/base16-shell.plugin.
     . "$HOME/.base16-manager/chriskempson/base16-shell/base16-shell.plugin.fish"
 end
 
-# Start 'tmux' on shell-startup
-if status is-interactive
-and not set -q TMUX
-    exec tmux
-end
+# Clear system messages (system copyright notice, the date
+# and time of the last login, the message of the day, etc.).
+
+clear
+

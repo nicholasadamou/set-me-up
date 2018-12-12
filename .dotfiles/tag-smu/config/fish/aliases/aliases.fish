@@ -6,44 +6,64 @@ alias cd.. "cd .."
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 alias :q "exit"
-alias cat "bat"
 alias c "clear"
 alias e "vim --"
-alias myip "curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+'"
+alias myip "curl -s checkip.dyndns.org | grep -Eo "[0-9\.]+""
 alias whois "whois -h whois-servers.net"
-alias ll "ls -l"
 alias m "man"
 alias map "xargs -n1"
 alias q "exit"
 alias rm "rm -i -rf --"
-alias t "tmux"
 alias fs "stat -f \"%z bytes\""
+
+function du --description "Updates the dotfiles directory"
+    git -C $DOTFILES/src/install/editor/vscode stash ;and \
+    git -C $DOTFILES reset --hard origin/macos ;and \
+        git -C $DOTFILES pull ;and \
+        git -C $DOTFILES submodule update --quiet --init --recursive ;and \
+        git -C $DOTFILES submodule foreach git pull origin master
+end
+
+alias dotfiles "tmuxinator start dotfiles"
 
 function randpw --description "generate a random password"
   dd if=/dev/urandom bs=1 count=16 2>/dev/null | base64 | rev | cut -b 2- | rev
 end
 
-function cd --description "auto ls for each cd"
+function cd --description "auto exa for each cd"
   if [ -n $argv[1] ]
     builtin cd $argv[1]
-    and ls -AF
+    and exa
   else
     builtin cd ~
-    and ls -AF
+    and exa
   end
 end
 
 function pkill --description "pkill a process interactively"
-  ps aux | peco | awk '{ print $2 }' | xargs kill
+  ps aux | peco | awk "{ print $2 }" | xargs kill
 end
 
 function ppkill --description "kill -9 a process interactively"
-  ps aux | peco | awk '{ print $2 }' | xargs kill -KILL
+  ps aux | peco | awk "{ print $2 }" | xargs kill -KILL
 end
 
 function pgrep --description "pgrep a process interactively"
-  ps aux | peco | awk '{ print $2 }'
+  ps aux | peco | awk "{ print $2 }"
 end
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# 'ls' aliases
+
+alias ls "exa"
+
+# List all files colorized in long format
+alias l "exa -l"
+# List only directories
+alias lsd "ls -lF --color | grep --color=never '^d'"
+# List only hidden files
+alias lsh "ls -ld .?*"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -53,9 +73,28 @@ alias afk "/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Shortcuts
+
+alias dev "cd $HOME/dev"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # `git` aliases
 
 alias git "hub"
+alias acp "git add -A ;and git commit -v ;and git push"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# `lazygit` aliases
+
+alias lg "lazygit"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# `wttr` alias
+
+alias wttr "curl wttr.in"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -85,26 +124,12 @@ end
 
 # Shorter commands for `Node Package Manager`
 
-alias n "npm"
-alias npmi "sudo (which npm) i -g"
-alias npmr "sudo (which npm) uninstall"
-alias npmls "sudo (which npm) list -g --depth 0"
-alias npms "sudo (which npm) s"
-alias npmu "sudo (which npm) i -g npm@latest"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Shorter commands for `asdf`
-# see: https://github.com/asdf-vm/asdf#usage
-
-alias asdfi "asdf plugin-add"
-# e.g. asdf plugin-add <name> <git-url>
-alias asdfr "asdf plugin-remove"
-# e.g. asdf plugin-remove <name>
-alias asdfls "asdf plugin-list"
-# e.g. asdf plugin-list || asdf list <name>
-alias asdfu "asdf plugin-update --all"
-# e.g. asdf plugin-update --all || asdf plugin-update <name>
+# alias n "npm" # Do not use if using 'n' for Node version control
+alias npmi "npm i -g"
+alias npmr "npm uninstall"
+alias npmls "npm list -g --depth 0"
+alias npms "npm s"
+alias npmu "npm i -g npm@latest"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -128,31 +153,19 @@ alias pip3u "pip3 install -U pip and sudo -H pip3 install -U pip"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Shorter commands for `mas`
+# Shorter commands for `Composer`
 
-alias mi "mas install"
-alias mr "mas uninstall"
-alias mls "mas list"
-alias ms "mas search"
-alias mu "sudo mas upgrade"
+alias ci "composer install"
+alias cr "composer remove"
+alias cls "composer list"
+alias cs "composer search"
+alias cu "composer self-update"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Clear DNS cache.
 
 alias clear-dns-cache "sudo dscacheutil -flushcache and sudo killall -HUP mDNSResponder"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Empty the trash, the main HDD and on all mounted volumes,
-# and clear Apple’s system logs to improve shell startup speed.
-
-function empty-trash
-    sudo rm -frv /Volumes/*/.Trashes
-    sudo rm -frv ~/.Trash
-    sudo rm -frv /private/var/log/asl/*.asl
-    sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"
-end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -175,3 +188,23 @@ alias local-ip "ipconfig getifaddr en1"
 function o --description "Open from the terminal"
     open $argv
 end
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# piknik - Copy/paste anything over the network!
+# see: https://github.com/jedisct1/piknik#suggested-shell-aliases
+
+# pkc : read the content to copy to the clipboard from STDIN
+alias pkc "piknik -copy"
+
+# pkp : paste the clipboard content
+alias pkp "piknik -paste"
+
+# pkm : move the clipboard content
+alias pkm "piknik -move"
+
+# pkz : delete the clipboard content
+alias pkz "piknik -copy < /dev/null"
+
+# pkpr : extract clipboard content sent using the pkfr command
+alias pkpr "piknik -paste | tar xzhpvf -"
