@@ -1,5 +1,5 @@
-[submodule "src/symlinks/.config/bash-sensible"]
-	path = src/symlinks/.config/bash-sensible
+[submodule ".dotfiles/tag-smu/config/bash-sensible"]
+	path = .dotfiles/tag-smu/config/bash-sensible
 	url = https://github.com/mrzool/bash-sensible
 [submodule ".dotfiles/tag-smu/modules/editor/vscode"]
 	path = .dotfiles/tag-smu/modules/editor/vscode

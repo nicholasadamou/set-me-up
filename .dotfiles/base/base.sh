@@ -1,6 +1,7 @@
 #!/bin/bash
 
 readonly SMU_PATH="$HOME/set-me-up"
+readonly SMU_URL="https://github.com/nicholasadamou/set-me-up"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -12,21 +13,22 @@ else
     brew update
 fi
 
+if [[ $(command -v git) == "" ]] && [[ $(command -v rcup) == "" ]]; then
+
+    echo "------------------------------"
+    echo "Installing git & rcm suite"
+
+    brew bundle install -v --file="./brewfile"
+fi
+
 echo "------------------------------"
 echo "Updating and/or installing submodules"
 echo "------------------------------"
 
-cd "${SMU_PATH}" \
-    && git submodule update --quiet --init --recursive \
-    && git submodule foreach git pull origin master
-
-if [[ $(command -v rcup) == "" ]]; then
-
-    echo "------------------------------"
-    echo "Installing rcm suite"
-
-    brew bundle install -v --file="./brewfile"
-fi
+git -C "${SMU_PATH}" remote add origin "${SMU_URL}" \
+    && git -C "${SMU_PATH}" git fetch \
+    && git -C "${SMU_PATH}" submodule update --quiet --init --recursive \
+    && git -C "${SMU_PATH}" submodule foreach git pull origin master
 
 echo "------------------------------"
 echo "Updating and/or installing dotfiles"
