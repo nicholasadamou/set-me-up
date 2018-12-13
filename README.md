@@ -93,13 +93,13 @@ You can use `smu --lsrc` command to show which files will be symlink'ed to your 
 
 #### [editor](.dotfiles/tag-smu/modules/editor)
 
-The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`. Should you enjoy using `vi` outside your terminal you can use [oni](https://www.onivim.io/). [SpaceVim](https://spacevim.org/) provides a good configuration base and is referenced in all three `vi` editors.
+The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`.
 
 For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/) or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/tag-smu/modules/editor/vscode).
 
 [Macdown](https://macdown.uranusjr.com/) for Markdown editing, [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) for merging/diffing and [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) as default git difftool are also part of the editor module.
 
-Apart from theme and fonts, all editors come pre-configured, except Intellij. ([SpaceVim](.dotfiles/tag-smu/SpaceVim.d), [Oni](.dotfiles/tag-smu/config/oni), [VSCode](.dotfiles/tag-smu/modules/editor/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
+Apart from theme and fonts, all editors come pre-configured, except Intellij. ([SpaceVim](.dotfiles/tag-smu/SpaceVim.d), [VSCode](.dotfiles/tag-smu/modules/editor/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
 
 #### [essentials](.dotfiles/tag-smu/modules/essentials)
 

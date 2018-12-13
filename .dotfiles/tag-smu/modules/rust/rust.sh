@@ -21,4 +21,5 @@ echo "Installing Cargo packages"
 
 cargo install \
 topgrade \
-exa
+exa \
+diskus

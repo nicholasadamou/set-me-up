@@ -4,17 +4,18 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
 
     brew update
     brew upgrade
+    brew cu --all --yes --cleanup --quiet
     brew cleanup
 
-    fisher up
+    fisher
+    fisher self-update
     omf update
     fish_update_completions
 
     sudo npm install npm@latest -g
-    sudo npm update -g
+    npm-check --global --update-all
 
-    pip install --quiet --upgrade pip
-    pip install --quiet --upgrade setuptools
-    python -m pip_review -a
-    python -3 -m pip_review -a
+    pip install --quiet --user --upgrade pip
+    pip install --quiet --user --upgrade setuptools
+    pip-review -a
 end

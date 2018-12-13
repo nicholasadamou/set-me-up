@@ -1,0 +1,83 @@
+#!/bin/bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+source_bash_files() {
+
+    declare -r CURRENT_DIRECTORY="$(pwd)"
+
+    declare -r -a FILES_TO_SOURCE=(
+        "bash_aliases"
+        "bash_autocomplete"
+        "bash_exports"
+        "bash_functions"
+        "bash_options"
+        "bash_prompt"
+        "keybindings"
+        "bash.local"  # For local settings that should
+                      # not be under version control.
+    )
+
+    local file=""
+    local i=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    cd "$(dirname "$(readlink "${BASH_SOURCE[0]}")")"
+
+    declare -r OS="$(get_os)"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    for i in ${!FILES_TO_SOURCE[*]}; do
+
+        file="$HOME/.${FILES_TO_SOURCE[$i]}"
+
+        [ -r "$file" ] \
+            && . "$file"
+
+    done
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    cd "$CURRENT_DIRECTORY"
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+source_bash_files
+unset -f source_bash_files
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load bash-sensible configs.
+# see: https://github.com/mrzool/bash-sensible
+
+. "$HOME"/.config/bash-sensible/sensible.bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Clear system messages (system copyright notice, the date
+# and time of the last login, the message of the day, etc.)
+# and changes directory to $HOME.
+
+clear && cd "$HOME" || return
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Always start tmux on start-up of bash
+# see: https://unix.stackexchange.com/a/219803/173825
+
+if command -v tmux >/dev/null; then
+        if [ ! -z "$PS1" ]; then # unless shell is not loaded interactively, run `tmux`
+                [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && tmux
+        fi
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Start up fish shell
+
+fish
+

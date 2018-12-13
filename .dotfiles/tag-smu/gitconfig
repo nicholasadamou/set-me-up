@@ -1,192 +1,160 @@
-[user]
-    name = CHANGEME
-    email = CHANGEME
-
 [alias]
 
-    # View abbreviated SHA, description, and history graph of the latest 20 commits
-    l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    a   = commit --amend
+    br  = branch
+    c   = commit
+    ca  = !git add -A && git commit                 # Commit all changes.
+    co  = checkout
+    cp  = cherry-pick
+    d   = diff
+    dc  = diff --cached
+    f   = fetch
+    g   = log --graph --pretty=custom               # Show custom graph.
+    l   = log --pretty=custom                       # Show custom log.
+    lc  = shortlog --email --numbered --summary     # List contributors.
+    p   = push
+    r   = rebase
+    rlc = reset --hard HEAD~1                       # Remove last commit.
+    s   = status
+    ulc = reset --soft HEAD~1                       # Undo last commit.
+    w   = instaweb --httpd=webrick                  # Start web-based visualizer.
+    gmodu = submodule update --recursive --remote   # Updates each respective submodule
+    gamod = update-index --add --chmod=+x           # Make a file executable.
+                                                    # see: https://stackoverflow.com/a/38285435/5290011
 
-    # View the current working tree status using the short format
-    s = status -s
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Show the diff between the latest commit and the current state
-    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+    # Find commits by source code.
 
-    # `git di $number` shows the diff between the state `$number` revisions ago and the current state
-    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+    cc = "!f() { \
+        git log --pretty=custom --decorate --date=short -S\"$1\"; \
+    }; f"
 
-    # Pull in remote changes for the current repository and all its submodules
-    p = !"git pull; git submodule foreach git pull origin master"
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Clone a repository including all submodules
-    c = clone --recursive
+    # Find commits by commit message.
 
-    # Commit all changes
-    ca = !git add -A && git commit -av
+    cm = "!f() { \
+        git log --pretty=custom --decorate --date=short --grep=\"$1\"; \
+    }; f"
 
-    # Switch to a branch, creating it if necessary
-    go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Show verbose output about tags, branches or remotes
-    tags = tag -l
-    branches = branch -a
-    remotes = remote -v
+    # Credit an author on the latest commit.
 
-    # Amend the currently staged files to the latest commit
-    amend = commit --amend --reuse-message=HEAD
-
-    # Credit an author on the latest commit
-    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-
-    # Interactive rebase with the given number of latest commits
-    reb = "!r() { git rebase -i HEAD~$1; }; r"
-
-    # Remove the old tag with this name and tag the latest commit with it.
-    retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
-
-    # Find branches containing commit
-    fb = "!f() { git branch -a --contains $1; }; f"
-
-    # Find tags containing commit
-    ft = "!f() { git describe --always --contains $1; }; f"
-
-    # Find commits by source code
-    fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-
-    # Find commits by commit message
-    fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-
-    # Remove branches that have already been merged with master
-    # a.k.a. ‘delete merged’
-    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-
-    # List contributors with number of commits
-    contributors = shortlog --summary --numbered
-
-    # Merge GitHub pull request on top of the `master` branch
-    mpr = "!f() { \
-        if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-            git fetch origin refs/pull/$1/head:pr/$1 && \
-            git rebase master pr/$1 && \
-            git checkout master && \
-            git merge pr/$1 && \
-            git branch -D pr/$1 && \
-            git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
+    credit = "!f() { \
+        if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
+            git commit --amend --author \"$1 <$2>\" -C HEAD; \
         fi \
     }; f"
 
-[apply]
-    # Detect whitespace errors when applying a patch
-    whitespace = fix
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-[branch]
-    autosetuprebase = always
+    # List remote branches.
 
-[core]
-    # Use custom `.gitignore` and `.gitattributes`
-    excludesfile = ~/.gitignore
-    attributesfile = ~/.gitattributes
+    lrb = "!f() { \
+        remote="${1:-origin}"; \
+        git ls-remote --heads "$remote"; \
+    }; f"
 
-    # Treat spaces before tabs and all kinds of trailing whitespace as an error
-    # [default] trailing-space: looks for spaces at the end of a line
-    # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Make `git rebase` safer on OS X
-    # More info: http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
-    trustctime = false
+    # Merge GitHub pull request on top of the current branch or,
+    # if a branch name is specified, on top of the specified branch.
 
-    # Prevent showing files whose names contain non-ASCII symbols as unversioned.
-    # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-    precomposeunicode = false
+    mpr = "!f() { \
+        declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
+        declare branch=\"${2:-$currentBranch}\"; \
+        if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+            git fetch origin refs/pull/$1/head:pr/$1 && \
+            git checkout -B $branch && \
+            git rebase $branch pr/$1 && \
+            git checkout -B $branch && \
+            git merge pr/$1 && \
+            git branch -D pr/$1 && \
+            git commit --amend -m \"$(git log -1 --pretty=%B)\n\nClose #$1\"; \
+        fi \
+    }; f"
 
-[color]
-    # Use colors in Git commands that are capable of colored output when
-    # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-    ui = auto
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Remove the tag with the specified tag name if
+    # exists and tag the latest commit with that name.
+
+    retag = "!f() { \
+        git tag -d "$1" &> /dev/null; \
+        git tag $1; \
+    }; f"
+
 
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+
+    current = green bold
+    local = green
+    remote = yellow
 
 [color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
 
-[color "diff-highlight"]
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-	oldNormal = red bold
+    frag = magenta
+    meta = yellow
+    new = green
+    old = red
 
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
 
-[diff]
-    # Detect copies as well as renames
-    renames = copies
+    added = green reverse
+    changed = yellow reverse
+    untracked = red reverse
 
-[difftool]
-    prompt = false
+[core]
 
-[difftool "intellij"]
-    cmd = /usr/local/bin/idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+    abbrev = 12
+    attributesfile = ~/.gitattributes
+    autocrlf = input
+    editor = vim
+    excludesfile = ~/.gitignore
 
-[difftool "p4merge"]
-    cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$LOCAL" "$REMOTE"
+[diff "bin"]
 
-[help]
-    # Automatically correct and execute mistyped commands
-    autocorrect = 1
+    # Use `hexdump` to diff binary files.
 
-[merge]
-    # Include summaries of merged commits in newly created merge commit messages
-    log = true
-    tool = intellij
+    textconv = hexdump -v -C
 
-[mergetool]
-    keepBackup = false
-    prompt = false
+[pretty]
 
-[mergetool "intellij"]
-    cmd = /usr/local/bin/idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
-    trustExitCode = true
+    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+    #                     │        │            │            │             └─ author name
+    #                     │        │            │            └─ message
+    #                     │        │            └─ date (relative)
+    #                     │        └─ decorations (branch, heads or tags)
+    #                     └─ hash (abbreviated)
 
-[mergetool "p4merge"]
-    cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-    keepTemporaries = false
-    trustExitCode = true
 
 [push]
-    default = current
-    # Make `git push` push relevant annotated tags when pushing branches out.
+
+    # Make `git push` automatically push relevant
+    # annotated tags when pushing branches out.
+
     followTags = true
 
-[rerere]
-    enabled = true
+    # Make `git push` only to the current branch
 
-# URL shorthands
+    default = simple
 
-[url "git@github.com:"]
-    insteadOf = "gh:"
-    pushInsteadOf = "github:"
-    pushInsteadOf = "git://github.com/"
+[user]
 
-[url "git://github.com/"]
-    insteadOf = "github:"
+    # Don't guess the user's identity.
+    # https://github.com/git/git/blob/90f7b16b3adc78d4bbabbd426fb69aa78c714f71/Documentation/config.txt#L2847-L2855
 
-[url "git@gist.github.com:"]
-    insteadOf = "gst:"
-    pushInsteadOf = "gist:"
-    pushInsteadOf = "git://gist.github.com/"
+    useConfigOnly = true
 
-[url "git://gist.github.com/"]
-    insteadOf = "gist:"
+[include]
+
+    # Load local configs.
+    # https://git-scm.com/docs/git-config#_includes
+    #
+    # [!] The following needs to remain at the end of this file in
+    #     order to allow any of the above configs to be overwritten
+    #     by the local ones
+
+    path = ~/.gitconfig.local

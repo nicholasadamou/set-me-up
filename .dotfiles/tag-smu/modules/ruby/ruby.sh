@@ -76,6 +76,7 @@ echo "------------------------------"
 echo "Installing ruby gems"
 
 gem install \
-bundler
+bundler \
+tmuxinator
 
 rbenv rehash

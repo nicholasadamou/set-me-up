@@ -1,0 +1,18 @@
+name: dotfiles
+windows:
+    - "~/dev/dotfiles":
+          layout: main-vertical
+          panes:
+              - cd /Users/nicholas/dev/dotfiles
+    - "~/dotfiles":
+          layout: main-vertical
+          panes:
+              - cd /Users/nicholas/dotfiles
+    - "~/dev/Dotfile-Utilities":
+          layout: main-vertical
+          panes:
+              - cd /Users/nicholas/dev/Dotfile-Utilities
+    - "~/dev/vs-code-setup":
+          layout: main-vertical
+          panes:
+              - cd /Users/nicholas/dev/vs-code-setup

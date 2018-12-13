@@ -1,10 +1,9 @@
 #!/bin/bash
 
-if [[ "${EUID}" -ne 0 ]]; then
-  echo "This module requires sudo rights."
-  echo "You should run this module using the smu script."
-  exit 1
-fi
+# Ask for the administrator password upfront
+sudo -v
+ # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Run the osx.sh Script
 # I strongly suggest you read through the commented osx.sh

@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<workflow>
-  <name>Google PageSpeed Insights</name>
-  <version>1.0</version>
-  <bundle>GooglePageSpeedInsights</bundle>
-  <updated>1430867017</updated>
-  <file>google_pagespeed_insights.alfredworkflow</file>
-</workflow>
