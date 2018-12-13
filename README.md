@@ -99,7 +99,7 @@ For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://ww
 
 [Macdown](https://macdown.uranusjr.com/) for Markdown editing, [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) for merging/diffing and [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) as default git difftool are also part of the editor module.
 
-Apart from theme and fonts, all editors come pre-configured, except Intellij. ([SpaceVim](.dotfiles/tag-smu/SpaceVim.d), [Oni](.dotfiles/tag-smu/config/oni), [VSCode](.dotfiles/tag-smu/modules/editor/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
+Apart from theme and fonts, all editors come pre-configured, except Intellij. ([SpaceVim](.dotfiles/tag-smu/SpaceVim.d), [VSCode](.dotfiles/tag-smu/modules/editor/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
 
 #### [essentials](.dotfiles/tag-smu/modules/essentials)
 

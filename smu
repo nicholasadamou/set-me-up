@@ -37,10 +37,10 @@ _arg_lsrc="off"
 
 print_help ()
 {
-	printf '%s\n' "'set-me-up' installer"
+	printf '%s\n' "set-me-up installer"
 	printf 'Usage: %s [-b|--(no-)base] [--(no-)selfupdate] [-p|--(no-)provision] [-m|--modules <arg>] [--(no-)lsrc] [-h|--help]\n' "$0"
 	printf '\t%s\n' "-b,--base,--no-base: Run base module (on by default)"
-	printf '\t%s\n' "--selfupdate,--no-selfupdate: Update 'set-me-up' (off by default)"
+	printf '\t%s\n' "--selfupdate,--no-selfupdate: Update set-me-up (off by default)"
 	printf '\t%s\n' "-p,--provision,--no-provision: Provision given modules (off by default)"
 	printf '\t%s\n' "-m,--modules: Modules to provision (empty by default)"
 	printf '\t%s\n' "--lsrc,--no-lsrc: List files that will be symlinked via rcm into your home directory (off by default)"
@@ -121,7 +121,7 @@ parse_commandline "$@"
 
 SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
 
-readonly module_path="${SMU_HOME_DIR}/.dotfiles/tag-smu/modules"
+readonly module_path="${HOME}/.modules"
 
 provision_enabled() {
     [[ ${_arg_provision} == "on" ]]
@@ -130,22 +130,9 @@ provision_enabled() {
 export _arg_provision
 export -f provision_enabled
 
-start_sudo() {
-    sudo -v
-    ( while true; do sudo -v; sleep 60; done; ) &
-    SUDO_PID="$!"
-    trap stop_sudo SIGINT SIGTERM
-}
-
-stop_sudo() {
-    kill "$SUDO_PID"
-    trap - SIGINT SIGTERM
-    sudo -k
-}
-
 provision_module() {
-    # Source base from installation directory.
-    # This enables smu to work on first time installations.
+    # source base from installation directory
+    # this enables smu to work on first time installations
     if [[ "${module}" == "base" ]]; then
         local -r path="${SMU_HOME_DIR}/.dotfiles/base"
     else
@@ -153,7 +140,6 @@ provision_module() {
     fi
 
     local -r script="${1}.sh"
-    local -r requires_sudo=("macos" "macosupdate")
 
     if [[ ! -e "${path}/${script}" ]]; then
         echo "${path}/${script} does not seem to exist, skipping."
@@ -163,23 +149,12 @@ provision_module() {
 
     echo "Running ${path}/${script} module"
 
-    if [[ " ${requires_sudo[@]} " =~ " ${1}" ]]; then
-        (
-            cd "${path}/" &&
-            start_sudo &&
-            [[ -s ./before.sh ]] && source ./before.sh
-            source "./${script}" &&
-            [[ -s ./after.sh ]] && source ./after.sh
-            stop_sudo
-        )
-    else
-        (
-            cd "${path}/" &&
-            [[ -s ./before.sh ]] && source ./before.sh
-            source "./${script}" &&
-            [[ -s ./after.sh ]] && source ./after.sh
-        )
-    fi
+    (
+        cd "${path}/" &&
+        [[ -s ./before.sh ]] && source ./before.sh
+        source "./${script}" &&
+        [[ -s ./after.sh ]] && source ./after.sh
+    )
 }
 
 if [[ ${_arg_lsrc} == "on" ]]; then
@@ -195,30 +170,30 @@ if [[ ${_arg_selfupdate} == "on" ]]; then
 fi
 
 if ! provision_enabled ; then
-    _PRINT_HELP=yes die "Please provide the --provision switch to run 'set-me-up'." 1
+    _PRINT_HELP=yes die "Please provide the --provision switch to run set-me-up." 1
     exit 0
 fi
 
-read -p "'set-me-up' may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+read -p "set-me-up may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
 echo "";
 [[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
 
 modules=("${_arg_modules[@]}")
 
-# By default run the base module as early as possible.
+# by default run the base module as early as possible
 if [[ ${_arg_base} == "on" ]]; then
     modules=("base" "${modules[@]}")
 fi
 
-# Check if macosupdate is contained in module list and if so, queue it at the beginning.
+# check if macosupdate is contained in module list and if so queue it at the beginning
 if [[ " ${modules[@]} " =~ " macosupdate " ]]; then
     modules=("macosupdate" "${modules[@]}")
 fi
 
-# List of executed modules, so we can only run them once.
+# list of executed modules, so we only one run them once
 done=()
 
-# Run modules
+# run modules
 for module in "${modules[@]}"
 do
     if [[ ! " ${done[@]} " =~ " ${module} " ]]; then
@@ -228,7 +203,7 @@ do
 done
 
 echo "------------------------------"
-echo "Completed running 'set-me-up', restart your computer to ensure all updates take effect."
+echo "Completed running set-me-up, restart your computer to ensure all updates take effect."
 echo "------------------------------"
 
 
