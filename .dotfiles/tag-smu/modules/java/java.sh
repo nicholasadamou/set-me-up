@@ -12,7 +12,29 @@ LOCAL_FISH_CONFIG_FILE="$HOME/.fish.local"
 declare -r JENV_DIRECTORY="$HOME/.jenv"
 declare -r JENV_GIT_REPO_URL="https://github.com/gcuisinier/jenv.git"
 
+readonly java8=${java8:-"8.0.171-oracle"}
+readonly java10=${java10:-"10.0.1-oracle"}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+install_sdkman() {
+
+    # Install `sdkman` and source the necessary shell scripts.
+
+    execute \
+        "curl -s \"https://get.sdkman.io\" | bash" \
+        "sdkman (install)" \
+        && [ -d "$HOME"/.sdkman ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+}
+
+update_sdkman() {
+
+    execute \
+        "sdk selfupdate force" \
+        "sdkman (update)"
+
+}
 
 add_jenv_configs() {
 
@@ -73,6 +95,12 @@ main() {
 
     print_in_purple "\n  jenv & Java\n\n"
 
+    print_in_yellow "   Install brew packages\n\n"
+
+    brew_bundle_install "Brewfile"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+
     ask_for_sudo
 
     if [ ! -d "$JENV_DIRECTORY" ]; then
@@ -81,6 +109,21 @@ main() {
         update_jenv
     fi
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_in_purple "\n  sdkman\n\n"
+
+    if ! is_sdkman_installed; then
+        install_sdkman
+    else
+        update_sdkman
+    fi
+
+    sdk_install "java" "${java8}"
+    sdk_install "java" "${java10}"
+
+    set_default_sdk "java" "${java8}"
+ 
 }
 
 main

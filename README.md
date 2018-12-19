@@ -26,11 +26,16 @@ You might wonder why not work directly with this repo? Having a remote and exter
 
 Either use your blueprint or the default installer to obtain `set-me-up` . This will put all files into `~/set-me-up` , the default `smu` home directory. In case you decided against using your own blueprint, you can run the following command in your console.
 
+(⚠️ **DO NOT** run the `install` snippet if you don't fully
+understand [what it does](.dotfiles/tag-smu/modules/install.sh). Seriously, **DON'T**!)
+
     bash <(curl --progress-bar -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/tag-smu/modules/install.sh)
 
 You can change the `smu` home directory by setting an environment variable called `SMU_HOME_DIR`. Please keep the variable declared or else the `smu` scripts are unable to pickup the sources.
 
 ### Running `set-me-up`
+
+[![xkcd: Automation](http://imgs.xkcd.com/comics/automation.png)](http://xkcd.com/1319/)
 
 1.  Use the `smu` script (which you will find inside the `smu` home directory) to run the base module. Check out the [base module documentation](#base) for more insights.
 
@@ -95,11 +100,11 @@ You can use `smu --lsrc` command to show which files will be symlink'ed to your 
 
 The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`.
 
-For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/) or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/tag-smu/modules/editor/vscode).
+For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/), [PyCharm](), [WebStorm](), [Android Studio](), or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/tag-smu/modules/editor/vscode).
 
 [Macdown](https://macdown.uranusjr.com/) for Markdown editing, [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) for merging/diffing and [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) as default git difftool are also part of the editor module.
 
-Apart from theme and fonts, all editors come pre-configured, except Intellij. ([SpaceVim](.dotfiles/tag-smu/SpaceVim.d), [VSCode](.dotfiles/tag-smu/modules/editor/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
+Apart from theme and fonts, all editors come pre-configured (e.g. [VSCode](.dotfiles/tag-smu/modules/editor/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
 
 #### [essentials](.dotfiles/tag-smu/modules/essentials)
 
@@ -107,19 +112,19 @@ Installs a multitude of `brew` packages, casks and Mac App Store applications. C
 
 #### [go](.dotfiles/tag-smu/modules/go)
 
-Installs [goenv](https://github.com/syndbg/goenv) for version management and [dep](https://github.com/golang/dep) for package management. `go1` is installed and defined as the global version via `goenv`.
+Installs [goenv](https://github.com/syndbg/goenv) for version management and [dep](https://github.com/golang/dep) for package management. `go` is installed and defined as the global version via `goenv`.
 
 When the terminal module is used, the `go` installation will work-out-of-the-box because the required `goenv` code is already in place.
 
 #### [java](.dotfiles/tag-smu/modules/java)
 
-Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`, `java10`, `kotlin1`, `scala2`, `maven3`, `gradle4` and `sbt1` are installed via `sdkman`. **java8** will be defined as the global version. Android Studio is installed via `brew` cask.
+Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`, `java10` are installed via `sdkman`. **java8** will be defined as the global version. Android Studio is installed via `brew` cask.
 
 #### [macos](.dotfiles/tag-smu/modules/macos)
 
 Sets a bunch of Mac OS settings. The file is based on [`.macos`](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
 
-⚠️ **Note**: _The `.macos` script has **not** been changed from the version provided by [Mathias Bynens](https://github.com/mathiasbynens)._
+⚠️ **Note**: _The `.macos` script **has** been modified from the version provided by [Mathias Bynens](https://github.com/mathiasbynens)._
 **It is highly recommended to work with a copy that is adapted to your needs!**
 
 #### [macosupdate](.dotfiles/tag-smu/modules/macosupdate)
@@ -131,9 +136,6 @@ Should your system require a system restart due to an `macosupdate` caused updat
 #### [php](.dotfiles/tag-smu/modules/php)
 
 Installs `PHP5`, `PHP7` and [composer](https://getcomposer.org/) for package management via `brew`. `PHP7` will be defined as the global version.
-For each version the `apcu`, `amqp`, `igbinary` and `xdebug` extensions are installed via `pecl`. `memcached` is installed from source.
-
-The [phpswitch script](https://github.com/philcook/brew-php-switcher) enables you to switch between the installed versions.
 
 #### [python](.dotfiles/tag-smu/modules/python)
 
@@ -143,7 +145,7 @@ When the terminal module is used, the `python` installation will work-out-of-the
 
 #### [ruby](.dotfiles/tag-smu/modules/ruby)
 
-Installs [rbenv](https://github.com/rbenv/rbenv) for version management and [bundler](http://bundler.io/) for package management. `ruby2` is installed and defined as the global version via `rbenv`.
+Installs [rbenv](https://github.com/rbenv/rbenv) for version management and [bundler](http://bundler.io/) for package management. `ruby` is installed and defined as the global version via `rbenv`.
 
 When the terminal module is used, the `ruby` installation will work out-of-the-box because the required `rbenv` code is already in place.
 
@@ -153,7 +155,7 @@ I primarily install the Rust toolchain because I like to use the `cargo` package
 
 #### [terminal](.dotfiles/tag-smu/modules/terminal)
 
-Configures `fish` as your default shell with sane `fish` options and provides you with a list of useful plugins managed via [Fisherman](https://fisherman.github.io) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish).
+Configures `fish` with sane `fish` options and provides you with a list of useful plugins managed via [Fisherman](https://fisherman.github.io) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish).
 
 Some of the installed plugins are:
 
@@ -164,13 +166,11 @@ Some of the installed plugins are:
 - bass
 - ... and more.
 
-**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/tag-smu/modules/terminal/terminal.sh#L181) for a full overview._
+**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/tag-smu/modules/terminal/terminal.sh) and [fishfile](.dotfiles/tag-smu/config/fish/fishfile) for a full overview._
 
 #### [web](.dotfiles/tag-smu/modules/web)
 
-Installs [nodenv](https://github.com/nodenv/nodenv) for version management, `npm` comes with node for package management. `node8` and `node10` are installed using `nodenv`. `node10` will be defined as the global version.
-
-When the terminal module is used, the `node` installation will work-out-of-the-box because the required `nodenv` code is already in place.
+Installs [n](https://github.com/tj/n) for version management, `npm` comes with node for package management. The latest `node` and `npm` versions are installed using `n`.
 
 ### Other components
 
@@ -211,6 +211,14 @@ Nothing describes the actual functionality better than the code. It is recommend
 
 Should I miss your name on the credits list please let me know :heart:
 
+## Liability
+
+The creator of this repo is _not responsible_ if your machine ends up in a state you are not happy with.
+
 ## Contributions
 
 Yes please! This is a GitHub repo. I encourage anyone to contribute. 😃
+
+## License
+
+The code is available under the [MIT license](LICENSE.txt).
