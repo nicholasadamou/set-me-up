@@ -1,0 +1,273 @@
+apps:
+  pages:
+  - number: 1
+    items:
+    - Station
+    - folder: Web Browsers
+      pages:
+      - number: 1
+        items:
+        - Google Chrome
+        - Google Chrome Canary
+        - Firefox
+        - Firefox Developer Edition
+        - Safari
+    - Airmail 3
+    - Contacts
+    - iStudiez Pro
+    - Fantastical 2
+    - Todoist
+    - Reminders
+    - Notes
+    - CARROT Weather
+    - folder: Entertainment
+      pages:
+      - number: 1
+        items:
+        - DISHAnywherePlayer
+        - DISHAnywherePlayer_Launcher
+        - VLC
+        - Friendly Streaming
+    - folder: News
+      pages:
+      - number: 1
+        items:
+        - Downcast
+        - Reeder
+        - Pocket
+    - Maps
+    - folder: Social Media
+      pages:
+      - number: 1
+        items:
+        - Messages
+        - FaceTime
+        - Slack
+        - Discord
+    - Photo Booth
+    - Photos
+    - iMovie
+    - GarageBand
+    - Spotify
+    - Shazam
+    - folder: Shopping
+      pages:
+      - number: 1
+        items:
+        - App Store
+        - iTunes
+        - Deliveries
+        - Parcel
+    - folder: College
+      pages:
+      - number: 1
+        items:
+        - Pages
+        - Numbers
+        - Keynote
+        - Microsoft OneNote
+        - Microsoft PowerPoint
+        - Microsoft Excel
+        - Microsoft Word
+        - Grammarly
+        - Notability
+        - Kindle
+        - Books
+        - Adobe Acrobat Reader DC
+    - Preview
+    - Dictionary
+    - Calculator
+    - folder: Other
+      pages:
+      - number: 1
+        items:
+        - QuickTime Player
+        - TextEdit
+        - Grapher
+        - Time Machine
+        - Font Book
+        - Chess
+        - Stickies
+        - Image Capture
+        - VoiceOver Utility
+        - AirPort Utility
+        - Migration Assistant
+        - Terminal
+        - Activity Monitor
+        - Console
+        - Keychain Access
+        - System Information
+        - Automator
+        - Script Editor
+        - Disk Utility
+        - Boot Camp Assistant
+        - Digital Color Meter
+        - ColorSync Utility
+        - Bluetooth File Exchange
+        - Audio MIDI Setup
+        - Mail
+        - Calendar
+        - Screenshot
+        - Home
+        - News
+        - Stocks
+        - Voice Memos
+    - Siri
+    - Mission Control
+    - Dashboard
+    - folder: Design
+      pages:
+      - number: 1
+        items:
+        - Figma
+        - Gravit Designer
+        - Gravit Designer
+        - Aseprite
+        - ColorSnapper2
+        - Gyazo
+        - Gyazo GIF
+        - Gifox
+        - CleanShot
+        - Postman
+        - Caret
+    - folder: Developer Tools
+      pages:
+      - number: 1
+        items:
+        - Visual Studio Code
+        - IntelliJ IDEA
+        - WebStorm
+        - PyCharm
+        - Android Studio
+        - SnippetsLab
+        - Dash
+        - CodePilot.ai
+        - MacDown
+        - iTerm
+        - Hyper
+        - ImageOptim
+        - CodeKit
+        - Prepros
+        - Now
+        - Transmit
+        - ForkLift
+        - Tower
+        - Sublime Merge
+        - Canopy
+        - Xcode
+        - GraphQL Playground
+        - PSequel
+        - Sequel Pro
+        - pgAdmin 4
+        - Vagrant Manager
+        - VirtualBox
+        - Parallels Desktop
+        - Docker
+        - BrowserStack Local
+        - Install macOS Mojave
+    - folder: Security
+      pages:
+      - number: 1
+        items:
+        - 1Password 7
+        - Authy
+        - Authy
+        - Avast Security
+        - Outline Manager
+        - Outline
+        - SafeConnect
+        - VeraCrypt
+        - Little Snitch Configuration
+        - Micro Snitch
+    - folder: System
+      pages:
+      - number: 1
+        items:
+        - Bartender 3
+        - Witch
+        - Moom
+        - Magnet
+        - Workspaces
+        - HyperDock
+        - TouchSwitcher
+        - ToothFairy
+        - InsomniaX
+        - Amphetamine
+        - HazeOver
+        - Logitech Options
+        - Backblaze
+        - iMazing
+        - Backup and Sync from Google
+        - Dropbox
+        - MEGAsync
+        - Acronis True Image
+        - Suitcase Fusion
+        - Droplr
+        - Copied
+        - Yoink
+        - Transmission
+        - Deluge
+        - Default Folder X
+        - Suspicious Package
+        - Archiver 3
+        - The Unarchiver
+        - PopClip
+        - Power Menu
+        - Etcher
+        - DaisyDisk
+        - Jettison
+        - iStat Menus
+        - Monity
+      - number: 2
+        items:
+        - Alfred 3
+        - Muzzle
+        - Muse
+        - AppDelete
+        - CheatSheet
+        - System Preferences
+widgets:
+  pages: []
+dock_items:
+- Station
+- Google Chrome
+- Google Chrome Canary
+- Firefox
+- Firefox Developer Edition
+- Safari
+- Airmail 3
+- Messages
+- FaceTime
+- Slack
+- Fantastical 2
+- CARROT Weather
+- iStudiez Pro
+- Kindle
+- Microsoft OneNote
+- Microsoft PowerPoint
+- Microsoft Excel
+- Microsoft Word
+- Notability
+- Spotify
+- Downcast
+- Reeder
+- iMazing
+- App Store
+- Pocket
+- CodeKit
+- Visual Studio Code
+- IntelliJ IDEA
+- WebStorm
+- PyCharm
+- Dash
+- Transmit
+- Sublime Merge
+- Tower
+- Hyper
+- iTerm
+- Outline Manager
+- 1Password 7
+- System Preferences
+- ============
+- Downloads
+desktop: {}

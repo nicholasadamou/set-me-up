@@ -170,15 +170,6 @@ function extract {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# check if APT package is installed
-function is_apt_pkg_installed {
-    if dpkg -s "$1" &> /dev/null; then
-         print_success "($1) is installed"
-    else
-        print_error "($1)" "is not installed."
-    fi
-}
-
 # check if pip package is installed
 function is_pip_pkg_installed {
     if [[ "pip list --format legacy | grep $1 > /dev/null 2>&1" =~ "0" ]]; then
@@ -255,12 +246,12 @@ pko() {
 
 # pkf <file> : copy the content of <file> to the clipboard
 pkf() {
-    piknik -copy < $1
+    piknik -copy < "$1"
 }
 
 # pkfr [<dir>] : send a whole directory to the clipboard, as a tar archive
 pkfr() {
-    tar czpvf - ${1:-.} | piknik -copy
+    tar czpvf - "${1:-.}" | piknik -copy
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -278,14 +269,14 @@ transfer() {
 
     if tty -s; then
         basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g');
-        curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile;
+        curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> "$tmpfile";
     else
-        curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ;
+        curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> "$tmpfile" ;
     fi;
 
-    cat $tmpfile;
+    cat "$tmpfile";
 
-    rm -f $tmpfile;
+    rm -f "$tmpfile";
 
 }
 
@@ -298,4 +289,43 @@ transfer() {
 vim() {
   [ -t 1 ] && \
     command vim "$@"
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Process phone images.
+
+ppi() {
+    command -v "convert" &> /dev/null \
+        || exit 0;
+
+    declare query="${1:-*.jpg}"
+    declare geometry="${2:-50%}"
+
+    for i in $query; do
+
+        if [[ "$(echo "${i##*.}" | tr '[:upper:]' '[:lower:]')" != "png" ]]; then
+            imgName="${i%.*}.png"
+        else
+            imgName="_${i%.*}.png"
+        fi
+
+        convert "$i" \
+            -colorspace RGB \
+            +sigmoidal-contrast 11.6933 \
+            -define filter:filter=Sinc \
+            -define filter:window=Jinc \
+            -define filter:lobes=3 \
+            -sigmoidal-contrast 11.6933 \
+            -colorspace sRGB \
+            -background transparent \
+            -gravity center \
+            -resize "$geometry" \
+            +append \
+            "$imgName" \
+        && printf "* %s (%s)\n" \
+            "$imgName" \
+            "$geometry"
+
+    done
 }

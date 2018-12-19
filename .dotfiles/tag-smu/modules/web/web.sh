@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# shellcheck source=/dev/null
+
+declare current_dir && \
+    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    . "$(readlink -f "${current_dir}/../utilities/utils.sh")"
+
 LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
 LOCAL_FISH_CONFIG_FILE="$HOME/.fish.local"
 
@@ -19,8 +25,10 @@ export N_PREFIX=\"\$HOME/n\";
 [[ :\$PATH: == *\":\$N_PREFIX/bin:\"* ]] || PATH+=\":\$N_PREFIX/bin\"
 "
 
-    printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
-        && . "$LOCAL_BASH_CONFIG_FILE"
+    execute \
+        "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
+        && . $LOCAL_BASH_CONFIG_FILE" \
+        "n (update $LOCAL_BASH_CONFIG_FILE)"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -32,22 +40,28 @@ set -xU N_PREFIX \"\$HOME/n\"
 set -U fish_user_paths \"\$N_PREFIX/bin\" \$fish_user_paths
 "
 
-    printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
+    execute \
+        "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
+        "n (update $LOCAL_FISH_CONFIG_FILE)"
 
 }
 
 install_n() {
 
-    curl -L "$N_URL" | N_PREFIX="$N_DIRECTORY" bash -s -- -q -n \
+    execute \
+        "curl -sL $N_URL | N_PREFIX=$N_DIRECTORY bash -s -- -q -n" \
+        "n (install)" \
         && add_n_configs
 
 }
 
 update_n() {
 
-    . "$LOCAL_BASH_CONFIG_FILE" \
-        && n-update -y
-    
+    execute \
+        ". $LOCAL_BASH_CONFIG_FILE \
+        && n-update -y" \
+        "n (upgrade)"
+
 }
 
 install_latest_stable_node() {
@@ -62,15 +76,16 @@ install_latest_stable_node() {
 
     # Check if `n` is installed
 
-    if ! command -v "n"; then
+    if ! cmd_exists "n"; then
         return 1
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # shellcheck source=/dev/null
     latest_version="$(
-        . $LOCAL_BASH_CONFIG_FILE \
-        && n --lts
+     . "$LOCAL_BASH_CONFIG_FILE" && \
+        n --lts
     )"
 
     current_version="$(
@@ -81,126 +96,147 @@ install_latest_stable_node() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ "$current_version" != "$latest_version" ] && [ ! -d "$N_DIRECTORY/n/versions/node/$latest_version" ]; then
-            . "$LOCAL_BASH_CONFIG_FILE" \
-                && n lts
+        execute \
+            ". $LOCAL_BASH_CONFIG_FILE && \
+            n lts" \
+            "n (install node v$latest_version)"
+    else
+        print_success "(node) is already on the latest version"
     fi
+
+}
+
+install_npm_packages() {
+
+    print_in_yellow "\n   Install npm packages\n\n"
+
+    # working with npm
+    npm_install "npm-check"
+    npm_install "yarn-check"
+    npm_install "np"
+    npm_install "npm-name-cli"
+
+    # package managers
+    npm_install "yarn"
+    npm_install "bower"
+    npm_install "pnpm"
+    npm_install "parcel-bundler"
+
+    # useful binaries
+    npm_install "md-to-pdf"
+    npm_install "favicon-emoji"
+    npm_install "tldr"
+    npm_install "carbon-now-cli"
+    npm_install "emma-cli"
+    npm_install "terminalizer"
+    npm_install "@rafaelrinaldi/whereami"
+    npm_install "create-dmg"
+    npm_install "castnow"
+    npm_install "terminal-image-cli"
+    npm_install "gitmoji-cli"
+    npm_install "fx"
+    npm_install "screenshoteer"
+
+    # process management
+    npm_install "fkill-cli"
+    npm_install "gtop"
+    npm_install "vtop"
+
+    # fonts
+    npm_install "google-font-installer"
+
+    # directory management
+    npm_install "empty-trash-cli"
+    npm_install "spot"
+
+    # alfred packages
+    npm_install "alfred-emoj"
+    npm_install "alfred-npms"
+    npm_install "alfred-dark-mode"
+    npm_install "alfred-cdnjs"
+    npm_install "alfred-packagist"
+    npm_install "alfred-mdi"
+    npm_install "alfred-awe"
+
+    # version control
+    npm_install "ghub"
+    npm_install "ghwd"
+    npm_install "github-is-starred-cli"
+
+    # wallpaper management
+    npm_install "wallpaper-cli"
+    npm_install "splash-cli"
+
+    # image optimization
+    npm_install "svgo"
+
+    # linters
+    npm_install "eslint"
+    npm_install "eslint-plugin-prettier"
+    npm_install "eslint-config-prettier"
+    npm_install "eslint-config-airbnb"
+    npm_install "eslint-plugin-jsx-a11y"
+    npm_install "eslint-plugin-import"
+    npm_install "eslint-plugin-react"
+    npm_install "prettier"
+
+    # deployment
+    npm_install "netlify-cli"
+    npm_install "surge"
+    npm_install "now"
+
+    # task runneries
+    npm_install "gulp-cli"
+    npm_install "gulp@next"
+
+    # networking
+    npm_install "wt-cli"
+    npm_install "speed-test"
+    npm_install "is-up-cli"
+    npm_install "localtunnel"
+    npm_install "spoof"
+    npm_install "http-server"
+
+    # javascript packages
+    npm_install "next"
+    npm_install "nodemon"
+
+    # vue packages
+    npm_install "@vue/cli"
+
+    # react packages
+    npm_install "create-react-app"
+    npm_install "create-react-library"
+    npm_install "react-native-cli"
+
+    # database packages
+    npm_install "prisma"
+    npm_install "graphql-cli"
+    npm_install "firebase-tools"
+
+    # continuous integration (CI) bots
+    npm_install "snyk"
 
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-echo "------------------------------"
-echo "Running web module"
-echo "------------------------------"
-echo ""
+main() {
 
-# Install `n` to manage Node versions
+    print_in_purple "\n  n & npm\n\n"
 
-if [ ! -d "$N_DIRECTORY" ] && ! command -v "n"; then
-    install_n
-else
-    update_n
-fi
+    ask_for_sudo
 
-# Install Node & NPM LTS using `n`
+    if [ ! -d "$N_DIRECTORY" ] && ! cmd_exists "n"; then
+        install_n
+    else
+        update_n
+    fi
 
-echo "------------------------------"
-echo "Installing node & npm LTS using (n)"
+    install_latest_stable_node
 
-install_latest_stable_node
+    install_npm_packages
 
-# Install NPM packages
+}
 
-echo "------------------------------"
-echo "Installing npm packages"
-
-sudo npm install -g \
-# working with npm
-npm-check \
-yarn-check \
-np \
-npm-name-cli \
-# package managers
-yarn \
-bower \
-pnpm \
-parcel-bundler \
-# useful binaries
-md-to-pdf \
-favicon-emoji \
-tldr \
-carbon-now-cli \
-emma-cli \
-terminalizer \
-@rafaelrinaldi/whereami \
-create-dmg \
-castnow \
-terminal-image-cli \
-gitmoji-cli \
-fx \
-screenshoteer \
-# process management
-fkill-cli \
-gtop \
-vtop \
-# fonts
-google-font-installer \
-# directory management
-empty-trash-cli \
-spot \
-# alfred packages
-alfred-emoj \
-alfred-npms \
-alfred-dark-mode \
-alfred-cdnjs \
-alfred-packagist \
-alfred-mdi \
-alfred-awe \
-# version control
-ghub \
-ghwd \
-github-is-starred-cli \
-# wallpaper management
-wallpaper-cli \
-splash-cli \
-# image optimization
-svgo \
-# linters
-eslint \
-eslint-plugin-prettier \
-eslint-config-prettier \
-eslint-config-airbnb \
-eslint-plugin-jsx-a11y \
-eslint-plugin-import \
-eslint-plugin-react \
-prettier \
-# deployment
-netlify-cli \
-surge \
-now \
-# task runneries
-gulp-cli \
-gulp@next \
-# networking
-wt-cli \
-speed-test \
-is-up-cli \
-localtunnel \
-spoof \
-http-server \
-# javascript packages
-next \
-nodemon \
-# vue packages
-@vue/cli \
-# react packages
-create-react-app \
-create-react-library \
-react-native-cli \
-# database packages
-prisma \
-graphql-cli \
-firebase-tools \
-# continuous integration (CI) bots
-snyk
-
+main

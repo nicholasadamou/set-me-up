@@ -7,6 +7,8 @@ brew "neovim"
 
 # IDEs
 cask "intellij-idea"
+cask "webstorm"
+cask "pycharm"
 cask "visual-studio-code"
 cask "macdown"
 
