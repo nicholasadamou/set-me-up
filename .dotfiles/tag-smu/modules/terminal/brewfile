@@ -22,3 +22,4 @@ brew "fasd"
 brew "aliases"
 
 cask "iterm2"
+cask "hyper"

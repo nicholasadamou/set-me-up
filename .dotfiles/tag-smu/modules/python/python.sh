@@ -1,11 +1,85 @@
 #!/bin/bash
 
-readonly python2=${python2:-"2.7.14"}
-readonly python3=${python3:-"3.6.5"}
+# shellcheck source=/dev/null
+
+declare current_dir && \
+    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    . "$(readlink -f "${current_dir}/../utilities/utils.sh")"
+
+LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
+LOCAL_FISH_CONFIG_FILE="$HOME/.fish.local"
+
+declare -r PYENV_DIRECTORY="$HOME/.pyenv"
+declare -r PYENV_INSTALLER_URL="https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# PyEnv helper functions
+add_pyenv_configs() {
+
+    # bash
+
+    declare -r BASH_CONFIGS="
+# PyEnv - Simple Python version management.
+export PYENV_ROOT=\"$PYENV_DIRECTORY\"
+export PATH=\"\$PYENV_ROOT/bin:\$PATH\"
+export PATH=\"\$PYENV_ROOT/shims:\$PATH\"
+export PATH=\"$HOME/.local/bin:\$PATH\"
+eval \"\$(pyenv init -)\""
+
+    if ! grep "$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
+            && . $LOCAL_BASH_CONFIG_FILE" \
+            "pyenv (update $LOCAL_BASH_CONFIG_FILE)"
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # fish
+
+    declare -r FISH_CONFIGS="
+# PyEnv - Simple Python version management.
+set -gx PYENV_ROOT $PYENV_DIRECTORY
+set -gx PATH \$PATH \$PYENV_ROOT/bin
+set -gx PATH \$PATH \$PYENV_ROOT/shims
+set -gx PATH \$PATH $HOME/.local/bin"
+
+    if ! grep "$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
+            "pyenv (update $LOCAL_FISH_CONFIG_FILE)"
+    fi
+
+}
+
+install_pyenv() {
+
+    # Install `pyenv` and add the necessary
+    # configs in the local shell config file.
+
+    execute \
+        "curl -sL $PYENV_INSTALLER_URL | bash" \
+        "pyenv (install)" \
+    && add_pyenv_configs
+
+}
+
+update_pyenv() {
+
+    execute \
+        ". $LOCAL_BASH_CONFIG_FILE \
+            && pyenv update" \
+        "pyenv (upgrade)"
+
+}
+
+install_pyenv_plugin() {
+
+    print_in_yellow "\n   Install pyenv plugins\n\n"
+
+    pyenv_install "https://github.com/momo-lab/pyenv-install-latest.git"
+
+}
 
 install_latest_stable_python() {
 
@@ -25,81 +99,106 @@ install_latest_stable_python() {
 
     # Check if `pyenv` is installed
 
-    if ! command -v "pyenv" &>/dev/null; then
+    if ! cmd_exists "pyenv"; then
         return 1
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # shellcheck source=/dev/null
     latest_version="$(
-        pyenv install --list | \
+        . "$LOCAL_BASH_CONFIG_FILE" \
+        && pyenv install --list | \
         grep -v - | \
         grep -v b | \
         tail -1 | \
         tr -d '[:space:]'
     )"
+
     current_version="$(
         python -V 2>&1 | cut -d " " -f2
     )"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ "$current_version" != "$latest_version" ]; then
-        pyenv install $latest_version \
-            && pyenv global $latest_version
+    if [ "$current_version" != "$latest_version" ] && [ ! -d "$PYENV_DIRECTORY/versions/$latest_version" ]; then
+        execute \
+            ". $LOCAL_BASH_CONFIG_FILE \
+                && pyenv install $latest_version \
+                && pyenv global $latest_version" \
+            "pyenv (install python v$latest_version)"
+    else
+         print_success "(python) is already on the latest version"
     fi
+
+}
+
+install_pip() {
+
+    print_in_yellow "\n   Install pip\n\n"
+
+    if package_is_installed "python-setuptools" && ! cmd_exists "pip"; then
+        execute \
+            "easy_install pip" \
+            "pip (install)"
+    else
+        print_success "(pip) is already installed"
+    fi
+
+}
+
+install_pip_packages() {
+
+    print_in_yellow "\n   Install pip packages\n\n"
+
+    pip_install "cheat"
+    pip_install "pip-review"
+    pip_install "haxor-news"
+    pip_install "howdoi"
+    pip_install "glances"
+
+}
+
+install_pip3_packages() {
+
+    print_in_yellow "\n   Install pip3 packages\n\n"
+
+    pip3_install "pip-review"
 
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-echo "------------------------------"
-echo "Running python module"
-echo "------------------------------"
-echo ""
+main() {
 
-# Install `brew` dependencies
+    print_in_purple "\n  pyenv & Python\n\n"
 
-echo "------------------------------"
-echo "Installing brew dependencies"
+    brew_bundle_install "Brewfile"
 
-brew bundle install -v --file="./brewfile"
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Initialize `pyenv`
+    printf "\n"
 
-echo "------------------------------"
-pyenv init
+    ask_for_sudo
 
-if [[ -z "${SMU_FISH_DIR+x}" ]]; then
-    echo "It looks like you are not using the set-me-up terminal module."
-    echo "Please follow the pyenv instructions above (generated by the command 'pyenv init') to complete the installation."
-    read -n 1 -s -r -p "Press any key to continue."
-    echo ""
-fi
+    if [ ! -d "$PYENV_DIRECTORY" ]; then
+        install_pyenv
+    else
+        update_pyenv
+    fi
 
-# Install the latest Python version using `pyenv`
+    install_pyenv_plugin
 
-echo "------------------------------"
-echo "Installing the latest version of python"
+    printf "\n"
 
-install_latest_stable_python
+    install_latest_stable_python
 
-pyenv rehash
+    install_pip
 
-# Install pip packages
+    install_pip_packages
 
-echo "------------------------------"
-echo "Installing pip packages"
+    install_pip3_packages
 
-pip install --quiet \
-cheat \
-pip-review
+}
 
-# Install pip3 packages
-
-echo "------------------------------"
-echo "Installing pip3 packages"
-
-pip3 install --quiet \
-thefuck \
-pip-review
+main

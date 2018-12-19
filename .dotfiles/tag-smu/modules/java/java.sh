@@ -1,74 +1,86 @@
 #!/bin/bash
 
-readonly java8=${java8:-"8.0.171-oracle"}
-readonly java10=${java10:-"10.0.1-oracle"}
-readonly scala2=${scala2:-"2.12.5"}
-readonly kotlin1=${kotlin1:-"1.2.41"}
-readonly maven3=${maven3:-"3.5.3"}
-readonly gradle4=${gradle4:-"4.7"}
-readonly sbt1=${sbt1:-"1.1.4"}
+# shellcheck source=/dev/null
+
+declare current_dir && \
+    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    . "$(readlink -f "${current_dir}/../utilities/utils.sh")"
+
+LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
+LOCAL_FISH_CONFIG_FILE="$HOME/.fish.local"
+
+declare -r JENV_DIRECTORY="$HOME/.jenv"
+declare -r JENV_GIT_REPO_URL="https://github.com/gcuisinier/jenv.git"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Android helper functions
+add_jenv_configs() {
 
-sdk_install() {
+    # bash
 
-    local -r candidate="${1}"
-    local -r version="${2}"
+    declare -r BASH_CONFIGS="
+# JEnv - Manage your Java environment.
+export PATH=\"$JENV_DIRECTORY/bin:\$PATH\"
+eval \"\$(jenv  init -)\""
 
-    echo "------------------------------"
-    echo "Installing ${candidate} ${version}"
+    if ! grep "$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
+            && . $LOCAL_BASH_CONFIG_FILE" \
+            "jenv (update $LOCAL_BASH_CONFIG_FILE)"
+    fi
 
-    printf "\n" | sdk install "${candidate}" "${version}"
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # fish
+
+    declare -r FISH_CONFIGS="
+# JEnv - Manage your Java environment.
+set -gx PATH \$PATH $JENV_DIRECTORY/bin"
+
+    if ! grep "$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
+            "jenv (update $LOCAL_FISH_CONFIG_FILE)"
+    fi
+
+}
+
+install_jenv() {
+
+    # Install `jenv` and add the necessary
+    # configs in the local shell config file.
+
+    execute \
+        "git clone --quiet $JENV_GIT_REPO_URL $JENV_DIRECTORY" \
+        "jenv (install)" \
+    && add_jenv_configs
+
+}
+
+update_jenv() {
+
+    execute \
+        "cd $JENV_DIRECTORY \
+            && git fetch --quiet origin" \
+        "jenv (upgrade)"
 
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-echo "------------------------------"
-echo "Running java module"
-echo "------------------------------"
-echo ""
+main() {
 
-if [[ ! -z "${SDKMAN_DIR+x}" ]]; then
-    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    print_in_purple "\n  jenv & Java\n\n"
 
-    echo "------------------------------"
-    echo "Updating sdkman"
-    sdk selfupdate force
-else
-    echo "------------------------------"
-    echo "Installing sdkman"
-    curl -s "https://get.sdkman.io" | bash
+    ask_for_sudo
 
-    source "$HOME/.sdkman/bin/sdkman-init.sh"
-fi
+    if [ ! -d "$JENV_DIRECTORY" ]; then
+        install_jenv
+    else
+        update_jenv
+    fi
 
-sdkman_auto_answer=true
+}
 
-sdk_install "java" "${java8}"
-sdk_install "java" "${java10}"
-
-sdk_install "kotlin" "${kotlin1}"
-
-sdk_install "scala" "${scala2}"
-
-sdk_install "maven" "${maven3}"
-sdk_install "gradle" "${gradle4}"
-sdk_install "sbt" "${sbt1}"
-
-# Install Java version 8.0.171 using `sdk`
-# Set Java version 8.0.171 as global version using `sdk`
-
-echo "------------------------------"
-echo "Setting java ${java8} as global version"
-sdk default "java" "${java8}"
-
-# Install `brew` dependencies
-
-echo "------------------------------"
-echo "Installing brew dependencies"
-
-brew bundle install -v --file="./brewfile"
-
+main

@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# shellcheck source=/dev/null
+
+declare current_dir && \
+    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    . "$(readlink -f "${current_dir}/../utilities/utils.sh")"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 change_default_bash() {
 
     declare -r LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
@@ -40,7 +48,9 @@ export PATH
     # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
 
     if ! grep "$newShellPath" < /etc/shells &> /dev/null; then
-        printf '%s\n' "$newShellPath" | sudo tee -a /etc/shells \
+        execute \
+            "printf '%s\n' '$newShellPath' | sudo tee -a /etc/shells" \
+            "Bash (add '$newShellPath' in '/etc/shells')" \
         || return 1
     fi
     
@@ -58,18 +68,30 @@ export PATH
     # local shell configuration file.
 
     if ! grep "^$pathConfig" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
-        printf '%s' '$configs' >> "$LOCAL_BASH_CONFIG_FILE" \
-                && . "$LOCAL_BASH_CONFIG_FILE"
+        execute \
+            "printf '%s' '$configs' >> $LOCAL_BASH_CONFIG_FILE \
+                && . $LOCAL_BASH_CONFIG_FILE" \
+            "Bash (update $LOCAL_BASH_CONFIG_FILE)"
     fi
 
 }
 
-echo "------------------------------"
-echo "Running bash module"
-echo "------------------------------"
-echo ""
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-brew_install "bash" \
-    && change_default_bash
+main() {
 
-brew_install "bash-completion@2"
+    print_in_purple "\n  Bash\n\n"
+
+    print_in_yellow "   Install brew packages\n\n"
+
+    brew_bundle_install "Brewfile"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    printf "\n"
+
+    change_default_bash
+
+}
+
+main

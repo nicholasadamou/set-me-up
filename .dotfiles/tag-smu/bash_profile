@@ -1,10 +1,16 @@
 #!/bin/bash
 
+# shellcheck source=/dev/null
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 source_bash_files() {
 
-    declare -r CURRENT_DIRECTORY="$(pwd)"
+    declare CURRENT_DIRECTORY
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    CURRENT_DIRECTORY="$(pwd)"
 
     declare -r -a FILES_TO_SOURCE=(
         "bash_aliases"
@@ -23,9 +29,7 @@ source_bash_files() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    cd "$(dirname "$(readlink "${BASH_SOURCE[0]}")")"
-
-    declare -r OS="$(get_os)"
+    . "$(readlink -f "$DOTFILES/utilities/utils.sh")"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -40,7 +44,7 @@ source_bash_files() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    cd "$CURRENT_DIRECTORY"
+    cd "$CURRENT_DIRECTORY" || return
 
 }
 
@@ -70,8 +74,8 @@ clear && cd "$HOME" || return
 # see: https://unix.stackexchange.com/a/219803/173825
 
 if command -v tmux >/dev/null; then
-        if [ ! -z "$PS1" ]; then # unless shell is not loaded interactively, run `tmux`
-                [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && tmux
+        if [ -n "$PS1" ]; then # unless shell is not loaded interactively, run `tmux`
+                [[ ! $TERM =~ screen ]] && [ -z "$TMUX" ] && tmux
         fi
 fi
 

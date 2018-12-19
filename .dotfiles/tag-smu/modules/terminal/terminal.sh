@@ -1,255 +1,110 @@
 #!/bin/bash
 
-readonly fish_executable=${fish_executable:-"/usr/local/bin/fish"}
-readonly iterm2_settings=${iterm2_settings:-"${HOME}/Library/Preferences/com.googlecode.iterm2.plist"}
+# shellcheck source=/dev/null
+
+declare current_dir && \
+    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    . "$(readlink -f "${current_dir}/../utilities/utils.sh")"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# fish-shell helper functions
+# see: https://github.com/oh-my-fish/oh-my-fish/issues/189
+install_omf() {
 
-fish_cmd_exists() {
-
-    fish -c "$1 -v" &> /dev/null
-
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Oh-My-Fish helper functions
-
-is_omf_installed() {
-
-    if ! fish_cmd_exists "omf" && [ ! -d "$HOME/.local/share/omf" ] && [ ! -d "$HOME/.config/omf" ]; then
-        return 1
+    if ! is_omf_installed; then
+        execute \
+            "curl -Ls github.com/oh-my-fish/oh-my-fish/raw/master/bin/install > install && \
+            chmod +x install && \
+            ./install --noninteractive --path=$HOME/.local/share/omf --config=$HOME/.config/omf && \
+            rm -rf install" \
+            "omf (install)"
+    else
+        print_success "(omf) is already installed."
     fi
 
 }
 
-is_omf_pkg_installed() {
+install_omf_packages() {
 
-   fish -c "omf list | grep $1" &> /dev/null
+    print_in_yellow "\n  Install omf packages\n\n"
+
+    omf_install "z"
+    omf_install "thefuck"
+    omf_install "spacefish"
+
+    printf "\n"
+
+    omf_update
 
 }
 
-omf_install() {
+install_fisher() {
 
-    declare -r PACKAGE="$1"
+    if ! is_fisher_installed; then
+        execute \
+            "curl -Lo $HOME/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher" \
+            "fisher (install)"
+    else
+        print_success "(fisher) is already installed."
+    fi
+
+}
+
+install_fisher_packages() {
+
+    print_in_yellow "\n   Install fisher packages\n\n"
+
+    does_fishfile_exist && {
+        cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
+            fisher_install "$PACKAGE"
+        done
+    }
+
+    printf "\n"
+
+    fisher_update
+
+}
+
+install_tacklebox() {
+
+    if ! is_tacklebox_installed; then
+        execute \
+            "git clone https://github.com/justinmayer/tacklebox ~/.tacklebox \
+            && git clone https://github.com/justinmayer/tackle ~/.tackle" \
+            "tacklebox (install)"
+    else
+        print_success "(tacklebox) is already installed."
+    fi
+
+}
+
+main() {
+
+    print_in_purple "\n   Terminal\n\n"
+
+    brew_bundle_install "Brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Check if `omf` is installed.
+    printf "\n"
 
-    is_omf_installed || return 1
+    ask_for_sudo
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    install_omf
 
-    # Install the specified package.
+    install_omf_packages
 
-    if ! is_omf_pkg_installed "$PACKAGE"; then
-        fish -c "omf install $PACKAGE"
-    fi
+    printf "\n"
 
-}
+    install_fisher
 
-omf_update() {
+    install_fisher_packages
 
-    # Check if `omf` is installed.
+    printf "\n"
 
-    is_omf_installed || return 1
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Update package(s)
-
-    fish -c "omf update"
+    install_tacklebox
 
 }
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Fisherman helper functions
-
-does_fishfile_exist() {
-
-    [ -f "$HOME"/.config/fish/fishfile ]
-
-}
-
-is_fisher_installed() {
-
-    if ! fish_cmd_exists "fisher" && ! does_fishfile_exist; then
-        return 1
-    fi
-
-}
-
-is_fisher_pkg_installed() {
-
-    does_fishfile_exist && fish -c "fisher ls | grep $1" &> /dev/null
-
-}
-
-fisher_install() {
-
-    declare -r PACKAGE="$1"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Check if `fisher` is installed.
-
-    is_fisher_installed || return 1
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Install the specified package.
-
-    if ! is_fisher_pkg_installed "$PACKAGE"; then
-        fish -c "fisher add $PACKAGE"
-    fi
-
-}
-
-fisher_update() {
-
-    # Check if `fisher` is installed.
-
-    is_fisher_installed || return 1
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Update package(s)
-
-    fish -c "fisher ;and fisher self-update"
-
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Tacklebox helper functions
-
-is_tacklebox_installed() {
-
-    if ! [ -d "$HOME/.tacklebox" ] && ! [ -d "$HOME/.tackle" ]; then
-        return 1
-    fi
-
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-echo "------------------------------"
-echo "Setting up fish-shell."
-echo "------------------------------"
-echo ""
-
-echo "------------------------------"
-echo "Installing brew dependencies"
-
-brew bundle install -v --file="./brewfile"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Install fish-shell
-
-if ! grep -q "${fish_executable}" "/etc/shells"; then
-    echo "${fish_executable}" | sudo tee -a /etc/shells
-fi
-
-# Keep bash as default shell.
-# if [[ $SHELL != "${fish_executable}" ]]; then
-#    echo "------------------------------"
-#    echo "Setting fish as default shell."
-#    chsh -s "${fish_executable}"
-# fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Install Oh-My-Fish
-
-echo "------------------------------"
-echo "Installing Oh-My-Fish"
-
-if ! is_omf_installed; then
-    curl -L github.com/oh-my-fish/oh-my-fish/raw/master/bin/install > install \
-        && chmod +x install \
-        && ./install --noninteractive --path="$HOME"/.local/share/omf --config="$HOME"/.config/omf \
-        && rm -rf install
-fi
-
-# Install Oh-My-Fish packages
-
-echo "------------------------------"
-echo "Installing Oh-My-Fish packages"
-
-omf_install "z"
-omf_install "spacefish"
-
-
-# Update Oh-My-Fish
-
-echo "------------------------------"
-echo "Updating Oh-My-Fish"
-
-omf_update
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Install Fisherman
-
-echo "------------------------------"
-echo "Installing Fisherman"
-
-if ! is_fisher_installed; then
-    curl -Lo "$HOME"/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-fi
-
-# Install Fisherman packages
-
-echo "------------------------------"
-echo "Installing Fisherman packages"
-
-does_fishfile_exist && {
-    cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
-        fisher_install "$PACKAGE"
-    done
-}
-
-printf "\n"
-
-fisher_update
-
-# Update Fisherman
-
-echo "------------------------------"
-echo "Updating Fisherman"
-
-fisher_update
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Install Tacklebox
-
-echo "------------------------------"
-echo "Installing Tacklebox"
-
-if ! is_tacklebox_installed; then
-
-    git clone https://github.com/justinmayer/tacklebox "$HOME"/.tacklebox \
-        && git clone https://github.com/justinmayer/tackle "$HOME"/.tackle
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Update fish-shell
-
-echo "------------------------------"
-echo "Updating fish-shell"
-
-fish -c "fish_update_completions"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-echo "------------------------------"
-echo "Configuring iTerm2"
-
-sudo ln -sf iTerm2/com.googlecode.iterm2.plist "${iterm2_settings}"
+main

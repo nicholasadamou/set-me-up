@@ -1,100 +1,63 @@
 #!/bin/bash
 
-readonly phpswitch_executable="/usr/local/bin/phpswitch"
+# shellcheck source=/dev/null
+
+declare current_dir && \
+    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    . "$(readlink -f "${current_dir}/../utilities/utils.sh")"
+
+declare -r COMPOSER_DIRECTORY="/usr/local/bin"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# PHP helper functions
+install_composer() {
 
-get_php_ini() {
-    echo `php -i 2> /dev/null | grep 'Loaded Configuration File' | sed 's/Loaded Configuration File => //'`
+    EXPECTED_SIGNATURE="$(wget -q -O - https://composer.github.io/installer.sig)"
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    ACTUAL_SIGNATURE="$(php -r "echo hash_file('SHA384', 'composer-setup.php');")"
+
+    if [ "$EXPECTED_SIGNATURE" == "$ACTUAL_SIGNATURE" ]; then
+        execute \
+            "php composer-setup.php --install-dir=\"$COMPOSER_DIRECTORY\" --filename=composer --quiet" \
+            "composer (install)"
+    else
+        print_error "ERROR:" "Invalid installer signature"
+    fi
+
+    rm composer-setup.php
+
 }
 
-switch_version() {
-    local -r php_version="${1}"
+update_composer() {
 
-    phpswitch "${php_version}" -s=valet,apache
+    execute \
+        "php $COMPOSER_DIRECTORY/composer self-update --quiet" \
+        "composer (update)"
 
-    local -r extension_dir=`php-config --extension-dir`
-
-    # try our best to have a correct pear/pecl setup
-    pear config-set php_ini "$(get_php_ini)"
-    pear config-set ext_dir "${extension_dir}"
-}
-
-extension_install() {
-    local -r extension="${1}"
-
-    printf "\n" | pecl install "${extension}"
-}
-
-extension_uninstall() {
-    local -r extension="${1}"
-
-    # try to remove extension so we have a clean base
-    pecl uninstall "${extension}"
-
-    local -r search='/extension="'"${extension%-*}"'/d'
-
-    # pecl fails to remove the extension from the ini
-    sed -i '' "${search}" "$(get_php_ini)"
-}
-
-memcached_install() {
-    local -r memcached_source="${1}"
-
-    readonly ini_dir=`php -i | grep 'Scan this dir for additional .ini files' | sed 's/Scan this dir for additional .ini files => //'`
-    readonly build_dir=`mktemp --tmpdir -d 'tmp.memcached.XXXXXXX'`
-
-    cd "${build_dir}"
-    curl -#L "${memcached_source}" | tar -xv --strip-components 1 --exclude={README.md,LICENSE}
-
-    phpize
-    ./configure --enable-memcached-igbinary --enable-memcached-json
-    make
-    make install
-
-    echo "extension=\"memcached.so\"" > "${ini_dir}/memcached.ini"
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-echo "------------------------------"
-echo "Running PHP module"
-echo "------------------------------"
-echo ""
+main() {
 
-# 'xcode' and 'zlib' are required for the 'memcached' extension
-if [[ -z $(xcode-select -p) ]]; then
-    echo "------------------------------"
-    echo "Installing Xcode Command Line Tools."
+    print_in_purple "\n  composer & PHP\n\n"
 
-    xcode-select --install
-fi
+    print_in_yellow "   Install brew packages\n\n"
 
-# Install `brew` dependencies
+    brew_bundle_install "Brewfile"
 
-echo "------------------------------"
-echo "Installing brew dependencies"
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-brew bundle install -v --file="./brewfile"
+    printf "\n"
 
-# Install PHP Version Switcher
+    ask_for_sudo
 
-echo "------------------------------"
-echo "Installing php version switcher"
+    if [ ! -e "$COMPOSER_DIRECTORY/composer" ] && ! cmd_exists "composer"; then
+        install_composer
+    else
+        update_composer
+    fi
 
-curl -fsSL https://raw.githubusercontent.com/philcook/brew-php-switcher/master/phpswitch.sh > "${phpswitch_executable}"
-chmod +x "${phpswitch_executable}"
+}
 
-# Install PHP 5.6 extensions
-
-echo "------------------------------"
-echo "Installing PHP 5.6 extensions"
-( source "./php56_extensions.sh" )
-
-# Install PHP 7.2 extensions
-
-echo "------------------------------"
-echo "Installing PHP 7.2 extensions"
-( source "./php72_extensions.sh" )
+main

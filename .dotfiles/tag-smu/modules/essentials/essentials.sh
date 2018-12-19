@@ -1,19 +1,21 @@
 #!/bin/bash
 
-echo "------------------------------"
-echo "Running Essentials module"
-echo "------------------------------"
-echo ""
+# shellcheck source=/dev/null
 
-echo "------------------------------"
-echo "Installing essential homebrew formulae and apps."
-echo "This might awhile to complete because some formulae need to be installed from source."
-echo "------------------------------"
-echo ""
+declare current_dir && \
+    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    . "$(readlink -f "${current_dir}/../utilities/utils.sh")"
 
-# Install `brew` dependencies
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-echo "------------------------------"
-echo "Installing brew dependencies"
+main() {
 
-brew bundle install -v --file="./brewfile"
+    print_in_purple "\n  Essentials\n\n"
+
+    print_in_yellow "   Install brew packages\n\n"
+
+    brew_bundle_install "Brewfile"
+
+}
+
+main
