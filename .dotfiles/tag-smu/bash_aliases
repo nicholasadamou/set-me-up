@@ -39,7 +39,7 @@ alias lsh="ls -ld .?*"
 
 alias du="git -C \$DOTFILES pull \
            && git -C \$DOTFILES submodule update --quiet --init --recursive \
-           && git -C \$DOTFILES submodule foreach git pull origin master"
+           && git -C \$DOTFILES submodule foreach git pull"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

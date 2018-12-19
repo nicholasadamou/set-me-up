@@ -21,10 +21,8 @@ function du --description "Updates the dotfiles directory"
     git -C $DOTFILES reset --hard origin/macos ;and \
         git -C $DOTFILES pull ;and \
         git -C $DOTFILES submodule update --quiet --init --recursive ;and \
-        git -C $DOTFILES submodule foreach git pull origin master
+        git -C $DOTFILES submodule foreach git pull
 end
-
-alias dotfiles "tmuxinator start dotfiles"
 
 function randpw --description "generate a random password"
   dd if=/dev/urandom bs=1 count=16 2>/dev/null | base64 | rev | cut -b 2- | rev
@@ -130,6 +128,14 @@ alias npmr "npm uninstall"
 alias npmls "npm list -g --depth 0"
 alias npms "npm s"
 alias npmu "npm i -g npm@latest"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Shorter commands for the `Yarn Package Manager`
+
+alias yr='yarn remove'
+alias ya='yarn add'
+alias yu='yarn self-update && yarn upgrade && yarn upgrade-interactive'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -8,7 +8,7 @@ windows:
       layout: main-vertical
       panes:
         - cd /Users/nicholas/dev/set-me-up-blueprint
-  - "~/dev/Dotfile-Utilities":
+  - "~/dev/utilities":
       layout: main-vertical
       panes:
-        - cd /Users/nicholas/dev/Dotfile-Utilities
+        - cd /Users/nicholas/dev/utilities
