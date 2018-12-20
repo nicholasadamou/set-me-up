@@ -3,6 +3,7 @@
 # GitHub user/repo value of your set-me-up blueprint (e.g.: nicholasadamou/set-me-up-blueprint)
 # Set this value when the installer should additionally obtain your blueprint.
 readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
+readonly SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-""}
 
 # The set-me-up version to download
 readonly SMU_VERSION=${SMU_VERSION:-"1.0.5"}
@@ -11,7 +12,7 @@ readonly SMU_VERSION=${SMU_VERSION:-"1.0.5"}
 SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
 
 readonly smu_download="https://github.com/nicholasadamou/set-me-up/tarball/${SMU_VERSION}"
-readonly smu_blueprint_download="https://github.com/${SMU_BLUEPRINT}/tarball/master"
+readonly smu_blueprint_download="https://github.com/${SMU_BLUEPRINT}/tarball/${SMU_BLUEPRINT_BRANCH}"
 
 function mkcd() {
     local -r dir="${1}"
