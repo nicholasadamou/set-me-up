@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# GitHub user/repo value of your set-me-up blueprint (e.g.: nicholasadamou/set-me-up-blueprint)
+# GitHub user/repo & branch value of your set-me-up blueprint (e.g.: nicholasadamou/set-me-up-blueprint/master ).
 # Set this value when the installer should additionally obtain your blueprint.
 readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
 readonly SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-""}
