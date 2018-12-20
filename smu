@@ -150,6 +150,8 @@ provision_module() {
 
     echo "Running ${path}/${script} module"
 
+	printf "\n"
+
     (
         cd "${path}/" &&
         [[ -s ./before.sh ]] && source ./before.sh
