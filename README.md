@@ -90,7 +90,7 @@ Use the `smu --lsrc` command to show how `rcm` would manage your dotfiles and to
 
 The base module is the only module that is required to run at least once on your system to ensure the minimum required constraints for `set-me-up` to work.
 
-If its not available, it will install `brew` and then `rcm`. Afterwards `rcup` will be executed to symlink the dotfiles from the `.dotfiles` folder into your home directory.
+It will install `brew` and then `rcm`. Afterwards `rcup` will be executed to `symlink` the dotfiles from the `.dotfiles/tag-smu` folder into your home directory.
 
 This is the only module that is not over-writable via `rcm` tag management because it is always sourced from the `smu` installation directory.
 
@@ -118,7 +118,7 @@ When the terminal module is used, the `go` installation will work-out-of-the-box
 
 #### [java](.dotfiles/tag-smu/modules/java)
 
-Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`, `java10` are installed via `sdkman`. **java8** will be defined as the global version. Android Studio is installed via `brew` cask.
+Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`and `java10` are installed via `sdkman`. **java8** will be defined as the global version. Android Studio is installed via `brew` cask.
 
 #### [preferences](.dotfiles/tag-smu/modules/perferences)
 
