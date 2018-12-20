@@ -203,6 +203,8 @@ do
     fi
 done
 
+printf "\n"
+
 echo "------------------------------"
 echo "Completed running set-me-up, restart your computer to ensure all updates take effect."
 echo "------------------------------"

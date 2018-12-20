@@ -4,12 +4,13 @@
 
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    . "$(readlink -f "${current_dir}/../utilities/utils.sh")"
+    cd "${current_dir}" && \
+    source "../utilities/utils.sh"
 
 readonly SMU_PATH="$HOME/set-me-up"
 readonly SMU_URL="https://github.com/nicholasadamou/set-me-up"
 
-readonly LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
+declare LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-macos/bash.local"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -91,10 +92,12 @@ symlink() {
     # Get the absolute path of the .dotfiles directory.
     # This is only for aesthetic reasons to have an absolute symlink path instead of a relative one
     # <path-to-smu>/.dotfiles/somedotfile vs <path-to-smu>/.dotfiles/base/../somedotfile
-    readonly dotfiles="$(dirname -- "$(dirname -- "$(readlink -f -- "$0")")")"
+    readonly dotfiles="$(dirname -- "$(dirname -- "$(readlink -- "$0")")")"
 
-    export RCRC="../rcrc"
-    rcup -v -d "${dotfiles}"
+    execute \
+        "export RCRC=\"../rcrc\" && \
+            rcup -v -d \"${dotfiles}\"" \
+        "symlink (tag-macos/)"
 
 }
 
@@ -102,7 +105,9 @@ symlink() {
 
 main() {
 
-    print_in_purple "\n  Base\n\n"
+    print_in_purple "\n  Base\n"
+
+    print_in_yellow "\n   Homebrew\n\n"
 
     if ! cmd_exists "brew"; then
         install_homebrew
@@ -113,13 +118,17 @@ main() {
         brew_update
     fi
 
+    printf "\n"
+
+    brew_bundle_install "Brewfile"
+
     print_in_yellow "\n   Cleanup\n\n"
 
     brew_cleanup
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_in_purple "\n  Symlink dotfiles\n\n"
+    print_in_yellow "\n   Symlink dotfiles\n\n"
 
     symlink
 

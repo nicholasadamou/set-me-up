@@ -4,7 +4,8 @@
 
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    . "$(readlink -f "${current_dir}/../utilities/utils.sh")"
+    cd "${current_dir}" && \
+    source "../utilities/utils.sh"
 
 declare -r COMPOSER_DIRECTORY="/usr/local/bin"
 
