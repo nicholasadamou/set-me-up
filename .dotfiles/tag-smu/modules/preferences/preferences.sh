@@ -27,24 +27,24 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # App preferences
-    ./preferences/apps/terminal/terminal.sh
-    ./preferences/apps/app_store.sh
-    ./preferences/apps/finder.sh
-    ./preferences/apps/chrome.sh
-    ./preferences/apps/safari.sh
-    ./preferences/apps/maps.sh
-    ./preferences/apps/photos.sh
-    ./preferences/apps/transmission.sh
-    ./preferences/apps/textedit.sh
-    ./preferences/apps/firefox.sh
+    ./apps/terminal/terminal.sh
+    ./apps/app_store.sh
+    ./apps/finder.sh
+    ./apps/chrome.sh
+    ./apps/safari.sh
+    ./apps/maps.sh
+    ./apps/photos.sh
+    ./apps/transmission.sh
+    ./apps/textedit.sh
+    ./apps/firefox.sh
 
     # System preferences
-    ./preferences/system/dashboard.sh
-    ./preferences/system/dock.sh
-    ./preferences/system/keyboard.sh
-    ./preferences/system/language_and_region.sh
-    ./preferences/system/trackpad.sh
-    ./preferences/system/ui_and_ux.sh
+    ./system/dashboard.sh
+    ./system/dock.sh
+    ./system/keyboard.sh
+    ./system/language_and_region.sh
+    ./system/trackpad.sh
+    ./system/ui_and_ux.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

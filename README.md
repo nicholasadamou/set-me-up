@@ -120,11 +120,11 @@ When the terminal module is used, the `go` installation will work-out-of-the-box
 
 Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`, `java10` are installed via `sdkman`. **java8** will be defined as the global version. Android Studio is installed via `brew` cask.
 
-#### [macos](.dotfiles/tag-smu/modules/macos)
+#### [preferences](.dotfiles/tag-smu/modules/perferences)
 
 Sets a bunch of Mac OS settings. The file is based on [`.macos`](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
 
-⚠️ **Note**: _The `.macos` script **has** been modified from the version provided by [Mathias Bynens](https://github.com/mathiasbynens)._
+⚠️ **Note**: _The `.macos` script **has** been heavily modified from the version provided by [Mathias Bynens](https://github.com/mathiasbynens)._
 **It is highly recommended to work with a copy that is adapted to your needs!**
 
 #### [macosupdate](.dotfiles/tag-smu/modules/macosupdate)
