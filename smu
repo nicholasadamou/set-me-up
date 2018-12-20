@@ -1,4 +1,5 @@
 #!/bin/bash
+# shellcheck source=/dev/null
 # ARG_OPTIONAL_BOOLEAN([base],[b],[Run base module],[on])
 # ARG_OPTIONAL_BOOLEAN([selfupdate],[],[Update set-me-up],[])
 # ARG_OPTIONAL_BOOLEAN([provision],[p],[Provision given modules],[off])
@@ -164,7 +165,7 @@ if [[ ${_arg_lsrc} == "on" ]]; then
 fi
 
 if [[ ${_arg_selfupdate} == "on" ]]; then
-    ${module_path}/install.sh --detect
+    "${module_path}"/install.sh --detect
 
     ! provision_enabled && exit 0
 fi
@@ -174,7 +175,7 @@ if ! provision_enabled ; then
     exit 0
 fi
 
-read -p "set-me-up may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+read -r -p "set-me-up may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
 echo "";
 [[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
 
