@@ -28,6 +28,10 @@ function is_git_repo() {
    [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]
 }
 
+function has_submodules() {
+    [ -f "$SMU_HOME_DIR"/.gitmodules ]
+}
+
 function confirm() {
     echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
     read -r -p "Would you like 'set-me-up' to configure in that directory? (y/n) " -n 1;
@@ -73,7 +77,12 @@ function use_git() {
             git init
             git remote add origin "git@github.com:${SMU_BLUEPRINT}.git"
             git fetch
-            git checkout -t origin/"${SMU_BLUEPRINT_BRANCH}"
+            git checkout "${SMU_BLUEPRINT_BRANCH}"
+
+            if has_submodules; then 
+                git -C "${SMU_HOME_DIR}" submodule update --quiet --init --recursive && \
+                    git -C "${SMU_HOME_DIR}" submodule foreach git pull
+            fi
         fi
     fi
 
