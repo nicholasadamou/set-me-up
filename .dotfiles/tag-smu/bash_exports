@@ -94,4 +94,4 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 # Make a global variable to access the dotfiles repository
 
-export DOTFILES="$HOME/.dotfiles"
+export DOTFILES="$HOME/set-me-up"

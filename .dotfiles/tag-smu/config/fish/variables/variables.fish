@@ -29,7 +29,7 @@ set -gx HOMEBREW_CASK_OPTS "--appdir=/Applications --fontdir=/Library/Fonts"
 set -gx PATH $PATH (gem environment gemdir)/bin
 
 # Dotfiles directory
-set DOTFILES $HOME/dotfiles
+set DOTFILES $HOME/set-me-up
 
 # Theme
 # set tacklebox_theme entropy

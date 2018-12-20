@@ -17,11 +17,7 @@ alias rm "rm -i -rf --"
 alias fs "stat -f \"%z bytes\""
 
 function du --description "Updates the dotfiles directory"
-    git -C $DOTFILES/src/install/editor/vscode stash ;and \
-    git -C $DOTFILES reset --hard origin/macos ;and \
-        git -C $DOTFILES pull ;and \
-        git -C $DOTFILES submodule update --quiet --init --recursive ;and \
-        git -C $DOTFILES submodule foreach git pull
+    ./$DOTFILES/smu --selfupdate
 end
 
 function randpw --description "generate a random password"

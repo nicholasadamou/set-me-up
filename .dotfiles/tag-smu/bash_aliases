@@ -37,9 +37,7 @@ alias lsh="ls -ld .?*"
 
 # dotfiles alias
 
-alias du="git -C \$DOTFILES pull \
-           && git -C \$DOTFILES submodule update --quiet --init --recursive \
-           && git -C \$DOTFILES submodule foreach git pull"
+alias du="./\$DOTFILES/smu --selfupdate"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
