@@ -123,17 +123,6 @@ main() {
 
     symlink
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_in_purple "\n  Submodules\n\n"
-
-    exucute \
-        "git -C \"${SMU_PATH}\" remote add origin \"${SMU_URL}\" \
-            && git -C \"${SMU_PATH}\" git fetch \
-            && git -C \"${SMU_PATH}\" submodule update --quiet --init --recursive \
-            && git -C \"${SMU_PATH}\" submodule foreach git pull origin master" \
-        "git (Updating and/or installing submodules)"
-
 }
 
 main
