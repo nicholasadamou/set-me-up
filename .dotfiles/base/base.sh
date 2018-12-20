@@ -92,12 +92,12 @@ symlink() {
     # Get the absolute path of the .dotfiles directory.
     # This is only for aesthetic reasons to have an absolute symlink path instead of a relative one
     # <path-to-smu>/.dotfiles/somedotfile vs <path-to-smu>/.dotfiles/base/../somedotfile
-    readonly dotfiles="$(dirname -- "$(dirname -- "$(readlink -- "$0")")")"
+    readonly dotfiles="${SMU_PATH}/.dotfiles"
 
     execute \
         "export RCRC=\"../rcrc\" && \
             rcup -v -d \"${dotfiles}\"" \
-        "symlink (tag-macos/)"
+        "symlink (${dotfiles})"
 
 }
 
