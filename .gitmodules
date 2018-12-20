@@ -7,3 +7,7 @@
 [submodule ".dotfiles/tag-smu/tmux/plugins/tpm"]
 	path = .dotfiles/tag-smu/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule ".dotfiles/utilities"]
+	path = .dotfiles/utilities
+	url = https://github.com/nicholasadamou/utilities
+	branch = macos

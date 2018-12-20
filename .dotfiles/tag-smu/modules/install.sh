@@ -1,17 +1,11 @@
 #!/bin/bash
 
-# shellcheck source=/dev/null
-
-declare current_dir && \
-    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    . "$(readlink -f "${current_dir}/../../utilities/utils.sh")"
-
 # GitHub user/repo value of your set-me-up blueprint (e.g.: nicholasadamou/set-me-up-blueprint)
 # Set this value when the installer should additionally obtain your blueprint.
 readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
 
 # The set-me-up version to download
-readonly SMU_VERSION=${SMU_VERSION:-"1.0.4"}
+readonly SMU_VERSION=${SMU_VERSION:-"1.0.5"}
 
 # Where to install set-me-up
 SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
@@ -44,7 +38,7 @@ function confirm() {
 function obtain() {
     local -r download_url="${1}"
 
-    curl --progress-bar -L "${download_url}" | tar -x --strip-components 1 --exclude={README.md,LICENSE,screenshots,.gitignore}
+    curl --progress-bar -L "${download_url}" | tar -x --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.gitmodules}
 }
 
 function use_curl() {
