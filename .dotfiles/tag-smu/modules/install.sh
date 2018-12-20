@@ -6,7 +6,7 @@ readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
 readonly SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-""}
 
 # The set-me-up version to download
-readonly SMU_VERSION=${SMU_VERSION:-"1.0.5"}
+readonly SMU_VERSION=${SMU_VERSION:-"LTS"}
 
 # Where to install set-me-up
 SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
@@ -73,7 +73,7 @@ function use_git() {
             git init
             git remote add origin "git@github.com:${SMU_BLUEPRINT}.git"
             git fetch
-            git checkout -t origin/master
+            git checkout -t origin/"${SMU_BLUEPRINT_BRANCH}"
         fi
     fi
 
