@@ -75,7 +75,7 @@ function use_git() {
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
             git init
-            git remote add origin "git@github.com:${SMU_BLUEPRINT}.git"
+            git remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
             git fetch
             git checkout "${SMU_BLUEPRINT_BRANCH}"
 
