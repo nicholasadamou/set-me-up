@@ -56,9 +56,9 @@ You can change the `smu` home directory by setting an environment variable calle
 
 To customize the setup to your needs `set-me-up` provides two hook points: Before and after sourcing the module script.
 
-Before hooks enable you to perform special preparations or apply definitions that can influence the module. All `smu` base variables are defined to check if an existing declaration already exists, giving you the possibility to come up with your own values (e.g.: You could override the [to be installed ruby version](.dotfiles/tag-smu/modules/ruby/ruby.sh#L3) by pre-defining the appropriate variable or change the `sdkman` installation directory).
+Before hooks enable you to perform special preparations or apply definitions that can influence the module. All `smu` base variables are defined to check if an existing declaration already exists, giving you the possibility to come up with your own values.
 
-Polishing module setups or using module functionality can be done with after hooks. A bit of inspiration: By calling git commands in an after hook file you could replace the git username and email placeholders or install further extensions by using [the `extension_install` function of the php module](.dotfiles/tag-smu/modules/php/php.sh#L21).
+Polishing module setups or using module functionality can be done with after hooks. A bit of inspiration: By calling git commands in an after hook file you could replace the git username and email placeholders or install further extensions.
 
 To use hooks provide a `before.sh` or `after.sh` inside the module directory. Use `rcm` tags to provide the hook files.
 
