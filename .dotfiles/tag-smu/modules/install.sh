@@ -71,7 +71,7 @@ function use_curl() {
     confirm
     mkcd "${SMU_HOME_DIR}"
 
-    echo "➜ Obtaining 'set-me-up'."
+    echo -e "\n➜ Obtaining 'set-me-up'."
     obtain "${smu_download}"
 
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
