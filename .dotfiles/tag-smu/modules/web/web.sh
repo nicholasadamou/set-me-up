@@ -192,7 +192,6 @@ install_npm_packages() {
 
     # task runneries
     npm_install "gulp-cli"
-    npm_install "gulp@next"
 
     # networking
     npm_install "wt-cli"
