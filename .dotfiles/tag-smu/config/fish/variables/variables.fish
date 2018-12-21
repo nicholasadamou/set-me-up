@@ -9,14 +9,6 @@ set -gx PATH $PATH /usr/local/bin /usr/bin /bin /sbin /usr/sbin /usr/local/sbin 
 # Paths to your tackle
 set tacklebox_path ~/.tackle ~/.tacklebox
 
-# Basher package manager configurations
-# see: https://github.com/basherpm/basher
-if test -d ~/.basher
-  set basher ~/.basher/bin
-end
-set -gx PATH $basher $PATH
-status --is-interactive; and . (basher init -|psub)
-
 # Homebrew configurations
 # Make all homebrew casks and fonts be installed to a
 # specific directory
@@ -26,7 +18,9 @@ set -gx HOMEBREW_CASK_OPTS "--appdir=/Applications --fontdir=/Library/Fonts"
 # Adds "GEMS_PATH" to "$PATH"
 # Fixes "I INSTALLED GEMS WITH --user-install AND THEIR COMMANDS ARE NOT AVAILABLE"
 # see: https://guides.rubygems.org/faqs/#user-install
-set -gx PATH $PATH (gem environment gemdir)/bin
+if test -d (gem environment gemdir)/bin
+  set -gx PATH $PATH (gem environment gemdir)/bin
+end
 
 # Dotfiles directory
 set DOTFILES $HOME/set-me-up
