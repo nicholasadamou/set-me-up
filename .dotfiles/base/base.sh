@@ -173,6 +173,8 @@ main() {
 
     print_in_yellow "\n   Homebrew\n\n"
 
+    ask_for_sudo
+
     if ! cmd_exists "brew"; then
         install_homebrew
         add_brew_configs
