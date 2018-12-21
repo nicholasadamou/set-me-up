@@ -6,12 +6,12 @@ readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
 readonly SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-""}
 
 # The set-me-up version to download
-readonly SMU_VERSION=${SMU_VERSION:-"latest"}
+readonly SMU_VERSION=${SMU_VERSION:-"master"}
 
 # Where to install set-me-up
 SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
 
-readonly smu_download="https://github.com/nicholasadamou/set-me-up/tarball/${SMU_VERSION}"
+readonly smu_download="https://github.com/nicholasadamou/set-me-up/archive/${SMU_VERSION}.zip"
 readonly smu_blueprint_download="https://github.com/${SMU_BLUEPRINT}/tarball/${SMU_BLUEPRINT_BRANCH}"
 
 function mkcd() {
