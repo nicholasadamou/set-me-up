@@ -153,7 +153,7 @@ install_npm_packages() {
     npm_install "spot"
 
     # alfred packages
-    command -v alfred && {
+    [ -f "/$HOME/Library/Preferences/com.runningwithcrayons.Alfred-Preferences-3.plist" ] && {
         npm_install "alfred-emoj"
         npm_install "alfred-npms"
         npm_install "alfred-dark-mode"
