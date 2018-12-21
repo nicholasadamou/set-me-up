@@ -29,7 +29,7 @@ source_bash_files() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    . "$(readlink -f "$DOTFILES/utilities/utils.sh")"
+    . "$DOTFILES/utilities/utils.sh"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
