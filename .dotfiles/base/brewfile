@@ -2,3 +2,5 @@ tap "thoughtbot/formulae"
 
 brew "git"
 brew "rcm"
+brew "bash"
+brew "bash-completion@2"
