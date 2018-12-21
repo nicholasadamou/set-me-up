@@ -129,9 +129,9 @@ alias npmu "npm i -g npm@latest"
 
 # Shorter commands for the `Yarn Package Manager`
 
-alias yr='yarn remove'
-alias ya='yarn add'
-alias yu='yarn self-update && yarn upgrade && yarn upgrade-interactive'
+alias yr "yarn remove"
+alias ya "yarn add"
+alias yu "yarn self-update ;and yarn upgrade ;and yarn upgrade-interactive"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
