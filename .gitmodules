@@ -11,6 +11,3 @@
 	path = .dotfiles/utilities
 	url = https://github.com/nicholasadamou/utilities
 	branch = macos
-[submodule ".dotfiles/tag-smu/basher"]
-	path = .dotfiles/tag-smu/basher
-	url = https://github.com/basherpm/basher
