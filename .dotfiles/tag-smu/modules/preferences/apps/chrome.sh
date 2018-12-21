@@ -5,11 +5,11 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
     
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Chrome\n\n"
+print_in_purple "   Chrome\n\n"
 
 execute "defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true" \
     "Enable backswipe"

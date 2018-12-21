@@ -5,12 +5,12 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 readonly SMU_PATH="$HOME/set-me-up"
 readonly SMU_URL="https://github.com/nicholasadamou/set-me-up"
 
-declare LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-macos/bash.local"
+declare LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -33,12 +33,10 @@ export PATH=\"/usr/local/sbin:\$PATH\"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if ! grep "$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
+    execute \
+        "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
             && . $LOCAL_BASH_CONFIG_FILE" \
-            "brew (update $LOCAL_BASH_CONFIG_FILE)"
-    fi
+        "brew (update $LOCAL_BASH_CONFIG_FILE)"
 
 }
 
@@ -105,7 +103,7 @@ symlink() {
 
 main() {
 
-    print_in_purple "\n  Base\n"
+    print_in_purple "  Base\n"
 
     print_in_yellow "\n   Homebrew\n\n"
 

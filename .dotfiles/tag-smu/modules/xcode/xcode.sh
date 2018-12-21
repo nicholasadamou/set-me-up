@@ -5,8 +5,8 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
-    
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 agree_with_xcode_license() {
@@ -86,7 +86,7 @@ set_xcode_developer_directory() {
 
 main() {
 
-    print_in_purple "\n   Xcode\n\n"
+    print_in_purple "   Xcode\n\n"
 
     install_xcode_command_line_tools
     install_xcode

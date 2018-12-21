@@ -5,10 +5,10 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
-LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
-LOCAL_FISH_CONFIG_FILE="$HOME/.fish.local"
+LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
+LOCAL_FISH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/fish.local"
 
 declare -r CARGO_DIRECTORY="$HOME/.cargo"
 
@@ -58,7 +58,7 @@ install_cargo_packages() {
 
 main() {
 
-    print_in_purple "\n  Rust & Cargo\n\n"
+    print_in_purple "  Rust & Cargo\n\n"
     
     ask_for_sudo
 

@@ -5,11 +5,11 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Dock\n\n"
+print_in_purple "   Dock\n\n"
 
 execute "defaults write com.apple.dock autohide -bool true" \
     "Automatically hide/show the Dock"

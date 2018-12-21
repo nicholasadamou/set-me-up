@@ -5,11 +5,11 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Photos\n\n"
+print_in_purple "   Photos\n\n"
 
 execute "defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true" \
     "Prevent Photos from opening automatically when devices are plugged in"

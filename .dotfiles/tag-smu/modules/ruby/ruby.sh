@@ -5,10 +5,12 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
-    
-LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
-LOCAL_FISH_CONFIG_FILE="$HOME/.fish.local"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
+
+readonly SMU_PATH="$HOME/set-me-up"
+
+LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
+LOCAL_FISH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/fish.local"
 
 declare -r RBENV_DIRECTORY="$HOME/.rbenv"
 declare -r RBENV_GIT_REPO_URL="https://github.com/rbenv/rbenv.git"
@@ -150,7 +152,7 @@ install_ruby_gems() {
 
 main() {
 
-    print_in_purple "\n  rbenv & Ruby\n\n"
+    print_in_purple "  rbenv & Ruby\n\n"
 
     brew_bundle_install "Brewfile"
 

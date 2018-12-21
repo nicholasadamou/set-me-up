@@ -5,10 +5,12 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
-LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
-LOCAL_FISH_CONFIG_FILE="$HOME/.fish.local"
+readonly SMU_PATH="$HOME/set-me-up"
+
+LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
+LOCAL_FISH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/fish.local"
 
 declare -r PYENV_DIRECTORY="$HOME/.pyenv"
 declare -r PYENV_INSTALLER_URL="https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer"
@@ -172,7 +174,7 @@ install_pip3_packages() {
 
 main() {
 
-    print_in_purple "\n  pyenv & Python\n\n"
+    print_in_purple "  pyenv & Python\n\n"
 
     brew_bundle_install "Brewfile"
 

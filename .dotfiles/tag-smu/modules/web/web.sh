@@ -5,10 +5,12 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
-LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
-LOCAL_FISH_CONFIG_FILE="$HOME/.fish.local"
+readonly SMU_PATH="$HOME/set-me-up"
+
+LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
+LOCAL_FISH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/fish.local"
 
 declare -r N_DIRECTORY="$HOME/n"
 
@@ -224,7 +226,7 @@ install_npm_packages() {
 
 main() {
 
-    print_in_purple "\n  n & npm\n\n"
+    print_in_purple "  n & npm\n\n"
 
     ask_for_sudo
 

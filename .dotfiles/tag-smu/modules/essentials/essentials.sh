@@ -5,13 +5,13 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
-    print_in_purple "\n  Essentials\n\n"
+    print_in_purple "  Essentials\n\n"
 
     print_in_yellow "   Install brew packages\n\n"
 

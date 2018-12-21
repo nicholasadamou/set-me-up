@@ -5,13 +5,13 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
-    print_in_purple "\n • MacOS Preferences\n"
+    print_in_purple " • MacOS Preferences\n"
 
 
     brew_bundle_install "Brewfile"

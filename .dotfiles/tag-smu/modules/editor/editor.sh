@@ -5,7 +5,7 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -90,7 +90,7 @@ install_diff_and_merge_tools() {
 
 main() {
 
-    print_in_purple "\n  Editor\n\n"
+    print_in_purple "  Editor\n\n"
 
     print_in_yellow "   Install brew packages\n\n"
 

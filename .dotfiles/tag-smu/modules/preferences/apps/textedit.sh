@@ -5,11 +5,11 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   TextEdit\n\n"
+print_in_purple "   TextEdit\n\n"
 
 execute "defaults write com.apple.TextEdit PlainTextEncoding -int 4 && \
          defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4" \

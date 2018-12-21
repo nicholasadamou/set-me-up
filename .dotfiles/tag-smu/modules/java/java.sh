@@ -5,10 +5,10 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
-LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
-LOCAL_FISH_CONFIG_FILE="$HOME/.fish.local"
+LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
+LOCAL_FISH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/fish.local"
 
 declare -r JENV_DIRECTORY="$HOME/.jenv"
 declare -r JENV_GIT_REPO_URL="https://github.com/gcuisinier/jenv.git"
@@ -94,13 +94,13 @@ update_jenv() {
 
 main() {
 
-    print_in_purple "\n  jenv & Java\n\n"
+    print_in_purple "  jenv & Java\n\n"
 
     print_in_yellow "   Install brew packages\n\n"
 
     brew_bundle_install "Brewfile"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -    
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ask_for_sudo
 
@@ -124,7 +124,7 @@ main() {
     sdk_install "java" "${java10}"
 
     set_default_sdk "java" "${java8}"
- 
+
 }
 
 main

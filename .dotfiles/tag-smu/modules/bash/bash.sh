@@ -5,13 +5,15 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 change_default_bash() {
 
-    declare -r LOCAL_BASH_CONFIG_FILE="$HOME/.bash.local"
+    readonly SMU_PATH="$HOME/set-me-up"
+
+    declare -r LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
 
     local configs=""
     local pathConfig=""
@@ -54,7 +56,7 @@ export PATH
             "Bash (add '$newShellPath' in '/etc/shells')" \
         || return 1
     fi
-    
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Set latest version of `Bash` as the default
@@ -81,7 +83,7 @@ export PATH
 
 main() {
 
-    print_in_purple "\n  Bash\n\n"
+    print_in_purple "  Bash\n\n"
 
     print_in_yellow "   Install brew packages\n\n"
 

@@ -5,7 +5,7 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 declare -r COMPOSER_DIRECTORY="/usr/local/bin"
 
@@ -41,7 +41,7 @@ update_composer() {
 
 main() {
 
-    print_in_purple "\n  composer & PHP\n\n"
+    print_in_purple "  composer & PHP\n\n"
 
     print_in_yellow "   Install brew packages\n\n"
 

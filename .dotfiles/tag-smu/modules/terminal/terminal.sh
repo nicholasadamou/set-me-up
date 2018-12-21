@@ -5,7 +5,7 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -82,7 +82,7 @@ install_tacklebox() {
 
 main() {
 
-    print_in_purple "\n   Terminal\n\n"
+    print_in_purple "   Terminal\n\n"
 
     brew_bundle_install "Brewfile"
 

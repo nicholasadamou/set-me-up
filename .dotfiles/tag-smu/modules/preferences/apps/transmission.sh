@@ -5,11 +5,11 @@
 declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
-    source "../utilities/utils.sh"
+    source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Transmission\n\n"
+print_in_purple "   Transmission\n\n"
 
 execute "defaults write org.m0k.transmission DeleteOriginalTorrent -bool true" \
     "Delete the original torrent files"
