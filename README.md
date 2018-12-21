@@ -5,13 +5,33 @@ It does so by automating the process through a collection of dotfiles and shell 
 
 Instead of enforcing a certain setup it tries to act as a solid template that is highly customizable to your needs.
 
+- [🔧 Usage](#usage)
+  - [💎 Use the blueprint](#use-the-blueprint)
+  - [💰 Obtaining `set-me-up`](#obtaining-set-me-up)
+  - [🏃 Running `set-me-up`](#running-set-me-up)
+  - [🚚 Customize `set-me-up`](#customize-set-me-up)
+    - [🎣 Using hooks](#using-hooks)
+    - [✏️ Using `rcm`](#using-rcm)
+      - [✨ Creating a custom tag](#creating-a-custom-tag)
+  - [Wait! I am confused 😕](#wait-i-am-confused-)
+- [A Closer Look 🤓](#a-closer-look)
+  - [📦 Available modules](#available-modules)
+  - [🚀 Other components](#other-components)
+  - [🌐 Local Settings](#local-settings)
+    - [🐠 `~/.fish.local`](#fishlocal)
+    - [🐚 `~/.bash.local`](#bashlocal)
+    - [🔁 `~/.gitconfig.local`](#gitconfiglocal)
+- [🙇🏻 Credits](#credits)
+- [🔃 Contributions](#contributions)
+- [📄 License](#license)
+
 ## Usage
 
 No matter how you obtain `smu`, as a sane developer you should take a look at the provided modules and dotfiles to verify that no shenanigans are happening.
 
 ### Use the blueprint
 
-The recommended way to obtain `set-me-up` is by forking the [blueprint setup](https://github.com/nicholasadamou/set-me-up-blueprint), which is its own lean repo that comes preconfigured with a [tag](#using-rcm) and module.
+The recommended way to obtain `set-me-up` is by forking the [blueprint setup](https://github.com/nicholasadamou/set-me-up-blueprint), which is its own lean repo that comes pre-configured with a [tag](#using-rcm) and module.
 
 You might wonder why not work directly with this repo? Having a remote and external repo for your dotfiles and `set-me-up` customizations has a few advantages:
 
@@ -29,7 +49,17 @@ Either use your blueprint or the default installer to obtain `set-me-up` . This 
 (⚠️ **DO NOT** run the `install` snippet if you don't fully
 understand [what it does](.dotfiles/tag-smu/modules/install.sh). Seriously, **DON'T**!)
 
-    bash <(curl --progress-bar -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/tag-smu/modules/install.sh)
+```bash
+bash <(curl --progress-bar -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/tag-smu/modules/install.sh) --git
+```
+
+⚠️ Please note that the installer has **three** different arguments:
+
+1. **`--curl`** - When this is passed, it will obtain the `smu` blueprint via `curl`.
+
+2. **`--git`** - When this is passed, it will obtain the `smu` blueprint via `git`.
+
+3. **`--detect`** - When this is passed, it will _detect_ if the `smu` blueprint was either obtained using `git` or `curl`. If it wasn't obtained using `git` it will use `curl` or visa-versa.
 
 You can change the `smu` home directory by setting an environment variable called `SMU_HOME_DIR`. Please keep the variable declared or else the `smu` scripts are unable to pickup the sources.
 
@@ -199,6 +229,78 @@ In most cases `set-me-up` delegates the legwork to tools that are meant to be us
 Nothing describes the actual functionality better than the code. It is recommended to check the appropriate module script to gain insights as to what it exactly does.
 
 `set-me-up` is a plain collection of bash scripts and tools that you probably already worked with, therefore understanding what is happening will be easy 😄.
+
+### Local Settings
+
+The `dotfiles` can be easily extended to suit additional local
+requirements by using the following files:
+
+#### `~/.bash.local`
+
+The `~/.bash.local` file it will be automatically sourced after
+all the other [`bash` related files](.dotfiles/tag-smu), thus, allowing
+its content to add to or overwrite the existing aliases, settings,
+PATH, etc.
+
+Here is a very simple example of a `~/.bash.local` file:
+
+```bash
+# Set local aliases.
+
+alias starwars="telnet towel.blinkenlights.nl"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Set PATH additions.
+
+export $PATH="$HOME/dotfiles/src/symlinks/.local/bin:$PATH"
+```
+
+#### `~/.fish.local`
+
+The `~/.fish.local` file it will be automatically sourced after
+all the other [`fish` related files](.dotfiles/tag-smu/config/fish), thus, allowing
+its content to add to or overwrite the existing aliases, settings,
+PATH, etc.
+
+Here is a very simple example of a `~/.fish.local` file:
+
+```fish
+# Set local aliases.
+
+alias starwars "telnet towel.blinkenlights.nl"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Set PATH additions.
+
+set -gx PATH $PATH "$HOME/dotfiles/src/symlinks/.local/bin"
+```
+
+#### `~/.gitconfig.local`
+
+The `~/.gitconfig.local` file it will be automatically included
+after the configurations from `~/.gitconfig`, thus, allowing its
+content to overwrite or add to the existing `git` configurations.
+
+**Note:** Use `~/.gitconfig.local` to store sensitive information
+such as the `git` user credentials, e.g.:
+
+```bash
+[commit]
+
+    # Sign commits using GPG.
+    # https://help.github.com/articles/signing-commits-using-gpg/
+
+    gpgsign = true
+
+
+[user]
+
+    name = Nicholas Adamou
+    email = nicholasadamou@example.com
+    signingkey = XXXXXXXX
+```
 
 ## Credits
 

@@ -98,7 +98,7 @@ function use_git() {
             git init
             git remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
             git fetch
-            git checkout "${SMU_BLUEPRINT_BRANCH}"
+            git checkout -f "${SMU_BLUEPRINT_BRANCH}"
 
             if has_submodules; then 
                 git -C "${SMU_HOME_DIR}" submodule update --quiet --init --recursive
