@@ -132,8 +132,8 @@ export _arg_provision
 export -f provision_enabled
 
 provision_module() {
-    # source base from installation directory
-    # this enables smu to work on first time installations
+    # source base from installation directory.
+    # this enables smu to work on first time installations.
     if [[ "${module}" == "base" ]]; then
         local -r path="${SMU_HOME_DIR}/.dotfiles/base"
     else
@@ -183,17 +183,17 @@ echo "";
 
 modules=("${_arg_modules[@]}")
 
-# by default run the base module as early as possible
+# by default, run the base module as early as possible.
 if [[ ${_arg_base} == "on" ]]; then
     modules=("base" "${modules[@]}")
 fi
 
-# check if macosupdate is contained in module list and if so queue it at the beginning
+# check if macosupdate is contained in module list and if so, queue it at the beginning.
 if [[ " ${modules[@]} " =~ " macosupdate " ]]; then
     modules=("macosupdate" "${modules[@]}")
 fi
 
-# list of executed modules, so we only one run them once
+# list of executed modules, so we only run them once.
 done=()
 
 # run modules
