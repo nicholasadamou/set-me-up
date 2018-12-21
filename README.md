@@ -24,6 +24,7 @@ Instead of enforcing a certain setup it tries to act as a solid template that is
     - [🐚 `~/.bash.local`](#bashlocal)
     - [🔁 `~/.gitconfig.local`](#gitconfiglocal)
 - [🙇🏻 Credits](#credits)
+- [👨🏼‍⚖️ Liability](#liability)
 - [🔃 Contributions](#contributions)
 - [📄 License](#license)
 
