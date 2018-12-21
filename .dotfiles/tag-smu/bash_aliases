@@ -38,7 +38,7 @@ alias lsh="ls -ld .?*"
 
 # dotfiles alias
 
-alias du="./\$DOTFILES/smu --selfupdate"
+alias du="bash \$DOTFILES/smu --selfupdate"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
