@@ -92,7 +92,7 @@ function use_git() {
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo; then
             echo "➜ Updating your 'set-me-up' blueprint."
-            git pull --ff -r
+            git pull --ff
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
             git init
