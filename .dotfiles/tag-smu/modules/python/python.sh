@@ -126,7 +126,8 @@ install_latest_stable_python() {
 
     if [ "$current_version" != "$latest_version" ] && [ ! -d "$PYENV_DIRECTORY/versions/$latest_version" ]; then
         execute \
-            ". $LOCAL_BASH_CONFIG_FILE \
+            "sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target / \
+                && . $LOCAL_BASH_CONFIG_FILE \
                 && pyenv install $latest_version \
                 && pyenv global $latest_version" \
             "pyenv (install python v$latest_version)"
@@ -140,9 +141,9 @@ install_pip() {
 
     print_in_yellow "\n   Install pip\n\n"
 
-    if package_is_installed "python-setuptools" && ! cmd_exists "pip"; then
+    if ! cmd_exists "pip"; then
         execute \
-            "easy_install pip" \
+            "sudo easy_install pip" \
             "pip (install)"
     else
         print_success "(pip) is already installed"

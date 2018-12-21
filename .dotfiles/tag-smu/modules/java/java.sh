@@ -13,8 +13,7 @@ LOCAL_FISH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/fish.local"
 declare -r JENV_DIRECTORY="$HOME/.jenv"
 declare -r JENV_GIT_REPO_URL="https://github.com/gcuisinier/jenv.git"
 
-readonly java8=${java8:-"8.0.171-oracle"}
-readonly java10=${java10:-"10.0.1-oracle"}
+readonly java11=${java11:-"11.0.1-open"}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -120,10 +119,11 @@ main() {
         update_sdkman
     fi
 
-    sdk_install "java" "${java8}"
-    sdk_install "java" "${java10}"
+    printf "\n"
 
-    set_default_sdk "java" "${java8}"
+    sdk_install "java" "${java11}"
+
+    set_default_sdk "java" "${java11}"
 
 }
 
