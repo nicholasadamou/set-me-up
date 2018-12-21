@@ -5,6 +5,8 @@ It does so by automating the process through a collection of dotfiles and shell 
 
 Instead of enforcing a certain setup it tries to act as a solid template that is highly customizable to your needs.
 
+## Table of Contents
+
 - [🔧 Usage](#usage)
   - [💎 Use the blueprint](#use-the-blueprint)
   - [💰 Obtaining `set-me-up`](#obtaining-set-me-up)
