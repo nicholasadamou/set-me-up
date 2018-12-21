@@ -116,8 +116,7 @@ change_default_bash() {
         || return 1
 
     pathConfig="PATH=\"$brewPrefix/bin:\$PATH\""
-    configs="
-# Homebrew bash configurations
+    configs="# Homebrew bash configurations
 $pathConfig
 export PATH
 "
