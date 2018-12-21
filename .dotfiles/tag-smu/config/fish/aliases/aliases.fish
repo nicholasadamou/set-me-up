@@ -17,7 +17,7 @@ alias rm "rm -i -rf --"
 alias fs "stat -f \"%z bytes\""
 
 function du --description "Updates the dotfiles directory"
-    ./$DOTFILES/smu --selfupdate
+    eval $DOTFILES/smu --selfupdate
 end
 
 function randpw --description "generate a random password"
