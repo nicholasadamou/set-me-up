@@ -55,8 +55,8 @@ install_fisher_packages() {
 
     print_in_yellow "\n   Install fisher packages\n\n"
 
-    does_fishfile_exist && {
-        cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
+    [ -f "${current_dir}/fishfile" ] && {
+        cat < "${current_dir}/fishfile" | while read -r PACKAGE; do
             fisher_install "$PACKAGE"
         done
     }
