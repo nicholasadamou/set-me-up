@@ -93,6 +93,10 @@ function use_git() {
         if is_git_repo; then
             echo "➜ Updating your 'set-me-up' blueprint."
             git pull --ff
+
+            if has_submodules; then 
+                git -C "${SMU_HOME_DIR}" submodule update --quiet --recursive
+            fi
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
             git init
