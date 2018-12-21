@@ -24,7 +24,8 @@ alias pbpaste='xclip -selection clipboard -o'
 
 # 'ls' aliases
 
-alias ls="exa"
+# Turn on if 'exa' is installed
+#alias ls="exa"
 
 # List all files colorized in long format
 alias l="exa -l"
@@ -38,12 +39,6 @@ alias lsh="ls -ld .?*"
 # dotfiles alias
 
 alias du="./\$DOTFILES/smu --selfupdate"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Shortcuts
-
-alias dev="cd \$HOME/dev"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -78,7 +73,9 @@ alias wttr="curl wttr.in"
 
 # thefuck - Magnificent app which corrects your previous console command.
 # see: https://github.com/nvbn/thefuck/wiki/Shell-aliases#bash
-eval "$(thefuck --alias)"
+command -v thefuck && {
+    eval "$(thefuck --alias)"
+}
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

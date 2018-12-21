@@ -29,10 +29,6 @@ source_bash_files() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    . "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     for i in ${!FILES_TO_SOURCE[*]}; do
 
         file="$HOME/.${FILES_TO_SOURCE[$i]}"
@@ -41,6 +37,10 @@ source_bash_files() {
             && . "$file"
 
     done
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    . "$DOTFILES/.dotfiles/utilities/utils.sh"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -58,7 +58,9 @@ unset -f source_bash_files
 # load bash-sensible configs.
 # see: https://github.com/mrzool/bash-sensible
 
-. "$HOME"/.config/bash-sensible/sensible.bash
+if [ -d "$HOME"/.config/bash-sensible ]; then
+    . "$HOME"/.config/bash-sensible/sensible.bash
+fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
