@@ -29,7 +29,7 @@ source_bash_files() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    . "$DOTFILES/utilities/utils.sh"
+    . "$DOTFILES/.dotfiles/utilities/utils.sh"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
