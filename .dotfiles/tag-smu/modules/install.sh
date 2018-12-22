@@ -54,8 +54,6 @@ install_xcode_command_line_tools() {
 }
 
 install_submodules() {
-    set -e
-
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
