@@ -51,6 +51,9 @@ install_xcode_command_line_tools() {
     until are_xcode_command_line_tools_installed; do
         sleep 5;
     done
+
+    are_xcode_command_line_tools_installed && \
+        echo "✔︎ (Xcode Command Line Tools) is installed"
 }
 
 install_submodules() {
@@ -99,7 +102,7 @@ function use_curl() {
         obtain "${smu_blueprint_download}"
     fi
 
-    echo -e "\n➜ Done. Enjoy."
+    echo -e "\n✔︎ Done. Enjoy."
 }
 
 function use_git() {
@@ -131,7 +134,7 @@ function use_git() {
     fi
 
 
-    echo -e "\n➜ Done. Enjoy."
+    echo -e "\n✔︎ Done. Enjoy."
 }
 
 function main() {
@@ -139,6 +142,8 @@ function main() {
 
     if ! are_xcode_command_line_tools_installed; then 
         install_xcode_command_line_tools
+    else
+        echo "✔︎ (Xcode Command Line Tools) is already installed"
     fi
 
     while [[ $# -gt 0 ]]; do
