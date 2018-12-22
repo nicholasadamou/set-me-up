@@ -88,6 +88,8 @@ function obtain() {
     local -r download_url="${1}"
 
     curl --progress-bar -L "${download_url}" | tar -x --strip-components 1 --exclude={README.md,LICENSE,.gitignore}
+
+    printf "\n"
 }
 
 function use_curl() {
