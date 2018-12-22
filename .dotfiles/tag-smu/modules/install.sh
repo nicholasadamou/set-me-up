@@ -95,8 +95,6 @@ function obtain() {
     local -r download_url="${1}"
 
     curl --progress-bar -L "${download_url}" | tar -x --strip-components 1 --exclude={README.md,LICENSE,.gitignore}
-
-    printf "\n"
 }
 
 function use_curl() {
@@ -105,6 +103,7 @@ function use_curl() {
 
     echo -e "\n➜ Obtaining 'set-me-up'."
     obtain "${smu_download}"
+    printf "\n"
 
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         echo "➜ Obtaining your 'set-me-up' blueprint."
@@ -120,6 +119,7 @@ function use_git() {
 
     echo -e "\n➜ Obtaining 'set-me-up'."
     obtain "${smu_download}"
+    printf "\n"
 
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo; then
