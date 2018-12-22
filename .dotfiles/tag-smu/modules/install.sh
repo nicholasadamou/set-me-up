@@ -70,10 +70,10 @@ install_submodules() {
             URL="$(git config -f .gitmodules --get "$url_key")"
             BRANCH="$(git config -f .gitmodules --get "$branch_key" || echo "master")"
 
-            git -C "${SMU_HOME_DIR}" submodule add --quiet --force -b "$BRANCH" --name "$NAME" "$URL" "$MODULE_PATH" || continue
+            git -C "${SMU_HOME_DIR}" submodule add --force -b "$BRANCH" --name "$NAME" "$URL" "$MODULE_PATH" || continue
         done
 
-    git -C "${SMU_HOME_DIR}" submodule update --quiet --init --recursive
+    git -C "${SMU_HOME_DIR}" submodule update --init --recursive
 }
 
 function confirm() {
