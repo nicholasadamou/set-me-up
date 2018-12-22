@@ -18,6 +18,8 @@ declare -r N_URL="https://git.io/n-install"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# If needed, add the necessary configs in the
+# local shell configuration files.
 add_n_configs() {
 
     # bash
@@ -28,10 +30,12 @@ export N_PREFIX=\"\$HOME/n\";
 [[ :\$PATH: == *\":\$N_PREFIX/bin:\"* ]] || PATH+=\":\$N_PREFIX/bin\"
 "
 
-    execute \
-        "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-        && . $LOCAL_BASH_CONFIG_FILE" \
-        "n (update $LOCAL_BASH_CONFIG_FILE)"
+    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
+                && . $LOCAL_BASH_CONFIG_FILE" \
+            "n (update $LOCAL_BASH_CONFIG_FILE)"
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -43,13 +47,18 @@ set -xU N_PREFIX \"\$HOME/n\"
 set -U fish_user_paths \"\$N_PREFIX/bin\" \$fish_user_paths
 "
 
-    execute \
-        "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
-        "n (update $LOCAL_FISH_CONFIG_FILE)"
+    if ! grep "^$FISH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then    
+        execute \
+            "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
+            "n (update $LOCAL_FISH_CONFIG_FILE)"
+    fi
 
 }
 
 install_n() {
+
+    # Install `n` and add the necessary
+    # configs in the local shell config files.
 
     execute \
         "curl -sL $N_URL | N_PREFIX=$N_DIRECTORY bash -s -- -q -n" \
@@ -62,7 +71,7 @@ update_n() {
 
     execute \
         ". $LOCAL_BASH_CONFIG_FILE \
-        && n-update -y" \
+            && n-update -y" \
         "n (upgrade)"
 
 }
@@ -101,7 +110,7 @@ install_latest_stable_node() {
     if [ "$current_version" != "$latest_version" ] && [ ! -d "$N_DIRECTORY/n/versions/node/$latest_version" ]; then
         execute \
             ". $LOCAL_BASH_CONFIG_FILE && \
-            n lts" \
+                n lts" \
             "n (install node v$latest_version)"
     else
         print_success "(node) is already on the latest version"

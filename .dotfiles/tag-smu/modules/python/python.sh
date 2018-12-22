@@ -17,6 +17,8 @@ declare -r PYENV_INSTALLER_URL="https://github.com/pyenv/pyenv-installer/raw/mas
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# If needed, add the necessary configs in the
+# local shell configuration files.
 add_pyenv_configs() {
 
     # bash
@@ -29,10 +31,10 @@ export PATH=\"\$PYENV_ROOT/shims:\$PATH\"
 export PATH=\"$HOME/.local/bin:\$PATH\"
 eval \"\$(pyenv init -)\""
 
-    if ! grep "$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-            && . $LOCAL_BASH_CONFIG_FILE" \
+                && . $LOCAL_BASH_CONFIG_FILE" \
             "pyenv (update $LOCAL_BASH_CONFIG_FILE)"
     fi
 
@@ -47,7 +49,7 @@ set -gx PATH \$PATH \$PYENV_ROOT/bin
 set -gx PATH \$PATH \$PYENV_ROOT/shims
 set -gx PATH \$PATH $HOME/.local/bin"
 
-    if ! grep "$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if ! grep "^$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "pyenv (update $LOCAL_FISH_CONFIG_FILE)"
@@ -58,7 +60,7 @@ set -gx PATH \$PATH $HOME/.local/bin"
 install_pyenv() {
 
     # Install `pyenv` and add the necessary
-    # configs in the local shell config file.
+    # configs in the local shell config files.
 
     execute \
         "curl -sL $PYENV_INSTALLER_URL | bash" \

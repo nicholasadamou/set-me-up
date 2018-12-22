@@ -33,10 +33,15 @@ export PATH=\"/usr/local/sbin:\$PATH\"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    execute \
-        "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-            && . $LOCAL_BASH_CONFIG_FILE" \
-        "brew (update $LOCAL_BASH_CONFIG_FILE)"
+    # If needed, add the necessary configs in the
+    # local shell configuration file.
+
+    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
+                && . $LOCAL_BASH_CONFIG_FILE" \
+            "brew (update $LOCAL_BASH_CONFIG_FILE)"
+    fi
 
 }
 
