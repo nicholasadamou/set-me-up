@@ -60,7 +60,7 @@ install_submodules() {
         while read -r KEY MODULE_PATH
         do
             [ -d "$MODULE_PATH" ] && sudo rm -rf "$MODULE_PATH"
-            
+
             NAME="$(echo "$KEY" | sed 's/\submodule\.\(.*\)\.path/\1/')"
 
             url_key="$(echo "$KEY" | sed 's/\.path/.url/')"
@@ -72,7 +72,7 @@ install_submodules() {
             git -C "${SMU_HOME_DIR}" submodule add --quiet --force -b "$BRANCH" --name "$NAME" "$URL" "$MODULE_PATH" || continue
         done
 
-    git -C "${SMU_HOME_DIR}" update --quiet --init --recursive
+    git -C "${SMU_HOME_DIR}" submodule update --quiet --init --recursive
 }
 
 function confirm() {
