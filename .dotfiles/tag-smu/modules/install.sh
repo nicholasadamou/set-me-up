@@ -53,7 +53,7 @@ install_xcode_command_line_tools() {
     done
 
     are_xcode_command_line_tools_installed && \
-        echo "✔︎ 'Xcode Command Line Tools' is installed"
+        echo -e "✔︎ 'Xcode Command Line Tools' is installed\n"
 }
 
     install_submodules() {
@@ -143,7 +143,7 @@ function main() {
     if ! are_xcode_command_line_tools_installed; then 
         install_xcode_command_line_tools
     else
-        echo "✔︎ 'Xcode Command Line Tools' is already installed"
+        echo -e "✔︎ 'Xcode Command Line Tools' is already installed\n"
     fi
 
     while [[ $# -gt 0 ]]; do
