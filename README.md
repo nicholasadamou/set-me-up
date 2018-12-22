@@ -53,7 +53,7 @@ Either use your blueprint or the default installer to obtain `set-me-up` . This 
 understand [what it does](.dotfiles/tag-smu/modules/install.sh). Seriously, **DON'T**!)
 
 ```bash
-bash <(curl --progress-bar -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/tag-smu/modules/install.sh) --git
+bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/tag-smu/modules/install.sh) --git
 ```
 
 ⚠️ Please note that the installer has **three** different arguments:
