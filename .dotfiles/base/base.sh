@@ -19,7 +19,8 @@ install_homebrew() {
     printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
     #       └─ simulate the ENTER keypress
 
-    print_result $? "Homebrew (install)"
+    print_result $? "Homebrew (install)" && \
+        add_brew_configs
 
 }
 
@@ -185,7 +186,6 @@ main() {
 
     if ! cmd_exists "brew"; then
         install_homebrew
-        add_brew_configs
         opt_out_of_analytics
     else
         brew_upgrade
