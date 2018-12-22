@@ -53,6 +53,26 @@ install_xcode_command_line_tools() {
     done
 }
 
+install_submodules() {
+    set -e
+
+    git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
+        while read -r KEY MODULE_PATH
+        do
+            NAME="$(echo "$KEY" | sed 's/\submodule\.\(.*\)\.path/\1/')"
+
+            url_key="$(echo "$KEY" | sed 's/\.path/.url/')"
+            branch_key="$(echo "$KEY" | sed 's/\.path/.branch/')"
+
+            URL="$(git config -f .gitmodules --get "$url_key")"
+            BRANCH="$(git config -f .gitmodules --get "$branch_key" || echo "master")"
+
+            git -C "${SMU_HOME_DIR}" submodule add --quiet -b "$BRANCH" --name "$NAME" "$URL" "$MODULE_PATH" || continue
+        done
+
+    git -C "${SMU_HOME_DIR}" update --quiet --init --recursive
+}
+
 function confirm() {
     echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
     read -r -p "Would you like 'set-me-up' to configure in that directory? (y/n) " -n 1;
@@ -105,7 +125,7 @@ function use_git() {
             git checkout -f "${SMU_BLUEPRINT_BRANCH}"
 
             if has_submodules; then 
-                git -C "${SMU_HOME_DIR}" submodule update --quiet --init --recursive
+                install_submodules
             fi
         fi
     fi
