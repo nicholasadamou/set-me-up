@@ -1,3 +1,0 @@
-usage: locate [-0Scims] [-l limit] [-d database] pattern ...
-
-default database: `/var/db/locate.database' or $LOCATE_PATH
