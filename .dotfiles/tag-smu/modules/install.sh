@@ -40,7 +40,7 @@ install_xcode_command_line_tools() {
     # If necessary, prompt user to install
     # the `Xcode Command Line Tools`.
 
-    echo "➜ Installing Xcode Command Line Tools" 
+    echo "➜ Installing 'Xcode Command Line Tools'" 
 
     xcode-select --install &> /dev/null
 
@@ -53,28 +53,28 @@ install_xcode_command_line_tools() {
     done
 
     are_xcode_command_line_tools_installed && \
-        echo "✔︎ (Xcode Command Line Tools) is installed"
+        echo "✔︎ 'Xcode Command Line Tools' is installed"
 }
 
-install_submodules() {
-    git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
-        while read -r KEY MODULE_PATH
-        do
-            [ -d "$MODULE_PATH" ] && sudo rm -rf "$MODULE_PATH"
+    install_submodules() {
+        git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
+            while read -r KEY MODULE_PATH
+            do
+                [ -d "$MODULE_PATH" ] && sudo rm -rf "$MODULE_PATH"
 
-            NAME="$(echo "$KEY" | sed 's/\submodule\.\(.*\)\.path/\1/')"
+                NAME="$(echo "$KEY" | sed 's/\submodule\.\(.*\)\.path/\1/')"
 
-            url_key="$(echo "$KEY" | sed 's/\.path/.url/')"
-            branch_key="$(echo "$KEY" | sed 's/\.path/.branch/')"
+                url_key="$(echo "$KEY" | sed 's/\.path/.url/')"
+                branch_key="$(echo "$KEY" | sed 's/\.path/.branch/')"
 
-            URL="$(git config -f .gitmodules --get "$url_key")"
-            BRANCH="$(git config -f .gitmodules --get "$branch_key" || echo "master")"
+                URL="$(git config -f .gitmodules --get "$url_key")"
+                BRANCH="$(git config -f .gitmodules --get "$branch_key" || echo "master")"
 
-            git -C "${SMU_HOME_DIR}" submodule add --force -b "$BRANCH" --name "$NAME" "$URL" "$MODULE_PATH" || continue
-        done
+                git -C "${SMU_HOME_DIR}" submodule add --force -b "$BRANCH" --name "$NAME" "$URL" "$MODULE_PATH" || continue
+            done
 
-    git -C "${SMU_HOME_DIR}" submodule update --init --recursive
-}
+        git -C "${SMU_HOME_DIR}" submodule update --init --recursive
+    }
 
 function confirm() {
     echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
