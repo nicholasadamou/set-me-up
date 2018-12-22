@@ -19,6 +19,9 @@ declare -r BASHER_GIT_REPO_URL="https://github.com/basherpm/basher"
 
 install_basher() {
 
+    # Install `basher` and add the necessary
+    # configs in the local shell config files.
+
     execute \
         "git clone --quiet $BASHER_GIT_REPO_URL $BASHER_DIRECTORY" \
         "basher (install)" \
@@ -26,6 +29,8 @@ install_basher() {
 
 }
 
+# If needed, add the necessary configs in the
+# local shell configuration files.
 add_basher_configs() {
 
     # bash
@@ -35,10 +40,12 @@ add_basher_configs() {
 export PATH=\"$HOME/.basher/bin:\$PATH\"
 eval \"\$(basher init -)\""
 
-    execute \
-        "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-            && . $LOCAL_BASH_CONFIG_FILE" \
-        "basher (update $LOCAL_BASH_CONFIG_FILE)"
+    if ! grep "^$BASH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
+                && . $LOCAL_BASH_CONFIG_FILE" \
+            "basher (update $LOCAL_BASH_CONFIG_FILE)"
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -56,9 +63,11 @@ if type -q basher
 end
 "
 
-    execute \
-        "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
-        "basher (update $LOCAL_FISH_CONFIG_FILE)"
+    if ! grep "^$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
+            "basher (update $LOCAL_FISH_CONFIG_FILE)"
+    fi
 
 }
 

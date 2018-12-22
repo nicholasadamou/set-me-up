@@ -15,9 +15,9 @@ install_omf() {
     if ! is_omf_installed; then
         execute \
             "curl -Ls github.com/oh-my-fish/oh-my-fish/raw/master/bin/install > install && \
-            chmod +x install && \
-            ./install --noninteractive --path=$HOME/.local/share/omf --config=$HOME/.config/omf && \
-            rm -rf install" \
+                chmod +x install && \
+                ./install --noninteractive --path=$HOME/.local/share/omf --config=$HOME/.config/omf && \
+                 rm -rf install" \
             "omf (install)"
     else
         print_success "(omf) is already installed."
@@ -72,7 +72,7 @@ install_tacklebox() {
     if ! is_tacklebox_installed; then
         execute \
             "git clone https://github.com/justinmayer/tacklebox ~/.tacklebox \
-            && git clone https://github.com/justinmayer/tackle ~/.tackle" \
+                && git clone https://github.com/justinmayer/tackle ~/.tackle" \
             "tacklebox (install)"
     else
         print_success "(tacklebox) is already installed."

@@ -19,6 +19,8 @@ declare -r GO_DIRECTORY="$HOME/go"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# If needed, add the necessary configs in the
+# local shell configuration files.
 add_goenv_configs() {
 
     # bash
@@ -29,7 +31,7 @@ export GOENV_ROOT=\"$GOENV_DIRECTORY\"
 export PATH=\"\$GOENV_ROOT/bin:\$PATH\"
 eval \"\$(goenv init -)\""
 
-    if ! grep "$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
             && . $LOCAL_BASH_CONFIG_FILE" \
@@ -45,7 +47,7 @@ eval \"\$(goenv init -)\""
 set -gx GOENV_ROOT $GOENV_DIRECTORY
 set -gx PATH \$PATH \$GOENV_ROOT/bin"
 
-    if ! grep "$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if ! grep "^$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
          execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "goenv (update $LOCAL_FISH_CONFIG_FILE)"
@@ -53,6 +55,8 @@ set -gx PATH \$PATH \$GOENV_ROOT/bin"
 
 }
 
+# If needed, add the necessary configs in the
+# local shell configuration files.
 add_go_configs() {
 
     if [ ! -d "$GO_DIRECTORY" ] && [ ! -d "$GO_DIRECTORY"/bin ]; then
@@ -70,10 +74,10 @@ export GOBIN=\"\$GOPATH/bin\"
 export PATH=\"\$GOPATH/bin:\$PATH\""
 
 
-    if ! grep "$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-            && . $LOCAL_BASH_CONFIG_FILE" \
+                && . $LOCAL_BASH_CONFIG_FILE" \
             "go (update $LOCAL_BASH_CONFIG_FILE)"
     fi
 
@@ -87,7 +91,7 @@ set -gx GOPATH $GO_DIRECTORY
 set -gx GOBIN \$GOPATH/bin
 set -gx PATH \$PATH \$GOPATH/bin"
 
-    if ! grep "$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if ! grep "^$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "go (update $LOCAL_FISH_CONFIG_FILE)"
@@ -98,7 +102,7 @@ set -gx PATH \$PATH \$GOPATH/bin"
 install_goenv() {
 
     # Install `goenv` and add the necessary
-    # configs in the local shell config file.
+    # configs in the local shell config files.
 
     execute \
         "git clone --quiet $GOENV_GIT_REPO_URL $GOENV_DIRECTORY" \

@@ -36,6 +36,8 @@ update_sdkman() {
 
 }
 
+# If needed, add the necessary configs in the
+# local shell configuration files.
 add_jenv_configs() {
 
     # bash
@@ -45,10 +47,10 @@ add_jenv_configs() {
 export PATH=\"$JENV_DIRECTORY/bin:\$PATH\"
 eval \"\$(jenv  init -)\""
 
-    if ! grep "$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-            && . $LOCAL_BASH_CONFIG_FILE" \
+                && . $LOCAL_BASH_CONFIG_FILE" \
             "jenv (update $LOCAL_BASH_CONFIG_FILE)"
     fi
 
@@ -60,7 +62,7 @@ eval \"\$(jenv  init -)\""
 # JEnv - Manage your Java environment.
 set -gx PATH \$PATH $JENV_DIRECTORY/bin"
 
-    if ! grep "$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if ! grep "^$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "jenv (update $LOCAL_FISH_CONFIG_FILE)"
@@ -71,7 +73,7 @@ set -gx PATH \$PATH $JENV_DIRECTORY/bin"
 install_jenv() {
 
     # Install `jenv` and add the necessary
-    # configs in the local shell config file.
+    # configs in the local shell config files.
 
     execute \
         "git clone --quiet $JENV_GIT_REPO_URL $JENV_DIRECTORY" \

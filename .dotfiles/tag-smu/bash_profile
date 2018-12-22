@@ -85,5 +85,5 @@ fi
 
 # Start up fish shell
 
-fish
+command -v fish && fish
 

@@ -19,6 +19,8 @@ declare -r RUBY_BUILD_GIT_REPO_URL="https://github.com/rbenv/ruby-build.git"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# If needed, add the necessary configs in the
+# local shell configuration files.
 add_rbenv_configs() {
 
     # bash
@@ -29,10 +31,10 @@ export RBENV_ROOT=\"$RBENV_DIRECTORY\"
 export PATH=\"\$RBENV_ROOT/bin:\$PATH\"
 eval \"\$(rbenv init -)\""
 
-    if ! grep "$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-            && . $LOCAL_BASH_CONFIG_FILE" \
+                && . $LOCAL_BASH_CONFIG_FILE" \
             "rbenv (update $LOCAL_BASH_CONFIG_FILE)"
     fi
 
@@ -45,7 +47,7 @@ eval \"\$(rbenv init -)\""
 set -gx RBENV_ROOT $RBENV_DIRECTORY
 set -gx PATH \$PATH \$RBENV_ROOT/bin"
 
-    if ! grep "$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if ! grep "^$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "rbenv (update $LOCAL_FISH_CONFIG_FILE)"
@@ -56,7 +58,7 @@ set -gx PATH \$PATH \$RBENV_ROOT/bin"
 install_rbenv() {
 
     # Install `rbenv` and add the necessary
-    # configs in the local shell config file.
+    # configs in the local shell config files.
 
     execute \
         "git clone --quiet $RBENV_GIT_REPO_URL $RBENV_DIRECTORY" \
