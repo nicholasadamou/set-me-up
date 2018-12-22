@@ -167,7 +167,11 @@ if [[ ${_arg_lsrc} == "on" ]]; then
 fi
 
 if [[ ${_arg_selfupdate} == "on" ]]; then
-    "${module_path}"/install.sh --detect
+	if [ -e "${module_path}"/install.sh ]; then
+    	"${module_path}"/install.sh --detect
+	else
+		"${SMU_HOME_DIR}"/.dotfiles/tag-smu/modules/install.sh --detect
+	fi
 
     ! provision_enabled && exit 0
 fi
