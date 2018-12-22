@@ -140,6 +140,8 @@ function use_git() {
 function main() {
     method="curl"
 
+    echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
+
     if ! are_xcode_command_line_tools_installed; then 
         install_xcode_command_line_tools
     else
