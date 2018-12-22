@@ -59,6 +59,8 @@ install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
+            [ -d "$MODULE_PATH" ] && sudo rm -rf "$MODULE_PATH"
+            
             NAME="$(echo "$KEY" | sed 's/\submodule\.\(.*\)\.path/\1/')"
 
             url_key="$(echo "$KEY" | sed 's/\.path/.url/')"
@@ -67,7 +69,7 @@ install_submodules() {
             URL="$(git config -f .gitmodules --get "$url_key")"
             BRANCH="$(git config -f .gitmodules --get "$branch_key" || echo "master")"
 
-            git -C "${SMU_HOME_DIR}" submodule add --quiet -b "$BRANCH" --name "$NAME" "$URL" "$MODULE_PATH" || continue
+            git -C "${SMU_HOME_DIR}" submodule add --quiet --force -b "$BRANCH" --name "$NAME" "$URL" "$MODULE_PATH" || continue
         done
 
     git -C "${SMU_HOME_DIR}" update --quiet --init --recursive
