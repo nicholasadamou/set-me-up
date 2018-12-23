@@ -7,6 +7,8 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
+declare -r RBENV_DIRECTORY="$HOME/.rbenv"
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 install_latest_stable_ruby() {
@@ -46,7 +48,7 @@ install_latest_stable_ruby() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ "$current_version" != "$latest_version" ]; then
+    if [ ! -d "$RBENV_DIRECTORY/versions/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
         execute \
             "rbenv install $latest_version \
                 && rbenv global $latest_version" \
@@ -76,6 +78,8 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
+    printf "\n"
+
     install_latest_stable_ruby
 
     install_ruby_gems
