@@ -4,21 +4,6 @@ tap "homebrew/versions"
 tap "bramstein/webfonttools"
 tap "buo/cask-upgrade"
 
-# Install some other useful utilities like `sponge`.
-brew "moreutils"
-
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`
-brew "findutils"
-
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew "gnu-sed"
-
-# Install `wget` with IRI support.
-brew "wget", args: ["with-iri"]
-
-# Install more recent versions of some OS X tools.
-brew "vim", args: ["override-system-vi"]
-
 # Install other useful binaries.
 brew "screen"
 brew "ack"
