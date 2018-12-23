@@ -40,7 +40,7 @@ add_basher_configs() {
 export PATH=\"$HOME/.basher/bin:\$PATH\"
 eval \"\$(basher init -)\""
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE"; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -Z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE"; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
@@ -63,7 +63,7 @@ if type -q basher
 end
 "
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -Z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "basher (update $LOCAL_FISH_CONFIG_FILE)"
