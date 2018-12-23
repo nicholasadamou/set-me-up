@@ -31,7 +31,7 @@ export GOENV_ROOT=\"$GOENV_DIRECTORY\"
 export PATH=\"\$GOENV_ROOT/bin:\$PATH\"
 eval \"\$(goenv init -)\""
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -Z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
             && . $LOCAL_BASH_CONFIG_FILE" \
@@ -47,7 +47,7 @@ eval \"\$(goenv init -)\""
 set -gx GOENV_ROOT $GOENV_DIRECTORY
 set -gx PATH \$PATH \$GOENV_ROOT/bin"
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -Z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
          execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "goenv (update $LOCAL_FISH_CONFIG_FILE)"
@@ -74,7 +74,7 @@ export GOBIN=\"\$GOPATH/bin\"
 export PATH=\"\$GOPATH/bin:\$PATH\""
 
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -Z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
@@ -91,7 +91,7 @@ set -gx GOPATH $GO_DIRECTORY
 set -gx GOBIN \$GOPATH/bin
 set -gx PATH \$PATH \$GOPATH/bin"
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -Z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "go (update $LOCAL_FISH_CONFIG_FILE)"

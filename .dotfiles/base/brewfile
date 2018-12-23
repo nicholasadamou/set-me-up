@@ -2,5 +2,9 @@ tap "thoughtbot/formulae"
 
 brew "git"
 brew "rcm"
+
+brew "coreutils"
+brew "grep" args: ["with-default-names"]
+
 brew "bash"
 brew "bash-completion@2"
