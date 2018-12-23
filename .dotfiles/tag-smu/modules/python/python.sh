@@ -9,8 +9,8 @@ declare current_dir && \
 
 readonly SMU_PATH="$HOME/set-me-up"
 
-LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
-LOCAL_FISH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/fish.local"
+LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
+LOCAL_FISH_CONFIG_FILE="${HOME}/.fish.local"
 
 declare -r PYENV_DIRECTORY="$HOME/.pyenv"
 declare -r PYENV_INSTALLER_URL="https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer"

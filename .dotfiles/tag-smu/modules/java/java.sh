@@ -7,8 +7,8 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
-LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
-LOCAL_FISH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/fish.local"
+LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
+LOCAL_FISH_CONFIG_FILE="${HOME}/.fish.local"
 
 declare -r JENV_DIRECTORY="$HOME/.jenv"
 declare -r JENV_GIT_REPO_URL="https://github.com/gcuisinier/jenv.git"

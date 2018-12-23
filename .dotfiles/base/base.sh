@@ -10,7 +10,7 @@ declare current_dir && \
 readonly SMU_PATH="$HOME/set-me-up"
 readonly SMU_URL="https://github.com/nicholasadamou/set-me-up"
 
-declare LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
+declare LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
