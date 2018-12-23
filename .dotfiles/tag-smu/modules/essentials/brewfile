@@ -4,8 +4,6 @@ tap "homebrew/versions"
 tap "bramstein/webfonttools"
 tap "buo/cask-upgrade"
 
-brew "coreutils"
-
 # Install some other useful utilities like `sponge`.
 brew "moreutils"
 

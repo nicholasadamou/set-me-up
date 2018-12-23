@@ -3,8 +3,10 @@ tap "thoughtbot/formulae"
 brew "git"
 brew "rcm"
 
+# Install GNU-related tools
 brew "coreutils"
-brew "grep" args: ["with-default-names"]
+# Install more recent versions of some OS X tools like 'GNU-grep'
+brew "grep", args: ["with-default-names"]
 
 brew "bash"
 brew "bash-completion@2"
