@@ -74,8 +74,6 @@ update_rbenv() {
             "cd $RBENV_DIRECTORY \
                 && git fetch --quiet origin" \
             "rbenv (upgrade)"
-    else
-        upgrade_package "rbenv" "rbenv"
     fi
 
 }
