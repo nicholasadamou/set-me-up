@@ -167,7 +167,7 @@ export PATH
 
     if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$configs" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
-            "printf '%s' '$configs' >> $LOCAL_BASH_CONFIG_FILE \
+            "printf '%s\n' '$configs' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
             "Bash (update $LOCAL_BASH_CONFIG_FILE)"
     fi
