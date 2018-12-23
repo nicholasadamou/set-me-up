@@ -65,6 +65,8 @@ main() {
     if [ ! -d "$CARGO_DIRECTORY" ]; then
         brew_bundle_install "Brewfile" \
             && add_cargo_configs
+    else
+        print_success "(cargo) is already installed"
     fi
 
     install_cargo_packages
