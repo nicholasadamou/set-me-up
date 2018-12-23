@@ -64,10 +64,11 @@ install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
-            has_active_submodules && [ -d "${MODULE_PATH}" ] && {
-                git rm -r --cached "${MODULE_PATH}" && \
-                    sudo rm -rf "${MODULE_PATH}"
-            }
+            has_active_submodules && \
+                git rm -r --cached "${MODULE_PATH}"
+            
+            [ -d "${MODULE_PATH}" ] && \
+                sudo rm -rf "${MODULE_PATH}"
 
             NAME="$(echo "${KEY}" | sed 's/\submodule\.\(.*\)\.path$/\1/')"
 
