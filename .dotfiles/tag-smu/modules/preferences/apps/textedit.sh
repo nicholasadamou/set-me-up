@@ -9,7 +9,7 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "   TextEdit\n\n"
+print_in_purple "\n   TextEdit\n\n"
 
 execute "defaults write com.apple.TextEdit PlainTextEncoding -int 4 && \
          defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4" \

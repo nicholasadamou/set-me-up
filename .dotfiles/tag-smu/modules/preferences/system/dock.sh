@@ -9,7 +9,7 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "   Dock\n\n"
+print_in_purple "\n   Dock\n\n"
 
 execute "defaults write com.apple.dock autohide -bool true" \
     "Automatically hide/show the Dock"

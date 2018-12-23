@@ -9,7 +9,7 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "   App Store\n\n"
+print_in_purple "\n   App Store\n\n"
 
 execute "defaults write com.apple.appstore ShowDebugMenu -bool true" \
     "Enable debug menu"

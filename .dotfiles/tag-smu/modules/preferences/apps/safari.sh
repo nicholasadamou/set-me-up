@@ -9,7 +9,7 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "   Safari\n\n"
+print_in_purple "\n   Safari\n\n"
 
 execute "defaults write com.apple.Safari UniversalSearchEnabled -bool false \
     && defaults write com.apple.Safari SuppressSearchSuggestions -bool true" \

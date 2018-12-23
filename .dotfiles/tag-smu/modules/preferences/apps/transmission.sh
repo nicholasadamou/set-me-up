@@ -9,7 +9,7 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "   Transmission\n\n"
+print_in_purple "\n   Transmission\n\n"
 
 execute "defaults write org.m0k.transmission DeleteOriginalTorrent -bool true" \
     "Delete the original torrent files"

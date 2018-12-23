@@ -9,7 +9,7 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "   Language & Region\n\n"
+print_in_purple "\n   Language & Region\n\n"
 
 execute "defaults write -g AppleLanguages -array 'en_US'" \
     "Set language"

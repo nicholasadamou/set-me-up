@@ -9,7 +9,7 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "   Keyboard\n\n"
+print_in_purple "\n   Keyboard\n\n"
 
 execute "defaults write -g AppleKeyboardUIMode -int 3" \
     "Enable full keyboard access for all controls"

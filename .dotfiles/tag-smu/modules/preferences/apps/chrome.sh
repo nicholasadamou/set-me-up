@@ -9,7 +9,7 @@ declare current_dir && \
     
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "   Chrome\n\n"
+print_in_purple "\n   Chrome\n\n"
 
 execute "defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true" \
     "Enable backswipe"

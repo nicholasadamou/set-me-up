@@ -9,7 +9,7 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "   Firefox\n\n"
+print_in_purple "\n   Firefox\n\n"
 
 execute "defaults write org.mozilla.firefox AppleEnableSwipeNavigateWithScrolls -bool false" \
     "Disable backswipe"

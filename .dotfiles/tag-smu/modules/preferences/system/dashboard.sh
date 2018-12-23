@@ -9,7 +9,7 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "   Dashboard\n\n"
+print_in_purple "\n   Dashboard\n\n"
 
 execute "defaults write com.apple.dashboard mcx-disabled -bool true" \
     "Disable Dashboard"
