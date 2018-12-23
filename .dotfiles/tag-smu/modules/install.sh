@@ -33,7 +33,7 @@ function has_submodules() {
 }
 
 function has_active_submodules() {
-   git config --list | grep -E ^submodule &> /dev/null
+    git config --list | grep -E ^submodule &> /dev/null
 }
 
 function are_xcode_command_line_tools_installed() {
@@ -67,7 +67,7 @@ install_submodules() {
             has_active_submodules && \
                 git rm -r --cached "${MODULE_PATH}"
             
-            [ -d "${MODULE_PATH}" ] && \
+            ! has_active_submodules && [ -d "${MODULE_PATH}" ] && \
                 sudo rm -rf "${MODULE_PATH}"
 
             NAME="$(echo "${KEY}" | sed 's/\submodule\.\(.*\)\.path$/\1/')"
