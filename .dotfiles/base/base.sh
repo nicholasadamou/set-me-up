@@ -24,27 +24,27 @@ install_homebrew() {
 
 }
 
-    add_brew_configs() {
+add_brew_configs() {
 
-        declare -r BASH_CONFIGS="
-    # Homebrew - The missing package manager for macOS.
-    export PATH=\"/usr/local/bin:\$PATH\"
-    export PATH=\"/usr/local/sbin:\$PATH\"
-    "
+    declare -r BASH_CONFIGS="
+# Homebrew - The missing package manager for macOS.
+export PATH=\"/usr/local/bin:\$PATH\"
+export PATH=\"/usr/local/sbin:\$PATH\"
+"
 
-        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        # If needed, add the necessary configs in the
-        # local shell configuration file.
+    # If needed, add the necessary configs in the
+    # local shell configuration file.
 
-        if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -Z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE"; then
-            execute \
-                "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                    && . $LOCAL_BASH_CONFIG_FILE" \
-                "brew (update $LOCAL_BASH_CONFIG_FILE)"
-        fi
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -Z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE"; then
+        execute \
+            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
+                && . $LOCAL_BASH_CONFIG_FILE" \
+            "brew (update $LOCAL_BASH_CONFIG_FILE)"
+    fi
 
-    }
+}
 
 get_homebrew_git_config_file_path() {
 
