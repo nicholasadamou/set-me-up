@@ -47,7 +47,7 @@ add_jenv_configs() {
 export PATH=\"$JENV_DIRECTORY/bin:\$PATH\"
 eval \"\$(jenv  init -)\""
 
-    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
@@ -62,7 +62,7 @@ eval \"\$(jenv  init -)\""
 # JEnv - Manage your Java environment.
 set -gx PATH \$PATH $JENV_DIRECTORY/bin"
 
-    if ! grep "^$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "jenv (update $LOCAL_FISH_CONFIG_FILE)"

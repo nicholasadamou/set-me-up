@@ -31,7 +31,7 @@ export PATH=\"\$PYENV_ROOT/shims:\$PATH\"
 export PATH=\"$HOME/.local/bin:\$PATH\"
 eval \"\$(pyenv init -)\""
 
-    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
@@ -49,7 +49,7 @@ set -gx PATH \$PATH \$PYENV_ROOT/bin
 set -gx PATH \$PATH \$PYENV_ROOT/shims
 set -gx PATH \$PATH $HOME/.local/bin"
 
-    if ! grep "^$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "pyenv (update $LOCAL_FISH_CONFIG_FILE)"

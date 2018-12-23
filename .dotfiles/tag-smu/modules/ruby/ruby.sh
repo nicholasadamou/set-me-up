@@ -31,7 +31,7 @@ export RBENV_ROOT=\"$RBENV_DIRECTORY\"
 export PATH=\"\$RBENV_ROOT/bin:\$PATH\"
 eval \"\$(rbenv init -)\""
 
-    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
@@ -47,7 +47,7 @@ eval \"\$(rbenv init -)\""
 set -gx RBENV_ROOT $RBENV_DIRECTORY
 set -gx PATH \$PATH \$RBENV_ROOT/bin"
 
-    if ! grep "^$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "rbenv (update $LOCAL_FISH_CONFIG_FILE)"

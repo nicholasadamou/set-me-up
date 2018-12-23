@@ -24,27 +24,27 @@ install_homebrew() {
 
 }
 
-add_brew_configs() {
+    add_brew_configs() {
 
-    declare -r BASH_CONFIGS="
-# Homebrew - The missing package manager for macOS.
-export PATH=\"/usr/local/bin:\$PATH\"
-export PATH=\"/usr/local/sbin:\$PATH\"
-"
+        declare -r BASH_CONFIGS="
+    # Homebrew - The missing package manager for macOS.
+    export PATH=\"/usr/local/bin:\$PATH\"
+    export PATH=\"/usr/local/sbin:\$PATH\"
+    "
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # If needed, add the necessary configs in the
-    # local shell configuration file.
+        # If needed, add the necessary configs in the
+        # local shell configuration file.
 
-    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "brew (update $LOCAL_BASH_CONFIG_FILE)"
-    fi
+        if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE"; then
+            execute \
+                "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
+                    && . $LOCAL_BASH_CONFIG_FILE" \
+                "brew (update $LOCAL_BASH_CONFIG_FILE)"
+        fi
 
-}
+    }
 
 get_homebrew_git_config_file_path() {
 
@@ -141,7 +141,7 @@ export PATH
     #
     # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
 
-    if ! grep "$newShellPath" < /etc/shells &> /dev/null; then
+    if ! grep -q -z "$newShellPath" /etc/shells &> /dev/null; then
         execute \
             "printf '%s\n' '$newShellPath' | sudo tee -a /etc/shells" \
             "Bash (add '$newShellPath' in '/etc/shells')" \
@@ -165,7 +165,7 @@ export PATH
     # If needed, add the necessary configs in the
     # local shell configuration file.
 
-    if ! grep "^$pathConfig" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "^$pathConfig" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s' '$configs' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \

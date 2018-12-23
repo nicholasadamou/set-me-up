@@ -22,7 +22,7 @@ add_cargo_configs() {
 # Cargo - Rust package manager.
 export PATH=\"$CARGO_DIRECTORY/bin:\$PATH\""
 
-    if ! grep "^$BASH_CONFIGS" < "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
             && . $LOCAL_BASH_CONFIG_FILE" \
@@ -37,7 +37,7 @@ export PATH=\"$CARGO_DIRECTORY/bin:\$PATH\""
 # Cargo - Rust package manager.
 set -gx PATH \$PATH $CARGO_DIRECTORY/bin"
 
-    if ! grep "^$FISH_CONFIGS" < "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "cargo (update $LOCAL_FISH_CONFIG_FILE)"
