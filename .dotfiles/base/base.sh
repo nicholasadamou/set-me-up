@@ -192,8 +192,7 @@ change_default_bash() {
     # Try to get the path of the `Bash`
     # version installed through `Homebrew`.
 
-    brewPrefix="$(brew --prefix)" \
-        || return 1
+    brewPrefix="$(brew --prefix)"
 
     pathConfig="PATH=\"$brewPrefix/bin:\$PATH\""
     configs="# Homebrew bash configurations
@@ -201,7 +200,7 @@ $pathConfig
 export PATH
 "
 
-    newShellPath="$brewPrefix/bin/bash" \
+    newShellPath="$brewPrefix/bin/bash"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -218,8 +217,7 @@ export PATH
     if ! grep -q "$(<<<"$newShellPath" tr '\n' '\01')" < <(less "/etc/shells" | tr '\n' '\01'); then
         execute \
             "printf '%s\n' '$newShellPath' | sudo tee -a /etc/shells" \
-            "Bash (add '$newShellPath' in '/etc/shells')" \
-        || return 1
+            "Bash (add '$newShellPath' in '/etc/shells')"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
