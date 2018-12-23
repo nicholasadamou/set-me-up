@@ -25,7 +25,7 @@ function mkcd() {
 }
 
 function is_git_repo() {
-   [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]]
+   [[ $(git -C "${SMU_HOME_DIR}" rev-parse --is-inside-work-tree 2> /dev/null) ]]
 }
 
 function has_submodules() {
