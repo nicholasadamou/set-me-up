@@ -33,7 +33,7 @@ function has_submodules() {
 }
 
 function has_active_submodules() {
-    git config --list | grep -E ^submodule &> /dev/null
+    git -C "${SMU_HOME_DIR}" config --list | grep -E ^submodule &> /dev/null
 }
 
 function are_xcode_command_line_tools_installed() {
