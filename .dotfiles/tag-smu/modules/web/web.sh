@@ -30,7 +30,7 @@ export N_PREFIX=\"\$HOME/n\";
 [[ :\$PATH: == *\":\$N_PREFIX/bin:\"* ]] || PATH+=\":\$N_PREFIX/bin\"
 "
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
@@ -94,7 +94,6 @@ install_latest_stable_node() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # shellcheck source=/dev/null
     latest_version="$(
      . "$LOCAL_BASH_CONFIG_FILE" && \
         n --lts
@@ -107,7 +106,7 @@ install_latest_stable_node() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ "$current_version" != "$latest_version" ] && [ ! -d "$N_DIRECTORY/n/versions/node/$latest_version" ]; then
+    if [ ! -d "$N_DIRECTORY/n/versions/node/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
         execute \
             ". $LOCAL_BASH_CONFIG_FILE && \
                 n lts" \

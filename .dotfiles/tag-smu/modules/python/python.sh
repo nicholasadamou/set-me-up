@@ -31,7 +31,7 @@ export PATH=\"\$PYENV_ROOT/shims:\$PATH\"
 export PATH=\"$HOME/.local/bin:\$PATH\"
 eval \"\$(pyenv init -)\""
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
@@ -49,7 +49,7 @@ set -gx PATH \$PATH \$PYENV_ROOT/bin
 set -gx PATH \$PATH \$PYENV_ROOT/shims
 set -gx PATH \$PATH $HOME/.local/bin"
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "pyenv (update $LOCAL_FISH_CONFIG_FILE)"
@@ -110,7 +110,6 @@ install_latest_stable_python() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # shellcheck source=/dev/null
     latest_version="$(
         . "$LOCAL_BASH_CONFIG_FILE" \
         && pyenv install --list | \
@@ -126,7 +125,7 @@ install_latest_stable_python() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ "$current_version" != "$latest_version" ] && [ ! -d "$PYENV_DIRECTORY/versions/$latest_version" ]; then
+    if [ ! -d "$PYENV_DIRECTORY/versions/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
         execute \
             "sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target / \
                 && . $LOCAL_BASH_CONFIG_FILE \

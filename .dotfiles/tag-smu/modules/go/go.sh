@@ -31,10 +31,10 @@ export GOENV_ROOT=\"$GOENV_DIRECTORY\"
 export PATH=\"\$GOENV_ROOT/bin:\$PATH\"
 eval \"\$(goenv init -)\""
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-            && . $LOCAL_BASH_CONFIG_FILE" \
+                && . $LOCAL_BASH_CONFIG_FILE" \
             "goenv (update $LOCAL_BASH_CONFIG_FILE)"
     fi
 
@@ -47,7 +47,7 @@ eval \"\$(goenv init -)\""
 set -gx GOENV_ROOT $GOENV_DIRECTORY
 set -gx PATH \$PATH \$GOENV_ROOT/bin"
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
          execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "goenv (update $LOCAL_FISH_CONFIG_FILE)"
@@ -74,7 +74,7 @@ export GOBIN=\"\$GOPATH/bin\"
 export PATH=\"\$GOPATH/bin:\$PATH\""
 
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
@@ -91,7 +91,7 @@ set -gx GOPATH $GO_DIRECTORY
 set -gx GOBIN \$GOPATH/bin
 set -gx PATH \$PATH \$GOPATH/bin"
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "go (update $LOCAL_FISH_CONFIG_FILE)"
@@ -127,13 +127,14 @@ install_latest_stable_go() {
 
     local latest_version
     local current_version
+    local go_is_not_installed
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if `go` is installed
 
     if ! cmd_exists "go"; then
-        return 1
+        go_is_not_installed=true
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -153,21 +154,21 @@ install_latest_stable_go() {
         go version | \
         cut -d " " -f3 | \
         sed "s/go//g"
-    )"
+    )" || "$go_is_not_installed"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if ! [ -d "$GOENV_DIRECTORY/versions/$latest_version" ]; then
-        if [ "$current_version" != "$latest_version" ]; then
-            execute \
-                ". $LOCAL_BASH_CONFIG_FILE \
-                    && goenv install $latest_version \
-                    && goenv global $latest_version" \
-                "goenv (install go v$latest_version)" \
-                && add_go_configs
-        else
-            print_success "(go) is already on the latest version"
-        fi
+    if [ ! -d "$GOENV_DIRECTORY/versions/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
+        execute \
+            ". $LOCAL_BASH_CONFIG_FILE \
+                && goenv install $latest_version \
+                && goenv global $latest_version" \
+            "goenv (install go v$latest_version)" \
+            && add_go_configs
+    else
+        add_go_configs
+        
+        print_success "(go) is already on the latest version"
     fi
 
 }

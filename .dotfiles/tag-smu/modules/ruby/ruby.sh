@@ -31,7 +31,7 @@ export RBENV_ROOT=\"$RBENV_DIRECTORY\"
 export PATH=\"\$RBENV_ROOT/bin:\$PATH\"
 eval \"\$(rbenv init -)\""
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "$BASH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
             "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
@@ -47,7 +47,7 @@ eval \"\$(rbenv init -)\""
 set -gx RBENV_ROOT $RBENV_DIRECTORY
 set -gx PATH \$PATH \$RBENV_ROOT/bin"
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_FISH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "rbenv (update $LOCAL_FISH_CONFIG_FILE)"
@@ -114,7 +114,6 @@ install_latest_stable_ruby() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # shellcheck source=/dev/null
     latest_version="$(
         . "$LOCAL_BASH_CONFIG_FILE" \
         && rbenv install -l | \
