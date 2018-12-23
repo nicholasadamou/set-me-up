@@ -197,8 +197,7 @@ change_default_bash() {
     pathConfig="PATH=\"$brewPrefix/bin:\$PATH\""
     configs="# Homebrew bash configurations
 $pathConfig
-export PATH
-"
+export PATH"
 
     newShellPath="$brewPrefix/bin/bash"
 
