@@ -170,6 +170,8 @@ main() {
         update_rbenv
     fi
 
+    printf "\n"
+
     install_latest_stable_ruby
 
     install_ruby_gems
