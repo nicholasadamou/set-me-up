@@ -14,6 +14,78 @@ declare LOCAL_BASH_CONFIG_FILE="${SMU_PATH}/.dotfiles/tag-smu/bash.local"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Overrides `utils.sh` -> print_question() 
+# in order to add a few more spaces b/w '[?]'
+# & the left-most edge of the terminal window.
+print_question() {
+
+    print_in_yellow "     [?] $1"
+
+}
+
+create_bash_local() {
+
+    declare -r FILE_PATH="$HOME/.bash.local"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+        printf "%s\n" "#!/bin/bash" >> "$FILE_PATH"
+
+        print_result $? "$FILE_PATH"
+    else
+        print_success "($FILE_PATH) already exists."
+    fi
+
+}
+
+
+create_fish_local() {
+
+    declare -r FILE_PATH="$HOME/.fish.local"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+        touch "$FILE_PATH"
+
+        print_result $? "$FILE_PATH"
+    else
+        print_success "($FILE_PATH) already exists."
+    fi
+
+}
+
+create_gitconfig_local() {
+
+    declare -r FILE_PATH="$HOME/.gitconfig.local"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+
+        print_in_yellow "   Git Configuration\n\n"
+        ask "What is your name? [e.g. John Smith]: "; NAME="$(get_answer)"
+        ask "What is your email address? [e.g. johnsmith@gmail.com]: "; EMAIL="$(get_answer)"
+
+        printf "%s\n" \
+"[commit]
+    # Sign commits using GPG.
+    # https://help.github.com/articles/signing-commits-using-gpg/
+    # gpgsign = true
+[user]
+    name = $NAME
+    email = $EMAIL
+    # signingkey =" \
+        >> "$FILE_PATH"
+
+        print_result $? "$FILE_PATH"
+    else
+        print_success "($FILE_PATH) already exists."
+    fi
+
+}
+
 install_homebrew() {
 
     printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
@@ -179,6 +251,12 @@ export PATH
 main() {
 
     print_in_purple "  Base\n"
+
+    print_in_yellow "\n   Create local config files\n\n"
+
+    create_bash_local
+    create_fish_local
+    create_gitconfig_local
 
     print_in_yellow "\n   Homebrew\n\n"
 
