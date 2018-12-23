@@ -64,7 +64,7 @@ create_gitconfig_local() {
 
     if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
 
-        print_in_yellow "   Git Configuration\n\n"
+        print_in_yellow "\n   Git Configuration\n\n"
         ask "What is your name? [e.g. John Smith]: "; NAME="$(get_answer)"
         ask "What is your email address? [e.g. johnsmith@gmail.com]: "; EMAIL="$(get_answer)"
 
