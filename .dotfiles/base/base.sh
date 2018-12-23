@@ -227,7 +227,7 @@ export PATH
     # Set latest version of `Bash` as the default
     # (macOS uses by default an older version of `Bash`).
 
-    if [ "$(echo "$BASH_VERSION" | cut -d '.' -f1-2)" = "3.2" ]; then
+    if [ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${newShellPath}" ]; then
         chsh -s "$newShellPath" &> /dev/null
         print_result $? "Bash (use latest version)"
     else
