@@ -68,6 +68,8 @@ create_gitconfig_local() {
         ask "What is your name? [e.g. John Smith]: "; NAME="$(get_answer)"
         ask "What is your email address? [e.g. johnsmith@gmail.com]: "; EMAIL="$(get_answer)"
 
+        printf "\n"
+
         printf "%s\n" \
 "[commit]
     # Sign commits using GPG.
