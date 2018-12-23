@@ -68,7 +68,7 @@ install_submodules() {
                 git rm -r --cached "${MODULE_PATH}"
             
             ! has_active_submodules && [ -d "${MODULE_PATH}" ] && \
-                sudo rm -rf "${MODULE_PATH}"
+                rm -rf "${MODULE_PATH}"
 
             NAME="$(echo "${KEY}" | sed 's/\submodule\.\(.*\)\.path$/\1/')"
 
