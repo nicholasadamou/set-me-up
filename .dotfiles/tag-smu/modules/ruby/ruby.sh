@@ -75,10 +75,6 @@ main() {
     brew_bundle_install "Brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    printf "\n"
-
-    ask_for_sudo
     
     install_latest_stable_ruby
 
