@@ -151,10 +151,12 @@ install_latest_stable_go() {
     )"
 
     current_version="$(
-        go version | \
-        cut -d " " -f3 | \
-        sed "s/go//g"
-    )" || "$go_is_not_installed"
+        ! "$go_is_not_installed" && {
+            go version | \
+            cut -d " " -f3 | \
+            sed "s/go//g"
+        }
+    )"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
