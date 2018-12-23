@@ -11,7 +11,7 @@ declare current_dir && \
 
 main() {
 
-    print_in_purple "  MacOS Preferences\n"
+    print_in_purple "  MacOS Preferences\n\n"
 
 
     brew_bundle_install "Brewfile"
