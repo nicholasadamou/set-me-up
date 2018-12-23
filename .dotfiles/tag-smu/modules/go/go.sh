@@ -168,8 +168,6 @@ install_latest_stable_go() {
             "goenv (install go v$latest_version)" \
             && add_go_configs
     else
-        add_go_configs
-        
         print_success "(go) is already on the latest version"
     fi
 
@@ -204,6 +202,8 @@ main() {
     else
         update_goenv
     fi
+
+    printf "\n"
 
     install_latest_stable_go
 
