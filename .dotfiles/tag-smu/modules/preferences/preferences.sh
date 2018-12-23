@@ -47,10 +47,4 @@ main() {
     ./system/trackpad.sh
     ./system/ui_and_ux.sh
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    execute \
-        "mackup restore" \
-        "mackup (restore)"
-
 }
