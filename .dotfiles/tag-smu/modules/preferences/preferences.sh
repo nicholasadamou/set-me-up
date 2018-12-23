@@ -48,3 +48,5 @@ main() {
     ./system/ui_and_ux.sh
 
 }
+
+main
