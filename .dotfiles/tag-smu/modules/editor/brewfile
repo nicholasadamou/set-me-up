@@ -13,5 +13,4 @@ cask "visual-studio-code"
 cask "macdown"
 
 # diff
-cask "p4merge"
 brew "diff-so-fancy"
