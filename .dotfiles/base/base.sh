@@ -141,7 +141,7 @@ export PATH
     #
     # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
 
-    if ! grep -q -z "$newShellPath" /etc/shells &> /dev/null; then
+    if ! grep -q "$(<<<"$newShellPath" tr '\n' '\01')" < <(less "/etc/shells" | tr '\n' '\01'); then
         execute \
             "printf '%s\n' '$newShellPath' | sudo tee -a /etc/shells" \
             "Bash (add '$newShellPath' in '/etc/shells')" \
@@ -165,7 +165,7 @@ export PATH
     # If needed, add the necessary configs in the
     # local shell configuration file.
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q -z "^$pathConfig" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
             "printf '%s' '$configs' >> $LOCAL_BASH_CONFIG_FILE \
                 && . $LOCAL_BASH_CONFIG_FILE" \
