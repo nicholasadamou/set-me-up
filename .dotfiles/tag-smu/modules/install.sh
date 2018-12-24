@@ -69,7 +69,7 @@ install_submodules() {
         while read -r KEY MODULE_PATH
         do
             has_active_submodules && \
-                git rm -r --cached "${MODULE_PATH}"
+                git -C "${SMU_HOME_DIR}" rm -r --cached "${MODULE_PATH}"
             
             ! has_active_submodules && [ -d "${MODULE_PATH}" ] && \
                 rm -rf "${MODULE_PATH}"
@@ -79,8 +79,8 @@ install_submodules() {
             URL_KEY="$(echo "${KEY}" | sed 's/\.path$/.url/')"
             BRANCH_KEY="$(echo "${KEY}" | sed 's/\.path$/.branch/')"
 
-            URL="$(git config -f .gitmodules --get "${URL_KEY}")"
-            BRANCH="$(git config -f .gitmodules --get "${BRANCH_KEY}" || echo "master")"
+            URL="$(git -C "${SMU_HOME_DIR}" config -f .gitmodules --get "${URL_KEY}")"
+            BRANCH="$(git -C "${SMU_HOME_DIR}" config -f .gitmodules --get "${BRANCH_KEY}" || echo "master")"
 
             git -C "${SMU_HOME_DIR}" submodule add --force -b "${BRANCH}" --name "${NAME}" "${URL}" "${MODULE_PATH}" || continue
         done
