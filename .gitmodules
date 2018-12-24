@@ -1,9 +1,6 @@
 [submodule ".dotfiles/tag-smu/config/bash-sensible"]
 	path = .dotfiles/tag-smu/config/bash-sensible
 	url = https://github.com/mrzool/bash-sensible
-[submodule ".dotfiles/tag-smu/modules/preferences/apps/vscode"]
-	path = .dotfiles/tag-smu/modules/preferences/apps/vscode
-	url = https://github.com/nicholasadamou/vs-code-setup
 [submodule ".dotfiles/tag-smu/tmux/plugins/tpm"]
 	path = .dotfiles/tag-smu/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
@@ -11,3 +8,6 @@
 	path = .dotfiles/utilities
 	url = https://github.com/nicholasadamou/utilities
 	branch = macos
+[submodule ".dotfiles/tag-smu/modules/preferences/apps/vscode"]
+	path = .dotfiles/tag-smu/modules/preferences/apps/vscode
+	url = https://github.com/nicholasadamou/vs-code-setup
