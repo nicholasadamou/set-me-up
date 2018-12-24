@@ -122,7 +122,6 @@ install_npm_packages() {
     print_in_yellow "\n   Install npm packages\n\n"
 
     # working with npm
-    npm_install "npm-check"
     npm_install "yarn-check"
     npm_install "np"
     npm_install "npm-name-cli"
@@ -161,7 +160,7 @@ install_npm_packages() {
     npm_install "spot"
 
     # alfred packages
-    [ -f "/$HOME/Library/Preferences/com.runningwithcrayons.Alfred-Preferences-3.plist" ] && {
+    [ -f "$(locate_alfred_preferences)" ] && {
         npm_install "alfred-emoj"
         npm_install "alfred-npms"
         npm_install "alfred-dark-mode"
@@ -185,13 +184,7 @@ install_npm_packages() {
 
     # linters
     npm_install "eslint"
-    npm_install "eslint-plugin-prettier"
-    npm_install "eslint-config-prettier"
-    npm_install "eslint-config-airbnb"
-    npm_install "eslint-plugin-jsx-a11y"
-    npm_install "eslint-plugin-import"
-    npm_install "eslint-plugin-react"
-    npm_install "prettier"
+    npm_install "eslint-config-standard"
 
     # deployment
     npm_install "netlify-cli"
