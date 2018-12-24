@@ -79,6 +79,8 @@ install_diff_and_merge_tools() {
         execute \
             "git config --global core.pager \"diff-so-fancy | less --tabs=4 -RFX\"" \
             "enable (diff-so-fancy)"
+    else
+        print_success "(diff-so-fancy) is already installed"
     fi
 
 }
