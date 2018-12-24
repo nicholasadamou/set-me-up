@@ -36,12 +36,6 @@ alias lsh="ls -ld .?*"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# dotfiles alias
-
-alias du="bash \$DOTFILES/smu --selfupdate"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Get local IP.
 
 alias local-ip="ifconfig \
