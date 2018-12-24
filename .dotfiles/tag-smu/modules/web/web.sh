@@ -160,6 +160,7 @@ install_npm_packages() {
     npm_install "spot"
 
     # alfred packages
+    npm_install "awm"
     [ -f "$(locate_alfred_preferences)" ] && {
         npm_install "alfred-emoj"
         npm_install "alfred-npms"
