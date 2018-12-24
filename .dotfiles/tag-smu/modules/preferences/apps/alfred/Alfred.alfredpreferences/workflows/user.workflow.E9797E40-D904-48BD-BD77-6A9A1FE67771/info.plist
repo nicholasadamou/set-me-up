@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict>
+		<key>063F74E2-FAB8-4592-B465-629756A7268C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D2A4AB93-2ADD-4703-8DC7-E47DD107049E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>06C9C4A9-38CE-441A-8D06-E2F2D8B39B60</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4400D11F-3DDA-47A7-A294-EE491C0383DD</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>1F8EE6FC-1D11-4C67-835F-B920D800F76A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8C8D47D5-7446-4E26-BB42-326608AE624F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>2E132216-187A-493C-9BDA-579705F24288</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>02B9A7D8-9CD3-45BA-890C-C34DDDBA04E8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>33021378-11CF-496F-B509-31946B701BAF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5F35FC3B-7005-49B6-A5E2-45193A233439</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>5F35FC3B-7005-49B6-A5E2-45193A233439</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C0D43315-ADC2-4D09-8CA8-52EEAFACFD1A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>06C9C4A9-38CE-441A-8D06-E2F2D8B39B60</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>8C8D47D5-7446-4E26-BB42-326608AE624F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FC56072D-3436-410B-9A67-BF00F922505C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D2A4AB93-2ADD-4703-8DC7-E47DD107049E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FC56072D-3436-410B-9A67-BF00F922505C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>DA74D1A6-4111-436C-B93E-6ADEBC5A5410</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>ECF098F7-E10C-4409-A998-15BE42F54A74</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>ECF098F7-E10C-4409-A998-15BE42F54A74</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>06C9C4A9-38CE-441A-8D06-E2F2D8B39B60</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Nolan Chan</string>
+	<key>description</key>
+	<string>Send iMessages directly from Alfred</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>iM</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>tell application "Alfred 3" to search "message: "</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4400D11F-3DDA-47A7-A294-EE491C0383DD</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>if [ -f "saved.txt" ]; then
+	rm saved.txt
+fi
+
+in=$(echo "{query}" | tr -d "\\")
+
+echo "$in" &gt; user.txt</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>06C9C4A9-38CE-441A-8D06-E2F2D8B39B60</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>oldim</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Searching...</string>
+				<key>script</key>
+				<string>python iMessageFromFile.py "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Type in a name from your Address Book</string>
+				<key>title</key>
+				<string>iMessage</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>data=$(cat user.txt)
+
+osascript SendMessage.scpt "$data" "{query}"
+
+echo $data</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>5F35FC3B-7005-49B6-A5E2-45193A233439</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>message:</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>data=$(cat user.txt)
+cat &lt;&lt; CODE
+&lt;?xml version="1.0"?&gt;
+&lt;items&gt;
+&lt;item uid="iMessage Body" arg="{query}" valid="yes"&gt;
+&lt;title&gt;"To $data : {query}"&lt;/title&gt;
+&lt;subtitle&gt;&lt;/subtitle&gt;
+&lt;icon&gt;icon.png&lt;/icon&gt;
+&lt;/item&gt;
+&lt;/items&gt;
+CODE</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>iMessage Body</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>33021378-11CF-496F-B509-31946B701BAF</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>Sent</string>
+				<key>title</key>
+				<string>Message to {query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>C0D43315-ADC2-4D09-8CA8-52EEAFACFD1A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>python UpdateiMessageContacts.py</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D2A4AB93-2ADD-4703-8DC7-E47DD107049E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>imu</string>
+				<key>subtext</key>
+				<string>Construct a Contact Database</string>
+				<key>text</key>
+				<string>Update Available iMessage Contacts</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>063F74E2-FAB8-4592-B465-629756A7268C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>..</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Reply to most recent iMessage</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2E132216-187A-493C-9BDA-579705F24288</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>set _message_ to "{query}"
+
+tell application "Messages"	set _chats_ to get every text chat	repeat with _chat_ in _chats_		try			set _check_ to updated of _chat_			set _current_ to updated of _recent_						if _check_ &gt; _current_ then				set _recent_ to _chat_			end if		on error			set _recent_ to _chat_		end try	end repeat	send _message_ to _recent_end tell</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>02B9A7D8-9CD3-45BA-890C-C34DDDBA04E8</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>findcontactswithcommas</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Display Contact Names With Commas</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>1F8EE6FC-1D11-4C67-835F-B920D800F76A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+  tell application "Address Book"
+   set {allNames, {allPhoneLabels, allPhoneNumbers}} to {name, {label, value} of phones} of people
+end tell
+
+set nameList to {}
+set numberList to {}
+repeat with i from 1 to (count allNames)
+	if (item i of allNames contains ",") then
+	  set end of nameList to item i of allNames
+	  exit repeat
+	end if
+end repeat
+
+if (nameList is {}) then
+   return "No names with commas were found"
+else
+   (* choose from list flatList with prompt "Mobile number(s) found for “" &amp; fullname &amp; "”:"  *)
+   return nameList
+end if
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>8C8D47D5-7446-4E26-BB42-326608AE624F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>FC56072D-3436-410B-9A67-BF00F922505C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>anchorfields</key>
+				<true/>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>daterange</key>
+				<integer>0</integer>
+				<key>fields</key>
+				<array>
+					<dict>
+						<key>field</key>
+						<string>kMDItemDisplayName</string>
+						<key>not</key>
+						<false/>
+						<key>split</key>
+						<true/>
+						<key>value</key>
+						<string>{query}</string>
+						<key>words</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>field</key>
+						<string>kMDItemFinderComment</string>
+						<key>not</key>
+						<false/>
+						<key>split</key>
+						<true/>
+						<key>value</key>
+						<string>{query}</string>
+						<key>words</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>field</key>
+						<string>kMDItemPhoneNumbers</string>
+						<key>not</key>
+						<false/>
+						<key>split</key>
+						<false/>
+						<key>value</key>
+						<string>*</string>
+						<key>words</key>
+						<false/>
+					</dict>
+				</array>
+				<key>includesystem</key>
+				<false/>
+				<key>keyword</key>
+				<string>im</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>scopes</key>
+				<array>
+					<string>~/Library/Application Support/AddressBook</string>
+				</array>
+				<key>subtext</key>
+				<string>im [Contact Name]</string>
+				<key>title</key>
+				<string>Type in a Contact Name</string>
+				<key>types</key>
+				<array>
+					<string>com.apple.addressbook.person</string>
+				</array>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.filefilter</string>
+			<key>uid</key>
+			<string>DA74D1A6-4111-436C-B93E-6ADEBC5A5410</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+
+set contacts_running to false
+if application "Contacts" is running then
+ set contacts_running to true
+else
+ launch application "Contacts"
+end if
+
+tell application "Contacts"
+ set q to text ((offset of "Metadata/" in q)+9) thru ((offset of "." in q)-1) of q
+ set phonenumber to value of phone of person id q set phonenumber to item 1 of phonenumber
+end tell
+
+
+return phonenumber
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>ECF098F7-E10C-4409-A998-15BE42F54A74</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>02B9A7D8-9CD3-45BA-890C-C34DDDBA04E8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<real>440</real>
+		</dict>
+		<key>063F74E2-FAB8-4592-B465-629756A7268C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<real>310</real>
+		</dict>
+		<key>06C9C4A9-38CE-441A-8D06-E2F2D8B39B60</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+		<key>1F8EE6FC-1D11-4C67-835F-B920D800F76A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<real>560</real>
+		</dict>
+		<key>2E132216-187A-493C-9BDA-579705F24288</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<real>440</real>
+		</dict>
+		<key>33021378-11CF-496F-B509-31946B701BAF</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>4400D11F-3DDA-47A7-A294-EE491C0383DD</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<real>50</real>
+		</dict>
+		<key>5F35FC3B-7005-49B6-A5E2-45193A233439</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
+		<key>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>60</integer>
+		</dict>
+		<key>8C8D47D5-7446-4E26-BB42-326608AE624F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<real>560</real>
+		</dict>
+		<key>C0D43315-ADC2-4D09-8CA8-52EEAFACFD1A</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
+		<key>D2A4AB93-2ADD-4703-8DC7-E47DD107049E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
+			<key>ypos</key>
+			<real>310</real>
+		</dict>
+		<key>DA74D1A6-4111-436C-B93E-6ADEBC5A5410</key>
+		<dict>
+			<key>xpos</key>
+			<integer>150</integer>
+			<key>ypos</key>
+			<integer>690</integer>
+		</dict>
+		<key>ECF098F7-E10C-4409-A998-15BE42F54A74</key>
+		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
+			<key>ypos</key>
+			<integer>690</integer>
+		</dict>
+		<key>FC56072D-3436-410B-9A67-BF00F922505C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>700</integer>
+			<key>ypos</key>
+			<real>560</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>

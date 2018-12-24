@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<workflow>
+  <name>Dot</name>
+  <version>1.0</version>
+  <bundle>com.pawelgrzybek.dot</bundle>
+  <updated>1472588029</updated>
+  <file>dot.alfredworkflow</file>
+</workflow>
