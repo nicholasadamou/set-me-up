@@ -137,7 +137,7 @@ function use_git() {
             git -C "${SMU_HOME_DIR}" pull --ff
 
             if has_submodules; then 
-                git -C "${SMU_HOME_DIR}" submodule update --quiet --recursive
+                git -C "${SMU_HOME_DIR}" submodule foreach git pull
             fi
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
