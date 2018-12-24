@@ -1,6 +1,8 @@
 tap "thoughtbot/formulae"
 
 brew "git"
+brew "hub"
+
 brew "rcm"
 
 # Install GNU-related tools
@@ -22,6 +24,9 @@ brew "findutils"
 
 # Install `wget` with IRI support.
 brew "wget", args: ["with-iri"]
+
+# A modern version of ‘ls’.
+brew "exa"
 
 # Install a more recent version of 'bash'.
 brew "bash"

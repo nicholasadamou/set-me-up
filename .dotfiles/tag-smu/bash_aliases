@@ -24,8 +24,7 @@ alias pbpaste='xclip -selection clipboard -o'
 
 # 'ls' aliases
 
-# Turn on if 'exa' is installed
-#alias ls="exa"
+alias ls="exa"
 
 # List all files colorized in long format
 alias l="exa -l"
