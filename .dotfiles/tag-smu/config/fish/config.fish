@@ -5,7 +5,7 @@ source "$HOME/.config/fish/aliases/aliases.fish"
 source "$HOME/.config/fish/variables/variables.fish"
 
 # load local fish configurations
-source ~/.fish.local
+source "$HOME/.fish.local"
 
 # thefuck - Magnificent app which corrects your previous console command.
 # see: https://github.com/nvbn/thefuck/wiki/Shell-aliases#fish
