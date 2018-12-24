@@ -75,7 +75,7 @@ install_diff_and_merge_tools() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if cmd_exists "diff-so-fancy" && [ "$(git config --global --get core.pager)" != "diff-so-fancy | less --tabs=4 -RFX" ]; then
+    if [ "$(git config --global --get core.pager)" != "diff-so-fancy | less --tabs=4 -RFX" ]; then
         execute \
             "git config --global core.pager \"diff-so-fancy | less --tabs=4 -RFX\"" \
             "enable (diff-so-fancy)"
