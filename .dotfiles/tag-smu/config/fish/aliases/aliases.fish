@@ -18,7 +18,7 @@ alias fs "stat -f \"%z bytes\""
 
 function du --description "Updates the dotfiles directory"
     eval $DOTFILES/smu --selfupdate
-    RCRC="$DOTFILES/.dotfiles/rcrc" rcup -v -d "$DOTFILES/.dotfiles"
+    env RCRC="$DOTFILES/.dotfiles/rcrc" rcup -v -d "$DOTFILES/.dotfiles"
 end
 
 function randpw --description "generate a random password"
