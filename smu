@@ -170,7 +170,7 @@ if [[ ${_arg_selfupdate} == "on" ]]; then
 	if [ -e "${module_path}"/install.sh ]; then
     	"${module_path}"/install.sh --detect
 	else
-		"${SMU_HOME_DIR}"/.dotfiles/tag-smu/modules/install.sh --detect
+		echo -e "${module_path}/install.sh does not seem to exist.\nPlease run the 'base' module prior to executing a 'selfupdate'."
 	fi
 
     ! provision_enabled && exit 0
