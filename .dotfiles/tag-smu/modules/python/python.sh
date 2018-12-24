@@ -178,7 +178,7 @@ main() {
 
     print_in_purple "  pyenv & Python\n\n"
 
-    brew_bundle_install "Brewfile"
+    brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

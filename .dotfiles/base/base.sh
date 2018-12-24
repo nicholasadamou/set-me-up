@@ -271,7 +271,7 @@ main() {
 
     printf "\n"
 
-    brew_bundle_install "Brewfile"
+    brew_bundle_install "brewfile"
 
     print_in_yellow "\n   Cleanup\n\n"
 

@@ -84,7 +84,7 @@ main() {
 
     print_in_purple "   Terminal\n\n"
 
-    brew_bundle_install "Brewfile"
+    brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

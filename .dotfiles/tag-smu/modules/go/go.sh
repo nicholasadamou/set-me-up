@@ -189,7 +189,7 @@ main() {
 
     print_in_yellow "   Install brew packages\n\n"
 
-    brew_bundle_install "Brewfile"
+    brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

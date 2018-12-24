@@ -14,7 +14,7 @@ main() {
     print_in_purple "  MacOS Preferences\n\n"
 
 
-    brew_bundle_install "Brewfile"
+    brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

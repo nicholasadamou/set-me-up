@@ -63,7 +63,7 @@ main() {
     ask_for_sudo
 
     if ! cmd_exists "cargo" && [ ! -d "$CARGO_DIRECTORY" ]; then
-        brew_bundle_install "Brewfile" && {
+        brew_bundle_install "brewfile" && {
             printf "\n"
 
             add_cargo_configs
