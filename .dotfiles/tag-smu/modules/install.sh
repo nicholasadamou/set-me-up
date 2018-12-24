@@ -144,7 +144,7 @@ function use_git() {
             git -C "${SMU_HOME_DIR}" init
             git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
             git -C "${SMU_HOME_DIR}" fetch
-            git -C "${SMU_HOME_DIR}" heckout -f "${SMU_BLUEPRINT_BRANCH}"
+            git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
 
             if has_submodules; then 
                 install_submodules
