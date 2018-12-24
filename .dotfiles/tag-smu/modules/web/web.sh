@@ -245,6 +245,8 @@ main() {
         update_n
     fi
 
+    printf "\n"
+
     install_latest_stable_node
 
     install_npm_packages
