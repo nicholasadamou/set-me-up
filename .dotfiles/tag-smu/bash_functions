@@ -334,10 +334,8 @@ ppi() {
 
 # Update dotfiles
 
-du() {
-
+function du() {
     bash "$DOTFILES"/smu --selfupdate
     RCRC="$DOTFILES/.dotfiles/rcrc" \
         rcup -v -d "$DOTFILES/.dotfiles"
-
 }
