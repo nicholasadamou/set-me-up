@@ -12,7 +12,7 @@ declare current_dir && \
 # see: https://github.com/oh-my-fish/oh-my-fish/issues/189
 install_omf() {
 
-    if ! is_omf_installed; then
+    if ! is_omf_installed && [ -d "$HOME/.local/share" ]; then
         execute \
             "curl -Ls github.com/oh-my-fish/oh-my-fish/raw/master/bin/install > install && \
                 chmod +x install && \

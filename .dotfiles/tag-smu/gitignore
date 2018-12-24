@@ -134,6 +134,7 @@ tags
 # Eclipse       taken from: https://github.com/github/gitignore/blob/master/Global/Eclipse.gitignore
 # ----------------------------------------------------------------------------------------------
 .metadata
+bin/
 tmp/
 *.tmp
 *.bak
