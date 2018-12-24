@@ -1,3 +1,2 @@
 TAGS="smu"
-UNDOTTED="bin"
 EXCLUDES="base/*"
