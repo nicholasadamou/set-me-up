@@ -179,9 +179,6 @@ install_npm_packages() {
     npm_install "wallpaper-cli"
     npm_install "splash-cli"
 
-    # image optimization
-    npm_install "svgo"
-
     # linters
     npm_install "eslint"
     npm_install "eslint-config-standard"
