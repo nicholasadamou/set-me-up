@@ -85,5 +85,5 @@ fi
 
 # Start up fish shell
 
-command -v fish && fish
+command -v fish &> /dev/null && fish
 
