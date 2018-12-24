@@ -26,12 +26,20 @@ function randpw --description "generate a random password"
 end
 
 function cd --description "auto exa for each cd"
-  if [ -n $argv[1] ]
-    builtin cd $argv[1]
-    and exa
+  if type -q exa
+    if [ -n $argv[1] ]
+      builtin cd $argv[1]
+      and exa
+    else
+      builtin cd ~
+      and exa
+    end
   else
-    builtin cd ~
-    and exa
+    if [ -n $argv[1] ]
+      builtin cd $argv[1]
+    else
+      builtin cd ~
+    end
   end
 end
 
