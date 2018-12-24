@@ -36,6 +36,10 @@ function has_active_submodules() {
     [[ $(git -C "${SMU_HOME_DIR}" config --list | grep -qE ^submodule 2> /dev/null) ]]
 }
 
+function has_untracked_changes() {
+    [[ $(git -C "${SMU_HOME_DIR}" diff-index --quiet HEAD --) ]]
+}
+
 function are_xcode_command_line_tools_installed() {
     xcode-select --print-path &> /dev/null
 }
@@ -125,17 +129,22 @@ function use_git() {
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo; then
             echo "➜ Updating your 'set-me-up' blueprint."
-            git pull --ff
+            
+            if has_untracked_changes; then
+                git -C "${SMU_HOME_DIR}" commit -a -m "fixed merge conflict(s)" &> /dev/null
+            fi
+
+            git -C "${SMU_HOME_DIR}" pull --ff
 
             if has_submodules; then 
                 git -C "${SMU_HOME_DIR}" submodule update --quiet --recursive
             fi
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
-            git init
-            git remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
-            git fetch
-            git checkout -f "${SMU_BLUEPRINT_BRANCH}"
+            git -C "${SMU_HOME_DIR}" init
+            git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
+            git -C "${SMU_HOME_DIR}" fetch
+            git -C "${SMU_HOME_DIR}" heckout -f "${SMU_BLUEPRINT_BRANCH}"
 
             if has_submodules; then 
                 install_submodules

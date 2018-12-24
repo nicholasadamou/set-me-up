@@ -174,7 +174,7 @@ if [[ ${_arg_lsrc} == "on" ]]; then
 fi
 
 if [[ ${_arg_symlink} == "on" ]]; then
-    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcup -v -d "${SMU_HOME_DIR}/.dotfiles"
+    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcup -q -f -d "${SMU_HOME_DIR}/.dotfiles"
 
     exit
 fi

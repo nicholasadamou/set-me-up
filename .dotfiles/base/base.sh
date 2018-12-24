@@ -174,7 +174,7 @@ symlink() {
 
     execute \
         "export RCRC=\"../rcrc\" && \
-            rcup -v -d \"${dotfiles}\"" \
+            rcup -q -f -d \"${dotfiles}\"" \
         "symlink (${dotfiles})"
 
 }
