@@ -2,8 +2,8 @@
 
 # GitHub user/repo & branch value of your set-me-up blueprint (e.g.: nicholasadamou/set-me-up-blueprint/master).
 # Set this value when the installer should additionally obtain your blueprint.
-readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
-readonly SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-""}
+readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-"nicholasadamou/dotfiles"}
+readonly SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-"master"}
 
 # The set-me-up version to download
 readonly SMU_VERSION=${SMU_VERSION:-"master"}
