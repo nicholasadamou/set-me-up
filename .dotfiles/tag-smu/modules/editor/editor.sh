@@ -14,6 +14,20 @@ declare -r VUNDLE_GIT_REPO_URL="https://github.com/VundleVim/Vundle.vim.git"
 
 install_plugins() {
 
+    # Make sure 'backups', 'swaps' & 'undos' directories exist.
+    # If not, create them.
+
+    [ ! -d "$HOME/.vim/backups" ] && \
+        mkdir "$HOME/.vim/backups"
+
+    [ ! -d "$HOME/.vim/swaps" ] && \
+        mkdir "$HOME/.vim/swaps"
+
+    [ ! -d "$HOME/.vim/undos" ] && \
+        mkdir "$HOME/.vim/undos"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Install plugins.
 
     execute \
