@@ -78,7 +78,7 @@ You can change the `smu` home directory by setting an environment variable calle
 
 2.  Afterwards, provision your machine with [further modules](#available-modules) via the `smu` script. Repeat the `-m` switch to specify more then one module.
 
-        smu -p -m essentials -m terminal -m php
+        smu -p -m essentials -m terminal -m php --no-base
 
     As a general rule of thumb, only pick the modules you need, running all modules can take quite some time.
     Fear not, all modules can be installed when you need it.
@@ -106,6 +106,8 @@ Use the `smu --lsrc` command to show how `rcm` would manage your dotfiles and to
 - You can add new dotfiles and modules to your tag. `rcm` symlinks all files if finds.
 - File contents are not merged between tags, your file simply has a higher precedence and will be used instead.
 
+Use `smu --symlink` command to symlink the dotfiles using [`rcup`](http://thoughtbot.github.io/rcm/rcup.1.html) contained within [`.dotfiles`](.dotfiles) using [`.rcrc`](.dotfiles/rcrc).
+
 ##### Creating a custom tag
 
 1.  Create a new `rcm` tag, by creating a new folder prefixed `tag-` inside the [`.dotfiles`](.dotfiles) directory: `.dotfiles/tag-my`
@@ -115,6 +117,8 @@ Use the `smu --lsrc` command to show how `rcm` would manage your dotfiles and to
 
 [Go to the blueprint repo](https://github.com/nicholasadamou/set-me-up-blueprint#how-to-use). Fork it. Apply your changes using the techniques from above. Use the installer inside your forked repo to obtain everything. Provision your machine through the `smu` script.
 
+For more on using the `smu` script, simply run `smu --help`.
+
 ## A closer look 🤓
 
 ### Available modules
@@ -123,21 +127,33 @@ Use the `smu --lsrc` command to show how `rcm` would manage your dotfiles and to
 
 The base module is the only module that is required to run at least once on your system to ensure the minimum required constraints for `set-me-up` to work.
 
-It will install `brew` and then `rcm`. Afterwards `rcup` will be executed to `symlink` the dotfiles from the `.dotfiles/tag-smu` folder into your home directory.
+It will install `brew` and `rcm`. Afterwards `rcup` will be executed to `symlink` the dotfiles from the `.dotfiles/tag-smu` folder into your home directory.
+
+It will also create the [local settings](#local-settings) files such as `~/.bash.local` or `~/.fish.local` if they haven't already been created. These files are used vastly throughout the `smu` provisioning process in order to install and configure other tools, such as [basher](#basher) or [pyenv](#python) for python version management.
 
 This is the only module that is not over-writable via `rcm` tag management because it is always sourced from the `smu` installation directory.
 
 You can use `smu --lsrc` command to show which files will be symlink'ed to your home directory.
 
+The last task that the base module executes is upgrading the outdated `bash` version using `brew`.
+
+For more on what the base module does, please consult [`base.sh`](.dotfiles/base/base.sh).
+
+#### [basher](.dotfiles/tag-smu/modules/basher)
+
+The basher module configures and installs the [`basher package manager`](https://github.com/basherpm/basher) for shell scripts.
+
+_Basher allows you to quickly install shell packages directly from github (or other sites). Instead of looking for specific install instructions for each package and messing with your path, basher will create a central location for all packages and manage their binaries for you._ [basherpm/basher](https://github.com/basherpm/basher)
+
 #### [editor](.dotfiles/tag-smu/modules/editor)
 
 The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`.
 
-For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/), [PyCharm](), [WebStorm](), [Android Studio](), or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/tag-smu/modules/editor/vscode).
+For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/), [PyCharm](https://www.jetbrains.com/pycharm/), [WebStorm](https://www.jetbrains.com/webstorm/), [Android Studio](https://developer.android.com/studio/), or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/tag-smu/modules/editor/vscode).
 
 [Macdown](https://macdown.uranusjr.com/) for Markdown editing, [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) for merging/diffing and [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) as default git difftool are also part of the editor module.
 
-Apart from theme and fonts, all editors come pre-configured (e.g. [VSCode](.dotfiles/tag-smu/modules/editor/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
+Apart from theme and fonts, all editors come pre-configured (e.g. [VSCode](.dotfiles/tag-smu/modules/preferences/apps/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
 
 #### [essentials](.dotfiles/tag-smu/modules/essentials)
 
@@ -182,7 +198,7 @@ Installs [rbenv](https://github.com/rbenv/rbenv) for version management and [bun
 
 When the terminal module is used, the `ruby` installation will work out-of-the-box because the required `rbenv` code is already in place.
 
-#### [Rust](.dotfiles/tag-smu/modules/rust)
+#### [rust](.dotfiles/tag-smu/modules/rust)
 
 I primarily install the Rust toolchain because I like to use the `cargo` package manager. I then can gain access to an easy install of [`topgrade`](https://github.com/r-darwish/topgrade) which simply _upgrades all the things_ on your Linux or Mac OS system.
 
@@ -204,6 +220,8 @@ Some of the installed plugins are:
 #### [web](.dotfiles/tag-smu/modules/web)
 
 Installs [n](https://github.com/tj/n) for version management, `npm` comes with node for package management. The latest `node` and `npm` versions are installed using `n`.
+
+It also install a set of globally installed `npm` packages. For a complete list of packages installed please see [`web.sh`](.dotfiles/tag-smu/modules/web/web.sh#120).
 
 ### Other components
 
@@ -286,6 +304,8 @@ The `~/.gitconfig.local` file it will be automatically included
 after the configurations from `~/.gitconfig`, thus, allowing its
 content to overwrite or add to the existing `git` configurations.
 
+During the [base](#base) installation, it will prompt you for your _name_ and _email address_ to configure `git` if it hasn't already been configured _globally_.
+
 **Note:** Use `~/.gitconfig.local` to store sensitive information
 such as the `git` user credentials, e.g.:
 
@@ -307,6 +327,7 @@ such as the `git` user credentials, e.g.:
 
 ## Credits
 
+- [omares/set-me-up](https://github.com/omares/set-me-up) for the initial platform that [nicholasadamou/set-me-up](https://github.com/nicholasadamou/set-me-up) was built on.
 - [donnemartin/dev-setup](https://github.com/donnemartin/dev-setup)
 - [mathiasbynens](https://github.com/mathiasbynens/dotfiles) for his popular [macOS script](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
 - [argbash.io](https://argbash.io/) enabling library free and sane argument parsing.
