@@ -91,6 +91,23 @@ create_gitconfig_local() {
 
 }
 
+create_vimrc_local() {
+
+    declare -r FILE_PATH="$HOME/.vimrc.local"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+        touch "$FILE_PATH"
+
+        print_result $? "$FILE_PATH"
+    else
+        print_success "($FILE_PATH) already exists."
+    fi
+
+}
+
+
 install_homebrew() {
 
     printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
@@ -259,6 +276,7 @@ main() {
     create_bash_local
     create_fish_local
     create_gitconfig_local
+    create_vimrc_local
 
     print_in_yellow "\n   Homebrew\n\n"
 
