@@ -18,7 +18,6 @@ alias fs "stat -f \"%z bytes\""
 
 function du --description "Updates the dotfiles directory"
     eval $DOTFILES/smu --selfupdate
-    eval $DOTFILES/smu --symlink
 end
 
 function randpw --description "generate a random password"

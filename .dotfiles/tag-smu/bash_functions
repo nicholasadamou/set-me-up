@@ -336,5 +336,4 @@ ppi() {
 
 function du() {
     bash "$DOTFILES"/smu --selfupdate
-    bash "$DOTFILES"/smu --symlink
 }
