@@ -88,6 +88,18 @@ fi
 if [ -f "$(brew --prefix jump)" ]; then
     eval "$(jump shell)"
 fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load fz configs.
+# see: https://github.com/changyuheng/fz#bash
+
+if [ -d "$HOME"/.bash_completion.d ]; then
+  for file in "$HOME"/.bash_completion.d/*; do
+    . "$file"
+  done
+fi
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Clear system messages (system copyright notice, the date

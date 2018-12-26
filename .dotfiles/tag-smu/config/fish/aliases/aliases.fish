@@ -69,6 +69,13 @@ alias lsh "ls -ld .?*"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# 'fzy' aliases
+
+alias fzyf "find . -type f | fzy"
+alias fzyd "find . -type d | fzy"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Lock screen.
 
 alias afk "/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"

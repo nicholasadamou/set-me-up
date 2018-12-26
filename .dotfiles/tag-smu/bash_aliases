@@ -182,3 +182,12 @@ command -v "piknick" &> /dev/null && {
 # see: https://github.com/kdabir/has#running-directly-off-the-internet
 
 alias has="curl -sL https://git.io/_has | bash -s"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# 'fzy' aliases
+
+command -v "fzy" &> /dev/null && {
+    alias fzyf="find . -type f | fzy"
+    alias fzyd="find . -type d | fzy"
+}
