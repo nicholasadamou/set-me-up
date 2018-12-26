@@ -29,6 +29,8 @@ export PYENV_ROOT=\"$PYENV_DIRECTORY\"
 export PATH=\"\$PYENV_ROOT/bin:\$PATH\"
 export PATH=\"\$PYENV_ROOT/shims:\$PATH\"
 export PATH=\"$HOME/.local/bin:\$PATH\"
+export PATH=\"$HOME/Library/Python/2.7/bin:\$PATH\"
+export PATH=\"$HOME/Library/Python/3.7/bin:\$PATH\"
 eval \"\$(pyenv init -)\""
 
     if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
@@ -47,7 +49,9 @@ eval \"\$(pyenv init -)\""
 set -gx PYENV_ROOT $PYENV_DIRECTORY
 set -gx PATH \$PATH \$PYENV_ROOT/bin
 set -gx PATH \$PATH \$PYENV_ROOT/shims
-set -gx PATH \$PATH $HOME/.local/bin"
+set -gx PATH \$PATH $HOME/.local/bin
+set -gx PATH \$PATH $HOME/Library/Python/2.7/bin
+set -gx PATH \$PATH $HOME/Library/Python/3.7/bin"
 
     if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
         execute \
@@ -169,6 +173,7 @@ install_pip3_packages() {
     print_in_yellow "\n   Install pip3 packages\n\n"
 
     pip3_install "pip-review"
+    pip3_install "advance-touch"
 
 }
 

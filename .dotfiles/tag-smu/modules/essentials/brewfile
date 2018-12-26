@@ -75,6 +75,13 @@ brew "cmus"
 brew "most"
 brew "ripgrep"
 brew "travis"
+brew "sebglazebrook/aliases/aliases"
+brew "autoenv"
+brew "autojump"
+brew "jump"
+brew "borg"
+brew "emojify"
+brew "ansiweather"
 
 # core development casks
 cask "alfred"

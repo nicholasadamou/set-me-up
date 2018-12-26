@@ -147,6 +147,8 @@ install_npm_packages() {
     npm_install "gitmoji-cli"
     npm_install "fx"
     npm_install "screenshoteer"
+    npm_install "how-2"
+    npm_install "undollar"
 
     # process management
     npm_install "fkill-cli"

@@ -175,3 +175,10 @@ command -v "piknick" &> /dev/null && {
     # pkpr : extract clipboard content sent using the pkfr command
     alias pkpr='piknik -paste | tar xzhpvf -'
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# has - checks presence of various command line tools and their versions on the path
+# see: https://github.com/kdabir/has#running-directly-off-the-internet
+
+alias has="curl -sL https://git.io/_has | bash -s"
