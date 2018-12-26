@@ -39,4 +39,8 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
             pip-review -a
         end
     end
+
+    if test -d $HOME/.vim/plugins/Vundle.vim
+        vim +PluginUpdate +qall
+    end
 end
