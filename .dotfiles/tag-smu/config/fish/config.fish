@@ -40,7 +40,7 @@ end
 # load jump configurations
 # see: https://github.com/gsamokovarov/jump#integration
 if test -e (brew --prefix jump)
-    status --is-interactive; and . (jump shell | psub)
+    status --is-interactive; and source (jump shell | psub)
 end
 
 # Clear system messages (system copyright notice, the date
