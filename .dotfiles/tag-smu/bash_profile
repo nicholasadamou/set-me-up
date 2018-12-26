@@ -55,7 +55,7 @@ unset -f source_bash_files
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# load bash-sensible configs.
+# load 'bash-sensible' configs.
 # see: https://github.com/mrzool/bash-sensible
 
 if [ -d "$HOME"/.config/bash-sensible ]; then
@@ -64,7 +64,7 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# load autoenv configs.
+# load 'autoenv' configs.
 # see: https://github.com/kennethreitz/autoenv
 
 if [ -f "$(brew --prefix autoenv)"/activate.sh ]; then
@@ -73,7 +73,7 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# load autojump configs.
+# load 'autojump' configs.
 # see: https://github.com/wting/autojump
 
 if [ -f "/usr/local/etc/profile.d/autojump.sh" ]; then
@@ -82,7 +82,7 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# load jump configs.
+# load 'jump' configs.
 # see: https://github.com/wting/autojump
 
 if [ -f "$(brew --prefix jump)" ]; then
@@ -91,7 +91,7 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# load fz configs.
+# load 'fz' configs.
 # see: https://github.com/changyuheng/fz#bash
 
 if [ -d "$HOME"/.bash_completion.d ]; then
