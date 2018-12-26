@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Installed Extensions</key>
+	<array>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.fantastical</string>
+			<key>Extension Name</key>
+			<string>Fantastical</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Fantastical</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Fantastical.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Fantastical.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>at.EternalStorms.Yoink.PopClipExtension</string>
+			<key>Extension Name</key>
+			<string>Yoink</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Yoink</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Yoink.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Yoink.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.alfred</string>
+			<key>Extension Name</key>
+			<string>Alfred</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Alfred</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Alfred.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Alfred.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.messages</string>
+			<key>Extension Name</key>
+			<string>Messages</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Messages</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Messages.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Messages.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.generic-mail</string>
+			<key>Extension Name</key>
+			<string>Email</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Email</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Email.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Email.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.parcel</string>
+			<key>Extension Name</key>
+			<string>Parcel</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Parcel</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Parcel.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Parcel.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.deliveries</string>
+			<key>Extension Name</key>
+			<string>Deliveries</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Deliveries</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Deliveries.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Deliveries.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.slack</string>
+			<key>Extension Name</key>
+			<string>Slack</string>
+			<key>Options</key>
+			<array>
+				<dict>
+					<key>Option Default Value</key>
+					<string></string>
+					<key>Option Description</key>
+					<string>Create an incoming webhook in Slack, and paste the URL here. (Type 'webhook' into Slackbot for help.)</string>
+					<key>Option Identifier</key>
+					<string>webhookurl</string>
+					<key>Option Label</key>
+					<string>Webhook URL</string>
+					<key>Option Type</key>
+					<string>string</string>
+				</dict>
+			</array>
+			<key>Options Account Title</key>
+			<string>Slack</string>
+			<key>Options Title</key>
+			<dict>
+				<key>en</key>
+				<string>Configuration for Slack</string>
+			</dict>
+			<key>Package Name</key>
+			<string>Slack.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Slack.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.google-search</string>
+			<key>Extension Name</key>
+			<string>Google</string>
+			<key>Options</key>
+			<array>
+				<dict>
+					<key>Option Identifier</key>
+					<string>site</string>
+					<key>Option Label</key>
+					<dict>
+						<key>en</key>
+						<string>Google Site</string>
+					</dict>
+					<key>Option Type</key>
+					<string>multiple</string>
+					<key>Option Values</key>
+					<array>
+						<string>www.google.com</string>
+						<string>www.google.ae</string>
+						<string>www.google.at</string>
+						<string>www.google.az</string>
+						<string>www.google.be</string>
+						<string>www.google.bg</string>
+						<string>www.google.ca</string>
+						<string>www.google.ch</string>
+						<string>www.google.cl</string>
+						<string>www.google.cn</string>
+						<string>www.google.co.id</string>
+						<string>www.google.co.il</string>
+						<string>www.google.co.in</string>
+						<string>www.google.co.jp</string>
+						<string>www.google.co.kr</string>
+						<string>www.google.co.ma</string>
+						<string>www.google.co.nz</string>
+						<string>www.google.co.th</string>
+						<string>www.google.co.uk</string>
+						<string>www.google.co.ve</string>
+						<string>www.google.co.za</string>
+						<string>www.google.com.ar</string>
+						<string>www.google.com.au</string>
+						<string>www.google.com.br</string>
+						<string>www.google.com.co</string>
+						<string>www.google.com.do</string>
+						<string>www.google.com.ec</string>
+						<string>www.google.com.eg</string>
+						<string>www.google.com.hk</string>
+						<string>www.google.com.kw</string>
+						<string>www.google.com.ly</string>
+						<string>www.google.com.mx</string>
+						<string>www.google.com.my</string>
+						<string>www.google.com.ng</string>
+						<string>www.google.com.pe</string>
+						<string>www.google.com.ph</string>
+						<string>www.google.com.pk</string>
+						<string>www.google.com.qa</string>
+						<string>www.google.com.sa</string>
+						<string>www.google.com.sg</string>
+						<string>www.google.com.tn</string>
+						<string>www.google.com.tr</string>
+						<string>www.google.com.tw</string>
+						<string>www.google.com.ua</string>
+						<string>www.google.com.vn</string>
+						<string>www.google.cz</string>
+						<string>www.google.de</string>
+						<string>www.google.dk</string>
+						<string>www.google.dz</string>
+						<string>www.google.es</string>
+						<string>www.google.fi</string>
+						<string>www.google.fr</string>
+						<string>www.google.gr</string>
+						<string>www.google.hr</string>
+						<string>www.google.hu</string>
+						<string>www.google.ie</string>
+						<string>www.google.it</string>
+						<string>www.google.kz</string>
+						<string>www.google.lk</string>
+						<string>www.google.lt</string>
+						<string>www.google.nl</string>
+						<string>www.google.no</string>
+						<string>www.google.pl</string>
+						<string>www.google.pt</string>
+						<string>www.google.ro</string>
+						<string>www.google.rs</string>
+						<string>www.google.ru</string>
+						<string>www.google.se</string>
+						<string>www.google.sk</string>
+					</array>
+				</dict>
+			</array>
+			<key>Options Account Title</key>
+			<string>Google</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>GoogleSearch.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/GoogleSearch.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.spotify-search</string>
+			<key>Extension Name</key>
+			<string>Spotify</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Spotify</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Spotify.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Spotify.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.bitly</string>
+			<key>Extension Name</key>
+			<dict>
+				<key>en</key>
+				<string>Bitly</string>
+			</dict>
+			<key>Options</key>
+			<array>
+				<dict>
+					<key>Option Identifier</key>
+					<string>username</string>
+					<key>Option Label</key>
+					<dict>
+						<key>en</key>
+						<string>Username</string>
+					</dict>
+					<key>Option Type</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>Option Identifier</key>
+					<string>password</string>
+					<key>Option Label</key>
+					<dict>
+						<key>en</key>
+						<string>Password</string>
+					</dict>
+					<key>Option Type</key>
+					<string>password</string>
+				</dict>
+			</array>
+			<key>Options Account Title</key>
+			<dict>
+				<key>en</key>
+				<string>Bitly</string>
+			</dict>
+			<key>Options Script File</key>
+			<string>bitlyAuth.php</string>
+			<key>Options Script Interpreter</key>
+			<string>/usr/bin/php</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Bitly.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Bitly.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.open-in-safari</string>
+			<key>Extension Name</key>
+			<string>Open in Safari</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Open in Safari</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>OpenInSafari.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/OpenInSafari.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.open-in-chrome</string>
+			<key>Extension Name</key>
+			<string>Open in Chrome</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Open in Chrome</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>OpenInChrome.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/OpenInChrome.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.open-in-firefox</string>
+			<key>Extension Name</key>
+			<string>Open in Firefox</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Open in Firefox</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>OpenInFirefox.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/OpenInFirefox.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.getip</string>
+			<key>Extension Name</key>
+			<string>Get IP</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Get IP</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>GetIP.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/GetIP.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.dash</string>
+			<key>Extension Name</key>
+			<string>Dash</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>Dash</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Dash.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Dash.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.SnippetsLab</string>
+			<key>Extension Name</key>
+			<string>SnippetsLab</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>SnippetsLab</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>SnippetsLab.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/SnippetsLab.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.rtc</string>
+			<key>Extension Name</key>
+			<string>Terminal</string>
+			<key>Options</key>
+			<array>
+				<dict>
+					<key>Option Identifier</key>
+					<string>term</string>
+					<key>Option Label</key>
+					<dict>
+						<key>en</key>
+						<string>Terminal Emulator</string>
+					</dict>
+					<key>Option Type</key>
+					<string>multiple</string>
+					<key>Option Values</key>
+					<array>
+						<string>Terminal</string>
+						<string>iTerm2 v2.9+</string>
+						<string>iTerm2</string>
+					</array>
+				</dict>
+			</array>
+			<key>Options Account Title</key>
+			<string>Terminal</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>RunCommand.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/RunCommand.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.base64</string>
+			<key>Extension Name</key>
+			<string>Base64 Encode</string>
+			<key>Options</key>
+			<array>
+				<dict>
+					<key>Option Identifier</key>
+					<string>variant</string>
+					<key>Option Label</key>
+					<dict>
+						<key>en</key>
+						<string>Base64 Variant</string>
+					</dict>
+					<key>Option Type</key>
+					<string>multiple</string>
+					<key>Option Values</key>
+					<array>
+						<string>Standard (+/)</string>
+						<string>URL Safe (-_)</string>
+					</array>
+				</dict>
+			</array>
+			<key>Options Account Title</key>
+			<string>Base64 Encode</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>Base64Encode.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/Base64Encode.popclipext</string>
+		</dict>
+		<dict>
+			<key>Enabled</key>
+			<true/>
+			<key>Extension Identifier</key>
+			<string>com.pilotmoon.popclip.extension.htmlencode</string>
+			<key>Extension Name</key>
+			<string>HTML Encode</string>
+			<key>Options</key>
+			<array/>
+			<key>Options Account Title</key>
+			<string>HTML Encode</string>
+			<key>Options Title</key>
+			<string></string>
+			<key>Package Name</key>
+			<string>HTMLEncode.popclipext</string>
+			<key>PackagePath</key>
+			<string>/Users/nicholas/Library/Application Support/PopClip/Extensions/HTMLEncode.popclipext</string>
+		</dict>
+	</array>
+	<key>Version</key>
+	<integer>1</integer>
+</dict>
+</plist>
