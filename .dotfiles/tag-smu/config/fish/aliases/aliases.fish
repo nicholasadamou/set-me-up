@@ -17,7 +17,11 @@ alias rm "rm -i -rf --"
 alias fs "stat -f \"%z bytes\""
 
 function du --description "Updates the dotfiles directory"
-    eval $DOTFILES/smu --selfupdate
+    if type -d $DOTFILES
+      eval $DOTFILES/smu --selfupdate
+    else
+      echo "($DOTFILES) does not exist"
+    end
 end
 
 function randpw --description "generate a random password"
