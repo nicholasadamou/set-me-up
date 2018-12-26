@@ -82,6 +82,7 @@ brew "jump"
 brew "borg"
 brew "emojify"
 brew "ansiweather"
+brew "piknik"
 
 # core development casks
 cask "alfred"
