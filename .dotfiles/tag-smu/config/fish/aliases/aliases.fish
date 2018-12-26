@@ -134,7 +134,7 @@ end
 
 # Shorter commands for `tacklebox`.
 
-if test -d ~/.tacklebox and test -d ~/.tackle
+if test -a -d ~/.tacklebox and  ~/.tackle
   function tackleu --description "Upgrades and updates tacklebox"
       cd ~/.tacklebox; git pull
       cd ~/.tackle; git pull
