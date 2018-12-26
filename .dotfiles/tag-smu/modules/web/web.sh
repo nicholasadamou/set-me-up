@@ -122,6 +122,7 @@ install_npm_packages() {
     print_in_yellow "\n   Install npm packages\n\n"
 
     # working with npm
+    npm_install "npm-check"
     npm_install "yarn-check"
     npm_install "np"
     npm_install "npm-name-cli"
