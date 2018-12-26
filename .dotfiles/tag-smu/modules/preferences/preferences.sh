@@ -38,6 +38,7 @@ main() {
     ./apps/transmission.sh
     ./apps/textedit.sh
     ./apps/firefox.sh
+    ./apps/alfred/alfred.sh
 
     # System preferences
     ./system/dashboard.sh
