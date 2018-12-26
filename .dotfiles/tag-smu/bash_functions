@@ -31,6 +31,9 @@ datauri() {
 
 delete_files() {
     local q="${1:-*.DS_Store}"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     find . -type f -name "$q" -ls -delete
 }
 
@@ -170,43 +173,14 @@ function extract {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# check if pip package is installed
-function is_pip_pkg_installed {
-    if [[ "pip list --format legacy | grep $1 > /dev/null 2>&1" =~ "0" ]]; then
-        print_success "($1) is installed"
-    else
-        print_error "($1)" "is not installed."
-    fi
-}
-
-# check if brew package is installed
-function is_brew_pkg_installed {
-    if brew list "$1" &> /dev/null; then
-        print_success "($1) is installed"
-    else
-        print_error "($1)" "is not installed."
-    fi
-}
-
-# check if npm package is installed
-function is_npm_pkg_installed {
-    if npm list --depth 1 --global "$1" > /dev/null 2>&1; then
-            print_success "($1) is installed"
-    else
-        print_error "($1)" "is not installed."
-    fi
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # check if a certain process is running
 function is_running {
     declare -r PROCESS="$1"
 
     if pgrep -f "$PROCESS" > /dev/null; then
-        print_success "($PROCESS) is running"
+        echo "($PROCESS) is running"
     else
-        print_error "($PROCESS)" "is not running."
+        echo "($PROCESS)" "is not running."
     fi
 }
 
@@ -241,17 +215,29 @@ function ghf {
 
 # pko <content> : copy <content> to the clipboard
 pko() {
-    echo "$*" | piknik -copy
+    if command -v "piknik" &> /dev/null; then
+        echo "$*" | piknik -copy
+    else
+        echo "(piknik) is not installed"
+    fi
 }
 
 # pkf <file> : copy the content of <file> to the clipboard
 pkf() {
-    piknik -copy < "$1"
+    if command -v "piknik" &> /dev/null; then
+        piknik -copy < "$1"
+    else
+        echo "(piknik) is not installed"
+    fi
 }
 
 # pkfr [<dir>] : send a whole directory to the clipboard, as a tar archive
 pkfr() {
-    tar czpvf - "${1:-.}" | piknik -copy
+    if command -v "piknik" &> /dev/null; then
+        tar czpvf - "${1:-.}" | piknik -copy
+    else
+        echo "(piknik) is not installed"
+    fi
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -335,7 +321,11 @@ ppi() {
 # Update dotfiles
 
 function du() {
-    bash "$DOTFILES"/smu --selfupdate
+    if [ -d "$DOTFILES" ]; then
+        bash "$DOTFILES"/smu --selfupdate
+    else
+        echo "($DOTFILES) does not exist"
+    fi
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
