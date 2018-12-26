@@ -165,6 +165,7 @@ install_pip_packages() {
     pip_install "haxor-news"
     pip_install "howdoi"
     pip_install "glances"
+    pip_install "pockyt"
 
 }
 

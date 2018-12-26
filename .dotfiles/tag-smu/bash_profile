@@ -91,6 +91,24 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# load 'commacd' configs.
+# see: https://github.com/shyiko/commacd
+
+if [ -f "$HOME"/.commacd.bash ]; then
+    . "$HOME"/.commacd.bash
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load 'aliasme' configs.
+# see: https://github.com/Jintin/aliasme
+
+if [ -f "$HOME"/.aliasme/aliasme.sh ]; then
+    . "$HOME"/.aliasme/aliasme.sh
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # load 'fz' configs.
 # see: https://github.com/changyuheng/fz#bash
 
