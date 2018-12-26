@@ -337,3 +337,52 @@ ppi() {
 function du() {
     bash "$DOTFILES"/smu --selfupdate
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Updates MacOS apps, brew, npm, fisher, omf update, pip, pip3 and their installed packages
+
+function u() {
+    sudo softwareupdate --install --all
+
+    if command -v "mas" &> /dev/null; then
+        mas upgrade
+    fi
+
+    if command -v "brew" &> /dev/null; then
+        brew update
+        brew upgrade
+        brew cu --all --yes --cleanup --quiet
+    fi
+
+    if command -v "basher" &> /dev/null; then
+        basher update
+    fi
+
+    if command -v "npm" &> /dev/null; then
+        sudo npm i -g npm@latest
+
+        if command -v "npm-check" &> /dev/null; then
+            npm-check --global --update-all
+        fi
+    fi
+    
+    if command -v "pip3" &> /dev/null; then
+        sudo pip3 install -U pip
+        sudo -H pip3 install -U pip
+    fi
+
+    if command -v "pip" &> /dev/null; then    
+        sudo pip install --upgrade pip
+        sudo pip install --upgrade setuptools
+    fi
+
+    if command -v "pip-review" &> /dev/null; then
+        sudo pip-review --auto
+    fi
+    
+    if [ -d "$HOME/.vim/plugins/Vundle.vim" ]; then
+        vim +PluginUpdate +qall
+    fi
+}
+
