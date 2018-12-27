@@ -40,7 +40,7 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
         end
     end
 
-    if test -d $HOME/.vim/plugins/Vundle.vim
+    if test -f $HOME/.vim/plugins/Vundle.vim
         vim +PluginUpdate +qall
     end
 end
