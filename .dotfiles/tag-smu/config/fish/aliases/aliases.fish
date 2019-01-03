@@ -17,7 +17,7 @@ alias rm "rm -i -rf --"
 alias fs "stat -f \"%z bytes\""
 
 function du --description "Updates the dotfiles directory"
-    if type -d $DOTFILES
+    if test -d $DOTFILES
       eval $DOTFILES/smu --selfupdate
     else
       echo "($DOTFILES) does not exist"
