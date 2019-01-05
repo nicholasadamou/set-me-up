@@ -83,6 +83,7 @@ brew "borg"
 brew "emojify"
 brew "ansiweather"
 brew "piknik"
+cask "ngrok"
 
 # core development casks
 cask "alfred"
