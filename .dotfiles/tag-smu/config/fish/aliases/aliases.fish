@@ -15,6 +15,7 @@ alias map "xargs -n1"
 alias q "exit"
 alias rm "rm -i -rf --"
 alias fs "stat -f \"%z bytes\""
+alias +x "chmod +x"
 
 function du --description "Updates the dotfiles directory"
     if test -d $DOTFILES
@@ -128,7 +129,7 @@ if type -q brew
       brew cleanup
       brew cask cleanup
   end
-end 
+end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

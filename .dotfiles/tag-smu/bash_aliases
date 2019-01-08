@@ -19,6 +19,7 @@ alias q="exit"
 alias rm="rm -i -rf --"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+alias +x="chmod +x"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
