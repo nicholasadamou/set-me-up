@@ -1,0 +1,5 @@
+brew "python"
+brew "python3"
+brew "pyenv"
+# ignore the python dependency because it was not installed via brew, but with pyenv.
+brew "pipenv", args: ["ignore-dependencies"]

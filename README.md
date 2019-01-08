@@ -53,7 +53,7 @@ Either use your blueprint or the default installer to obtain `set-me-up` . This 
 understand [what it does](.dotfiles/tag-smu/modules/install.sh). Seriously, **DON'T**!)
 
 ```bash
-bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/tag-smu/modules/install.sh) --git
+bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/debian/.dotfiles/tag-smu/modules/install.sh) --git
 ```
 
 ⚠️ Please note that the installer has **three** different arguments:
@@ -127,15 +127,13 @@ For more on using the `smu` script, simply run `smu --help`.
 
 The base module is the only module that is required to run at least once on your system to ensure the minimum required constraints for `set-me-up` to work.
 
-It will install `brew` and `rcm`. Afterwards `rcup` will be executed to `symlink` the dotfiles from the `.dotfiles/tag-smu` folder into your home directory.
+It will install `rcm`. Afterwards `rcup` will be executed to `symlink` the dotfiles from the `.dotfiles/tag-smu` folder into your home directory.
 
 It will also create the [local settings](#local-settings) files such as `~/.bash.local` or `~/.fish.local` if they haven't already been created. These files are used vastly throughout the `smu` provisioning process in order to install and configure other tools, such as [basher](#basher) or [pyenv](#python) for python version management.
 
 This is the only module that is not over-writable via `rcm` tag management because it is always sourced from the `smu` installation directory.
 
 You can use `smu --lsrc` command to show which files will be symlink'ed to your home directory.
-
-The last task that the base module executes is upgrading the outdated `bash` version using `brew`.
 
 For more on what the base module does, please consult [`base.sh`](.dotfiles/base/base.sh).
 
@@ -149,11 +147,7 @@ _Basher allows you to quickly install shell packages directly from github (or ot
 
 The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`.
 
-For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/), [PyCharm](https://www.jetbrains.com/pycharm/), [WebStorm](https://www.jetbrains.com/webstorm/), [Android Studio](https://developer.android.com/studio/), or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/tag-smu/modules/editor/vscode).
-
 [Macdown](https://macdown.uranusjr.com/) for Markdown editing, [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) for merging/diffing and [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) as default git difftool are also part of the editor module.
-
-Apart from theme and fonts, all editors come pre-configured (e.g. [VSCode](.dotfiles/tag-smu/modules/preferences/apps/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
 
 #### [essentials](.dotfiles/tag-smu/modules/essentials)
 
@@ -167,20 +161,11 @@ When the terminal module is used, the `go` installation will work-out-of-the-box
 
 #### [java](.dotfiles/tag-smu/modules/java)
 
-Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`and `java10` are installed via `sdkman`. **java8** will be defined as the global version. Android Studio is installed via `brew` cask.
+Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`and `java10` are installed via `sdkman`. **java8** will be defined as the global version.
 
-#### [preferences](.dotfiles/tag-smu/modules/perferences)
+#### [debianupdate](.dotfiles/tag-smu/modules/debianupdate)
 
-Sets a bunch of Mac OS settings. The file is based on [`.macos`](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
-
-⚠️ **Note**: _The `.macos` script **has** been heavily modified from the version provided by [Mathias Bynens](https://github.com/mathiasbynens)._
-**It is highly recommended to work with a copy that is adapted to your needs!**
-
-#### [macosupdate](.dotfiles/tag-smu/modules/macosupdate)
-
-Runs the Mac OS updater via the command-line.
-
-Should your system require a system restart due to an `macosupdate` caused update, re-run the `smu` script after rebooting. The update module should be satisfied by the previous run and result in no action.
+Should your system require a system restart due to an `debianupdate` caused update, re-run the `smu` script after rebooting. The update module should be satisfied by the previous run and result in no action.
 
 #### [php](.dotfiles/tag-smu/modules/php)
 
@@ -197,10 +182,6 @@ When the terminal module is used, the `python` installation will work-out-of-the
 Installs [rbenv](https://github.com/rbenv/rbenv) for version management and [bundler](http://bundler.io/) for package management. `ruby` is installed and defined as the global version via `rbenv`.
 
 When the terminal module is used, the `ruby` installation will work out-of-the-box because the required `rbenv` code is already in place.
-
-#### [rust](.dotfiles/tag-smu/modules/rust)
-
-I primarily install the Rust toolchain because I like to use the `cargo` package manager. I then can gain access to an easy install of [`topgrade`](https://github.com/r-darwish/topgrade) which simply _upgrades all the things_ on your Linux or Mac OS system.
 
 #### [terminal](.dotfiles/tag-smu/modules/terminal)
 
@@ -347,4 +328,4 @@ Yes please! This is a GitHub repo. I encourage anyone to contribute. 😃
 
 ## License
 
-The code is available under the [MIT license](LICENSE.txt).
+The code is available under the [MIT license](LICENSE).
