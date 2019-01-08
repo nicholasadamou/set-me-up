@@ -7,6 +7,10 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
+readonly SMU_PATH="$HOME/set-me-up"
+
+declare LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 create_bash_local() {
@@ -188,10 +192,6 @@ symlink() {
 main() {
 
     print_in_purple "  Base\n"
-
-	apt_install_from_file "packages"
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_in_yellow "\n   Create local config files\n\n"
 
