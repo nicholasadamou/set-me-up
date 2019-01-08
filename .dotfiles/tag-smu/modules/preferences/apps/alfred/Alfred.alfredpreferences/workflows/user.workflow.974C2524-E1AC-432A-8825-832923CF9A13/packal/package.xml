@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<workflow>
-  <name>GemSear.ch</name>
-  <version>2.0.0</version>
-  <bundle>fi.matiaskorhonen.gemsearch</bundle>
-  <updated>1428332645</updated>
-  <file>gemsearch-2.0.0.alfredworkflow</file>
-</workflow>

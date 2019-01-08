@@ -7,7 +7,4 @@
 [submodule ".dotfiles/utilities"]
 	path = .dotfiles/utilities
 	url = https://github.com/nicholasadamou/utilities
-	branch = macos
-[submodule ".dotfiles/tag-smu/modules/preferences/apps/vscode"]
-	path = .dotfiles/tag-smu/modules/preferences/apps/vscode
-	url = https://github.com/nicholasadamou/vs-code-setup
+	branch = linux

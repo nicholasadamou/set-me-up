@@ -4,8 +4,6 @@
 # ARG_OPTIONAL_BOOLEAN([selfupdate],[],[Update set-me-up],[])
 # ARG_OPTIONAL_BOOLEAN([provision],[p],[Provision given modules],[off])
 # ARG_OPTIONAL_REPEATED([modules],[m],[Modules to provision])
-# ARG_OPTIONAL_BOOLEAN([lsrc],[],[List files that will be symlinked via 'rcm' into your home directory],[])
-# ARG_OPTIONAL_BOOLEAN([symlink],[],[Symlink files via 'rcm' into your home directory],[])
 # ARG_HELP([set-me-up installer])
 # ARGBASH_GO()
 # needed because of Argbash --> m4_ignore([
@@ -35,19 +33,15 @@ _arg_base="on"
 _arg_selfupdate="off"
 _arg_provision="off"
 _arg_modules=()
-_arg_lsrc="off"
-_arg_symlink="off"
 
 print_help ()
 {
 	printf '%s\n' "set-me-up installer"
-	printf 'Usage: %s [-b|--(no-)base] [--(no-)selfupdate] [-p|--(no-)provision] [-m|--modules <arg>] [--(no-)lsrc] [-h|--help]\n' "$0"
+	printf 'Usage: %s [-b|--(no-)base] [--(no-)selfupdate] [-p|--(no-)provision] [-m|--modules <arg>] [-h|--help]\n' "$0"
 	printf '\t%s\n' "-b,--base,--no-base: Run base module (on by default)"
 	printf '\t%s\n' "--selfupdate,--no-selfupdate: Update set-me-up (off by default)"
 	printf '\t%s\n' "-p,--provision,--no-provision: Provision given modules (off by default)"
 	printf '\t%s\n' "-m,--modules: Modules to provision (empty by default)"
-	printf '\t%s\n' "--lsrc,--no-lsrc: List files that will be symlinked via 'rcm' into your home directory (off by default)"
-	printf '\t%s\n' "--symlink,--no-symlink: Symlink files via 'rcm' into your home directory (off by default)"
 	printf '\t%s\n' "-h,--help: Prints help"
 }
 
@@ -95,14 +89,6 @@ parse_commandline ()
 				;;
 			-m*)
 				_arg_modules+=("${_key##-m}")
-				;;
-			--no-lsrc|--lsrc)
-				_arg_lsrc="on"
-				test "${1:0:5}" = "--no-" && _arg_lsrc="off"
-				;;
-			--no-symlink|--symlink)
-				_arg_symlink="on"
-				test "${1:0:5}" = "--no-" && _arg_symlink="off"
 				;;
 			-h|--help)
 				print_help
@@ -167,18 +153,6 @@ provision_module() {
     )
 }
 
-if [[ ${_arg_lsrc} == "on" ]]; then
-    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && lsrc -v -d "${SMU_HOME_DIR}/.dotfiles"
-
-    exit
-fi
-
-if [[ ${_arg_symlink} == "on" ]]; then
-    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcup -q -f -d "${SMU_HOME_DIR}/.dotfiles"
-
-    exit
-fi
-
 if [[ ${_arg_selfupdate} == "on" ]]; then
 	if [ -e "${module_path}"/install.sh ]; then
     	"${module_path}"/install.sh --detect
@@ -203,11 +177,6 @@ modules=("${_arg_modules[@]}")
 # by default, run the base module as early as possible.
 if [[ ${_arg_base} == "on" ]]; then
     modules=("base" "${modules[@]}")
-fi
-
-# check if macosupdate is contained in module list and if so, queue it at the beginning.
-if [[ " ${modules[@]} " =~ " macosupdate " ]]; then
-    modules=("macosupdate" "${modules[@]}")
 fi
 
 # list of executed modules, so we only run them once.
