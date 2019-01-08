@@ -1,6 +1,6 @@
 # `set-me-up`
 
-`set-me-up` aims to simplify the dull setup and maintenance of Mac OS development environments.
+`set-me-up` aims to simplify the dull setup and maintenance of debian-based development environments.
 It does so by automating the process through a collection of dotfiles and shell scripts [bundled into modules](#available-modules).
 
 Instead of enforcing a certain setup it tries to act as a solid template that is highly customizable to your needs.
@@ -310,7 +310,6 @@ such as the `git` user credentials, e.g.:
 
 - [omares/set-me-up](https://github.com/omares/set-me-up) for the initial platform that [nicholasadamou/set-me-up](https://github.com/nicholasadamou/set-me-up) was built on.
 - [donnemartin/dev-setup](https://github.com/donnemartin/dev-setup)
-- [mathiasbynens](https://github.com/mathiasbynens/dotfiles) for his popular [macOS script](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
 - [argbash.io](https://argbash.io/) enabling library free and sane argument parsing.
 - [brew](https://brew.sh/) and [brew bundle](https://github.com/Homebrew/homebrew-bundle) for the awesome package management.
 - [thoughtbot rcm](https://github.com/thoughtbot/rcm) for easy dotfile management.
