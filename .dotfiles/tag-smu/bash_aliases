@@ -1,0 +1,75 @@
+#!/bin/bash
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias cd..="cd .."
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+alias :q="exit"
+alias c="clear"
+alias ch="history -c && > ~/.bash_history"
+alias e="vim --"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias m="man"
+alias map="xargs -n1"
+alias path='printf "%b\n" "${PATH//:/\\n}"'
+alias q="exit"
+alias rm="rm -i -rf --"
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+alias +x="chmod +x"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# 'ls' aliases
+
+# List only directories
+alias lsd="ls -lF --color | grep --color=never '^d'"
+# List only hidden files
+alias lsh="ls -ld .?*"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Get local IP.
+
+alias local-ip="ifconfig \
+                    | grep 'inet addr' \
+                    | grep -v '127.0.0.1' \
+                    | cut -d: -f2 \
+                    | cut -d' ' -f1"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# thefuck - Magnificent app which corrects your previous console command.
+# see: https://github.com/nvbn/thefuck/wiki/Shell-aliases#bash
+command -v thefuck &> /dev/null && {
+    eval "$(thefuck --alias)"
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# has - checks presence of various command line tools and their versions on the path
+# see: https://github.com/kdabir/has#running-directly-off-the-internet
+
+alias has="curl -sL https://git.io/_has | bash -s"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# 'fzy' aliases
+
+command -v "fzy" &> /dev/null && {
+    alias fzyf="find . -type f | fzy"
+    alias fzyd="find . -type d | fzy"
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Update applications and CLTs.
+
+alias u="apt update \
+            && apt upgrade -y \
+            && apt full-upgrade -y \
+            && apt autoremove -y \
+            && apt clean"
