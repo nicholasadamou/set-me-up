@@ -40,6 +40,10 @@ source_bash_files() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    . "$DOTFILES/.dotfiles/utilities/utils.sh"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     cd "$CURRENT_DIRECTORY" || return
 
 }
@@ -56,6 +60,33 @@ unset -f source_bash_files
 
 if [ -d "$HOME"/.config/bash-sensible ]; then
     . "$HOME"/.config/bash-sensible/sensible.bash
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load 'autoenv' configs.
+# see: https://github.com/kennethreitz/autoenv
+
+if [ -f "$(brew --prefix autoenv)"/activate.sh ]; then
+    . "$(brew --prefix autoenv)"/activate.sh
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load 'autojump' configs.
+# see: https://github.com/wting/autojump
+
+if [ -f "/usr/local/etc/profile.d/autojump.sh" ]; then
+    . /usr/local/etc/profile.d/autojump.sh
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load 'jump' configs.
+# see: https://github.com/wting/autojump
+
+if [ -f "$(brew --prefix jump)" ]; then
+    eval "$(jump shell)"
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -111,4 +142,3 @@ fi
 # Start up fish shell
 
 command -v fish &> /dev/null && fish
-

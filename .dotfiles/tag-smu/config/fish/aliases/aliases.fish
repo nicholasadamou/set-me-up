@@ -62,6 +62,13 @@ end
 
 # 'ls' aliases
 
+if type -q exa
+  alias ls "exa"
+
+  # List all files colorized in long format
+  alias l "exa -l"
+end
+
 # List only directories
 alias lsd "ls -lF --color | grep --color=never '^d'"
 # List only hidden files
@@ -78,6 +85,47 @@ end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# `git` aliases
+
+if type -q hub
+  alias git "hub"
+end
+
+alias acp "git add -A ;and git commit -v ;and git push"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# `lazygit` aliases
+
+if type -q lazygit
+  alias lg "lazygit"
+end
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# `wttr` alias
+
+alias wttr "curl wttr.in"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Shorter commands for `Homebrew`.
+
+if type -q brew
+  alias brewd "brew doctor"
+  alias brewi "brew install"
+  alias brewr "brew uninstall"
+  alias brews "brew search"
+
+  function brewu --description "updates and upgrades brew"
+      brew upgrade
+      brew cleanup
+      brew cask cleanup
+  end
+end
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Shorter commands for `tacklebox`.
 
 if test -d ~/.tacklebox -a -d ~/.tackle
@@ -89,27 +137,73 @@ end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Clear DNS cache.
+# Shorter commands for `Node Package Manager`
 
-alias clear-dns-cache "sudo dscacheutil -flushcache and sudo killall -HUP mDNSResponder"
+# alias n "npm" # Do not use if using 'n' for Node version control
+
+if type -q npm
+  alias npmi "npm i -g"
+  alias npmr "npm uninstall"
+  alias npmls "npm list -g --depth 0"
+  alias npms "npm s"
+  alias npmu "npm i -g npm@latest"
+end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Hide/Show desktop icons.
+# Shorter commands for the `Yarn Package Manager`
 
-alias hide-desktop-icons "defaults write com.apple.finder CreateDesktop -bool false; killall Finder"
+if type -q yarn
+  alias yr "yarn remove"
+  alias ya "yarn add"
+  alias yu "yarn self-update ;and yarn upgrade ;and yarn upgrade-interactive"
+end
 
-alias show-desktop-icons "defaults write com.apple.finder CreateDesktop -bool true; killall Finder"
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Shorter commands for `pip`
+
+if type -q pip
+  alias pipi "pip install"
+  alias pipr "pip uninstall"
+  alias pipls "pip list"
+  alias pips "pip search"
+  alias pipu "sudo pip install --upgrade pip and sudo pip install --upgrade setuptools"
+end
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Shorter commands for `pip3`
+
+if type -q pip3
+  alias pip3i "pip3 install"
+  alias pip3r "pip3 uninstall"
+  alias pip3ls "pip3 list"
+  alias pip3s "pip3 search"
+  alias pip3u "pip3 install -U pip and sudo -H pip3 install -U pip"
+end
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Shorter commands for `Composer`
+
+if type -q composer
+  alias ci "composer install"
+  alias cr "composer remove"
+  alias cls "composer list"
+  alias cs "composer search"
+  alias cu "composer self-update"
+end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Get local IP.
 
 alias lip "ifconfig \
-                    | grep 'inet addr' \
-                    | grep -v '127.0.0.1' \
-                    | cut -d: -f2 \
-                    | cut -d' ' -f1"
+						| grep 'inet addr' \
+						| grep -v '127.0.0.1' \
+						| cut -d: -f2 \
+						| cut -d' ' -f1"
 
 # Get external IP.
 
@@ -121,4 +215,26 @@ alias xip "curl -s checkip.dyndns.org | grep -Eo "[0-9\.]+""
 
 function o --description "Open from the terminal"
     open $argv
+end
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# piknik - Copy/paste anything over the network!
+# see: https://github.com/jedisct1/piknik#suggested-shell-aliases
+
+if type -q piknik
+  # pkc : read the content to copy to the clipboard from STDIN
+  alias pkc "piknik -copy"
+
+  # pkp : paste the clipboard content
+  alias pkp "piknik -paste"
+
+  # pkm : move the clipboard content
+  alias pkm "piknik -move"
+
+  # pkz : delete the clipboard content
+  alias pkz "piknik -copy < /dev/null"
+
+  # pkpr : extract clipboard content sent using the pkfr command
+  alias pkpr "piknik -paste | tar xzhpvf -"
 end
