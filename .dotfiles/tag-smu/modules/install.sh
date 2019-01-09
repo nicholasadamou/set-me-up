@@ -74,7 +74,7 @@ install_submodules() {
             ! has_active_submodules && [ -d "${MODULE_PATH}" ] && \
                 rm -rf "${MODULE_PATH}"
 
-            NAME="$(echo "${KEY}" | sed 's/\submodule\.\(.*\)\.path$/\1/')"
+            NAME="$(echo "$KEY" | sed -e 's/submodule.//g' | sed -e 's/.path//g')"
 
             URL_KEY="$(echo "${KEY}" | sed 's/\.path$/.url/')"
             BRANCH_KEY="$(echo "${KEY}" | sed 's/\.path$/.branch/')"
