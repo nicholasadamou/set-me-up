@@ -27,8 +27,10 @@ end
 
 # load 'autoenv' configurations
 # see: https://github.com/loopbit/autoenv_fish#installation
-if test -e (brew --prefix autoenv_fish)/activate.fish
-    source (brew --prefix autoenv_fish)/activate.fish
+if type -q brew
+	if test -e (brew --prefix autoenv_fish)/activate.fish
+		source (brew --prefix autoenv_fish)/activate.fish
+	end
 end
 
 # load 'autojump' configurations
@@ -39,12 +41,13 @@ end
 
 # load 'jump' configurations
 # see: https://github.com/gsamokovarov/jump#integration
-if test -e (brew --prefix jump)
-    status --is-interactive; and source (jump shell | psub)
+if type -q brew
+	if test -e (brew --prefix jump)
+		status --is-interactive; and source (jump shell | psub)
+	end
 end
 
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.).
 
 clear
-
