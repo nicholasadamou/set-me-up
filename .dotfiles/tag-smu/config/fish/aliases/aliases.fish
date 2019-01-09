@@ -8,7 +8,6 @@ alias cd.. "cd .."
 alias :q "exit"
 alias c "clear"
 alias e "vim --"
-alias myip "curl -s checkip.dyndns.org | grep -Eo "[0-9\.]+""
 alias whois "whois -h whois-servers.net"
 alias m "man"
 alias map "xargs -n1"
@@ -220,7 +219,11 @@ alias show-desktop-icons "defaults write com.apple.finder CreateDesktop -bool tr
 
 # Get local IP.
 
-alias local-ip "ipconfig getifaddr en1"
+alias lip "ipconfig getifaddr en1"
+
+# Get external IP.
+
+alias xip "curl -s checkip.dyndns.org | grep -Eo "[0-9\.]+""
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
