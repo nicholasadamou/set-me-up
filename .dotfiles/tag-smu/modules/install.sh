@@ -64,6 +64,17 @@ function install_submodules() {
     git -C "${SMU_HOME_DIR}" submodule update --init --recursive
 }
 
+function handle_submodule_merge() {
+
+	cat "${SMU_HOME_DIR}"/.gitmodules > /tmp/modules1
+
+	git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
+
+	cat "${SMU_HOME_DIR}"/.gitmodules > /tmp/modules2
+
+	cat /tmp/modules1 /tmp/modules2 > "${SMU_HOME_DIR}"/.gitmodules
+}
+
 function confirm() {
     echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
     read -r -p "Would you like 'set-me-up' to configure in that directory? (y/n) " -n 1;
@@ -124,7 +135,8 @@ function use_git() {
             git -C "${SMU_HOME_DIR}" init
             git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
             git -C "${SMU_HOME_DIR}" fetch
-            git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
+
+			handle_submodule_merge
 
             if has_submodules; then
                 install_submodules
