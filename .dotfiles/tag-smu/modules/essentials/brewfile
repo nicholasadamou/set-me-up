@@ -14,6 +14,7 @@ brew "buku"
 brew "exa"
 brew "shellcheck"
 brew "yarn", args: ["without-node"]
+brew "m-cli"
 
 # image processing
 brew "webkit2png"
