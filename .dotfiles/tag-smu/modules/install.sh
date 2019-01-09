@@ -75,11 +75,7 @@ function confirm() {
 function obtain() {
 	local -r download_url="${1}"
 
-	if has_submodules; then
-		curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.gitmodules,.dotfiles/rcrc}
-	else
-		curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
-	fi
+	curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
 }
 
 function use_curl() {
@@ -114,6 +110,7 @@ function use_git() {
                 git -C "${SMU_HOME_DIR}" commit -a -m "fixed merge conflict(s)" &> /dev/null
             fi
 
+			git -C "${SMU_HOME_DIR}" reset --hard HEAD
             git -C "${SMU_HOME_DIR}" pull --ff
 
             if has_submodules; then
