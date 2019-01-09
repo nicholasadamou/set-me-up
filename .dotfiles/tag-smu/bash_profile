@@ -67,8 +67,10 @@ fi
 # load 'autoenv' configs.
 # see: https://github.com/kennethreitz/autoenv
 
-if [ -f "$(brew --prefix autoenv)"/activate.sh ]; then
-    . "$(brew --prefix autoenv)"/activate.sh
+if command -v brew &> /dev/null; then
+	if [ -f "$(brew --prefix autoenv)"/activate.sh ]; then
+		. "$(brew --prefix autoenv)"/activate.sh
+	fi
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -85,8 +87,10 @@ fi
 # load 'jump' configs.
 # see: https://github.com/wting/autojump
 
-if [ -f "$(brew --prefix jump)" ]; then
-    eval "$(jump shell)"
+if command -v brew &> /dev/null; then
+	if [ -f "$(brew --prefix jump)" ]; then
+		eval "$(jump shell)"
+	fi
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
