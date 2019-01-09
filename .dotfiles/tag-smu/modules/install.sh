@@ -99,7 +99,11 @@ function confirm() {
 function obtain() {
     local -r download_url="${1}"
 
-    curl --progress-bar -L "${download_url}" | tar -x --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
+    if has_submodules; then
+		curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.gitmodules,.dotfiles/rcrc}
+	else
+		curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
+	fi
 }
 
 function use_curl() {
