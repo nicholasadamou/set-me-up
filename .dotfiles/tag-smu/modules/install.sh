@@ -40,7 +40,7 @@ function has_untracked_changes() {
     [[ $(git -C "${SMU_HOME_DIR}" diff-index --quiet HEAD --) ]]
 }
 
-install_submodules() {
+function install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
@@ -50,7 +50,7 @@ install_submodules() {
             ! has_active_submodules && [ -d "${MODULE_PATH}" ] && \
                 rm -rf "${MODULE_PATH}"
 
-            NAME="$(echo "${KEY}" | sed 's/\submodule\.\(.*\)\.path$/\1/')"
+            NAME="$(echo "$KEY" | sed -e 's/submodule.//g' | sed -e 's/.path//g')"
 
             URL_KEY="$(echo "${KEY}" | sed 's/\.path$/.url/')"
             BRANCH_KEY="$(echo "${KEY}" | sed 's/\.path$/.branch/')"
@@ -73,10 +73,15 @@ function confirm() {
 }
 
 function obtain() {
-    local -r download_url="${1}"
+	local -r download_url="${1}"
 
-    curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
+	if has_submodules; then
+		curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.gitmodules,.dotfiles/rcrc}
+	else
+		curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
+	fi
 }
+
 
 function use_curl() {
     confirm
