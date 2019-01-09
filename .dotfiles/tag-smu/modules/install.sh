@@ -82,7 +82,6 @@ function obtain() {
 	fi
 }
 
-
 function use_curl() {
     confirm
     mkcd "${SMU_HOME_DIR}"
