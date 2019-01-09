@@ -11,7 +11,6 @@ alias :q="exit"
 alias c="clear"
 alias ch="history -c && > ~/.bash_history"
 alias e="vim --"
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias m="man"
 alias map="xargs -n1"
 alias path='printf "%b\n" "${PATH//:/\\n}"'
@@ -41,11 +40,15 @@ alias lsh="ls -ld .?*"
 
 # Get local IP.
 
-alias local-ip="ifconfig \
+alias lip="ifconfig \
                     | grep 'inet addr' \
                     | grep -v '127.0.0.1' \
                     | cut -d: -f2 \
                     | cut -d' ' -f1"
+
+# Get external IP.
+
+alias xip="curl -s checkip.dyndns.org | grep -Eo "[0-9\.]+""
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
