@@ -16,6 +16,15 @@ declare -r VUNDLE_GIT_REPO_URL="https://github.com/VundleVim/Vundle.vim.git"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Overrides `utils.sh` -> print_question()
+# in order to add a few more spaces b/w '[?]'
+# & the left-most edge of the terminal window.
+print_question() {
+
+    print_in_yellow "     [?] $1"
+
+}
+
 create_bash_local() {
 
     declare -r FILE_PATH="$HOME/.bash.local"
