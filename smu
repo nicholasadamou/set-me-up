@@ -129,7 +129,7 @@ parse_commandline "$@"
 
 SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
 
-readonly module_path="${HOME}/.modules"
+readonly module_path="${SMU_HOME_DIR}/.dotfiles/modules"
 
 provision_enabled() {
     [[ ${_arg_provision} == "on" ]]
