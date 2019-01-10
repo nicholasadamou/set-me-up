@@ -11,6 +11,9 @@ readonly SMU_PATH="$HOME/set-me-up"
 
 declare LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 
+declare -r VUNDLE_DIR="$HOME/.vim/plugins/Vundle.vim"
+declare -r VUNDLE_GIT_REPO_URL="https://github.com/VundleVim/Vundle.vim.git"
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Overrides `utils.sh` -> print_question() 
@@ -308,6 +311,16 @@ main() {
     print_in_yellow "\n   Upgrade bash\n\n"
 
     change_default_bash
+    
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_in_yellow "\n   Vim\n\n"
+
+    if [ ! -d "$VUNDLE_DIR" ]; then
+        install_plugins
+    else
+        update_plugins
+    fi
 
 }
 
