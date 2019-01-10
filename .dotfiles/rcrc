@@ -1,2 +1,3 @@
 TAGS="smu"
+SYMLINK_DIRS="aliasme aws bash_completion.d config local Mackup ngrok2 ssh tmux vim"
 EXCLUDES="base modules utilities"
