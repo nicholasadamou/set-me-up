@@ -107,7 +107,6 @@ function use_git() {
             echo "➜ Updating your 'set-me-up' blueprint."
 
             if has_untracked_changes; then
-                git -C "${SMU_HOME_DIR}" commit -a -m "fixed merge conflict(s)" &> /dev/null
 				git -C "${SMU_HOME_DIR}" reset --hard HEAD
             fi
 
