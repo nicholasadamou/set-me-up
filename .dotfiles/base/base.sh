@@ -11,6 +11,9 @@ readonly SMU_PATH="$HOME/set-me-up"
 
 declare LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 
+declare -r VUNDLE_DIR="$HOME/.vim/plugins/Vundle.vim"
+declare -r VUNDLE_GIT_REPO_URL="https://github.com/VundleVim/Vundle.vim.git"
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 create_bash_local() {
@@ -187,6 +190,40 @@ symlink() {
 
 }
 
+install_plugins() {
+
+    # Make sure 'backups', 'swaps' & 'undos' directories exist.
+    # If not, create them.
+
+    [ ! -d "$HOME/.vim/backups" ] && \
+        mkdir "$HOME/.vim/backups"
+
+    [ ! -d "$HOME/.vim/swaps" ] && \
+        mkdir "$HOME/.vim/swaps"
+
+    [ ! -d "$HOME/.vim/undos" ] && \
+        mkdir "$HOME/.vim/undos"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Install plugins.
+
+    execute \
+        "git clone --quiet '$VUNDLE_GIT_REPO_URL' '$VUNDLE_DIR' \
+            && printf '\n' | vim +PluginInstall +qall" \
+        "vim (install plugins)" \
+        || return 1
+
+}
+
+update_plugins() {
+
+    execute \
+        "vim +PluginUpdate +qall" \
+        "vim (update plugins)"
+
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
@@ -227,6 +264,16 @@ main() {
     print_in_yellow "\n   Symlink dotfiles\n\n"
 
     symlink
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    print_in_yellow "\n   Vim\n\n"
+
+    if [ ! -d "$VUNDLE_DIR" ]; then
+        install_plugins
+    else
+        update_plugins
+    fi
 
 }
 

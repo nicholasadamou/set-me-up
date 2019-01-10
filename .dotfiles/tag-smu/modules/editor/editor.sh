@@ -7,44 +7,7 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utils.sh"
 
-declare -r VUNDLE_DIR="$HOME/.vim/plugins/Vundle.vim"
-declare -r VUNDLE_GIT_REPO_URL="https://github.com/VundleVim/Vundle.vim.git"
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-install_plugins() {
-
-    # Make sure 'backups', 'swaps' & 'undos' directories exist.
-    # If not, create them.
-
-    [ ! -d "$HOME/.vim/backups" ] && \
-        mkdir "$HOME/.vim/backups"
-
-    [ ! -d "$HOME/.vim/swaps" ] && \
-        mkdir "$HOME/.vim/swaps"
-
-    [ ! -d "$HOME/.vim/undos" ] && \
-        mkdir "$HOME/.vim/undos"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Install plugins.
-
-    execute \
-        "git clone --quiet '$VUNDLE_GIT_REPO_URL' '$VUNDLE_DIR' \
-            && printf '\n' | vim +PluginInstall +qall" \
-        "vim (install plugins)" \
-        || return 1
-
-}
-
-update_plugins() {
-
-    execute \
-        "vim +PluginUpdate +qall" \
-        "vim (update plugins)"
-
-}
 
 # see: https://pempek.net/articles/2014/04/18/git-p4merge/
 # see: https://github.com/so-fancy/diff-so-fancy
@@ -88,14 +51,6 @@ main() {
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_in_yellow "\n   Vim\n\n"
-
-    if [ ! -d "$VUNDLE_DIR" ]; then
-        install_plugins
-    else
-        update_plugins
-    fi
 
     print_in_yellow "\n   Install diff- and merge tools\n\n"
 
