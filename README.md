@@ -50,10 +50,10 @@ You might wonder why not work directly with this repo? Having a remote and exter
 Either use your blueprint or the default installer to obtain `set-me-up` . This will put all files into `~/set-me-up` , the default `smu` home directory. In case you decided against using your own blueprint, you can run the following command in your console.
 
 (⚠️ **DO NOT** run the `install` snippet if you don't fully
-understand [what it does](.dotfiles/tag-smu/modules/install.sh). Seriously, **DON'T**!)
+understand [what it does](.dotfiles/modules/install.sh). Seriously, **DON'T**!)
 
 ```bash
-bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/debian/.dotfiles/tag-smu/modules/install.sh) --git
+bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/debian/.dotfiles/modules/install.sh) --git
 ```
 
 ⚠️ Please note that the installer has **three** different arguments:
