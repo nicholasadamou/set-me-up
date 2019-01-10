@@ -1,6 +1,6 @@
 function update --description "Updates MacOS apps, brew, npm, fisher, omf update, pip, pip3 and their installed packages"
     sudo softwareupdate --install --all
-    
+
     if type -q mas
         mas upgrade
     end
@@ -27,14 +27,14 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
         sudo npm install npm@latest -g
 
         if type -q npm-check
-            npm-check --global --update-all
+            sudo npm-check --global --update-all
         end
     end
 
     if type -q pip
         pip install --quiet --user --upgrade pip
         pip install --quiet --user --upgrade setuptools
-    
+
         if type -q pip-review
             pip-review -a
         end
