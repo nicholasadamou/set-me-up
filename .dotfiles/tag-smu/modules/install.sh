@@ -110,7 +110,6 @@ function use_git() {
                 git -C "${SMU_HOME_DIR}" commit -a -m "fixed merge conflict(s)" &> /dev/null
             fi
 
-			git -C "${SMU_HOME_DIR}" reset --hard HEAD
             git -C "${SMU_HOME_DIR}" pull --ff
 
             if has_submodules; then
