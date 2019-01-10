@@ -108,6 +108,7 @@ function use_git() {
 
             if has_untracked_changes; then
                 git -C "${SMU_HOME_DIR}" commit -a -m "fixed merge conflict(s)" &> /dev/null
+				git -C "${SMU_HOME_DIR}" reset --hard HEAD
             fi
 
             git -C "${SMU_HOME_DIR}" pull --ff
