@@ -3,12 +3,12 @@ windows:
   - "~/dev/set-me-up":
       layout: main-vertical
       panes:
-        - cd /Users/nicholas/dev/set-me-up
+        - cd /Users/nicholas/dev/set-me-up; fish
   - "~/dev/set-me-up-blueprint":
       layout: main-vertical
       panes:
-        - cd /Users/nicholas/dev/set-me-up-blueprint
+        - cd /Users/nicholas/dev/set-me-up-blueprint; fish
   - "~/dev/utilities":
       layout: main-vertical
       panes:
-        - cd /Users/nicholas/dev/utilities
+        - cd /Users/nicholas/dev/utilities; fish
