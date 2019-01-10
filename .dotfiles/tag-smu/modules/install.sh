@@ -37,7 +37,7 @@ function has_active_submodules() {
 }
 
 function has_untracked_changes() {
-    [[ $(git -C "${SMU_HOME_DIR}" diff-index --quiet HEAD --) ]]
+   ! [[ $(git -C "${SMU_HOME_DIR}" diff-index --quiet HEAD --) ]]
 }
 
 function install_submodules() {
