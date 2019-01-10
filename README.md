@@ -50,10 +50,10 @@ You might wonder why not work directly with this repo? Having a remote and exter
 Either use your blueprint or the default installer to obtain `set-me-up` . This will put all files into `~/set-me-up` , the default `smu` home directory. In case you decided against using your own blueprint, you can run the following command in your console.
 
 (⚠️ **DO NOT** run the `install` snippet if you don't fully
-understand [what it does](.dotfiles/tag-smu/modules/install.sh). Seriously, **DON'T**!)
+understand [what it does](.dotfiles/modules/install.sh). Seriously, **DON'T**!)
 
 ```bash
-bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/tag-smu/modules/install.sh) --git
+bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/modules/install.sh) --git
 ```
 
 ⚠️ Please note that the installer has **three** different arguments:
@@ -139,70 +139,70 @@ The last task that the base module executes is upgrading the outdated `bash` ver
 
 For more on what the base module does, please consult [`base.sh`](.dotfiles/base/base.sh).
 
-#### [basher](.dotfiles/tag-smu/modules/basher)
+#### [basher](.dotfiles/modules/basher)
 
 The basher module configures and installs the [`basher package manager`](https://github.com/basherpm/basher) for shell scripts.
 
 _Basher allows you to quickly install shell packages directly from github (or other sites). Instead of looking for specific install instructions for each package and messing with your path, basher will create a central location for all packages and manage their binaries for you._ [basherpm/basher](https://github.com/basherpm/basher)
 
-#### [editor](.dotfiles/tag-smu/modules/editor)
+#### [editor](.dotfiles/modules/editor)
 
 The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`.
 
-For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/), [PyCharm](https://www.jetbrains.com/pycharm/), [WebStorm](https://www.jetbrains.com/webstorm/), [Android Studio](https://developer.android.com/studio/), or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/tag-smu/modules/editor/vscode).
+For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/), [PyCharm](https://www.jetbrains.com/pycharm/), [WebStorm](https://www.jetbrains.com/webstorm/), [Android Studio](https://developer.android.com/studio/), or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/modules/editor/vscode).
 
 [Macdown](https://macdown.uranusjr.com/) for Markdown editing, [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) for merging/diffing and [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) as default git difftool are also part of the editor module.
 
-Apart from theme and fonts, all editors come pre-configured (e.g. [VSCode](.dotfiles/tag-smu/modules/preferences/apps/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
+Apart from theme and fonts, all editors come pre-configured (e.g. [VSCode](.dotfiles/modules/preferences/apps/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
 
-#### [essentials](.dotfiles/tag-smu/modules/essentials)
+#### [essentials](.dotfiles/modules/essentials)
 
-Installs a multitude of `brew` packages, casks and Mac App Store applications. Check the [brewfile](.dotfiles/tag-smu/modules/essentials/brewfile) to get an overview.
+Installs a multitude of `brew` packages, casks and Mac App Store applications. Check the [brewfile](.dotfiles/modules/essentials/brewfile) to get an overview.
 
-#### [go](.dotfiles/tag-smu/modules/go)
+#### [go](.dotfiles/modules/go)
 
 Installs [goenv](https://github.com/syndbg/goenv) for version management and [dep](https://github.com/golang/dep) for package management. `go` is installed and defined as the global version via `goenv`.
 
 When the terminal module is used, the `go` installation will work-out-of-the-box because the required `goenv` code is already in place.
 
-#### [java](.dotfiles/tag-smu/modules/java)
+#### [java](.dotfiles/modules/java)
 
 Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`and `java10` are installed via `sdkman`. **java8** will be defined as the global version. Android Studio is installed via `brew` cask.
 
-#### [preferences](.dotfiles/tag-smu/modules/perferences)
+#### [preferences](.dotfiles/modules/perferences)
 
 Sets a bunch of Mac OS settings. The file is based on [`.macos`](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
 
 ⚠️ **Note**: _The `.macos` script **has** been heavily modified from the version provided by [Mathias Bynens](https://github.com/mathiasbynens)._
 **It is highly recommended to work with a copy that is adapted to your needs!**
 
-#### [macosupdate](.dotfiles/tag-smu/modules/macosupdate)
+#### [macosupdate](.dotfiles/modules/macosupdate)
 
 Runs the Mac OS updater via the command-line.
 
 Should your system require a system restart due to an `macosupdate` caused update, re-run the `smu` script after rebooting. The update module should be satisfied by the previous run and result in no action.
 
-#### [php](.dotfiles/tag-smu/modules/php)
+#### [php](.dotfiles/modules/php)
 
 Installs `PHP5`, `PHP7` and [composer](https://getcomposer.org/) for package management via `brew`. `PHP7` will be defined as the global version.
 
-#### [python](.dotfiles/tag-smu/modules/python)
+#### [python](.dotfiles/modules/python)
 
 Installs [pyenv](https://github.com/pyenv/pyenv) for version management and [pipenv](https://github.com/pypa/pipenv) for package management. `python2` and `python3` are installed using `pipenv`. `python3` will be defined as the global version.
 
 When the terminal module is used, the `python` installation will work-out-of-the-box because the required `pyenv` code is already in place.
 
-#### [ruby](.dotfiles/tag-smu/modules/ruby)
+#### [ruby](.dotfiles/modules/ruby)
 
 Installs [rbenv](https://github.com/rbenv/rbenv) for version management and [bundler](http://bundler.io/) for package management. `ruby` is installed and defined as the global version via `rbenv`.
 
 When the terminal module is used, the `ruby` installation will work out-of-the-box because the required `rbenv` code is already in place.
 
-#### [rust](.dotfiles/tag-smu/modules/rust)
+#### [rust](.dotfiles/modules/rust)
 
 I primarily install the Rust toolchain because I like to use the `cargo` package manager. I then can gain access to an easy install of [`topgrade`](https://github.com/r-darwish/topgrade) which simply _upgrades all the things_ on your Linux or Mac OS system.
 
-#### [terminal](.dotfiles/tag-smu/modules/terminal)
+#### [terminal](.dotfiles/modules/terminal)
 
 Configures `fish` with sane `fish` options and provides you with a list of useful plugins managed via [Fisherman](https://fisherman.github.io) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish).
 
@@ -215,13 +215,13 @@ Some of the installed plugins are:
 - bass
 - ... and more.
 
-**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/tag-smu/modules/terminal/terminal.sh) and [fishfile](.dotfiles/tag-smu/config/fish/fishfile) for a full overview._
+**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/modules/terminal/terminal.sh) and [fishfile](.dotfiles/tag-smu/config/fish/fishfile) for a full overview._
 
-#### [web](.dotfiles/tag-smu/modules/web)
+#### [web](.dotfiles/modules/web)
 
 Installs [n](https://github.com/tj/n) for version management, `npm` comes with node for package management. The latest `node` and `npm` versions are installed using `n`.
 
-It also install a set of globally installed `npm` packages. For a complete list of packages installed please see [`web.sh`](.dotfiles/tag-smu/modules/web/web.sh#120).
+It also install a set of globally installed `npm` packages. For a complete list of packages installed please see [`web.sh`](.dotfiles/modules/web/web.sh#120).
 
 ### Other components
 
