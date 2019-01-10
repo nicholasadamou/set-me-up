@@ -37,7 +37,7 @@ function has_active_submodules() {
 }
 
 function has_untracked_changes() {
-    [[ $(git -C "${SMU_HOME_DIR}" diff-index --quiet HEAD --) ]]
+    [[ $(git -C "${SMU_HOME_DIR}" diff-index  HEAD -- 2> /dev/null) ]]
 }
 
 function are_xcode_command_line_tools_installed() {
@@ -131,10 +131,9 @@ function use_git() {
             echo "➜ Updating your 'set-me-up' blueprint."
             
             if has_untracked_changes; then
-                git -C "${SMU_HOME_DIR}" commit -a -m "fixed merge conflict(s)" &> /dev/null
+            	git -C "${SMU_HOME_DIR}" reset --hard HEAD
             fi
 		
-	    git -C "${SMU_HOME_DIR}" reset --hard HEAD
             git -C "${SMU_HOME_DIR}" pull --ff
 
             if has_submodules; then 
