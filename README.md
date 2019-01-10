@@ -137,53 +137,53 @@ You can use `smu --lsrc` command to show which files will be symlink'ed to your 
 
 For more on what the base module does, please consult [`base.sh`](.dotfiles/base/base.sh).
 
-#### [basher](.dotfiles/tag-smu/modules/basher)
+#### [basher](.dotfiles/modules/basher)
 
 The basher module configures and installs the [`basher package manager`](https://github.com/basherpm/basher) for shell scripts.
 
 _Basher allows you to quickly install shell packages directly from github (or other sites). Instead of looking for specific install instructions for each package and messing with your path, basher will create a central location for all packages and manage their binaries for you._ [basherpm/basher](https://github.com/basherpm/basher)
 
-#### [editor](.dotfiles/tag-smu/modules/editor)
+#### [editor](.dotfiles/modules/editor)
 
 The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`.
 
 [Macdown](https://macdown.uranusjr.com/) for Markdown editing, [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) for merging/diffing and [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) as default git difftool are also part of the editor module.
 
-#### [essentials](.dotfiles/tag-smu/modules/essentials)
+#### [essentials](.dotfiles/modules/essentials)
 
-Installs a multitude of `brew` packages, casks and Mac App Store applications. Check the [brewfile](.dotfiles/tag-smu/modules/essentials/brewfile) to get an overview.
+Installs a multitude of `brew` packages, casks and Mac App Store applications. Check the [brewfile](.dotfiles/modules/essentials/brewfile) to get an overview.
 
-#### [go](.dotfiles/tag-smu/modules/go)
+#### [go](.dotfiles/modules/go)
 
 Installs [goenv](https://github.com/syndbg/goenv) for version management and [dep](https://github.com/golang/dep) for package management. `go` is installed and defined as the global version via `goenv`.
 
 When the terminal module is used, the `go` installation will work-out-of-the-box because the required `goenv` code is already in place.
 
-#### [java](.dotfiles/tag-smu/modules/java)
+#### [java](.dotfiles/modules/java)
 
 Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`and `java10` are installed via `sdkman`. **java8** will be defined as the global version.
 
-#### [debianupdate](.dotfiles/tag-smu/modules/debianupdate)
+#### [debianupdate](.dotfiles/modules/debianupdate)
 
 Should your system require a system restart due to an `debianupdate` caused update, re-run the `smu` script after rebooting. The update module should be satisfied by the previous run and result in no action.
 
-#### [php](.dotfiles/tag-smu/modules/php)
+#### [php](.dotfiles/modules/php)
 
 Installs `PHP5`, `PHP7` and [composer](https://getcomposer.org/) for package management via `brew`. `PHP7` will be defined as the global version.
 
-#### [python](.dotfiles/tag-smu/modules/python)
+#### [python](.dotfiles/modules/python)
 
 Installs [pyenv](https://github.com/pyenv/pyenv) for version management and [pipenv](https://github.com/pypa/pipenv) for package management. `python2` and `python3` are installed using `pipenv`. `python3` will be defined as the global version.
 
 When the terminal module is used, the `python` installation will work-out-of-the-box because the required `pyenv` code is already in place.
 
-#### [ruby](.dotfiles/tag-smu/modules/ruby)
+#### [ruby](.dotfiles/modules/ruby)
 
 Installs [rbenv](https://github.com/rbenv/rbenv) for version management and [bundler](http://bundler.io/) for package management. `ruby` is installed and defined as the global version via `rbenv`.
 
 When the terminal module is used, the `ruby` installation will work out-of-the-box because the required `rbenv` code is already in place.
 
-#### [terminal](.dotfiles/tag-smu/modules/terminal)
+#### [terminal](.dotfiles/modules/terminal)
 
 Configures `fish` with sane `fish` options and provides you with a list of useful plugins managed via [Fisherman](https://fisherman.github.io) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish).
 
@@ -196,13 +196,13 @@ Some of the installed plugins are:
 - bass
 - ... and more.
 
-**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/tag-smu/modules/terminal/terminal.sh) and [fishfile](.dotfiles/tag-smu/config/fish/fishfile) for a full overview._
+**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/modules/terminal/terminal.sh) and [fishfile](.dotfiles/tag-smu/config/fish/fishfile) for a full overview._
 
-#### [web](.dotfiles/tag-smu/modules/web)
+#### [web](.dotfiles/modules/web)
 
 Installs [n](https://github.com/tj/n) for version management, `npm` comes with node for package management. The latest `node` and `npm` versions are installed using `n`.
 
-It also install a set of globally installed `npm` packages. For a complete list of packages installed please see [`web.sh`](.dotfiles/tag-smu/modules/web/web.sh#120).
+It also install a set of globally installed `npm` packages. For a complete list of packages installed please see [`web.sh`](.dotfiles/modules/web/web.sh#120).
 
 ### Other components
 
