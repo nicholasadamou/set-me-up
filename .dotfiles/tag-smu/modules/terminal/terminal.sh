@@ -83,7 +83,7 @@ install_tacklebox() {
 
 main() {
 
-    print_in_purple "   Terminal\n\n"
+    print_in_purple "  Terminal\n\n"
 
     apt_install_from_file "packages"
 
