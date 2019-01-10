@@ -32,7 +32,6 @@ install_omf_packages() {
     omf_install "z"
     omf_install "thefuck"
     omf_install "spacefish"
-	omf_install "vi-mode"
 
     printf "\n"
 
