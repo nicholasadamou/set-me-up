@@ -22,6 +22,24 @@
     gamod = update-index --add --chmod=+x           # Make a file executable.
                                                     # see: https://stackoverflow.com/a/38285435/5290011
 
+	# EMOJI-LOG
+	# see: https://github.com/ahmadawais/Emoji-Log
+	# Git Commit, Add all and Push — in one step.
+	cap = "!f() { git add .; git commit -m \"$@\"; git push; }; f"
+
+	# NEW.
+	new = "!f() { git cap \"📦 NEW: $@\"; }; f"
+	# IMPROVE.
+	imp = "!f() { git cap \"👌 IMPROVE: $@\"; }; f"
+	# FIX.
+	fix = "!f() { git cap \"🐛 FIX: $@\"; }; f"
+	# RELEASE.
+	rlz = "!f() { git cap \"🚀 RELEASE: $@\"; }; f"
+	# DOC.
+	doc = "!f() { git cap \"📖 DOC: $@\"; }; f"
+	# TEST.
+	tst = "!f() { git cap \"✅ TEST: $@\"; }; f"
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Find commits by source code.
@@ -85,7 +103,6 @@
         git tag -d "$1" &> /dev/null; \
         git tag $1; \
     }; f"
-
 
 [color "branch"]
 
