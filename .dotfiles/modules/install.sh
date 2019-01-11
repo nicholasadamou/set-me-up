@@ -48,7 +48,9 @@ function install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
-			if [ -d "${MODULE_PATH}" ] && [ ! "$(ls -A "${MODULE_PATH}" &> /dev/null)" ]; then
+			if [ -d "${MODULE_PATH}" ] \
+				&& [ ! "$(ls -A "${MODULE_PATH}")" ] \
+				&& git -C "${SMU_HOME_DIR}" ls-files | grep -qE "${MODULE_PATH}" &> /dev/null; then
 				continue
 			else
 				NAME="$(echo "$KEY" | sed -e 's/submodule.//g' | sed -e 's/.path//g')"
@@ -121,7 +123,7 @@ function use_git() {
 
 			echo "➜ Installing 'set-me-up' submodules."
 
-			#install_submodules
+			install_submodules
 		fi
 	fi
 
@@ -159,7 +161,7 @@ function use_git() {
 					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
 				fi
 
-                #install_submodules
+                install_submodules
             fi
         fi
     fi
