@@ -159,7 +159,7 @@ function use_git() {
 
 				if [ -n "$submodules" ]; then
 					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
-					echo "$submodules"
+					cat "${SMU_HOME_DIR}"/.gitmodules
 				fi
 
                 #install_submodules
