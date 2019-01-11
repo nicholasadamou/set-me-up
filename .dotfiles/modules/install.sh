@@ -48,12 +48,6 @@ function install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
-            has_active_submodules && \
-                git -C "${SMU_HOME_DIR}" rm -r --cached "${MODULE_PATH}"
-
-            ! has_active_submodules && [ -d "${MODULE_PATH}" ] && \
-                rm -rf "${MODULE_PATH}"
-
             NAME="$(echo "$KEY" | sed -e 's/submodule.//g' | sed -e 's/.path//g')"
 
             URL_KEY="$(echo "${KEY}" | sed 's/\.path$/.url/')"
