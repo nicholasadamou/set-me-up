@@ -84,7 +84,8 @@ function confirm() {
 function obtain() {
 	local -r download_url="${1}"
 
-	curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
+	curl --progress-bar -L "${download_url}" | \
+		tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/tag-smu/tmux/plugins/tpm,.dotfiles/utilities/,.dotfiles/rcrc}
 }
 
 function use_curl() {
