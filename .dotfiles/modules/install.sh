@@ -48,18 +48,20 @@ function does_repo_contain() {
 	git -C "${SMU_HOME_DIR}" ls-files | grep -qE "$1" &> /dev/null
 }
 
+function is_dir_empty() {
+	ls -A "${SMU_HOME_DIR:?}/$1" &> /dev/null
+}
+
 function install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
 			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] \
-				&& [ ! "$(ls -A "${SMU_HOME_DIR:?}/${MODULE_PATH}")" ] \
+				&& ! is_dir_empty "${MODULE_PATH}" \
 				&& does_repo_contain "${MODULE_PATH}"; then
 				continue
 			else
-				[ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] \
-					&& [ "$(ls -A "${SMU_HOME_DIR:?}/${MODULE_PATH}")" ] \
-					&& ! does_repo_contain "${MODULE_PATH}" && {
+				[ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && is_dir_empty "${MODULE_PATH}" && {
 					rm -rf "${SMU_HOME_DIR:?}/${MODULE_PATH}"
 				}
 
@@ -91,7 +93,7 @@ function obtain() {
 
 	curl --progress-bar -L "${download_url}" | \
 		tar -xz --strip-components 1 \
-		--exclude={README.md,LICENSE,.gitignore,.dotfiles/tag-smu/config/bash-sensible,.dotfiles/tag-smu/tmux/plugins/tpm,.dotfiles/utilities,.dotfiles/rcrc}
+		--exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc,.dotfiles/modules/preferences/apps/vscode,.dotfiles/tag-smu/config/bash-sensible,.dotfiles/tag-smu/tmux/plugins/tpm,.dotfiles/utilities}
 }
 
 function use_curl() {
