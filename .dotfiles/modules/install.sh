@@ -78,16 +78,6 @@ function install_submodules() {
 	git -C "${SMU_HOME_DIR}" submodule update --init --recursive
 }
 
-function update_submodules() {
-	git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
-        while read -r KEY MODULE_PATH
-        do
-			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && ! is_dir_empty "${MODULE_PATH}" && does_repo_contain "${MODULE_PATH}"; then
-				git -C "${SMU_HOME_DIR:?}/${MODULE_PATH}" pull
-			fi
-		done
-}
-
 function confirm() {
     echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
     read -r -p "Would you like 'set-me-up' to configure in that directory? (y/n) " -n 1;
