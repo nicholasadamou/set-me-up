@@ -118,6 +118,8 @@ function use_git() {
 		fi
 	fi
 
+	printf "\n"
+
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo && has_remote_origin; then
             echo "➜ Updating your 'set-me-up' blueprint."
