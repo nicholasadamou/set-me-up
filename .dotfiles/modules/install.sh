@@ -93,7 +93,7 @@ function obtain() {
 
 	curl --progress-bar -L "${download_url}" | \
 		tar -xz --strip-components 1 \
-		--exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc,.dotfiles/modules/preferences/apps/vscode,.dotfiles/tag-smu/config/bash-sensible,.dotfiles/tag-smu/tmux/plugins/tpm,.dotfiles/utilities}
+		--exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
 }
 
 function use_curl() {
