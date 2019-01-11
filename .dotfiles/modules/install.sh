@@ -146,7 +146,7 @@ function use_git() {
             echo "➜ Updating your 'set-me-up' blueprint."
 
 			if has_untracked_changes; then
-				git -C "${SMU_HOME_DIR}" reset --hard HEAD
+				git -C "${SMU_HOME_DIR}" reset --hard HEAD &> /dev/null
 			fi
 
             git -C "${SMU_HOME_DIR}" pull --ff
