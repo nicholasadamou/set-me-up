@@ -114,14 +114,16 @@ function use_git() {
 		# (nicholasadamou/dotfiles) submodules.
 
 		if has_submodules; then
-			echo "➜ Installing 'set-me-up' submodules."
-
-			install_submodules
-
 			# Store contents of (nicholasadamou/set-me-up) '.gitmodules' in variable
 			# to later append to (nicholasadamou/dotfiles) '.gitmodules'.
 
 			submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
+
+			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+			echo "➜ Installing 'set-me-up' submodules."
+
+			install_submodules
 		fi
 	fi
 
