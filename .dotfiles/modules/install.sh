@@ -138,10 +138,10 @@ function use_git() {
 			echo "➜ Installing 'set-me-up' submodules."
 
 			install_submodules
+
+			printf "\n"
 		fi
 	fi
-
-	printf "\n"
 
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo && has_remote_origin; then
