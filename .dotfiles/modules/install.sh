@@ -137,7 +137,7 @@ function use_git() {
 
 			echo "➜ Installing 'set-me-up' submodules."
 
-			#install_submodules
+			install_submodules
 		fi
 	fi
 
@@ -175,7 +175,7 @@ function use_git() {
 					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
 				fi
 
-                #install_submodules
+                install_submodules
             fi
         fi
     fi
