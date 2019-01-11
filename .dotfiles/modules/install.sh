@@ -11,7 +11,7 @@ readonly SMU_VERSION=${SMU_VERSION:-"master"}
 # Where to install set-me-up
 SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
 
-readonly smu_download="https://github.com/nicholasadamou/set-me-up/archive/${SMU_VERSION}.zip"
+readonly smu_download="https://github.com/nicholasadamou/set-me-up/tarball/${SMU_VERSION}"
 readonly smu_blueprint_download="https://github.com/${SMU_BLUEPRINT}/tarball/${SMU_BLUEPRINT_BRANCH}"
 
 function mkcd() {
@@ -25,65 +25,57 @@ function mkcd() {
 }
 
 function is_git_repo() {
-   [[ $(git -C "${SMU_HOME_DIR}" rev-parse --is-inside-work-tree 2> /dev/null) ]]
+	[ -d "${SMU_HOME_DIR}/.git" ] || [[ $(git -C "${SMU_HOME_DIR}" rev-parse --is-inside-work-tree 2> /dev/null) ]]
+}
+
+function has_remote_origin() {
+	git -C "${SMU_HOME_DIR}" config --list | grep -qE 'remote.origin.url' 2> /dev/null
 }
 
 function has_submodules() {
-    [ -f "$SMU_HOME_DIR"/.gitmodules ]
+    [ -f "${SMU_HOME_DIR}"/.gitmodules ]
 }
 
 function has_active_submodules() {
-    [[ $(git -C "${SMU_HOME_DIR}" config --list | grep -qE ^submodule 2> /dev/null) ]]
+    git -C "${SMU_HOME_DIR}" config --list | grep -qE '^submodule' 2> /dev/null
 }
 
 function has_untracked_changes() {
-    [[ $(git -C "${SMU_HOME_DIR}" diff-index  HEAD -- 2> /dev/null) ]]
+   [[ $(git -C "${SMU_HOME_DIR}" diff-index HEAD -- 2> /dev/null) ]]
 }
 
-function are_xcode_command_line_tools_installed() {
-    xcode-select --print-path &> /dev/null
+function does_repo_contain() {
+	git -C "${SMU_HOME_DIR}" ls-files | grep -qE "$1" &> /dev/null
 }
 
-install_xcode_command_line_tools() {
-    # If necessary, prompt user to install
-    # the `Xcode Command Line Tools`.
-
-    echo "➜ Installing 'Xcode Command Line Tools'" 
-
-    xcode-select --install &> /dev/null
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Wait until the `Xcode Command Line Tools` are installed.
-
-    until are_xcode_command_line_tools_installed; do
-        sleep 5;
-    done
-
-    are_xcode_command_line_tools_installed && \
-        echo -e "✔︎ 'Xcode Command Line Tools' is installed\n"
+function is_dir_empty() {
+	ls -A "${SMU_HOME_DIR:?}/$1" &> /dev/null
 }
 
-install_submodules() {
+function install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
-            has_active_submodules && \
-                git -C "${SMU_HOME_DIR}" rm -r --cached "${MODULE_PATH}"
-            
-            ! has_active_submodules && [ -d "${MODULE_PATH}" ] && \
-                rm -rf "${MODULE_PATH}"
+			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] \
+				&& ! is_dir_empty "${MODULE_PATH}" \
+				&& does_repo_contain "${MODULE_PATH}"; then
+				continue
+			else
+				[ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && is_dir_empty "${MODULE_PATH}" && {
+					rm -rf "${SMU_HOME_DIR:?}/${MODULE_PATH}"
+				}
 
-            NAME="$(echo "$KEY" | sed -e 's/submodule.//g' | sed -e 's/.path//g')"
+				NAME="$(echo "$KEY" | sed -e 's/submodule.//g' | sed -e 's/.path//g')"
 
-            URL_KEY="$(echo "${KEY}" | sed 's/\.path$/.url/')"
-            BRANCH_KEY="$(echo "${KEY}" | sed 's/\.path$/.branch/')"
+				URL_KEY="$(echo "${KEY}" | sed 's/\.path$/.url/')"
+				BRANCH_KEY="$(echo "${KEY}" | sed 's/\.path$/.branch/')"
 
-            URL="$(git -C "${SMU_HOME_DIR}" config -f .gitmodules --get "${URL_KEY}")"
-            BRANCH="$(git -C "${SMU_HOME_DIR}" config -f .gitmodules --get "${BRANCH_KEY}" || echo "master")"
+				URL="$(git -C "${SMU_HOME_DIR}" config -f .gitmodules --get "${URL_KEY}")"
+				BRANCH="$(git -C "${SMU_HOME_DIR}" config -f .gitmodules --get "${BRANCH_KEY}" || echo "master")"
 
-            git -C "${SMU_HOME_DIR}" submodule add --force -b "${BRANCH}" --name "${NAME}" "${URL}" "${MODULE_PATH}" || continue
-        done
+				git -C "${SMU_HOME_DIR}" submodule add --force -b "${BRANCH}" --name "${NAME}" "${URL}" "${MODULE_PATH}" || continue
+			fi
+		done
 
     git -C "${SMU_HOME_DIR}" submodule update --init --recursive
 }
@@ -97,9 +89,11 @@ function confirm() {
 }
 
 function obtain() {
-    local -r download_url="${1}"
+	local -r download_url="${1}"
 
-    curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
+	curl --progress-bar -L "${download_url}" | \
+		tar -xz --strip-components 1 \
+		--exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
 }
 
 function use_curl() {
@@ -126,32 +120,66 @@ function use_git() {
     obtain "${smu_download}"
     printf "\n"
 
+	if ! is_git_repo; then
+		git -C "${SMU_HOME_DIR}" init &> /dev/null
+
+		# If (nicholasadamou/set-me-up) has submodules
+		# make sure to install them prior to installing
+		# set-me-up-blueprint submodules.
+
+		if has_submodules; then
+			# Store contents of (nicholasadamou/set-me-up) '.gitmodules' in variable
+			# to later append to 'set-me-up-blueprint .gitmodules' if it exists.
+
+			submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
+
+			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+			echo "➜ Installing 'set-me-up' submodules."
+
+			install_submodules
+		fi
+	fi
+
+	printf "\n"
+
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
-        if is_git_repo; then
+        if is_git_repo && has_remote_origin; then
             echo "➜ Updating your 'set-me-up' blueprint."
-            
+
             if has_untracked_changes; then
-            	git -C "${SMU_HOME_DIR}" reset --hard HEAD
+				git -C "${SMU_HOME_DIR}" reset --hard HEAD
             fi
-		
+
             git -C "${SMU_HOME_DIR}" pull --ff
 
-            if has_submodules; then 
+            if has_submodules; then
+				echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
+
                 git -C "${SMU_HOME_DIR}" submodule foreach git pull
             fi
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
-            git -C "${SMU_HOME_DIR}" init
             git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
             git -C "${SMU_HOME_DIR}" fetch
-            git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
+			git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
 
-            if has_submodules; then 
+            if has_submodules; then
+				echo -e "\n➜ Installing your 'set-me-up' blueprint submodules."
+
+				# If '$submodules' is not empty, meaning,
+				# (nicholasadamou/set-me-up) has submodules
+				# append its contents to the set-me-up-blueprint
+				#'.gitmodules' file.
+
+				if [ -n "$submodules" ]; then
+					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+				fi
+
                 install_submodules
             fi
         fi
     fi
-
 
     echo -e "\n✔︎ Done. Enjoy."
 }
@@ -160,12 +188,6 @@ function main() {
     method="curl"
 
     echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
-
-    if ! are_xcode_command_line_tools_installed; then 
-        install_xcode_command_line_tools
-    else
-        echo -e "✔︎ 'Xcode Command Line Tools' is already installed\n"
-    fi
 
     while [[ $# -gt 0 ]]; do
         arguments="$1"
