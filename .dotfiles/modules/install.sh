@@ -161,7 +161,8 @@ function use_git() {
 					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
 				fi
 
-                install_submodules
+				echo "$submodules"
+                #install_submodules
             fi
         fi
     fi
