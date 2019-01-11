@@ -29,7 +29,7 @@ function is_git_repo() {
 }
 
 function has_remote_origin() {
-	git -C "${SMU_HOME_DIR}" config --list | grep -q remote.origin.url 2> /dev/null
+	git -C "${SMU_HOME_DIR}" config --list | grep -qE remote.origin.url 2> /dev/null
 }
 
 function has_submodules() {
