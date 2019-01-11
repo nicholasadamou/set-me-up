@@ -25,11 +25,11 @@ function mkcd() {
 }
 
 function is_git_repo() {
-   [[ $(git -C "${SMU_HOME_DIR}" rev-parse --is-inside-work-tree 2> /dev/null) ]]
+	[ -d "${SMU_HOME_DIR}/.git" ] || [[ $(git -C "${SMU_HOME_DIR}" rev-parse --is-inside-work-tree 2> /dev/null) ]]
 }
 
 function has_remote_origin() {
-	[[ $(git -C "${SMU_HOME_DIR}" config --list | grep -q remote.origin.url 2> /dev/null) ]]
+	git -C "${SMU_HOME_DIR}" config --list | grep -q remote.origin.url 2> /dev/null
 }
 
 function has_submodules() {
