@@ -33,7 +33,7 @@ function has_remote_origin() {
 }
 
 function has_submodules() {
-    [ -f "$SMU_HOME_DIR"/.gitmodules ]
+    [ -f "${SMU_HOME_DIR}"/.gitmodules ]
 }
 
 function has_active_submodules() {
