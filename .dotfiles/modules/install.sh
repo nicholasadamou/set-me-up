@@ -187,7 +187,7 @@ function use_git() {
 						git -C "${SMU_HOME_DIR}" \
 							-c user.name="set-me-up" \
 							-c user.email="set-me-up@gmail.com" \
-							commit -a -m "✅ updated: '.gitmodules'" &> /dev/null
+							commit -a -m "✅ UPDATED: '.gitmodules'" &> /dev/null
 					fi
 				fi
 
