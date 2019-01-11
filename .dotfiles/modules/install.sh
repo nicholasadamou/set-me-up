@@ -162,6 +162,8 @@ function use_git() {
 				# to later append to 'set-me-up-blueprint .gitmodules' if it exists.
 
 				submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
+
+				less "${SMU_HOME_DIR}/.gitmodules"
 			fi
 
 			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
