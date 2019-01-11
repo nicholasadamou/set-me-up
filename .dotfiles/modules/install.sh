@@ -52,14 +52,12 @@ function is_dir_empty() {
 	ls -A "${SMU_HOME_DIR:?}/$1" &> /dev/null
 }
 
-function manage_submodules() {
+function install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
-			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] \
-				&& ! is_dir_empty "${MODULE_PATH}" \
-				&& does_repo_contain "${MODULE_PATH}"; then
-				git -C "${SMU_HOME_DIR:?}/${MODULE_PATH}" pull
+			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && ! is_dir_empty "${MODULE_PATH}" && does_repo_contain "${MODULE_PATH}"; then
+				continue
 			else
 				[ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && is_dir_empty "${MODULE_PATH}" && {
 					rm -rf "${SMU_HOME_DIR:?}/${MODULE_PATH}"
@@ -77,7 +75,17 @@ function manage_submodules() {
 			fi
 		done
 
-    git -C "${SMU_HOME_DIR}" submodule update --init --recursive
+	git -C "${SMU_HOME_DIR}" submodule update --init --recursive
+}
+
+function update_submodules() {
+	git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
+        while read -r KEY MODULE_PATH
+        do
+			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && ! is_dir_empty "${MODULE_PATH}" && does_repo_contain "${MODULE_PATH}"; then
+				git -C "${SMU_HOME_DIR:?}/${MODULE_PATH}" pull
+			fi
+		done
 }
 
 function confirm() {
@@ -137,7 +145,7 @@ function use_git() {
 
 			echo "➜ Installing 'set-me-up' submodules."
 
-			manage_submodules
+			install_submodules
 
 			printf "\n"
 		fi
@@ -176,7 +184,7 @@ function use_git() {
             if has_submodules; then
 				echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
 
-               manage_submodules
+               update_submodules
             fi
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
@@ -203,7 +211,7 @@ function use_git() {
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-                manage_submodules
+                install_submodules
             fi
         fi
     fi
