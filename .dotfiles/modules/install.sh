@@ -107,13 +107,15 @@ function use_git() {
     printf "\n"
 
 	if ! is_git_repo; then
-		git -C "${SMU_HOME_DIR}" init
+		git -C "${SMU_HOME_DIR}" init &> /dev/null
 
 		# If (nicholasadamou/set-me-up) has submodules
 		# make sure to install them prior to installing
 		# (nicholasadamou/dotfiles) submodules.
 
 		if has_submodules; then
+			echo "➜ Installing 'set-me-up' submodules."
+
 			install_submodules
 		fi
 	fi
@@ -131,6 +133,8 @@ function use_git() {
             git -C "${SMU_HOME_DIR}" pull --ff
 
             if has_submodules; then
+				echo -e "\n➜ Updating 'set-me-up' blueprint submodules."
+
                 git -C "${SMU_HOME_DIR}" submodule foreach git pull
             fi
         else
@@ -140,6 +144,8 @@ function use_git() {
 			git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
 
             if has_submodules; then
+				echo -e "\n➜ Installing 'set-me-up' blueprint submodules."
+
                 install_submodules
             fi
         fi
