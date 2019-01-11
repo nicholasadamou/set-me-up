@@ -48,22 +48,20 @@ function install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
-            has_active_submodules && \
-                git -C "${SMU_HOME_DIR}" rm -r --cached "${MODULE_PATH}"
+			if [ -d "${MODULE_PATH}" ] && [ ! "$(ls -A "${MODULE_PATH}" &> /dev/null)" ]; then
+				continue
+			else
+				NAME="$(echo "$KEY" | sed -e 's/submodule.//g' | sed -e 's/.path//g')"
 
-            ! has_active_submodules && [ -d "${MODULE_PATH}" ] && \
-                rm -rf "${MODULE_PATH}"
+				URL_KEY="$(echo "${KEY}" | sed 's/\.path$/.url/')"
+				BRANCH_KEY="$(echo "${KEY}" | sed 's/\.path$/.branch/')"
 
-            NAME="$(echo "$KEY" | sed -e 's/submodule.//g' | sed -e 's/.path//g')"
+				URL="$(git -C "${SMU_HOME_DIR}" config -f .gitmodules --get "${URL_KEY}")"
+				BRANCH="$(git -C "${SMU_HOME_DIR}" config -f .gitmodules --get "${BRANCH_KEY}" || echo "master")"
 
-            URL_KEY="$(echo "${KEY}" | sed 's/\.path$/.url/')"
-            BRANCH_KEY="$(echo "${KEY}" | sed 's/\.path$/.branch/')"
-
-            URL="$(git -C "${SMU_HOME_DIR}" config -f .gitmodules --get "${URL_KEY}")"
-            BRANCH="$(git -C "${SMU_HOME_DIR}" config -f .gitmodules --get "${BRANCH_KEY}" || echo "master")"
-
-            git -C "${SMU_HOME_DIR}" submodule add --force -b "${BRANCH}" --name "${NAME}" "${URL}" "${MODULE_PATH}" || continue
-        done
+				git -C "${SMU_HOME_DIR}" submodule add --force -b "${BRANCH}" --name "${NAME}" "${URL}" "${MODULE_PATH}" || continue
+			fi
+		done
 
     git -C "${SMU_HOME_DIR}" submodule update --init --recursive
 }
