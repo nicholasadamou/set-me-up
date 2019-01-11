@@ -176,7 +176,9 @@ function use_git() {
 			#'.gitmodules' file.
 
 			if [ -n "$submodules" ]; then
-				echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+				if ! grep -q "$(<<<"$submodules" tr '\n' '\01')" < <(less "${SMU_HOME_DIR}/.gitmodules" | tr '\n' '\01'); then
+					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+				fi
 			fi
 
 			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -206,7 +208,9 @@ function use_git() {
 				#'.gitmodules' file.
 
 				if [ -n "$submodules" ]; then
-					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+					if ! grep -q "$(<<<"$submodules" tr '\n' '\01')" < <(less "${SMU_HOME_DIR}/.gitmodules" | tr '\n' '\01'); then
+						echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+					fi
 				fi
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
