@@ -37,7 +37,7 @@ function has_submodules() {
 }
 
 function has_active_submodules() {
-    [[ $(git -C "${SMU_HOME_DIR}" config --list | grep -qE ^submodule 2> /dev/null) ]]
+    git -C "${SMU_HOME_DIR}" config --list | grep -qE ^submodule 2> /dev/null
 }
 
 function has_untracked_changes() {
