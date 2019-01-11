@@ -155,40 +155,12 @@ function use_git() {
         if is_git_repo && has_remote_origin; then
             echo "➜ Updating your 'set-me-up' blueprint."
 
-			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-			if has_submodules; then
-				# Store contents of (nicholasadamou/set-me-up) '.gitmodules' in variable
-				# to later append to 'set-me-up-blueprint .gitmodules' if it exists.
-
-				submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
-
-				less "${SMU_HOME_DIR}/.gitmodules"
-			fi
-
-			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
             git -C "${SMU_HOME_DIR}" pull --ff
-
-			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-			# If '$submodules' is not empty, meaning,
-			# (nicholasadamou/set-me-up) has submodules
-			# append its contents to the set-me-up-blueprint
-			#'.gitmodules' file.
-
-			if [ -n "$submodules" ]; then
-				if ! grep -q "$(<<<"$submodules" tr '\n' '\01')" < <(less "${SMU_HOME_DIR}/.gitmodules" | tr '\n' '\01'); then
-					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
-				fi
-			fi
-
-			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
             if has_submodules; then
 				echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
 
-               update_submodules
+               git -C "${SMU_HOME_DIR}" submodule foreach git pull
             fi
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
@@ -212,6 +184,10 @@ function use_git() {
 				if [ -n "$submodules" ]; then
 					if ! grep -q "$(<<<"$submodules" tr '\n' '\01')" < <(less "${SMU_HOME_DIR}/.gitmodules" | tr '\n' '\01'); then
 						echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+						git -C "${SMU_HOME_DIR}" \
+							-c user.name="set-me-up" \
+							-c user.email="set-me-up@gmail.com" \
+							commit -a -m "➕ updated: '.gitmodules'" &> /dev/null
 					fi
 				fi
 
