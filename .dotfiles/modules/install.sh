@@ -81,7 +81,9 @@ function obtain() {
 
 	curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
 
-	git -C "${SMU_HOME_DIR}" init
+	if ! is_git_repo; then
+		git -C "${SMU_HOME_DIR}" init
+	fi
 
 	if has_submodules; then
 		install_submodules
