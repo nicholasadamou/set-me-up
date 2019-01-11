@@ -129,7 +129,7 @@ function use_git() {
 
 		if has_submodules; then
 			# Store contents of (nicholasadamou/set-me-up) '.gitmodules' in variable
-			# to later append to (nicholasadamou/dotfiles) '.gitmodules'.
+			# to later append to (nicholasadamou/dotfiles) '.gitmodules' if it exists.
 
 			submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
 
