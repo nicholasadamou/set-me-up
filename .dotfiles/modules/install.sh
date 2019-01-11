@@ -159,9 +159,9 @@ function use_git() {
 
 				if [ -n "$submodules" ]; then
 					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+					echo "$submodules"
 				fi
 
-				echo "$submodules"
                 #install_submodules
             fi
         fi
