@@ -106,14 +106,16 @@ function use_git() {
     obtain "${smu_download}"
     printf "\n"
 
-	# If (nicholasadamou/set-me-up) has submodules
-	# make sure to install them prior to installing
-	# (nicholasadamou/dotfiles) submodules
-
-	if ! is_git_repo && has_submodules; then
+	if ! is_git_repo; then
 		git -C "${SMU_HOME_DIR}" init
 
-		install_submodules
+		# If (nicholasadamou/set-me-up) has submodules
+		# make sure to install them prior to installing
+		# (nicholasadamou/dotfiles) submodules.
+
+		if has_submodules; then
+			install_submodules
+		fi
 	fi
 
 	printf "\n"
