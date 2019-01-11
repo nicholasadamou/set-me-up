@@ -125,11 +125,11 @@ function use_git() {
 
 		# If (nicholasadamou/set-me-up) has submodules
 		# make sure to install them prior to installing
-		# (nicholasadamou/dotfiles) submodules.
+		# set-me-up-blueprint submodules.
 
 		if has_submodules; then
 			# Store contents of (nicholasadamou/set-me-up) '.gitmodules' in variable
-			# to later append to (nicholasadamou/dotfiles) '.gitmodules' if it exists.
+			# to later append to 'set-me-up-blueprint .gitmodules' if it exists.
 
 			submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
 
@@ -169,7 +169,8 @@ function use_git() {
 
 				# If '$submodules' is not empty, meaning,
 				# (nicholasadamou/set-me-up) has submodules
-				# append it to (nicholasadamou/dotfiles) '.gitmodules'.
+				# append its contents to the set-me-up-blueprint
+				#'.gitmodules' file.
 
 				if [ -n "$submodules" ]; then
 					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
