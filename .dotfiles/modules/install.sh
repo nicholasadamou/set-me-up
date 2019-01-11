@@ -147,10 +147,6 @@ function use_git() {
         if is_git_repo && has_remote_origin; then
             echo "➜ Updating your 'set-me-up' blueprint."
 
-            if has_untracked_changes; then
-				git -C "${SMU_HOME_DIR}" reset --hard HEAD
-            fi
-
             git -C "${SMU_HOME_DIR}" pull --ff
 
             if has_submodules; then
