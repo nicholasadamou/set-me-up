@@ -89,10 +89,10 @@ function obtain() {
 
 	if ! is_git_repo; then
 		git -C "${SMU_HOME_DIR}" init
-	fi
 
-	if has_submodules; then
-		install_submodules
+		if has_submodules; then
+			install_submodules
+		fi
 	fi
 }
 
