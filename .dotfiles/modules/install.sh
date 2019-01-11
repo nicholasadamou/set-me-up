@@ -151,7 +151,6 @@ function use_git() {
         fi
     fi
 
-
     echo -e "\n✔︎ Done. Enjoy."
 }
 
