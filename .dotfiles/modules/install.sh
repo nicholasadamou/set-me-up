@@ -56,9 +56,7 @@ function install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
-			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] \
-				&& ! is_dir_empty "${MODULE_PATH}" \
-				&& does_repo_contain "${MODULE_PATH}"; then
+			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && ! is_dir_empty "${MODULE_PATH}" && does_repo_contain "${MODULE_PATH}"; then
 				continue
 			else
 				[ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && is_dir_empty "${MODULE_PATH}" && {
@@ -77,7 +75,7 @@ function install_submodules() {
 			fi
 		done
 
-    git -C "${SMU_HOME_DIR}" submodule update --init --recursive
+	git -C "${SMU_HOME_DIR}" submodule update --init --recursive
 }
 
 function confirm() {
@@ -147,25 +145,30 @@ function use_git() {
         if is_git_repo && has_remote_origin; then
             echo "➜ Updating your 'set-me-up' blueprint."
 
-            if has_untracked_changes; then
+			if has_untracked_changes; then
 				git -C "${SMU_HOME_DIR}" reset --hard HEAD
-            fi
+			fi
 
             git -C "${SMU_HOME_DIR}" pull --ff
 
             if has_submodules; then
 				echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
 
-                git -C "${SMU_HOME_DIR}" submodule foreach git pull
+               git -C "${SMU_HOME_DIR}" submodule foreach git pull
             fi
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
+
             git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
             git -C "${SMU_HOME_DIR}" fetch
 			git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
 
+			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
             if has_submodules; then
 				echo -e "\n➜ Installing your 'set-me-up' blueprint submodules."
+
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 				# If '$submodules' is not empty, meaning,
 				# (nicholasadamou/set-me-up) has submodules
@@ -173,8 +176,16 @@ function use_git() {
 				#'.gitmodules' file.
 
 				if [ -n "$submodules" ]; then
-					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+					if ! grep -q "$(<<<"$submodules" tr '\n' '\01')" < <(less "${SMU_HOME_DIR}/.gitmodules" | tr '\n' '\01'); then
+						echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+						git -C "${SMU_HOME_DIR}" \
+							-c user.name="set-me-up" \
+							-c user.email="set-me-up@gmail.com" \
+							commit -a -m "✅ UPDATED: '.gitmodules'" &> /dev/null
+					fi
 				fi
+
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
                 install_submodules
             fi
