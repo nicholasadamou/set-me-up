@@ -44,17 +44,22 @@ function has_untracked_changes() {
    [[ $(git -C "${SMU_HOME_DIR}" diff-index HEAD -- 2> /dev/null) ]]
 }
 
+function does_repo_contain() {
+	git -C "${SMU_HOME_DIR}" ls-files | grep -qE "$1" &> /dev/null
+}
+
 function install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
 			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] \
 				&& [ ! "$(ls -A "${SMU_HOME_DIR:?}/${MODULE_PATH}")" ] \
-				&& git -C "${SMU_HOME_DIR}" ls-files | grep -qE "${MODULE_PATH}" &> /dev/null; then
+				&& does_repo_contain "${MODULE_PATH}"; then
 				continue
 			else
 				[ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] \
-					&& [ "$(ls -A "${SMU_HOME_DIR:?}/${MODULE_PATH}")" ] && {
+					&& [ "$(ls -A "${SMU_HOME_DIR:?}/${MODULE_PATH}")" ] \
+					&& ! does_repo_contain "${MODULE_PATH}" && {
 					rm -rf "${SMU_HOME_DIR:?}/${MODULE_PATH}"
 				}
 
