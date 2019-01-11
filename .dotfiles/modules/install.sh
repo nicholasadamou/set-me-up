@@ -52,14 +52,14 @@ function is_dir_empty() {
 	ls -A "${SMU_HOME_DIR:?}/$1" &> /dev/null
 }
 
-function install_submodules() {
+function manage_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
 			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] \
 				&& ! is_dir_empty "${MODULE_PATH}" \
 				&& does_repo_contain "${MODULE_PATH}"; then
-				continue
+				git -C "${SMU_HOME_DIR:?}/${MODULE_PATH}" pull
 			else
 				[ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && is_dir_empty "${MODULE_PATH}" && {
 					rm -rf "${SMU_HOME_DIR:?}/${MODULE_PATH}"
@@ -137,7 +137,7 @@ function use_git() {
 
 			echo "➜ Installing 'set-me-up' submodules."
 
-			install_submodules
+			manage_submodules
 
 			printf "\n"
 		fi
@@ -147,21 +147,50 @@ function use_git() {
         if is_git_repo && has_remote_origin; then
             echo "➜ Updating your 'set-me-up' blueprint."
 
+			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+			if has_submodules; then
+				# Store contents of (nicholasadamou/set-me-up) '.gitmodules' in variable
+				# to later append to 'set-me-up-blueprint .gitmodules' if it exists.
+
+				submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
+			fi
+
+			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
             git -C "${SMU_HOME_DIR}" pull --ff
+
+			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+			# If '$submodules' is not empty, meaning,
+			# (nicholasadamou/set-me-up) has submodules
+			# append its contents to the set-me-up-blueprint
+			#'.gitmodules' file.
+
+			if [ -n "$submodules" ]; then
+				echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+			fi
+
+			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
             if has_submodules; then
 				echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
 
-                git -C "${SMU_HOME_DIR}" submodule foreach git pull
+               manage_submodules
             fi
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
+
             git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
             git -C "${SMU_HOME_DIR}" fetch
 			git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
 
+			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
             if has_submodules; then
 				echo -e "\n➜ Installing your 'set-me-up' blueprint submodules."
+
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 				# If '$submodules' is not empty, meaning,
 				# (nicholasadamou/set-me-up) has submodules
@@ -170,10 +199,11 @@ function use_git() {
 
 				if [ -n "$submodules" ]; then
 					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
-					git -C "${SMU_HOME_DIR}" commit -a -m "➕ updated: .gitmodules" &> /dev/null
 				fi
 
-                install_submodules
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+                manage_submodules
             fi
         fi
     fi
