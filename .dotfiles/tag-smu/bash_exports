@@ -92,6 +92,17 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Ruby configurations
+# Adds "GEMS_PATH" to "$PATH"
+# Fixes "I INSTALLED GEMS WITH --user-install AND THEIR COMMANDS ARE NOT AVAILABLE"
+# see: https://guides.rubygems.org/faqs/#user-install
+
+if [ -d "$(gem environment gemdir)/bin" ]; then
+	export PATH="$(gem environment gemdir)/bin:$PATH"
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Make a global variable to access the dotfiles repository
 
 export DOTFILES="$HOME/set-me-up"
