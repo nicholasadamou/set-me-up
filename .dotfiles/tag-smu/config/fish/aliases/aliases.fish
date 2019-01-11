@@ -142,6 +142,7 @@ end
 # alias n "npm" # Do not use if using 'n' for Node version control
 
 if type -q npm
+  alias npm "sudo npm"
   alias npmi "npm i -g"
   alias npmr "npm uninstall"
   alias npmls "npm list -g --depth 0"
