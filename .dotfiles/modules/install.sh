@@ -144,7 +144,7 @@ function use_git() {
 			git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
 
             if has_submodules; then
-				echo -e "\n➜ Installing 'set-me-up' blueprint submodules."
+				echo -e "\n➜ Installing your 'set-me-up' blueprint submodules."
 
                 install_submodules
             fi
