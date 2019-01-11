@@ -28,6 +28,10 @@ function is_git_repo() {
    [[ $(git -C "${SMU_HOME_DIR}" rev-parse --is-inside-work-tree 2> /dev/null) ]]
 }
 
+function has_remote_origin() {
+	[[ $(git -C "${SMU_HOME_DIR}" config --list | grep -q remote.origin.url 2> /dev/null) ]]
+}
+
 function has_submodules() {
     [ -f "$SMU_HOME_DIR"/.gitmodules ]
 }
@@ -109,7 +113,7 @@ function use_git() {
     printf "\n"
 
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
-        if is_git_repo; then
+        if is_git_repo && has_remote_origin; then
             echo "➜ Updating your 'set-me-up' blueprint."
 
             if has_untracked_changes; then
