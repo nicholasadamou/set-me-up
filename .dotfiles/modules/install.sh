@@ -80,20 +80,6 @@ function obtain() {
 	local -r download_url="${1}"
 
 	curl --progress-bar -L "${download_url}" | tar -xz --strip-components 1 --exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	# If (nicholasadamou/set-me-up) has submodules
-	# make sure to install them prior to installing
-	# (nicholasadamou/dotfiles) submodules
-
-	if ! is_git_repo; then
-		git -C "${SMU_HOME_DIR}" init
-
-		if has_submodules; then
-			install_submodules
-		fi
-	fi
 }
 
 function use_curl() {
@@ -119,6 +105,18 @@ function use_git() {
     echo -e "\n➜ Obtaining 'set-me-up'."
     obtain "${smu_download}"
     printf "\n"
+
+	# If (nicholasadamou/set-me-up) has submodules
+	# make sure to install them prior to installing
+	# (nicholasadamou/dotfiles) submodules
+
+	if ! is_git_repo; then
+		git -C "${SMU_HOME_DIR}" init
+
+		if has_submodules; then
+			install_submodules
+		fi
+	fi
 
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo && has_remote_origin; then
@@ -164,7 +162,7 @@ function main() {
                 if is_git_repo; then method="git"; fi
                 ;;
             --latest)
-                SMU_VERSION="kali-linux"
+                SMU_VERSION="debian"
                 ;;
 
         esac
