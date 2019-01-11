@@ -157,7 +157,7 @@ function use_git() {
 				# (nicholasadamou/set-me-up) has submodules
 				# append it to (nicholasadamou/dotfiles) '.gitmodules'.
 
-				if [ -z "$submodules" ]; then
+				if [ -n "$submodules" ]; then
 					echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
 				fi
 
