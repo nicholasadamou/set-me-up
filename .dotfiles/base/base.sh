@@ -194,6 +194,10 @@ symlink() {
     # <path-to-smu>/.dotfiles/somedotfile vs <path-to-smu>/.dotfiles/base/../somedotfile
     readonly dotfiles="${SMU_PATH}/.dotfiles"
 
+	execute \
+		"find -L $HOME -name . -o -type d -prune -o -type l -exec rm {} +" \
+		"fix broken symlinks in ($HOME)"
+
     execute \
         "export RCRC=\"../rcrc\" && \
             rcup -q -f -d \"${dotfiles}\"" \
