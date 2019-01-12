@@ -1,9 +1,1 @@
-gpg [args: "https://apt.thoughtbot.com/thoughtbot.gpg.key"]
-
-source [args: "https://apt.thoughtbot.com/debian/ stable main", "thoughtbot.list"]
-
-apt "rcm"
-
 apt "linuxbrew-wrapper"
-
-apt "build-essential"
