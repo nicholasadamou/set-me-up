@@ -67,19 +67,6 @@ install_fisher_packages() {
 
 }
 
-install_tacklebox() {
-
-    if ! is_tacklebox_installed; then
-        execute \
-            "git clone https://github.com/justinmayer/tacklebox ~/.tacklebox \
-                && git clone https://github.com/justinmayer/tackle ~/.tackle" \
-            "tacklebox (install)"
-    else
-        print_success "(tacklebox) is already installed."
-    fi
-
-}
-
 main() {
 
     print_in_purple "   Terminal\n\n"
@@ -101,10 +88,6 @@ main() {
     install_fisher
 
     install_fisher_packages
-
-    printf "\n"
-
-    install_tacklebox
 
 }
 
