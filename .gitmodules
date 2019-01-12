@@ -8,3 +8,9 @@
 	path = .dotfiles/utilities
 	url = https://github.com/nicholasadamou/utilities
 	branch = linux
+[submodule ".dotfiles/tag-smu/tacklebox"]
+	path = .dotfiles/tag-smu/tacklebox
+	url = https://github.com/justinmayer/tacklebox
+[submodule ".dotfiles/tag-smu/tackle"]
+	path = .dotfiles/tag-smu/tackle
+	url = https://github.com/justinmayer/tackle
