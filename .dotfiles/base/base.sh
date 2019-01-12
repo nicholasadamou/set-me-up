@@ -228,7 +228,8 @@ install_plugins() {
     # Install plugins.
 
     execute \
-        "git clone --quiet '$VUNDLE_GIT_REPO_URL' '$VUNDLE_DIR' \
+        ". $LOCAL_BASH_CONFIG_FILE \
+			&& git clone --quiet '$VUNDLE_GIT_REPO_URL' '$VUNDLE_DIR' \
             && printf '\n' | vim +PluginInstall +qall" \
         "vim (install plugins)" \
         || return 1
@@ -238,7 +239,8 @@ install_plugins() {
 update_plugins() {
 
     execute \
-        "vim +PluginUpdate +qall" \
+        ". $LOCAL_BASH_CONFIG_FILE \
+			&& vim +PluginUpdate +qall" \
         "vim (update plugins)"
 
 }
