@@ -26,3 +26,5 @@ brew "wget", args: ["with-iri"]
 
 # A modern version of ‘ls’.
 brew "exa"
+
+brew "gcc"

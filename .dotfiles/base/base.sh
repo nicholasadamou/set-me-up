@@ -110,7 +110,7 @@ create_vimrc_local() {
 
 install_homebrew() {
 
-    printf "\n" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" &> /dev/null
+    printf "\n" | brew &> /dev/null
 	#       └─ simulate the ENTER keypress
 
 	print_result $? "Homebrew (install)" && \
@@ -121,9 +121,10 @@ install_homebrew() {
 add_brew_configs() {
 
     declare -r BASH_CONFIGS="
-# Homebrew - The missing package manager for macOS.
-export PATH=\"/usr/local/bin:\$PATH\"
-export PATH=\"/usr/local/sbin:\$PATH\"
+# Homebrew - The missing package manager for linux.
+export PATH=\"$HOME/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current/bin:\$PATH\"
+export PATH=\"$HOME/linuxbrew/.linuxbrew/bin:\$PATH\"
+echo 'eval $("$HOME"/linuxbrew/.linuxbrew/bin/brew shellenv)'
 "
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -238,6 +239,10 @@ update_plugins() {
 main() {
 
     print_in_purple "  Base\n"
+
+	apt_install_from_file "packages"
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     print_in_yellow "\n   Create local config files\n\n"
 
