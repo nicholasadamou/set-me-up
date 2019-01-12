@@ -1,2 +1,3 @@
 apt "linuxbrew-wrapper"
 apt "tmux"
+apt "thefuck"
