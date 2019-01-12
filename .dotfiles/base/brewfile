@@ -1,7 +1,6 @@
 tap "thoughtbot/formulae"
 
-# Install a few thoughtbot related tooling
-brew "hub"
+# Install 'rcm' for dot-file symlinking
 brew "rcm"
 
 # Install a more recent version of 'vim'
