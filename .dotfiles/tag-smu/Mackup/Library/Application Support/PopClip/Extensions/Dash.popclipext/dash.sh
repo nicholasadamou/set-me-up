@@ -1,1 +1,0 @@
-open -g "dash://$POPCLIP_URLENCODED_TEXT"
