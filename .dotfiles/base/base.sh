@@ -202,7 +202,8 @@ symlink() {
     readonly dotfiles="${SMU_PATH}/.dotfiles"
 
     execute \
-        "export RCRC=\"../rcrc\" && \
+        ". $LOCAL_BASH_CONFIG_FILE && \
+			export RCRC=\"../rcrc\" && \
             rcup -q -f -d \"${dotfiles}\"" \
         "symlink (${dotfiles})"
 
