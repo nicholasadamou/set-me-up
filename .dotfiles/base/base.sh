@@ -265,7 +265,7 @@ main() {
 
     ask_for_sudo
 
-    if [ ! -d "$HOME/linuxbrew" ]; then
+    if [ ! -d "/home/linuxbrew" ]; then
         install_homebrew
         opt_out_of_analytics
     else
