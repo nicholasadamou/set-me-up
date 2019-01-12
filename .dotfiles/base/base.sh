@@ -184,6 +184,14 @@ opt_out_of_analytics() {
 
 symlink() {
 
+    # Delete any broken symlinks within the '$HOME' directory.
+
+    execute \
+        "find -L $HOME -name . -o -type d -prune -o -type l -exec rm {} +" \
+	"fix broken symlinks in ($HOME)"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Update and/or install dotfiles. These dotfiles are stored in the .dotfiles directory.
     # rcup is used to install files from the tag-specific dotfiles directory.
     # rcup is part of rcm, a management suite for dotfiles.
@@ -193,10 +201,6 @@ symlink() {
     # This is only for aesthetic reasons to have an absolute symlink path instead of a relative one
     # <path-to-smu>/.dotfiles/somedotfile vs <path-to-smu>/.dotfiles/base/../somedotfile
     readonly dotfiles="${SMU_PATH}/.dotfiles"
-
-	execute \
-		"find -L $HOME -name . -o -type d -prune -o -type l -exec rm {} +" \
-		"fix broken symlinks in ($HOME)"
 
     execute \
         "export RCRC=\"../rcrc\" && \
