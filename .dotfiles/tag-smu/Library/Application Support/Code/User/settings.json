@@ -1,0 +1,72 @@
+{
+    "editor.fontFamily": "Operator Mono, Dank Mono, Consolas, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorCustomizations": {
+        "peekView.border": "#E50A69AB",
+        "peekViewTitle.background": "#002b36",
+        "peekViewResult.background": "#00212b",
+        "peekViewEditor.background": "#002b36",
+        "peekViewEditor.matchHighlightBackground": "#00212bAB"
+    },
+    "workbench.editor.tabCloseButton": "off",
+    "workbench.activityBar.visible": true,
+    "workbench.sideBar.location": "left",
+    "workbench.startupEditor": "none",
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "window.restoreWindows": "none",
+    "git.enableSmartCommit": true,
+    "html.format.enable": true,
+    "html.format.preserveNewLines": true,
+    "files.trimTrailingWhitespace": false,
+    "editor.cursorStyle": "line",
+    "editor.cursorWidth": 3,
+    "editor.wordWrap": "on",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.fontWeight": "400",
+    "editor.cursorBlinking": "solid",
+    "editor.colorDecorators": false,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "none",
+    "editor.minimap.showSlider": "always",
+    "git.confirmSync": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "editor.snippetSuggestions": "top",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "extensions.ignoreRecommendations": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.next": true
+    },
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "gitlens.historyExplorer.enabled": true,
+    "window.title": "${dirty} ${activeEditorMedium}${separator}${rootName}",
+    "editor.formatOnSave": true,
+    "[javascript]": {
+        "editor.formatOnSave": false
+    },
+    "eslint.autoFixOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "react-native-storybooks.port": 7007,
+    "workbench.colorTheme": "Ayu Mirage",
+    "git.autofetch": true,
+    "editor.renderIndentGuides": false,
+    "githubPullRequests.hosts": [
+        {
+            "host": "https://github.com",
+            "username": "oauth",
+            "token": "system"
+        }
+    ]
+}

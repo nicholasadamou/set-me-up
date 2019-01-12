@@ -1,0 +1,6 @@
+<application>
+  <component name="PrintSettings">
+    <option name="includeSubdirectories" value="true" />
+    <option name="printScope" value="4" />
+  </component>
+</application>
