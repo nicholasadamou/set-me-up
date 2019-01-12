@@ -1,9 +1,0 @@
-<application>
-  <component name="DimensionService">
-    <location key="WELCOME_SCREEN.0.0.3840.2400@192dpi" x="1918" y="1006" />
-    <location key="SettingsEditor.0.0.3840.2400@192dpi" x="908" y="526" />
-    <location key="#ESLint.0.0.3840.2400@192dpi" x="1398" y="764" />
-    <location key="#com.intellij.execution.impl.EditConfigurationsDialog.0.0.3840.2400@192dpi" x="848" y="546" />
-    <size key="#ESLint.0.0.3840.2400@192dpi" width="1042" height="974" />
-  </component>
-</application>
