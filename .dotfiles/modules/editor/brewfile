@@ -1,6 +1,6 @@
 brew "jq"
 
-brew "vim", args: ["override-system-vi", "with-lua"]
+brew "vim"
 brew "neovim"
 
 # diff
