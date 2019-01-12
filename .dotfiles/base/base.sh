@@ -122,9 +122,9 @@ add_brew_configs() {
 
     declare -r BASH_CONFIGS="
 # Homebrew - The missing package manager for linux.
-export PATH=\"$HOME/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current/bin:\$PATH\"
-export PATH=\"$HOME/linuxbrew/.linuxbrew/bin:\$PATH\"
-eval $("$HOME"/linuxbrew/.linuxbrew/bin/brew shellenv)
+export PATH=\"/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current/bin:\$PATH\"
+export PATH=\"/home/linuxbrew/.linuxbrew/bin:\$PATH\"
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 "
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
