@@ -6,4 +6,4 @@ apt "rcm"
 
 apt "linuxbrew-wrapper"
 
-apt "build-essentials"
+apt "build-essential"
