@@ -1,7 +1,20 @@
 tap "thoughtbot/formulae"
 
+# Install a few thoughtbot related tooling
 brew "hub"
-
 brew "rcm"
 
-brew "gcc"
+# Install a more recent version of 'vim'
+brew "vim"
+
+# Install some other useful utilities like `sponge`.
+brew "moreutils"
+
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`
+brew "findutils"
+
+# Install `wget`
+brew "wget"
+
+# A modern version of ‘ls’.
+brew "exa"
