@@ -153,6 +153,7 @@ function use_git() {
 
             if has_submodules; then
 				echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
+
 				install_submodules
 
 				git -C "${SMU_HOME_DIR}" submodule foreach git pull
