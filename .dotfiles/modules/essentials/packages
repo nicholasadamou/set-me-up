@@ -12,7 +12,6 @@ apt "yank"
 apt "thefuck"
 apt "googler"
 apt "buku"
-apt "thefuck"
 
 # package managers
 apt "aptitude"
