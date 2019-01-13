@@ -17,6 +17,10 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
         fisher self-update
     end
 
+	if type -q omf
+		omf update
+	end
+
     fish_update_completions
 
     if type -q npm

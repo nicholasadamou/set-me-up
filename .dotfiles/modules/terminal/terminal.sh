@@ -9,6 +9,34 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# see: https://github.com/oh-my-fish/oh-my-fish/issues/189
+install_omf() {
+
+    if ! is_omf_installed; then
+        execute \
+            "fish <(curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install) \
+				--noninteractive --yes --path=$HOME/.local/share/omf --config=$HOME/.config/omf" \
+            "omf (install)"
+    else
+        print_success "(omf) is already installed."
+    fi
+
+}
+
+install_omf_packages() {
+
+    print_in_yellow "\n  Install omf packages\n\n"
+
+    omf_install "z"
+    omf_install "thefuck"
+    omf_install "spacefish"
+
+    printf "\n"
+
+    omf_update
+
+}
+
 install_fisher() {
 
     if ! is_fisher_installed; then
@@ -39,11 +67,17 @@ install_fisher_packages() {
 
 main() {
 
-    print_in_purple "   Terminal\n\n"
+    print_in_purple "  Terminal\n\n"
 
-    brew_bundle_install "brewfile"
+    apt_install_from_file "packages"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    printf "\n"
+
+    install_omf
+
+    install_omf_packages
 
     printf "\n"
 
