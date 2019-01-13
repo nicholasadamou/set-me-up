@@ -67,7 +67,7 @@ main() {
 
     print_in_purple "  Terminal\n\n"
 
-    apt_install_from_file "packages"
+    brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
