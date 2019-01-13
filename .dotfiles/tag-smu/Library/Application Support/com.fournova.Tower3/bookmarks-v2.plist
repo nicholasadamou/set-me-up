@@ -20,51 +20,74 @@
 					<true/>
 				</dict>
 				<dict>
+					<key>fileURL</key>
+					<string>file:///Users/nicholas/dev/Starter-Kit/</string>
+					<key>lastOpenedDate</key>
+					<real>0.0</real>
+					<key>name</key>
+					<string>Starter-Kit</string>
+					<key>type</key>
+					<integer>2</integer>
+					<key>valid</key>
+					<true/>
+				</dict>
+			</array>
+			<key>expanded</key>
+			<false/>
+			<key>name</key>
+			<string>nicholasadamou.com</string>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>children</key>
+			<array>
+				<dict>
+					<key>fileURL</key>
+					<string>file:///Users/nicholas/dev/set-me-up/</string>
+					<key>lastOpenedDate</key>
+					<real>0.0</real>
+					<key>name</key>
+					<string>set-me-up</string>
+					<key>type</key>
+					<integer>2</integer>
+					<key>valid</key>
+					<true/>
+				</dict>
+				<dict>
+					<key>fileURL</key>
+					<string>file:///Users/nicholas/dev/set-me-up-blueprint/</string>
+					<key>lastOpenedDate</key>
+					<real>0.0</real>
+					<key>name</key>
+					<string>set-me-up-blueprint</string>
+					<key>type</key>
+					<integer>2</integer>
+					<key>valid</key>
+					<true/>
+				</dict>
+				<dict>
+					<key>fileURL</key>
+					<string>file:///Users/nicholas/dev/utilities/</string>
+					<key>lastOpenedDate</key>
+					<real>0.0</real>
+					<key>name</key>
+					<string>utilities</string>
+					<key>type</key>
+					<integer>2</integer>
+					<key>valid</key>
+					<true/>
+				</dict>
+				<dict>
 					<key>children</key>
 					<array>
 						<dict>
 							<key>fileURL</key>
-							<string>file:///Users/nicholas/dev/set-me-up/</string>
-							<key>lastOpenedDate</key>
-							<real>1545488445.1548018</real>
-							<key>name</key>
-							<string>set-me-up</string>
-							<key>type</key>
-							<integer>2</integer>
-							<key>valid</key>
-							<true/>
-						</dict>
-						<dict>
-							<key>fileURL</key>
-							<string>file:///Users/nicholas/dev/set-me-up-blueprint/</string>
-							<key>lastOpenedDate</key>
-							<real>1545409704.9222488</real>
-							<key>name</key>
-							<string>set-me-up-blueprint</string>
-							<key>type</key>
-							<integer>2</integer>
-							<key>valid</key>
-							<true/>
-						</dict>
-						<dict>
-							<key>fileURL</key>
 							<string>file:///Users/nicholas/dev/dotfiles/</string>
-							<key>lastOpenedDate</key>
-							<real>1545665626.9436719</real>
-							<key>name</key>
-							<string>~/dev/dotfiles</string>
-							<key>type</key>
-							<integer>2</integer>
-							<key>valid</key>
-							<true/>
-						</dict>
-						<dict>
-							<key>fileURL</key>
-							<string>file:///Users/nicholas/dev/utilities/</string>
 							<key>lastOpenedDate</key>
 							<real>0.0</real>
 							<key>name</key>
-							<string>utilities</string>
+							<string>dotfiles</string>
 							<key>type</key>
 							<integer>2</integer>
 							<key>valid</key>
@@ -74,7 +97,7 @@
 					<key>expanded</key>
 					<false/>
 					<key>name</key>
-					<string>set-me-up</string>
+					<string>dotfiles</string>
 					<key>type</key>
 					<integer>1</integer>
 				</dict>
@@ -82,7 +105,7 @@
 			<key>expanded</key>
 			<false/>
 			<key>name</key>
-			<string>Personal</string>
+			<string>set-me-up</string>
 			<key>type</key>
 			<integer>1</integer>
 		</dict>
