@@ -14,7 +14,8 @@ install_omf() {
 
     if ! is_omf_installed; then
         execute \
-            "fish <(curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install) --noninteractive --path=$HOME/.local/share/omf --config=$HOME/.config/omf" \
+            "fish <(curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install) \
+                --noninteractive --yes --path=$HOME/.local/share/omf --config=$HOME/.config/omf" \
             "omf (install)"
     else
         print_success "(omf) is already installed."
