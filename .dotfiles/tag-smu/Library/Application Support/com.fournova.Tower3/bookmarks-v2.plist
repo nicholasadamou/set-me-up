@@ -9,65 +9,6 @@
 			<array>
 				<dict>
 					<key>fileURL</key>
-					<string>file:///Users/nicholas/dev/muuvies/</string>
-					<key>lastOpenedDate</key>
-					<real>1543490626.7771559</real>
-					<key>name</key>
-					<string>muuvies</string>
-					<key>type</key>
-					<integer>2</integer>
-					<key>valid</key>
-					<true/>
-				</dict>
-				<dict>
-					<key>fileURL</key>
-					<string>file:///Users/nicholas/dev/hasvuepassedangularyet/</string>
-					<key>lastOpenedDate</key>
-					<real>1544446524.524626</real>
-					<key>name</key>
-					<string>hasvuepassedangularyet</string>
-					<key>type</key>
-					<integer>2</integer>
-					<key>valid</key>
-					<true/>
-				</dict>
-				<dict>
-					<key>fileURL</key>
-					<string>file:///Users/nicholas/dev/Langdex/</string>
-					<key>lastOpenedDate</key>
-					<real>1543490692.3004088</real>
-					<key>name</key>
-					<string>Langdex</string>
-					<key>type</key>
-					<integer>2</integer>
-					<key>valid</key>
-					<true/>
-				</dict>
-				<dict>
-					<key>fileURL</key>
-					<string>file:///Users/nicholas/dev/reactrello/</string>
-					<key>lastOpenedDate</key>
-					<real>1545307041.3924921</real>
-					<key>name</key>
-					<string>reactrello</string>
-					<key>type</key>
-					<integer>2</integer>
-					<key>valid</key>
-					<true/>
-				</dict>
-			</array>
-			<key>expanded</key>
-			<false/>
-			<key>name</key>
-			<string>School</string>
-			<key>type</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>children</key>
-			<array>
-				<dict>
-					<key>fileURL</key>
 					<string>file:///Users/nicholas/dev/nicholasadamou.github.io/</string>
 					<key>lastOpenedDate</key>
 					<real>0.0</real>
