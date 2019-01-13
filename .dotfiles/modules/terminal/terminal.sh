@@ -27,6 +27,7 @@ install_omf_packages() {
 
     print_in_yellow "\n  Install omf packages\n\n"
 
+	omf_install "z"
     omf_install "thefuck"
 
     printf "\n"
