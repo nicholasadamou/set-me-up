@@ -36,6 +36,8 @@ brew "fzy"
 brew "z"
 brew "goto"
 brew "bat"
+cask "osxfuse"
+brew "ext4fuse"
 
 # compression utilities
 brew "p7zip"
