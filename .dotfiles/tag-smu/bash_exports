@@ -105,6 +105,14 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Add ~/.local/bin to $PATH
+
+if [ -d "$HOME/.local/bin" ]; then
+	export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Make a global variable to access the dotfiles repository
 
 export DOTFILES="$HOME/set-me-up"
