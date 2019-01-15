@@ -1,1 +1,2 @@
 brew "fzf"
+brew "micro"
