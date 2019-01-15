@@ -87,6 +87,7 @@ brew "emojify"
 brew "ansiweather"
 brew "piknik"
 cask "ngrok"
+brew "micro"
 
 # core development casks
 cask "alfred"
