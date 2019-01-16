@@ -7,7 +7,6 @@
 [submodule ".dotfiles/utilities"]
 	path = .dotfiles/utilities
 	url = https://github.com/nicholasadamou/utilities
-	branch = linux
 [submodule ".dotfiles/tag-smu/tacklebox"]
 	path = .dotfiles/tag-smu/tacklebox
 	url = https://github.com/justinmayer/tacklebox
