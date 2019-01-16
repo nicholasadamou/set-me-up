@@ -58,7 +58,7 @@ bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/mas
 
 ⚠️ Please note that the installer has **three** different arguments:
 
-1. **`--curl`** - When this is passed, it will obtain the `smu` blueprint via `curl`.
+1. **`--curl`** - When this is passed, it will obtain the `smu` blueprint via `curl`. _However_, It is recommended to use `--git` instead, because of the use of `git submodules`.
 
 2. **`--git`** - When this is passed, it will obtain the `smu` blueprint via `git`.
 
