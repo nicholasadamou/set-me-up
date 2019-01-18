@@ -124,6 +124,13 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# load 'fzf' configs.
+# see: https://github.com/junegunn/fzf#using-homebrew-or-linuxbrew
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.)
 # and changes directory to $HOME.
