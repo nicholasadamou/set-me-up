@@ -117,7 +117,7 @@ fi
 
 if command -v brew &> /dev/null; then
 	if [ -d "$(brew --prefix)/bin" ]; then
-		export PATH="/usr/local/bin:$PATH"
+		export PATH="$(brew --prefix)/bin:$PATH"
 	fi
 fi
 
