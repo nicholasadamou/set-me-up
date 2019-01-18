@@ -13,3 +13,6 @@
 [submodule ".dotfiles/tag-smu/tackle"]
 	path = .dotfiles/tag-smu/tackle
 	url = https://github.com/justinmayer/tackle
+[submodule ".dotfiles/tag-smu/fzf"]
+	path = .dotfiles/tag-smu/fzf
+	url = https://github.com/junegunn/fzf
