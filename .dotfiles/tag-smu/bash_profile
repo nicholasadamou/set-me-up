@@ -40,10 +40,6 @@ source_bash_files() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    . "$DOTFILES/.dotfiles/utilities/utilities.sh"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     cd "$CURRENT_DIRECTORY" || return
 
 }
