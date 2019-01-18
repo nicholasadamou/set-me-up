@@ -113,6 +113,16 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Add /usr/local/bin to $PATH
+
+if command -v brew &> /dev/null; then
+	if [ -d "$(brew --prefix)/bin" ]; then
+		export PATH="/usr/local/bin:$PATH"
+	fi
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Make a global variable to access the dotfiles repository
 
 export DOTFILES="$HOME/set-me-up"
