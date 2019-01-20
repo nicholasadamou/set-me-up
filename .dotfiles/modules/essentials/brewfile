@@ -88,6 +88,7 @@ brew "ansiweather"
 brew "piknik"
 cask "ngrok"
 brew "micro"
+brew "bitwarden-cli"
 
 # core development casks
 cask "alfred"
