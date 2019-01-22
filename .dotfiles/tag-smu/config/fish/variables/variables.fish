@@ -22,6 +22,12 @@ if test -d (gem environment gemdir)/bin
   set -gx PATH $PATH (gem environment gemdir)/bin
 end
 
+# iTerm2 integration
+# Adds ~/.iterm2 to "$PATH"
+if test -d ~/.iterm2
+	set -gx PATH $PATH ~/.iterm2
+end
+
 # Dotfiles directory
 set DOTFILES $HOME/set-me-up
 
