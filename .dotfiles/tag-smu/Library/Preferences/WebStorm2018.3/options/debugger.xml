@@ -1,13 +1,1 @@
-<application>
-  <component name="XDebuggerSettings">
-    <data-views />
-    <general />
-    <debuggers>
-      <debugger id="javascript">
-        <configuration>
-          <custom-object-presentation />
-        </configuration>
-      </debugger>
-    </debuggers>
-  </component>
-</application>
+/Users/nicholas/set-me-up/.dotfiles/tag-smu/Library/Preferences/WebStorm2018.3/options/debugger.xml

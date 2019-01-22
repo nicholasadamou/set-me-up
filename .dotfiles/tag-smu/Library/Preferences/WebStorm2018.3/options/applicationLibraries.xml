@@ -1,15 +1,1 @@
-<application>
-  <component name="libraryTable">
-    <library name="three" type="javaScript">
-      <properties>
-        <sourceFilesUrls>
-          <item url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_three.js_97_three.js" />
-        </sourceFilesUrls>
-      </properties>
-      <CLASSES>
-        <root url="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdnjs.cloudflare.com_ajax_libs_three.js_97_three.js" />
-      </CLASSES>
-      <SOURCES />
-    </library>
-  </component>
-</application>
+/Users/nicholas/set-me-up/.dotfiles/tag-smu/Library/Preferences/WebStorm2018.3/options/applicationLibraries.xml
