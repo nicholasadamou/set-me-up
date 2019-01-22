@@ -80,6 +80,7 @@ brew "boot2docker"
 # Window management
 cask "tuck"
 cask "finderminder"
+cask "moom"
 
 # Security
 cask "1password"

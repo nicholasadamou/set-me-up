@@ -121,15 +121,14 @@ apps:
         items:
         - Figma
         - Gravit Designer
-        - Gravit Designer
         - Aseprite
         - ColorSnapper2
         - Gyazo
         - Gyazo GIF
         - Gifox
         - CleanShot
-        - Postman
-        - Caret
+        - Squash
+        - iMazing HEIC Converter
     - folder: Developer Tools
       pages:
       - number: 1
@@ -148,12 +147,12 @@ apps:
         - ImageOptim
         - CodeKit
         - Prepros
-        - Now
         - Transmit
         - ForkLift
         - Tower
         - Sublime Merge
         - Canopy
+        - Now
         - Xcode
         - GraphQL Playground
         - PSequel
@@ -164,12 +163,16 @@ apps:
         - Parallels Desktop
         - Docker
         - BrowserStack Local
+        - Core Shell
+        - Core Tunnel
         - Install macOS Mojave
+        - VNC Viewer
     - folder: Security
       pages:
       - number: 1
         items:
         - 1Password 7
+        - Bitwarden
         - Authy
         - Authy
         - Avast Security
@@ -179,6 +182,13 @@ apps:
         - VeraCrypt
         - Little Snitch Configuration
         - Micro Snitch
+        - ReiKey
+        - LuLu
+        - TaskExplorer
+        - Do Not Disturb
+        - KnockKnock
+        - OverSight
+        - WhatsYourSign
     - folder: System
       pages:
       - number: 1
@@ -187,6 +197,8 @@ apps:
         - Witch
         - Moom
         - Magnet
+        - Tuck
+        - FinderMinder
         - Workspaces
         - HyperDock
         - TouchSwitcher
@@ -212,20 +224,28 @@ apps:
         - Archiver 3
         - The Unarchiver
         - PopClip
+        - Rocket
         - Power Menu
-        - Etcher
         - DaisyDisk
+        - balenaEtcher
+      - number: 2
+        items:
+        - extFS for Mac
+        - NTFS for Mac
+        - Hard Disk Manager
+        - Paragon CampTune
+        - Paragon VMDK Mounter
+        - DAEMON Tools
         - Jettison
         - iStat Menus
         - Monity
-      - number: 2
-        items:
         - Alfred 3
         - Muzzle
         - Muse
         - AppDelete
-        - CheatSheet
         - System Preferences
+    - Kali Linux Applications
+    - Ubuntu Linux Applications
 widgets:
   pages: []
 dock_items:
@@ -238,6 +258,7 @@ dock_items:
 - Airmail 3
 - Messages
 - FaceTime
+- Discord
 - Slack
 - Fantastical 2
 - CARROT Weather
@@ -260,14 +281,17 @@ dock_items:
 - WebStorm
 - PyCharm
 - Dash
+- ForkLift
 - Transmit
 - Sublime Merge
 - Tower
 - Hyper
 - iTerm
 - Outline Manager
+- Bitwarden
 - 1Password 7
 - System Preferences
 - ============
 - Downloads
+- Kali Linux Applications
 desktop: {}
