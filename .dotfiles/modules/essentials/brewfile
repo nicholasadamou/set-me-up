@@ -81,6 +81,7 @@ brew "boot2docker"
 cask "tuck"
 cask "finderminder"
 cask "moom"
+cask "witch"
 
 # Security
 cask "1password"
@@ -95,6 +96,8 @@ cask "do-not-disturb"
 cask "knockknock"
 cask "oversight"
 cask "whatsyoursign"
+cask "outline"
+cask "outline-manager"
 
 # Install developer friendly quick look plugins; see https://github.com/sindresorhus/quick-look-plugins
 cask "qlcolorcode"
@@ -111,6 +114,39 @@ cask "qlvideo"
 # Example:
 # mas "The Unarchiver", id: 425424353
 brew "mas"
+mas "1026349850" # Copied
+mas "449830122" # HyperDock
+mas "880001334" # Reeder"
+mas "918858936" # Airmail
+mas "969418666" # ColorSnapper2
+mas "402989379" # iStudiez Pro
+mas "736189492" # Notability
+mas "1082624744" # Gifox
+mas "585829637" # Todoist"
+mas "1130783329" # Archiver 3
+mas "1419224245" # Canopy
+mas "924726344" # Deliveries
+mas "639968404" # Parcel
+mas "937984704" # Amphetamine
+mas "1354319581" # Core Shell
+mas "1354318707" # Core Tunnel
+mas "993487541" # CARROT Weather
+mas "441258766" # Magnet
+mas "1191449274" # ToothFairy
+mas "1006087419" # SnippetsLab
+mas "568494494" # Pocket
+mas "553245401" # Friendly Streaming
+mas "1152443474" # Squash
+mas "445189367" # PopClip
+mas "668429425" # Downcast
+mas "975937182" # Fantastical 2
+mas "411643860" # DaisyDisk
+mas "405399194# # Kindle
+mas "457622435" # Yoink
+mas "915542151" # Monity
+mas "430798174" # HazeOver
+mas "897118787" # Shazam
+mas "1292198261" # iMazing HEIC Converter
 
 # misc.
 brew "tmux"
