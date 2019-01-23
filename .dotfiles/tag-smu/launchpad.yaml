@@ -3,7 +3,7 @@ apps:
   - number: 1
     items:
     - Station
-    - folder: Web Browsers
+    - folder: Browsers
       pages:
       - number: 1
         items:
@@ -13,30 +13,10 @@ apps:
         - Firefox Developer Edition
         - Safari
     - Airmail 3
-    - Contacts
-    - iStudiez Pro
     - Fantastical 2
-    - Todoist
-    - Reminders
-    - Notes
     - CARROT Weather
-    - folder: Entertainment
-      pages:
-      - number: 1
-        items:
-        - DISHAnywherePlayer
-        - DISHAnywherePlayer_Launcher
-        - VLC
-        - Friendly Streaming
-    - folder: News
-      pages:
-      - number: 1
-        items:
-        - Downcast
-        - Reeder
-        - Pocket
-    - Maps
-    - folder: Social Media
+    - Todoist
+    - folder: Social Networking
       pages:
       - number: 1
         items:
@@ -44,39 +24,184 @@ apps:
         - FaceTime
         - Slack
         - Discord
-    - Photo Booth
-    - Photos
-    - iMovie
-    - GarageBand
-    - Spotify
-    - Shazam
     - folder: Shopping
       pages:
       - number: 1
         items:
         - App Store
-        - iTunes
         - Deliveries
         - Parcel
+    - folder: Music
+      pages:
+      - number: 1
+        items:
+        - iTunes
+        - Spotify
+        - Shazam
+    - folder: News
+      pages:
+      - number: 1
+        items:
+        - Downcast
+        - News
+        - Reeder
+        - Pocket
     - folder: College
       pages:
       - number: 1
         items:
+        - iStudiez Pro
+        - Microsoft Word
+        - Microsoft Excel
+        - Microsoft OneNote
+        - Microsoft PowerPoint
         - Pages
         - Numbers
         - Keynote
-        - Microsoft OneNote
-        - Microsoft PowerPoint
-        - Microsoft Excel
-        - Microsoft Word
-        - Grammarly
         - Notability
+        - Grammarly
+        - Adobe Acrobat Reader DC
         - Kindle
         - Books
-        - Adobe Acrobat Reader DC
-    - Preview
-    - Dictionary
-    - Calculator
+    - folder: Video
+      pages:
+      - number: 1
+        items:
+        - VLC
+        - DISHAnywherePlayer
+        - Friendly Streaming
+    - folder: Developer Tools
+      pages:
+      - number: 1
+        items:
+        - Visual Studio Code
+        - IntelliJ IDEA
+        - PyCharm
+        - WebStorm
+        - Android Studio
+        - Xcode
+        - MacDown
+        - CodeKit
+        - Prepros
+        - pgAdmin 4
+        - PSequel
+        - Sequel Pro
+        - Dash
+        - Transmit
+        - ForkLift
+        - Tower
+        - Sublime Merge
+        - iTerm
+        - Hyper
+        - Core Shell
+        - Core Tunnel
+        - Now
+        - GraphQL Playground
+        - Canopy
+        - SnippetsLab
+        - BrowserStack Local
+        - CodePilot.ai
+    - folder: Graphics & Design
+      pages:
+      - number: 1
+        items:
+        - Gravit Designer
+        - Gravit Designer
+        - Aseprite
+        - Figma
+        - ColorSnapper2
+        - Squash
+        - ImageOptim
+        - iMazing HEIC Converter
+        - CleanShot
+        - Gyazo
+        - Gyazo GIF
+        - Gifox
+        - Photos
+        - Preview
+        - Suitcase Fusion
+    - folder: Security
+      pages:
+      - number: 1
+        items:
+        - 1Password 7
+        - Bitwarden
+        - Authy
+        - Authy
+        - VeraCrypt
+        - Outline Manager
+        - Outline
+        - Micro Snitch
+        - LuLu
+        - TaskExplorer
+        - OverSight
+        - Do Not Disturb
+        - ReiKey
+        - KnockKnock
+        - WhatsYourSign
+        - SafeConnect
+    - folder: System
+      pages:
+      - number: 1
+        items:
+        - System Preferences
+        - Acronis True Image
+        - Backblaze
+        - iMazing
+        - Backup and Sync from Google
+        - Dropbox
+        - MEGAsync
+        - AppDelete
+        - Amphetamine
+        - InsomniaX
+        - Archiver 3
+        - The Unarchiver
+        - Workspaces
+        - Bartender 3
+        - Tuck
+        - Magnet
+        - Moom
+        - FinderMinder
+        - Witch
+        - HazeOver
+        - HyperDock
+        - PopClip
+        - Default Folder X
+        - Power Menu
+        - TouchSwitcher
+        - Parallels Desktop
+        - Kali Linux Applications
+        - Ubuntu Linux Applications
+        - VirtualBox
+        - Install macOS Mojave
+        - Vagrant Manager
+        - Docker
+        - balenaEtcher
+        - DAEMON Tools
+        - LaCie Setup
+      - number: 2
+        items:
+        - NTFS for Mac
+        - Paragon CampTune
+        - extFS for Mac
+        - Hard Disk Manager
+        - Paragon VMDK Mounter
+        - ToothFairy
+        - Logitech Options
+        - Jettison
+        - DaisyDisk
+        - iStat Menus
+        - Monity
+        - Transmission
+        - Deluge
+        - Muzzle
+        - Rocket
+        - Copied
+        - Yoink
+        - Droplr
+        - Muse
+        - VNC Viewer
+        - Alfred 3
     - folder: Other
       pages:
       - number: 1
@@ -105,147 +230,28 @@ apps:
         - ColorSync Utility
         - Bluetooth File Exchange
         - Audio MIDI Setup
-        - Mail
-        - Calendar
+        - Dashboard
         - Screenshot
-        - Home
-        - News
-        - Stocks
-        - Voice Memos
-    - Siri
-    - Mission Control
-    - Dashboard
-    - folder: Design
-      pages:
-      - number: 1
-        items:
-        - Figma
-        - Gravit Designer
-        - Aseprite
-        - ColorSnapper2
-        - Gyazo
-        - Gyazo GIF
-        - Gifox
-        - CleanShot
-        - Squash
-        - iMazing HEIC Converter
-    - folder: Developer Tools
-      pages:
-      - number: 1
-        items:
-        - Visual Studio Code
-        - IntelliJ IDEA
-        - WebStorm
-        - PyCharm
-        - Android Studio
-        - SnippetsLab
-        - Dash
-        - CodePilot.ai
-        - MacDown
-        - iTerm
-        - Hyper
-        - ImageOptim
-        - CodeKit
-        - Prepros
-        - Transmit
-        - ForkLift
-        - Tower
-        - Sublime Merge
-        - Canopy
-        - Now
-        - Xcode
-        - GraphQL Playground
-        - PSequel
-        - Sequel Pro
-        - pgAdmin 4
-        - Vagrant Manager
-        - VirtualBox
-        - Parallels Desktop
-        - Docker
-        - BrowserStack Local
-        - Core Shell
-        - Core Tunnel
-        - Install macOS Mojave
-        - VNC Viewer
-    - folder: Security
-      pages:
-      - number: 1
-        items:
-        - 1Password 7
-        - Bitwarden
-        - Authy
-        - Authy
-        - Avast Security
-        - Outline Manager
-        - Outline
-        - SafeConnect
-        - VeraCrypt
-        - Little Snitch Configuration
-        - Micro Snitch
-        - ReiKey
-        - LuLu
-        - TaskExplorer
-        - Do Not Disturb
-        - KnockKnock
-        - OverSight
-        - WhatsYourSign
-    - folder: System
-      pages:
-      - number: 1
-        items:
-        - Bartender 3
-        - Witch
-        - Moom
-        - Magnet
-        - Tuck
-        - FinderMinder
-        - Workspaces
-        - HyperDock
-        - TouchSwitcher
-        - ToothFairy
-        - InsomniaX
-        - Amphetamine
-        - HazeOver
-        - Logitech Options
-        - Backblaze
-        - iMazing
-        - Backup and Sync from Google
-        - Dropbox
-        - MEGAsync
-        - Acronis True Image
-        - Suitcase Fusion
-        - Droplr
-        - Copied
-        - Yoink
-        - Transmission
-        - Deluge
-        - Default Folder X
+        - Calendar
+        - DISHAnywherePlayer_Launcher
         - Suspicious Package
-        - Archiver 3
-        - The Unarchiver
-        - PopClip
-        - Rocket
-        - Power Menu
-        - DaisyDisk
-        - balenaEtcher
+        - Reminders
+        - Mail
+        - Contacts
+        - Mission Control
+        - Siri
+        - GarageBand
       - number: 2
         items:
-        - extFS for Mac
-        - NTFS for Mac
-        - Hard Disk Manager
-        - Paragon CampTune
-        - Paragon VMDK Mounter
-        - DAEMON Tools
-        - Jettison
-        - iStat Menus
-        - Monity
-        - Alfred 3
-        - Muzzle
-        - Muse
-        - AppDelete
-        - System Preferences
-    - Kali Linux Applications
-    - Ubuntu Linux Applications
+        - Stocks
+        - Dictionary
+        - Calculator
+        - iMovie
+        - Maps
+        - Voice Memos
+        - Home
+        - Notes
+        - Photo Booth
 widgets:
   pages: []
 dock_items:
