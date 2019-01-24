@@ -84,6 +84,7 @@ cask "moom"
 cask "witch"
 
 # Security
+cask "avast-security"
 cask "1password"
 cask "1password-cli"
 cask "bitwarden"
