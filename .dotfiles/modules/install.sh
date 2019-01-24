@@ -154,36 +154,36 @@ function use_git() {
     confirm
     mkcd "${SMU_HOME_DIR}"
 
-	if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
-		echo -e "\n➜ Obtaining 'set-me-up'."
-		obtain "${smu_download}"
-		printf "\n"
+	echo -e "\n➜ Obtaining 'set-me-up'."
+	obtain "${smu_download}"
+	printf "\n"
 
-		if ! is_git_repo; then
-			git -C "${SMU_HOME_DIR}" init &> /dev/null
+	if ! is_git_repo; then
+		git -C "${SMU_HOME_DIR}" init &> /dev/null
 
-			# If (nicholasadamou/set-me-up) has submodules
-			# make sure to install them prior to installing
-			# set-me-up-blueprint submodules.
+		# If (nicholasadamou/set-me-up) has submodules
+		# make sure to install them prior to installing
+		# set-me-up-blueprint submodules.
 
-			if has_submodules; then
-				# Store contents of (nicholasadamou/set-me-up) '.gitmodules' in variable
-				# to later append to 'set-me-up-blueprint .gitmodules' if it exists.
+		if has_submodules; then
+			# Store contents of (nicholasadamou/set-me-up) '.gitmodules' in variable
+			# to later append to 'set-me-up-blueprint .gitmodules' if it exists.
 
-				submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
+			submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
 
-				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-				echo "➜ Installing 'set-me-up' submodules."
+			echo "➜ Installing 'set-me-up' submodules."
 
-				install_submodules
+			install_submodules
 
-				printf "\n"
-			fi
+			printf "\n"
 		fi
+	fi
 
-		if [[ "${SMU_BLUEPRINT}" != "" ]]; then
-			if is_git_repo && has_remote_origin; then
+	if [[ "${SMU_BLUEPRINT}" != "" ]]; then
+		if is_git_repo && has_remote_origin; then
+			if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
 				echo "➜ Updating your 'set-me-up' blueprint."
 
 				if has_untracked_changes; then
@@ -200,42 +200,42 @@ function use_git() {
 					git -C "${SMU_HOME_DIR}" submodule foreach git pull
 				fi
 			else
-				echo "➜ Cloning your 'set-me-up' blueprint."
+				echo -e "\nAlready up-to-date"
+			fi
+		else
+			echo "➜ Cloning your 'set-me-up' blueprint."
 
-				git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
-				git -C "${SMU_HOME_DIR}" fetch
-				git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
+			git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
+			git -C "${SMU_HOME_DIR}" fetch
+			git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
+
+			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+			if has_submodules; then
+				echo -e "\n➜ Installing your 'set-me-up' blueprint submodules."
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-				if has_submodules; then
-					echo -e "\n➜ Installing your 'set-me-up' blueprint submodules."
+				# If '$submodules' is not empty, meaning,
+				# (nicholasadamou/set-me-up) has submodules
+				# append its contents to the set-me-up-blueprint
+				#'.gitmodules' file.
 
-					# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-					# If '$submodules' is not empty, meaning,
-					# (nicholasadamou/set-me-up) has submodules
-					# append its contents to the set-me-up-blueprint
-					#'.gitmodules' file.
-
-					if [ -n "$submodules" ]; then
-						if ! grep -q "$(<<<"$submodules" tr '\n' '\01')" < <(less "${SMU_HOME_DIR}/.gitmodules" | tr '\n' '\01'); then
-							echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
-							git -C "${SMU_HOME_DIR}" \
-								-c user.name="set-me-up" \
-								-c user.email="set-me-up@gmail.com" \
-								commit -a -m "✅ UPDATED: '.gitmodules'" &> /dev/null
-						fi
+				if [ -n "$submodules" ]; then
+					if ! grep -q "$(<<<"$submodules" tr '\n' '\01')" < <(less "${SMU_HOME_DIR}/.gitmodules" | tr '\n' '\01'); then
+						echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+						git -C "${SMU_HOME_DIR}" \
+							-c user.name="set-me-up" \
+							-c user.email="set-me-up@gmail.com" \
+							commit -a -m "✅ UPDATED: '.gitmodules'" &> /dev/null
 					fi
-
-					# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-					install_submodules
 				fi
+
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+				install_submodules
 			fi
 		fi
-	else
-		echo -e "\nAlready up-to-date"
 	fi
 
     echo -e "\n✔︎ Done. Enjoy."
