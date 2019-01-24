@@ -115,7 +115,7 @@ function install_xcode_command_line_tools() {
 
 function confirm() {
 	if [ -n "$SMU_BLUEPRINT" ] && [ -n "$SMU_BLUEPRINT_BRANCH" ]; then
-		echo "➜ This script will download '$SMU_BLUEPRINT' on  branch'$SMU_BLUEPRINT_BRANCH' to ${SMU_HOME_DIR}"
+		echo "➜ This script will download '$SMU_BLUEPRINT' on  branch '$SMU_BLUEPRINT_BRANCH' to ${SMU_HOME_DIR}"
 	else
 		echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
 	fi
