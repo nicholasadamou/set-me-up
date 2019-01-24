@@ -48,6 +48,17 @@ function does_repo_contain() {
 	git -C "${SMU_HOME_DIR}" ls-files | grep -qE "$1" &> /dev/null
 }
 
+function is_git_repo_out_of_date() {
+	UPSTREAM=${1:-'@{u}'}
+	LOCAL=$(git -C "${SMU_HOME_DIR}" rev-parse @)
+	REMOTE=$(git -C "${SMU_HOME_DIR}" rev-parse "$UPSTREAM")
+	BASE=$(git -C "${SMU_HOME_DIR}" merge-base @ "$UPSTREAM")
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	[ "$LOCAL" = "$BASE" ] && [ "$LOCAL" != "$REMOTE" ]
+}
+
 function is_dir_empty() {
 	ls -A "${SMU_HOME_DIR:?}/$1" &> /dev/null
 }
@@ -138,85 +149,89 @@ function use_git() {
     confirm
     mkcd "${SMU_HOME_DIR}"
 
-    echo -e "\n➜ Obtaining 'set-me-up'."
-    obtain "${smu_download}"
-    printf "\n"
+	if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
+		echo -e "\n➜ Obtaining 'set-me-up'."
+		obtain "${smu_download}"
+		printf "\n"
 
-	if ! is_git_repo; then
-		git -C "${SMU_HOME_DIR}" init &> /dev/null
+		if ! is_git_repo; then
+			git -C "${SMU_HOME_DIR}" init &> /dev/null
 
-		# If (nicholasadamou/set-me-up) has submodules
-		# make sure to install them prior to installing
-		# set-me-up-blueprint submodules.
+			# If (nicholasadamou/set-me-up) has submodules
+			# make sure to install them prior to installing
+			# set-me-up-blueprint submodules.
 
-		if has_submodules; then
-			# Store contents of (nicholasadamou/set-me-up) '.gitmodules' in variable
-			# to later append to 'set-me-up-blueprint .gitmodules' if it exists.
+			if has_submodules; then
+				# Store contents of (nicholasadamou/set-me-up) '.gitmodules' in variable
+				# to later append to 'set-me-up-blueprint .gitmodules' if it exists.
 
-			submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
+				submodules="$(cat "${SMU_HOME_DIR}/.gitmodules")"
 
-			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-			echo "➜ Installing 'set-me-up' submodules."
-
-			install_submodules
-
-			printf "\n"
-		fi
-	fi
-
-    if [[ "${SMU_BLUEPRINT}" != "" ]]; then
-        if is_git_repo && has_remote_origin; then
-            echo "➜ Updating your 'set-me-up' blueprint."
-
-			if has_untracked_changes; then
-				git -C "${SMU_HOME_DIR}" reset --hard HEAD &> /dev/null
-			fi
-
-            git -C "${SMU_HOME_DIR}" pull --ff
-
-            if has_submodules; then
-				echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
+				echo "➜ Installing 'set-me-up' submodules."
 
 				install_submodules
 
-				git -C "${SMU_HOME_DIR}" submodule foreach git pull
-            fi
-        else
-            echo "➜ Cloning your 'set-me-up' blueprint."
+				printf "\n"
+			fi
+		fi
 
-            git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
-            git -C "${SMU_HOME_DIR}" fetch
-			git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
+		if [[ "${SMU_BLUEPRINT}" != "" ]]; then
+			if is_git_repo && has_remote_origin; then
+				echo "➜ Updating your 'set-me-up' blueprint."
 
-			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-            if has_submodules; then
-				echo -e "\n➜ Installing your 'set-me-up' blueprint submodules."
-
-				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-				# If '$submodules' is not empty, meaning,
-				# (nicholasadamou/set-me-up) has submodules
-				# append its contents to the set-me-up-blueprint
-				#'.gitmodules' file.
-
-				if [ -n "$submodules" ]; then
-					if ! grep -q "$(<<<"$submodules" tr '\n' '\01')" < <(less "${SMU_HOME_DIR}/.gitmodules" | tr '\n' '\01'); then
-						echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
-						git -C "${SMU_HOME_DIR}" \
-							-c user.name="set-me-up" \
-							-c user.email="set-me-up@gmail.com" \
-							commit -a -m "✅ UPDATED: '.gitmodules'" &> /dev/null
-					fi
+				if has_untracked_changes; then
+					git -C "${SMU_HOME_DIR}" reset --hard HEAD &> /dev/null
 				fi
 
+				git -C "${SMU_HOME_DIR}" pull --ff
+
+				if has_submodules; then
+					echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
+
+					install_submodules
+
+					git -C "${SMU_HOME_DIR}" submodule foreach git pull
+				fi
+			else
+				echo "➜ Cloning your 'set-me-up' blueprint."
+
+				git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
+				git -C "${SMU_HOME_DIR}" fetch
+				git -C "${SMU_HOME_DIR}" checkout -f "${SMU_BLUEPRINT_BRANCH}"
+
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-                install_submodules
-            fi
-        fi
-    fi
+				if has_submodules; then
+					echo -e "\n➜ Installing your 'set-me-up' blueprint submodules."
+
+					# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+					# If '$submodules' is not empty, meaning,
+					# (nicholasadamou/set-me-up) has submodules
+					# append its contents to the set-me-up-blueprint
+					#'.gitmodules' file.
+
+					if [ -n "$submodules" ]; then
+						if ! grep -q "$(<<<"$submodules" tr '\n' '\01')" < <(less "${SMU_HOME_DIR}/.gitmodules" | tr '\n' '\01'); then
+							echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
+							git -C "${SMU_HOME_DIR}" \
+								-c user.name="set-me-up" \
+								-c user.email="set-me-up@gmail.com" \
+								commit -a -m "✅ UPDATED: '.gitmodules'" &> /dev/null
+						fi
+					fi
+
+					# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+					install_submodules
+				fi
+			fi
+		fi
+	else
+		echo -e "Already up-to-date\n"
+	fi
 
     echo -e "\n✔︎ Done. Enjoy."
 }
