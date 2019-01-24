@@ -200,7 +200,7 @@ function use_git() {
 					git -C "${SMU_HOME_DIR}" submodule foreach git pull
 				fi
 			else
-				echo -e "\nAlready up-to-date"
+				echo "Already up-to-date"
 			fi
 		else
 			echo "➜ Cloning your 'set-me-up' blueprint."
