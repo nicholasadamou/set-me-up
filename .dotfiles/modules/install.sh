@@ -48,6 +48,17 @@ function does_repo_contain() {
 	git -C "${SMU_HOME_DIR}" ls-files | grep -qE "$1" &> /dev/null
 }
 
+function is_git_repo_out_of_date() {
+	UPSTREAM=${1:-'@{u}'}
+	LOCAL=$(git -C "${SMU_HOME_DIR}" rev-parse @)
+	REMOTE=$(git -C "${SMU_HOME_DIR}" rev-parse "$UPSTREAM")
+	BASE=$(git -C "${SMU_HOME_DIR}" merge-base @ "$UPSTREAM")
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	[ "$LOCAL" = "$BASE" ] && [ "$LOCAL" != "$REMOTE" ]
+}
+
 function is_dir_empty() {
 	ls -A "${SMU_HOME_DIR:?}/$1" &> /dev/null
 }
@@ -143,21 +154,25 @@ function use_git() {
 
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo && has_remote_origin; then
-            echo "➜ Updating your 'set-me-up' blueprint."
-
 			if has_untracked_changes; then
 				git -C "${SMU_HOME_DIR}" reset --hard HEAD &> /dev/null
 			fi
 
-            git -C "${SMU_HOME_DIR}" pull --ff
+            if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
+				echo "➜ Updating your 'set-me-up' blueprint."
 
-            if has_submodules; then
-				echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
+				git -C "${SMU_HOME_DIR}" pull --ff
 
-				install_submodules
+				if has_submodules; then
+					echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
 
-				git -C "${SMU_HOME_DIR}" submodule foreach git pull
-            fi
+					install_submodules
+
+					git -C "${SMU_HOME_DIR}" submodule foreach git pull
+				fi
+			else
+				echo "Already up-to-date"
+			fi
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
 
