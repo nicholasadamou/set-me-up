@@ -229,7 +229,7 @@ function main() {
 	if ! are_xcode_command_line_tools_installed; then
         install_xcode_command_line_tools
     else
-        echo -e "✔︎ 'Xcode Command Line Tools' is already installed\n"
+        echo -e "✔︎ 'Xcode Command Line Tools' are already installed\n"
     fi
 
     while [[ $# -gt 0 ]]; do
