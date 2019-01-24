@@ -124,6 +124,7 @@ apps:
       pages:
       - number: 1
         items:
+        - Avast Security
         - 1Password 7
         - Bitwarden
         - Authy
