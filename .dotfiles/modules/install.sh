@@ -235,7 +235,7 @@ function use_git() {
 			fi
 		fi
 	else
-		echo -e "Already up-to-date\n"
+		echo -e "\nAlready up-to-date"
 	fi
 
     echo -e "\n✔︎ Done. Enjoy."
