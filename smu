@@ -5,6 +5,7 @@
 # ARG_OPTIONAL_BOOLEAN([provision],[p],[Provision given modules],[off])
 # ARG_OPTIONAL_REPEATED([modules],[m],[Modules to provision])
 # ARG_OPTIONAL_BOOLEAN([lsrc],[],[List files that will be symlinked via 'rcm' into your home directory],[])
+# ARG_OPTIONAL_BOOLEAN([rcdn],[],[Remove files that were symlinked via 'rcup'],[])
 # ARG_OPTIONAL_BOOLEAN([symlink],[],[Symlink files via 'rcm' into your home directory],[])
 # ARG_HELP([set-me-up installer])
 # ARGBASH_GO()
@@ -37,6 +38,7 @@ _arg_provision="off"
 _arg_modules=()
 _arg_lsrc="off"
 _arg_symlink="off"
+_arg_rcdn="off"
 
 print_help ()
 {
@@ -48,6 +50,7 @@ print_help ()
 	printf '\t%s\n' "-m,--modules: Modules to provision (empty by default)"
 	printf '\t%s\n' "--lsrc,--no-lsrc: List files that will be symlinked via 'rcm' into your home directory (off by default)"
 	printf '\t%s\n' "--symlink,--no-symlink: Symlink files via 'rcm' into your home directory (off by default)"
+	printf '\t%s\n' "--rcdn,--no-rcdn: Remove files that were symlinked via 'rcup' (off by default)"
 	printf '\t%s\n' "-h,--help: Prints help"
 }
 
@@ -103,6 +106,10 @@ parse_commandline ()
 			--no-symlink|--symlink)
 				_arg_symlink="on"
 				test "${1:0:5}" = "--no-" && _arg_symlink="off"
+				;;
+			--no-rcdn|--rcdn)
+				_arg_rcdn="on"
+				test "${1:0:5}" = "--no-" && _arg_rcdn="off"
 				;;
 			-h|--help)
 				print_help
@@ -176,6 +183,12 @@ fi
 if [[ ${_arg_symlink} == "on" ]]; then
 	find -L "$HOME" -name . -o -type d -prune -o -type l -exec rm {} +
     export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcup -v -f -d "${SMU_HOME_DIR}/.dotfiles"
+
+    exit
+fi
+
+if [[ ${_arg_rcdn} == "on" ]]; then
+    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcdn -v -d "${SMU_HOME_DIR}/.dotfiles"
 
     exit
 fi

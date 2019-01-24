@@ -1,7 +1,6 @@
 tap "sebglazebrook/aliases"
-tap "loopbit/tap"
 
-# bash4
+# bash5
 brew "bash"
 brew "bash-completion2"
 
@@ -21,9 +20,6 @@ brew "fasd"
 
 # https://github.com/sebglazebrook/aliases
 brew "aliases"
-
-# https://github.com/loopbit/autoenv_fish
-brew "autoenv_fish"
 
 cask "iterm2"
 cask "hyper"
