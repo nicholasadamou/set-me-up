@@ -114,8 +114,13 @@ function install_xcode_command_line_tools() {
 }
 
 function confirm() {
-    echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
-    read -r -p "Would you like 'set-me-up' to configure in that directory? (y/n) " -n 1;
+	if [ -n "$SMU_BLUEPRINT" ] && [ -n "$SMU_BLUEPRINT_BRANCH" ]; then
+		echo "➜ This script will download '$SMU_BLUEPRINT/$SMU_BLUEPRINT_BRANCH' to ${SMU_HOME_DIR}"
+	else
+		echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
+	fi
+
+	read -r -p "Would you like 'set-me-up' to configure in that directory? (y/n) " -n 1;
     echo "";
 
     [[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
