@@ -36,9 +36,6 @@ _arg_base="on"
 _arg_selfupdate="off"
 _arg_provision="off"
 _arg_modules=()
-_arg_lsrc="off"
-_arg_symlink="off"
-_arg_rcdn="off"
 
 print_help ()
 {
@@ -49,8 +46,8 @@ print_help ()
 	printf '\t%s\n' "-p,--provision,--no-provision: Provision given modules (off by default)"
 	printf '\t%s\n' "-m,--modules: Modules to provision (empty by default)"
 	printf '\t%s\n' "--lsrc,--no-lsrc: List files that will be symlinked via 'rcm' into your home directory (off by default)"
-	printf '\t%s\n' "--symlink,--no-symlink: Symlink files via 'rcm' into your home directory (off by default)"
-	printf '\t%s\n' "--rcdn,--no-rcdn: Remove files that were symlinked via 'rcup' (off by default)"
+	printf '\t%s\n' "--rcup: Symlink files via 'rcm' into your home directory (off by default)"
+	printf '\t%s\n' "--rcdn: Remove files that were symlinked via 'rcup' (off by default)"
 	printf '\t%s\n' "-h,--help: Prints help"
 }
 
@@ -99,17 +96,17 @@ parse_commandline ()
 			-m*)
 				_arg_modules+=("${_key##-m}")
 				;;
-			--no-lsrc|--lsrc)
-				_arg_lsrc="on"
-				test "${1:0:5}" = "--no-" && _arg_lsrc="off"
+			--lsrc)
+				list_symlinks
+				exit 0
 				;;
-			--no-symlink|--symlink)
-				_arg_symlink="on"
-				test "${1:0:5}" = "--no-" && _arg_symlink="off"
+			--rcup)
+				symlink
+				exit 0
 				;;
-			--no-rcdn|--rcdn)
-				_arg_rcdn="on"
-				test "${1:0:5}" = "--no-" && _arg_rcdn="off"
+			--rcdn)
+				unsymlink
+				exit 0
 				;;
 			-h|--help)
 				print_help
@@ -145,6 +142,24 @@ provision_enabled() {
 export _arg_provision
 export -f provision_enabled
 
+list_symlinks() {
+	# List files that will be symlinked via 'rcup' using set-me-up/.dotifles/rcrc.
+	export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && lsrc -v -d "${SMU_HOME_DIR}/.dotfiles"
+}
+
+unsymlink() {
+	# Remove files that were symlinked via 'rcup'.
+	export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcdn -v -d "${SMU_HOME_DIR}/.dotfiles"
+}
+
+symlink() {
+	# Remove broken symlinks in '$HOME' directory.
+	find -L "$HOME" -name . -o -type d -prune -o -type l -exec rm {} +
+
+	# Symlink files listed within set-me-up/.dotifles/rcrc to the '$HOME' directory.
+    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcup -v -f -d "${SMU_HOME_DIR}/.dotfiles"
+}
+
 provision_module() {
     # source base from installation directory.
     # this enables smu to work on first time installations.
@@ -173,25 +188,6 @@ provision_module() {
         [[ -s ./after.sh ]] && source ./after.sh
     )
 }
-
-if [[ ${_arg_lsrc} == "on" ]]; then
-    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && lsrc -v -d "${SMU_HOME_DIR}/.dotfiles"
-
-    exit
-fi
-
-if [[ ${_arg_symlink} == "on" ]]; then
-	find -L "$HOME" -name . -o -type d -prune -o -type l -exec rm {} +
-    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcup -v -f -d "${SMU_HOME_DIR}/.dotfiles"
-
-    exit
-fi
-
-if [[ ${_arg_rcdn} == "on" ]]; then
-    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcdn -v -d "${SMU_HOME_DIR}/.dotfiles"
-
-    exit
-fi
 
 if [[ ${_arg_selfupdate} == "on" ]]; then
 	if [ -e "${module_path}"/install.sh ]; then
