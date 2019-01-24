@@ -51,6 +51,24 @@ print_help ()
 	printf '\t%s\n' "-h,--help: Prints help"
 }
 
+list_symlinks() {
+	# List files that will be symlinked via 'rcup' using set-me-up/.dotifles/rcrc.
+	export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && lsrc -v -d "${SMU_HOME_DIR}/.dotfiles"
+}
+
+unsymlink() {
+	# Remove files that were symlinked via 'rcup'.
+	export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcdn -v -d "${SMU_HOME_DIR}/.dotfiles"
+}
+
+symlink() {
+	# Remove broken symlinks in '$HOME' directory.
+	find -L "$HOME" -name . -o -type d -prune -o -type l -exec rm {} +
+
+	# Symlink files listed within set-me-up/.dotifles/rcrc to the '$HOME' directory.
+    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcup -v -f -d "${SMU_HOME_DIR}/.dotfiles"
+}
+
 parse_commandline ()
 {
 	while test $# -gt 0
@@ -141,24 +159,6 @@ provision_enabled() {
 
 export _arg_provision
 export -f provision_enabled
-
-list_symlinks() {
-	# List files that will be symlinked via 'rcup' using set-me-up/.dotifles/rcrc.
-	export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && lsrc -v -d "${SMU_HOME_DIR}/.dotfiles"
-}
-
-unsymlink() {
-	# Remove files that were symlinked via 'rcup'.
-	export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcdn -v -d "${SMU_HOME_DIR}/.dotfiles"
-}
-
-symlink() {
-	# Remove broken symlinks in '$HOME' directory.
-	find -L "$HOME" -name . -o -type d -prune -o -type l -exec rm {} +
-
-	# Symlink files listed within set-me-up/.dotifles/rcrc to the '$HOME' directory.
-    export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcup -v -f -d "${SMU_HOME_DIR}/.dotfiles"
-}
 
 provision_module() {
     # source base from installation directory.
