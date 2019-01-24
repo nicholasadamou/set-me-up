@@ -105,6 +105,8 @@ Through the power of [rcm tags](http://thoughtbot.github.io/rcm/rcup.1.html) `se
 
 Use the `smu --lsrc` command to show how `rcm` would manage your dotfiles and to verify your setup.
 
+Additionally, you can use `smu --rcdn` command to remove files that were symlinked via `rcup`.
+
 - You can add new dotfiles and modules to your tag. `rcm` symlinks all files if finds.
 - File contents are not merged between tags, your file simply has a higher precedence and will be used instead.
 
