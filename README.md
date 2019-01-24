@@ -108,7 +108,9 @@ Use the `smu --lsrc` command to show how `rcm` would manage your dotfiles and to
 - You can add new dotfiles and modules to your tag. `rcm` symlinks all files if finds.
 - File contents are not merged between tags, your file simply has a higher precedence and will be used instead.
 
-Use `smu --symlink` command to symlink the dotfiles using [`rcup`](http://thoughtbot.github.io/rcm/rcup.1.html) contained within [`.dotfiles`](.dotfiles) using [`.rcrc`](.dotfiles/rcrc).
+Use `smu --rcup` command to symlink the dotfiles using [`rcup`](http://thoughtbot.github.io/rcm/rcup.1.html) contained within [`.dotfiles`](.dotfiles) using [`.rcrc`](.dotfiles/rcrc).
+
+Additionally, you can use `smu --rcdn` command to remove files listed within [`.rcrc`](.dotfiles/rcrc) that were symlinked via `rcup` from [`.dotfiles`](.dotfiles).
 
 ##### Creating a custom tag
 
