@@ -78,6 +78,30 @@ function install_submodules() {
 	git -C "${SMU_HOME_DIR}" submodule update --init --recursive
 }
 
+function are_xcode_command_line_tools_installed() {
+    xcode-select --print-path &> /dev/null
+}
+
+function install_xcode_command_line_tools() {
+    # If necessary, prompt user to install
+    # the `Xcode Command Line Tools`.
+
+    echo "➜ Installing 'Xcode Command Line Tools'"
+
+    xcode-select --install &> /dev/null
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Wait until the `Xcode Command Line Tools` are installed.
+
+    until are_xcode_command_line_tools_installed; do
+        sleep 5;
+    done
+
+    are_xcode_command_line_tools_installed && \
+        echo -e "✔︎ 'Xcode Command Line Tools' is installed\n"
+}
+
 function confirm() {
     echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
     read -r -p "Would you like 'set-me-up' to configure in that directory? (y/n) " -n 1;
@@ -200,7 +224,13 @@ function use_git() {
 function main() {
     method="curl"
 
-    echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
+	echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
+
+	if ! are_xcode_command_line_tools_installed; then
+        install_xcode_command_line_tools
+    else
+        echo -e "✔︎ 'Xcode Command Line Tools' is already installed\n"
+    fi
 
     while [[ $# -gt 0 ]]; do
         arguments="$1"
