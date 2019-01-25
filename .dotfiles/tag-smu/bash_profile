@@ -138,8 +138,8 @@ clear && cd "$HOME" || return
 # Always start tmux on start-up of bash
 # see: https://unix.stackexchange.com/a/219803/173825
 
-if command -v tmux >/dev/null; then
-        if [ -n "$PS1" ]; then # unless shell is not loaded interactively, run `tmux`
-                [[ ! $TERM =~ screen ]] && [ -z "$TMUX" ] && tmux
-        fi
-fi
+#if command -v tmux >/dev/null; then
+#        if [ -n "$PS1" ]; then # unless shell is not loaded interactively, run `tmux`
+#                [[ ! $TERM =~ screen ]] && [ -z "$TMUX" ] && tmux
+#        fi
+#fi
