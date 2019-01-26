@@ -215,13 +215,13 @@ install_plugins() {
     # If not, create them.
 
     [ ! -d "$HOME/.vim/backups" ] && \
-        mkdir "$HOME/.vim/backups"
+        mkdir -p "$HOME/.vim/backups"
 
     [ ! -d "$HOME/.vim/swaps" ] && \
-        mkdir "$HOME/.vim/swaps"
+        mkdir -p "$HOME/.vim/swaps"
 
     [ ! -d "$HOME/.vim/undos" ] && \
-        mkdir "$HOME/.vim/undos"
+        mkdir -p "$HOME/.vim/undos"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
