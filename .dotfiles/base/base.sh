@@ -203,8 +203,8 @@ symlink() {
     readonly dotfiles="${SMU_PATH}/.dotfiles"
 
     execute \
-        "export RCRC=\"../rcrc\" && \
-            rcup -q -f -d \"${dotfiles}\"" \
+        "export RCRC=\"$dotfiles/rcrc\" && \
+            rcup -v -f -d \"${dotfiles}\"" \
         "symlink (${dotfiles})"
 
 }
