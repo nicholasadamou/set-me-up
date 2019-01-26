@@ -204,7 +204,7 @@ symlink() {
     execute \
         ". $LOCAL_BASH_CONFIG_FILE && \
 			export RCRC=\"../rcrc\" && \
-            rcup -q -f -d \"${dotfiles}\"" \
+            rcup -v -f -d \"${dotfiles}\"" \
         "symlink (${dotfiles})"
 
 }
