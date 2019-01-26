@@ -14,7 +14,8 @@ install_omf() {
 
     if ! is_omf_installed; then
         execute \
-            "fish -c \"curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install && \
+            "fish -c\"
+                curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install && \
                 chmod +x install && \
                 install --noninteractive --yes --path=$HOME/.local/share/omf --config=$HOME/.config/omf && \
                 rm -rf install\"" \
