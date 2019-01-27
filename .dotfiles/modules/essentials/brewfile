@@ -4,19 +4,13 @@ tap "homebrew/versions"
 tap "bramstein/webfonttools"
 tap "buo/cask-upgrade"
 
-# Install other useful binaries.
-brew "screen"
-brew "ack"
-brew "dark-mode"
-brew "htop-osx", args: ["with-ncurses"]
-brew "googler"
-brew "buku"
-brew "exa"
-brew "shellcheck"
-brew "yarn", args: ["without-node"]
+# Mac OS management
 brew "m-cli"
+brew "dark-mode"
+brew "wallpaper"
+brew "blacktop/tap/lporg"
 
-# image processing
+# Image processing
 brew "webkit2png"
 brew "zopfli"
 brew "pngcrush"
@@ -29,27 +23,30 @@ brew "git-flow"
 brew "git-extras"
 brew "hub"
 brew "gitsh"
+brew "tig"
 
-# file/directory management
+# File/directory management
+brew "ranger"
 brew "fzf"
 brew "fzy"
 brew "z"
 brew "goto"
+brew "autojump"
+brew "jump"
 brew "bat"
 cask "osxfuse"
 brew "ext4fuse"
+brew "tree"
+brew "rename"
+brew "piknik"
 
-# compression utilities
+# Compression utilities
 brew "p7zip"
 brew "pigz"
 brew "unrar"
 brew "xz"
 
-# Lxml and Libxslt
-brew "libxml2"
-brew "libxslt"
-
-# core development casks
+# Core development casks
 cask "alfred"
 cask "iterm2"
 cask "hyper"
@@ -57,14 +54,15 @@ cask "codekit"
 cask "tower"
 cask "dash"
 cask "imageoptim"
+brew "travis"
 
-# web browsers
+# Web browsers
 cask "google-chrome"
 cask "google-chrome-canary"
 cask "firefox"
 cask "firefox-developer-edition"
 
-# database management
+# Database management
 cask "sequel-pro"
 cask "psequel"
 cask "pgadmin4"
@@ -83,6 +81,24 @@ cask "finderminder"
 cask "moom"
 cask "witch"
 
+# Terminal multiplexing
+brew "tmux"
+brew "tmuxinator-completions"
+brew "reattach-to-user-namespace"
+
+# Networking
+brew "speedtest_cli"
+brew "httpie"
+cask "ngrok"
+brew "ssh-copy-id"
+brew "pv"
+
+# Process management
+brew "htop-osx", args: ["with-ncurses"]
+
+# Music players
+brew "cmus"
+
 # Security
 cask "avast-security"
 cask "1password"
@@ -100,7 +116,8 @@ cask "whatsyoursign"
 cask "outline"
 cask "outline-manager"
 
-# Install developer friendly quick look plugins; see https://github.com/sindresorhus/quick-look-plugins
+# Install developer friendly quick look plugins
+# see https://github.com/sindresorhus/quick-look-plugins
 cask "qlcolorcode"
 cask "qlstephen"
 cask "qlmarkdown"
@@ -149,42 +166,21 @@ mas "430798174" # HazeOver
 mas "897118787" # Shazam
 mas "1292198261" # iMazing HEIC Converter
 
-# misc.
-brew "tmux"
-brew "tmuxinator-completions"
-brew "the_silver_searcher"
-brew "lua"
-brew "pv"
-brew "rename"
-brew "speedtest_cli"
-brew "ssh-copy-id"
-brew "tree"
-brew "pandoc"
-brew "httpie"
-brew "reattach-to-user-namespace"
+# Install other useful binaries.
 brew "thefuck"
+brew "the_silver_searcher"
 brew "asciinema"
-brew "hh"
-brew "ripgrep"
-brew "peco"
-brew "tig"
-brew "asdf"
-brew "wallpaper"
-brew "task"
-brew "taskd"
-brew "tasksh"
-brew "cmus"
-brew "most"
-brew "ripgrep"
-brew "travis"
 brew "sebglazebrook/aliases/aliases"
-brew "autoenv"
-brew "autojump"
-brew "jump"
+brew "screen"
+brew "ack"
+brew "buku"
+brew "exa"
+brew "shellcheck"
 brew "borg"
+brew "micro"
+brew "pandoc"
 brew "emojify"
 brew "ansiweather"
-brew "piknik"
-cask "ngrok"
-brew "micro"
-brew "blacktop/tap/lporg"
+brew "googler"
+brew "hh"
+brew "yarn", args: ["without-node"]
