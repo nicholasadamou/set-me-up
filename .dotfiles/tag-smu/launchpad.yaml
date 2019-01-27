@@ -92,7 +92,6 @@ apps:
         - Tower
         - Sublime Merge
         - iTerm
-        - Hyper
         - Core Shell
         - Core Tunnel
         - Now
@@ -253,6 +252,7 @@ apps:
         - Home
         - Notes
         - Photo Booth
+        - XQuartz
 widgets:
   pages: []
 dock_items:
@@ -292,7 +292,6 @@ dock_items:
 - Transmit
 - Sublime Merge
 - Tower
-- Hyper
 - iTerm
 - Outline Manager
 - Bitwarden
