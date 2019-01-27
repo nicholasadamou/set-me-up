@@ -49,6 +49,14 @@ main() {
     ./system/ui_and_ux.sh
 	./system/launchpad.sh
 
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	command -v "mackup" &> /dev/null && [ -d "$HOME/Dropbox/Mackup" ] && {
+		execute \
+			"mackup restore" \
+			"mackup (restore)"
+	}
+
 }
 
 main
