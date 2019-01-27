@@ -51,6 +51,8 @@ main() {
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+	# Restore Mac OS Preferences via `mackup`
+
 	command -v "mackup" &> /dev/null && [ -d "$HOME/Dropbox/Mackup" ] && {
 		execute \
 			"mackup restore" \
