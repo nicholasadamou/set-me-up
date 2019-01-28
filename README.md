@@ -58,13 +58,9 @@ bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/deb
 
 ⚠️ Please note that the installer has **three** different arguments:
 
-1. **`--curl`** - When this is passed, it will obtain the `smu` blueprint via `curl`.
+1. **`--git`** - When this is passed, it will obtain the `smu` blueprint via `git` (On by default).
 
-   _However_, It is recommended to use `--git` instead, because of the use of `git submodules`.
-
-2. **`--git`** - When this is passed, it will obtain the `smu` blueprint via `git`.
-
-3. **`--detect`** - When this is passed, it will _detect_ if the `smu` blueprint was either obtained using `git` or `curl`. If it wasn't obtained using `git` it will use `curl` or visa-versa.
+2. **`--latest`** - When this is passed, it will obtain the latest version of `smu` via the `master` branch of [nicholasadamou/set-me-up](https://github.com/nicholasadamou/set-me-up) instead of the branch that is defined by the [`SMU_VERSION`](https://github.com/nicholasadamou/set-me-up/blob/923cf8e957b37ac4a388f3f78127a37ac8e5c9db/.dotfiles/modules/install.sh#L9) variable within the installer.
 
 You can change the `smu` home directory by setting an environment variable called `SMU_HOME_DIR`. Please keep the variable declared or else the `smu` scripts are unable to pickup the sources.
 
