@@ -134,25 +134,13 @@ function obtain() {
 		--exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
 }
 
-function use_curl() {
-    confirm
-    mkcd "${SMU_HOME_DIR}"
-
-    echo -e "\n➜ Obtaining 'set-me-up'."
-    obtain "${smu_download}"
-    printf "\n"
-
-    if [[ "${SMU_BLUEPRINT}" != "" ]]; then
-        echo "➜ Obtaining your 'set-me-up' blueprint."
-        obtain "${smu_blueprint_download}"
-    fi
-
-    echo -e "\n✔︎ Done. Enjoy."
-}
-
 function use_git() {
     confirm
     mkcd "${SMU_HOME_DIR}"
+
+	[ -d "${SMU_HOME_DIR}/.dotfiles" ] && {
+		rm -rf "${SMU_HOME_DIR}/.dotfiles"
+	}
 
 	echo -e "\n➜ Obtaining 'set-me-up'."
 	obtain "${smu_download}"
@@ -242,9 +230,9 @@ function use_git() {
 }
 
 function main() {
-    method="curl"
+	method="git"
 
-	echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
+    echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
 
 	if ! are_xcode_command_line_tools_installed; then
         install_xcode_command_line_tools
@@ -252,29 +240,21 @@ function main() {
         echo -e "✔︎ 'Xcode Command Line Tools' are already installed\n"
     fi
 
-    while [[ $# -gt 0 ]]; do
+	while [[ $# -gt 0 ]]; do
         arguments="$1"
         case "$arguments" in
             --git)
                 method="git"
                 ;;
-            --detect)
-                if is_git_repo; then method="git"; fi
-                ;;
             --latest)
                 SMU_VERSION="master"
                 ;;
-
         esac
 
         shift
     done
 
     case "${method}" in
-        curl)
-            ( use_curl )
-            exit
-            ;;
         git)
             ( use_git )
             exit

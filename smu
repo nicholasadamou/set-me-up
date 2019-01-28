@@ -190,7 +190,7 @@ provision_module() {
 
 if [[ ${_arg_selfupdate} == "on" ]]; then
 	if [ -e "${module_path}"/install.sh ]; then
-    	"${module_path}"/install.sh --detect
+    	"${module_path}"/install.sh
 	else
 		echo -e "${module_path}/install.sh does not seem to exist.\nPlease run the 'base' module prior to executing a 'selfupdate'."
 	fi
