@@ -53,7 +53,7 @@ Either use your blueprint or the default installer to obtain `set-me-up` . This 
 understand [what it does](.dotfiles/modules/install.sh). Seriously, **DON'T**!)
 
 ```bash
-bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/debian/.dotfiles/modules/install.sh) --git
+bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/debian/.dotfiles/modules/install.sh)
 ```
 
 ⚠️ Please note that the installer has **three** different arguments:
