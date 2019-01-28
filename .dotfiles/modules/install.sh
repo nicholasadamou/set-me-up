@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# shellcheck disable=SC2001
+
 # GitHub user/repo & branch value of your set-me-up blueprint (e.g.: nicholasadamou/set-me-up-blueprint/master).
 # Set this value when the installer should additionally obtain your blueprint.
 readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
@@ -134,7 +136,7 @@ function obtain() {
 		--exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
 }
 
-function use_git() {
+function setup() {
     confirm
     mkcd "${SMU_HOME_DIR}"
 
@@ -226,9 +228,7 @@ function use_git() {
 }
 
 function main() {
-	method="git"
-
-    echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
+	echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
 
 	if ! are_xcode_command_line_tools_installed; then
         install_xcode_command_line_tools
@@ -236,26 +236,7 @@ function main() {
         echo -e "✔︎ 'Xcode Command Line Tools' are already installed\n"
     fi
 
-	while [[ $# -gt 0 ]]; do
-        arguments="$1"
-        case "$arguments" in
-            --git)
-                method="git"
-                ;;
-            --latest)
-                SMU_VERSION="master"
-                ;;
-        esac
-
-        shift
-    done
-
-    case "${method}" in
-        git)
-            ( use_git )
-            exit
-            ;;
-    esac
+	setup
 }
 
-main "$@"
+main
