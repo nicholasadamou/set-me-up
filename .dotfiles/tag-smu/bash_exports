@@ -121,6 +121,14 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Add ~/set-me-up to $PATH
+
+if [ -d "$HOME/set-me-up" ]; then
+	export PATH="$HOME/set-me-up:$PATH"
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Add /usr/local/bin to $PATH
 
 if command -v brew &> /dev/null; then
