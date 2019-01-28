@@ -39,6 +39,7 @@ brew "ext4fuse"
 brew "tree"
 brew "rename"
 brew "piknik"
+brew "dropbox-uploader"
 
 # Compression utilities
 brew "p7zip"
