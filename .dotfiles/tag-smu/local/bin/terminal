@@ -45,14 +45,10 @@ function terminal() {
 tell application "Terminal"
 	activate
 	tell window 1
-		delay 1
-		write text "cd $wd ; $cmd"
-		delay 2
-		repeat
-			delay 0.1
-			set isdone to is at shell prompt
-			if isdone then exit repeat
-		end repeat
+		do script "cd $wd ; $cmd"
+		repeat while busy
+            delay 1
+        end repeat
 	end tell
 end tell
 EOF
