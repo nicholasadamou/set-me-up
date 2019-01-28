@@ -110,23 +110,7 @@ function obtain() {
 		--exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
 }
 
-function use_curl() {
-    confirm
-    mkcd "${SMU_HOME_DIR}"
-
-    echo -e "\n➜ Obtaining 'set-me-up'."
-    obtain "${smu_download}"
-    printf "\n"
-
-    if [[ "${SMU_BLUEPRINT}" != "" ]]; then
-        echo "➜ Obtaining your 'set-me-up' blueprint."
-        obtain "${smu_blueprint_download}"
-    fi
-
-    echo -e "\n✔︎ Done. Enjoy."
-}
-
-function use_git() {
+function setup() {
     confirm
     mkcd "${SMU_HOME_DIR}"
 
@@ -218,31 +202,9 @@ function use_git() {
 }
 
 function main() {
-    method="git"
-
     echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
 
-    while [[ $# -gt 0 ]]; do
-        arguments="$1"
-        case "$arguments" in
-            --git)
-                method="git"
-                ;;
-            --latest)
-                SMU_VERSION="debian"
-                ;;
-
-        esac
-
-        shift
-    done
-
-    case "${method}" in
-        git)
-            ( use_git )
-            exit
-            ;;
-    esac
+    setup
 }
 
 main "$@"
