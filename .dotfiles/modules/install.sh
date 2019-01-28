@@ -218,7 +218,7 @@ function use_git() {
 }
 
 function main() {
-    method="curl"
+    method="git"
 
     echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
 
@@ -227,9 +227,6 @@ function main() {
         case "$arguments" in
             --git)
                 method="git"
-                ;;
-            --detect)
-                if is_git_repo; then method="git"; fi
                 ;;
             --latest)
                 SMU_VERSION="debian"
@@ -241,10 +238,6 @@ function main() {
     done
 
     case "${method}" in
-        curl)
-            ( use_curl )
-            exit
-            ;;
         git)
             ( use_git )
             exit
