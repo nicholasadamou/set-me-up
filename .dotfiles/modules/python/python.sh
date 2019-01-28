@@ -160,9 +160,7 @@ install_pip_packages() {
 
     print_in_yellow "\n   Install pip packages\n\n"
 
-    pip_install "cheat"
     pip_install "pip-review"
-    pip_install "haxor-news"
     pip_install "howdoi"
     pip_install "glances"
     pip_install "pockyt"
