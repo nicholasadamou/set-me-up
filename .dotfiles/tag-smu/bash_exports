@@ -119,7 +119,6 @@ if [ -d "$HOME/.iterm2" ]; then
 	export PATH="$HOME/.iterm2:$PATH"
 fi
 
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Add /usr/local/bin to $PATH
