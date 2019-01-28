@@ -48,7 +48,7 @@ alias lip="ifconfig \
 
 # Get external IP.
 
-alias xip="curl -s checkip.dyndns.org | grep -Eo "[0-9\.]+""
+alias xip="curl -s checkip.dyndns.org | grep -Eo "\[0-9\.]+""
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -195,4 +195,12 @@ alias has="curl -sL https://git.io/_has | bash -s"
 command -v "fzy" &> /dev/null && {
     alias fzyf="find . -type f | fzy"
     alias fzyd="find . -type d | fzy"
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# update CLTs
+
+command -v "fish" &> /dev/null && [ -f "$HOME/.config/fish/functions/update.fish" ] && {
+	alias update="fish -c \"update\""
 }
