@@ -138,10 +138,6 @@ function use_git() {
     confirm
     mkcd "${SMU_HOME_DIR}"
 
-	[ -d "${SMU_HOME_DIR}/.dotfiles" ] && {
-		rm -rf "${SMU_HOME_DIR}/.dotfiles"
-	}
-
 	echo -e "\n➜ Obtaining 'set-me-up'."
 	obtain "${smu_download}"
 	printf "\n"
