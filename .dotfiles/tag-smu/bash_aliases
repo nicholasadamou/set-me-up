@@ -201,8 +201,4 @@ command -v "fzy" &> /dev/null && {
 
 # Update applications and CLTs.
 
-alias u="apt update \
-            && apt upgrade -y \
-            && apt full-upgrade -y \
-            && apt autoremove -y \
-            && apt clean"
+alias update="fish -c \"update\""
