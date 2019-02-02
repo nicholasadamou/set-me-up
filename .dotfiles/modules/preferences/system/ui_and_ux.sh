@@ -6,10 +6,17 @@ declare current_dir && \
     current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
-    
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+declare -r DESKTOP_WALLPAPER_PATH="./wallpaper/wheat-field.jpeg"
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 print_in_purple "\n   UI & UX\n\n"
+
+execute "sqlite3 $HOME/Library/Application\ Support/Dock/desktoppicture.db \"UPDATE data SET value='$DESKTOP_WALLPAPER_PATH';\"" \
+	"Set Desktop Wallpaper ($DESKTOP_WALLPAPER_PATH)"
 
 execute "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true && \
          defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true" \
