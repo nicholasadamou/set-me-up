@@ -143,25 +143,25 @@ function setup() {
 
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo && has_remote_origin; then
-		if has_untracked_changes; then
-			git -C "${SMU_HOME_DIR}" reset --hard HEAD &> /dev/null
-		fi
+			if has_untracked_changes; then
+				git -C "${SMU_HOME_DIR}" reset --hard HEAD &> /dev/null
+			fi
 
-		if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
-			echo "➜ Updating your 'set-me-up' blueprint."
+			if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
+				echo "➜ Updating your 'set-me-up' blueprint."
 
-			git -C "${SMU_HOME_DIR}" pull --ff
-		else
-			echo "Already up-to-date"
-		fi
+				git -C "${SMU_HOME_DIR}" pull --ff
+			else
+				echo "Already up-to-date"
+			fi
 
-		if has_submodules; then
-			echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
+			if has_submodules; then
+				echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
 
-			install_submodules
+				install_submodules
 
-			git -C "${SMU_HOME_DIR}" submodule foreach git pull
-		fi
+				git -C "${SMU_HOME_DIR}" submodule foreach git pull
+			fi
         else
             echo "➜ Cloning your 'set-me-up' blueprint."
 
