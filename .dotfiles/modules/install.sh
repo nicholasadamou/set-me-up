@@ -157,6 +157,10 @@ function setup() {
 						-c user.email="set-me-up@gmail.com" \
 						commit -m "✅ UPDATED: '$files'" &> /dev/null
 				fi
+
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+				git -C "${SMU_HOME_DIR}" reset --hard HEAD &> /dev/null
 			fi
 
 			if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
