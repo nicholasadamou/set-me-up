@@ -170,6 +170,8 @@ function setup() {
 						-c user.name="set-me-up" \
 						-c user.email="set-me-up@gmail.com" \
 						commit -m "✅ UPDATED: '$files'" &> /dev/null
+
+						echo -e "✔︎ UPDATED: '$files'\n"
 				fi
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
