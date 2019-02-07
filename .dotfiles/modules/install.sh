@@ -13,6 +13,7 @@ readonly SMU_VERSION=${SMU_VERSION:-"debian"}
 
 # A set of ignored paths that 'git' will ignore
 # syntax: '<path>|<path>'
+# Note: <path> is relative to '$HOME/set-me-up'
 readonly SMU_IGNORED_PATHS="${SMU_IGNORED_PATHS:-""}"
 
 # Where to install set-me-up
