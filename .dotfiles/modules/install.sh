@@ -156,9 +156,9 @@ function setup() {
 					grep -v '?' | \
 					sed 's/[AMCDRTUX]//g' | \
 					xargs printf -- "${SMU_HOME_DIR}/%s\n" | \
-					xargs | \
 					grep -vE ".gitmodules|.dotfiles/modules/install.sh" | \
-					grep -vE "${SMU_IGNORED_PATHS}")"
+					grep -vE "${SMU_IGNORED_PATHS}" | \
+					xargs)"
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
