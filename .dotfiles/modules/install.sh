@@ -144,14 +144,19 @@ function setup() {
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo && has_remote_origin; then
 			if has_untracked_changes; then
-				file_paths="$(git -C "${SMU_HOME_DIR}" diff --name-only | xargs | sed 's/ /, /g')"
+				files="$(git -C "${SMU_HOME_DIR}" status -s | grep -v '?' | sed 's/[AMCDRTUX]//g' | xargs)"
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-				git -C "${SMU_HOME_DIR}" \
-					-c user.name="set-me-up" \
-					-c user.email="set-me-up@gmail.com" \
-					commit -a -m "✅ UPDATED: '$file_paths'" &> /dev/null
+				if [ -n "$files" ]; then
+					git -C "${SMU_HOME_DIR}" \
+						add "$files"
+
+					git -C "${SMU_HOME_DIR}" \
+						-c user.name="set-me-up" \
+						-c user.email="set-me-up@gmail.com" \
+						commit -m "✅ UPDATED: '$files'" &> /dev/null
+				fi
 			fi
 
 			if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
