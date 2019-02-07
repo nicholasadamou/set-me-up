@@ -6,9 +6,13 @@ readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
 readonly SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-""}
 
 # The set-me-up version to download
+# Available versions:
+# 1. 'master' (MacOS)
+# 2. 'debian'
 readonly SMU_VERSION=${SMU_VERSION:-"debian"}
 
 # A set of ignored paths that 'git' will ignore
+# syntax: '<path>|<path>'
 readonly SMU_IGNORED_PATHS="${SMU_IGNORED_PATHS:-""}"
 
 # Where to install set-me-up
