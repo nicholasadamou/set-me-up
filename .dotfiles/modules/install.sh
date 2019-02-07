@@ -203,7 +203,7 @@ function setup() {
 
 				if [ -n "$files" ]; then
 					git -C "${SMU_HOME_DIR}" \
-						add "$files"
+						add -f "$files" &> /dev/null
 
 					git -C "${SMU_HOME_DIR}" \
 						-c user.name="set-me-up" \
