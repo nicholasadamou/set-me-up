@@ -8,6 +8,9 @@ readonly SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-""}
 # The set-me-up version to download
 readonly SMU_VERSION=${SMU_VERSION:-"debian"}
 
+# A set of ignored paths that 'git' will ignore
+readonly SMU_IGNORED_PATHS="${SMU_IGNORED_PATHS:-""}"
+
 # Where to install set-me-up
 SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
 
@@ -144,7 +147,12 @@ function setup() {
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo && has_remote_origin; then
 			if has_untracked_changes; then
-				files="$(git -C "${SMU_HOME_DIR}" status -s | grep -v '?' | sed 's/[AMCDRTUX]//g' | xargs printf -- "${SMU_HOME_DIR}/%s ")"
+				files="$(git -C "${SMU_HOME_DIR}" status -s | \
+					grep -v '?' | \
+					sed 's/[AMCDRTUX]//g' | \
+					xargs printf -- "${SMU_HOME_DIR}/%s\n" | \
+					xargs | \
+					grep -v "${SMU_IGNORED_PATHS}")"
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
