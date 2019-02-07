@@ -175,15 +175,31 @@ function setup() {
 	if [[ "${SMU_BLUEPRINT}" != "" ]]; then
 		if is_git_repo && has_remote_origin; then
 			if has_untracked_changes; then
-				files="$(git -C "${SMU_HOME_DIR}" status -s | \
-					grep -v '?' | \
-					sed 's/[AMCDRTUX]//g' | \
-					xargs printf -- "${SMU_HOME_DIR}/%s\n" | \
-					grep -vE ".gitmodules|.dotfiles/modules/install.sh" | \
-					grep -vE "${SMU_IGNORED_PATHS}" | \
-					xargs)"
+				# Make sure '$SMU_IGNORED_PATHS' is set prior to
+				# obtaining list of modified files
+
+				if [ -n "$SMU_IGNORED_PATHS" ]; then
+					IGNORED_PATHS=".gitmodules|.dotfiles/modules/install.sh|${SMU_IGNORED_PATHS}"
+				else
+					IGNORED_PATHS=".gitmodules|.dotfiles/modules/install.sh"
+				fi
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+				# Obtain list of modified files
+
+				files="$(git -C "${SMU_HOME_DIR}" status -s | \
+						grep -v '?' | \
+						sed 's/[AMCDRTUX]//g' | \
+						xargs printf -- "${SMU_HOME_DIR}/%s\n" | \
+						grep -vE "${IGNORED_PATHS}" | \
+						xargs)"
+
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+				# Make sure that '$files' is not empty.
+				# If it is not empty then, commit changes
+				# to the (nicholasadamou/set-me-up-blueprint) repo.
 
 				if [ -n "$files" ]; then
 					git -C "${SMU_HOME_DIR}" \
