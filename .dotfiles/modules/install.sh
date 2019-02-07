@@ -156,7 +156,7 @@ function setup() {
 					sed 's/[AMCDRTUX]//g' | \
 					xargs printf -- "${SMU_HOME_DIR}/%s\n" | \
 					xargs | \
-					grep -v "${SMU_IGNORED_PATHS}")"
+					grep -vE "${SMU_IGNORED_PATHS}")"
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
