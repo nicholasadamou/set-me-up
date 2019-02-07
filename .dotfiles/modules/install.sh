@@ -18,6 +18,9 @@ readonly SMU_VERSION=${SMU_VERSION:-"master"}
 # Note: <path> is relative to '$HOME/set-me-up'
 readonly SMU_IGNORED_PATHS="${SMU_IGNORED_PATHS:-""}"
 
+# Where to install set-me-up
+SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
+
 readonly smu_download="https://github.com/nicholasadamou/set-me-up/tarball/${SMU_VERSION}"
 readonly smu_blueprint_download="https://github.com/${SMU_BLUEPRINT}/tarball/${SMU_BLUEPRINT_BRANCH}"
 
