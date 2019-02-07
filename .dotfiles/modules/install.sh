@@ -144,10 +144,14 @@ function setup() {
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo && has_remote_origin; then
 			if has_untracked_changes; then
+				file_paths="$(git -C "${SMU_HOME_DIR}" diff --name-only | xargs | sed 's/ /, /g')"
+
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 				git -C "${SMU_HOME_DIR}" \
 					-c user.name="set-me-up" \
 					-c user.email="set-me-up@gmail.com" \
-					commit -a -m "✅ UPDATED: '.gitmodules'" &> /dev/null
+					commit -a -m "✅ UPDATED: '$file_paths'" &> /dev/null
 			fi
 
 			if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
