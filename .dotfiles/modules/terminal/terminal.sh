@@ -13,6 +13,15 @@ declare current_dir && \
 install_omf() {
 
     if ! is_omf_installed; then
+		# Make sure '$HOME/.local/share/omf' does not exisi prior
+		# to 'omf' installation.
+
+		if [ -d "$HOME/.local/share/omf" ]; then
+			sudo rm -rf "$HOME/.local/share/omf"
+		fi
+
+		# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
         execute \
             "fish <(curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install) \
 				--noninteractive --yes --path=$HOME/.local/share/omf --config=$HOME/.config/omf" \
