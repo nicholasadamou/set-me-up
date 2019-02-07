@@ -132,6 +132,15 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# load 'z.lua' configs.
+# see: https://github.com/skywind3000/z.lua#install
+
+if [ -d "$HOME"/.z.lua ]; then
+  eval "$(lua "$HOME"/.z.lua/z.lua --init bash)"
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.)
 # and changes directory to $HOME.
