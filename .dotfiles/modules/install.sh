@@ -8,10 +8,15 @@ readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
 readonly SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-""}
 
 # The set-me-up version to download
+# Available versions:
+# 1. 'master' (MacOS)
+# 2. 'debian'
 readonly SMU_VERSION=${SMU_VERSION:-"master"}
 
-# Where to install set-me-up
-SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
+# A set of ignored paths that 'git' will ignore
+# syntax: '<path>|<path>'
+# Note: <path> is relative to '$HOME/set-me-up'
+readonly SMU_IGNORED_PATHS="${SMU_IGNORED_PATHS:-""}"
 
 readonly smu_download="https://github.com/nicholasadamou/set-me-up/tarball/${SMU_VERSION}"
 readonly smu_blueprint_download="https://github.com/${SMU_BLUEPRINT}/tarball/${SMU_BLUEPRINT_BRANCH}"
@@ -170,10 +175,33 @@ function setup() {
 	if [[ "${SMU_BLUEPRINT}" != "" ]]; then
 		if is_git_repo && has_remote_origin; then
 			if has_untracked_changes; then
-				git -C "${SMU_HOME_DIR}" \
-					-c user.name="set-me-up" \
-					-c user.email="set-me-up@gmail.com" \
-					commit -a -m "✅ UPDATED: '.gitmodules'" &> /dev/null
+				files="$(git -C "${SMU_HOME_DIR}" status -s | \
+					grep -v '?' | \
+					sed 's/[AMCDRTUX]//g' | \
+					xargs printf -- "${SMU_HOME_DIR}/%s\n" | \
+					grep -vE ".gitmodules|.dotfiles/modules/install.sh" | \
+					grep -vE "${SMU_IGNORED_PATHS}" | \
+					xargs)"
+
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+				if [ -n "$files" ]; then
+					git -C "${SMU_HOME_DIR}" \
+						add "$files"
+
+					git -C "${SMU_HOME_DIR}" \
+						-c user.name="set-me-up" \
+						-c user.email="set-me-up@gmail.com" \
+						commit -m "✅ UPDATED: '$files'" &> /dev/null
+
+					if [ "$?" -eq 0 ]; then
+						echo -e "✔︎ UPDATED: '$files'\n"
+					fi
+				fi
+
+				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+				git -C "${SMU_HOME_DIR}" reset --hard HEAD &> /dev/null
 			fi
 
 			if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
