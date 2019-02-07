@@ -16,3 +16,6 @@
 [submodule ".dotfiles/tag-smu/fzf"]
 	path = .dotfiles/tag-smu/fzf
 	url = https://github.com/junegunn/fzf
+[submodule ".dotfiles/tag-smu/z.lua"]
+	path = .dotfiles/tag-smu/z.lua
+	url = https://github.com/skywind3000/z.lua
