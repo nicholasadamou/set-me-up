@@ -144,7 +144,7 @@ function setup() {
     if [[ "${SMU_BLUEPRINT}" != "" ]]; then
         if is_git_repo && has_remote_origin; then
 			if has_untracked_changes; then
-				files="$(git -C "${SMU_HOME_DIR}" status -s | grep -v '?' | sed 's/[AMCDRTUX]//g' | xargs)"
+				files="$(git -C "${SMU_HOME_DIR}" status -s | grep -v '?' | sed 's/[AMCDRTUX]//g' | xargs printf -- "${SMU_HOME_DIR}/%s ")"
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
