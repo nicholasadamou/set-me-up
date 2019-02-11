@@ -154,8 +154,8 @@ apps:
         - AppDelete
         - Amphetamine
         - InsomniaX
-        - Archiver 3
         - The Unarchiver
+        - Archiver 3
         - Workspaces
         - Bartender 3
         - Tuck
@@ -173,15 +173,14 @@ apps:
         - Kali Linux Applications
         - Ubuntu Linux Applications
         - VirtualBox
-        - Install macOS Mojave
         - Vagrant Manager
         - Docker
         - balenaEtcher
         - DAEMON Tools
         - LaCie Setup
+        - NTFS for Mac
       - number: 2
         items:
-        - NTFS for Mac
         - Paragon CampTune
         - extFS for Mac
         - Hard Disk Manager
