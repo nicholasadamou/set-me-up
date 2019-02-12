@@ -4,7 +4,7 @@
 set -gx PATH
 
 # Sets necessary PATH defaults
-set -gx PATH $PATH /usr/local/bin /usr/bin /bin /sbin /usr/sbin /usr/local/sbin /sbin \$HOME/.local/bin \$HOME/set-me-up
+set -gx PATH $PATH /usr/local/bin /usr/bin /bin /sbin /usr/sbin /usr/local/sbin /sbin \$HOME/.local/bin \$HOME/"set-me-up"
 
 # Paths to your tackle
 set tacklebox_path ~/.tackle ~/.tacklebox
@@ -19,13 +19,13 @@ set -gx HOMEBREW_CASK_OPTS "--appdir=/Applications --fontdir=/Library/Fonts"
 # Fixes "I INSTALLED GEMS WITH --user-install AND THEIR COMMANDS ARE NOT AVAILABLE"
 # see: https://guides.rubygems.org/faqs/#user-install
 if test -d (gem environment gemdir)/bin
-  set -gx PATH $PATH (gem environment gemdir)/bin
+    set -gx PATH $PATH (gem environment gemdir)/bin
 end
 
 # iTerm2 integration
 # Adds ~/.iterm2 to "$PATH"
 if test -d ~/.iterm2
-	set -gx PATH $PATH ~/.iterm2
+    set -gx PATH $PATH ~/.iterm2
 end
 
 # Dotfiles directory
