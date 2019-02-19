@@ -9,6 +9,28 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+configure_visual_studio_code() {
+
+    local extension="golf1052.code-sync"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if ! cmd_exists "code"; then
+        return 1
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if ! [ "$(code --list-extensions | grep $extension)" == "$extension" ]; then
+        execute \
+            "code --install-extension $extension" \
+            "code ($extension)"
+    else
+        print_success "($extension) is already installed"
+    fi
+
+}
+
 # see: https://pempek.net/articles/2014/04/18/git-p4merge/
 # see: https://github.com/so-fancy/diff-so-fancy
 install_diff_and_merge_tools() {
@@ -55,6 +77,10 @@ main() {
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	print_in_yellow "\n   Configure Visual Studio Code\n\n"
+
+    configure_visual_studio_code
 
     print_in_yellow "\n   Install diff- and merge tools\n\n"
 
