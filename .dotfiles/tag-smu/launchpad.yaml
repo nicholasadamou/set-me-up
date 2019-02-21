@@ -128,6 +128,7 @@ apps:
         - Bitwarden
         - Authy
         - Authy
+        - Encrypto
         - VeraCrypt
         - Outline Manager
         - Outline
@@ -202,6 +203,7 @@ apps:
         - Muse
         - VNC Viewer
         - Alfred 3
+        - Memory Cleaner
     - folder: Other
       pages:
       - number: 1
@@ -253,6 +255,7 @@ apps:
         - Notes
         - Photo Booth
         - XQuartz
+    - Wireshark
 widgets:
   pages: []
 dock_items:
