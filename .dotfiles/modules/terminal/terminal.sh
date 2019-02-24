@@ -13,7 +13,7 @@ declare current_dir && \
 install_omf() {
 
     if ! is_omf_installed; then
-		# Make sure '$HOME/.local/share/omf' does not exisi prior
+		# Make sure '$HOME/.local/share/omf' does not exist prior
 		# to 'omf' installation.
 
 		if [ -d "$HOME/.local/share/omf" ]; then
