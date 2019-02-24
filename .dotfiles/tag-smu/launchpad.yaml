@@ -255,7 +255,6 @@ apps:
         - Notes
         - Photo Booth
         - XQuartz
-    - Wireshark
 widgets:
   pages: []
 dock_items:
