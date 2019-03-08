@@ -141,6 +141,7 @@ apps:
         - KnockKnock
         - WhatsYourSign
         - SafeConnect
+        - Little Snitch Configuration
     - folder: System
       pages:
       - number: 1
