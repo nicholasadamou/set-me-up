@@ -60,17 +60,6 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# load 'autoenv' configs.
-# see: https://github.com/kennethreitz/autoenv
-
-if command -v brew &> /dev/null; then
-	if [ -f "$(brew --prefix autoenv)"/activate.sh ]; then
-		. "$(brew --prefix autoenv)"/activate.sh
-	fi
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # load 'autojump' configs.
 # see: https://github.com/wting/autojump
 
@@ -87,35 +76,6 @@ if command -v brew &> /dev/null; then
 	if [ -f "$(brew --prefix jump)" ]; then
 		eval "$(jump shell)"
 	fi
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# load 'commacd' configs.
-# see: https://github.com/shyiko/commacd
-
-if [ -f "$HOME"/.commacd.bash ]; then
-    . "$HOME"/.commacd.bash
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# load 'aliasme' configs.
-# see: https://github.com/Jintin/aliasme
-
-if [ -f "$HOME"/.aliasme/aliasme.sh ]; then
-    . "$HOME"/.aliasme/aliasme.sh
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# load 'fz' configs.
-# see: https://github.com/changyuheng/fz#bash
-
-if [ -d "$HOME"/.bash_completion.d ]; then
-  for file in "$HOME"/.bash_completion.d/*; do
-    . "$file"
-  done
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
