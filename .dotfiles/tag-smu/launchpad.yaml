@@ -55,6 +55,8 @@ apps:
         - Microsoft Excel
         - Microsoft OneNote
         - Microsoft PowerPoint
+        - Microsoft Outlook
+        - Microsoft Teams
         - Pages
         - Numbers
         - Keynote
@@ -78,6 +80,8 @@ apps:
         - IntelliJ IDEA
         - PyCharm
         - WebStorm
+        - GoLand
+        - RubyMine
         - Android Studio
         - Xcode
         - MacDown
@@ -153,6 +157,7 @@ apps:
         - Backup and Sync from Google
         - Dropbox
         - MEGAsync
+        - OneDrive
         - AppDelete
         - Amphetamine
         - InsomniaX
@@ -180,9 +185,9 @@ apps:
         - balenaEtcher
         - DAEMON Tools
         - LaCie Setup
-        - NTFS for Mac
       - number: 2
         items:
+        - NTFS for Mac
         - Paragon CampTune
         - extFS for Mac
         - Hard Disk Manager
@@ -290,6 +295,8 @@ dock_items:
 - IntelliJ IDEA
 - WebStorm
 - PyCharm
+- GoLand
+- RubyMine
 - Dash
 - ForkLift
 - Transmit
