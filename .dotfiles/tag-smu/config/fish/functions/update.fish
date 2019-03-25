@@ -1,9 +1,9 @@
 function update --description "Updates Kali, fisher, omf, and their installed packages"
-    apt update
-    apt upgrade -y
-    apt full-upgrade -y
-    apt autoremove -y
-    apt clean
+    sudo apt update
+    sudo apt upgrade -y
+    sudo apt full-upgrade -y
+    sudo apt autoremove -y
+    sudo apt clean
 
     if type -q brew
         brew update
