@@ -1,0 +1,1 @@
+snap "goland" [args: "--classic"]

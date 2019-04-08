@@ -97,6 +97,10 @@ main() {
 
     print_in_purple "  jenv & Java\n\n"
 
+	apt_install_from_file "packages"
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     ask_for_sudo
 
     if [ ! -d "$JENV_DIRECTORY" ]; then

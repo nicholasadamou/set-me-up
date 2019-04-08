@@ -43,6 +43,10 @@ main() {
 
     print_in_purple "  composer & PHP\n\n"
 
+	apt_install_from_file "packages"
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     print_in_yellow "   Install brew packages\n\n"
 
     brew_bundle_install "brewfile"

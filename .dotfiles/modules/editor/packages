@@ -1,1 +1,3 @@
-snap "vscode"
+# text editors
+snap "code" [args: "--classic"]
+snap "code-insiders" [args: "--classic"]

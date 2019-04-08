@@ -184,7 +184,13 @@ main() {
 
     print_in_purple "  pyenv & Python\n\n"
 
-    brew_bundle_install "brewfile"
+	apt_install_from_file "packages"
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	print_in_yellow "   Install brew packages\n\n"
+
+	brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

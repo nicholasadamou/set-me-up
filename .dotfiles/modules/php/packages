@@ -1,0 +1,1 @@
+snap "phpstorm" [args: "--classic"]

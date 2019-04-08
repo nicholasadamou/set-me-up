@@ -47,7 +47,7 @@ set -xU N_PREFIX \"\$HOME/n\"
 set -U fish_user_paths \"\$N_PREFIX/bin\" \$fish_user_paths
 "
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then    
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "n (update $LOCAL_FISH_CONFIG_FILE)"
@@ -218,6 +218,10 @@ install_npm_packages() {
 main() {
 
     print_in_purple "  n & npm\n\n"
+
+	apt_install_from_file "packages"
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ask_for_sudo
 

@@ -74,10 +74,14 @@ main() {
 
     print_in_purple "  rbenv & Ruby\n\n"
 
+	apt_install_from_file "packages"
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    
+
     printf "\n"
 
     install_latest_stable_ruby
