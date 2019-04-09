@@ -115,6 +115,7 @@ cask "oversight"
 cask "whatsyoursign"
 cask "outline"
 cask "outline-manager"
+brew "maliceio/tap/malice"
 
 # Install developer friendly quick look plugins
 # see https://github.com/sindresorhus/quick-look-plugins
