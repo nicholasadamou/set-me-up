@@ -69,17 +69,6 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# load 'autojump' configs.
-# see: https://github.com/wting/autojump
-
-if command -v brew &> /dev/null; then
-	if [ -f "$(brew --prefix jump)" ]; then
-		eval "$(jump shell)"
-	fi
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # load 'fzf' configs.
 # see: https://github.com/junegunn/fzf#using-homebrew-or-linuxbrew
 
