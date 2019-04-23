@@ -9,6 +9,7 @@ brew "m-cli"
 brew "dark-mode"
 brew "wallpaper"
 brew "blacktop/tap/lporg"
+cask "latest"
 
 # Image processing
 brew "webkit2png"
@@ -80,6 +81,7 @@ cask "tuck"
 cask "finderminder"
 cask "moom"
 cask "witch"
+cask "contexts"
 
 # Terminal multiplexing
 brew "tmux"
