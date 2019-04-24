@@ -140,8 +140,8 @@ apps:
         - LuLu
         - TaskExplorer
         - OverSight
-        - Do Not Disturb
         - ReiKey
+        - Do Not Disturb
         - KnockKnock
         - WhatsYourSign
         - SafeConnect
@@ -151,6 +151,7 @@ apps:
       - number: 1
         items:
         - System Preferences
+        - Latest
         - Acronis True Image
         - Backblaze
         - iMazing
@@ -168,6 +169,7 @@ apps:
         - Tuck
         - Magnet
         - Moom
+        - Contexts
         - FinderMinder
         - Witch
         - HazeOver
@@ -176,17 +178,16 @@ apps:
         - Default Folder X
         - Power Menu
         - TouchSwitcher
-        - Parallels Desktop
-        - Kali Linux Applications
         - Ubuntu Linux Applications
+        - Parallels Desktop
         - VirtualBox
         - Vagrant Manager
         - Docker
         - balenaEtcher
         - DAEMON Tools
-        - LaCie Setup
       - number: 2
         items:
+        - LaCie Setup
         - NTFS for Mac
         - Paragon CampTune
         - extFS for Mac
@@ -309,5 +310,4 @@ dock_items:
 - System Preferences
 - ============
 - Downloads
-- Kali Linux Applications
 desktop: {}
