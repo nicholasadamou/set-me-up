@@ -69,9 +69,8 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# load 'jump' configs.
+# load 'autojump' configs.
 # see: https://github.com/wting/autojump
-
 if command -v brew &> /dev/null; then
 	if [ -f "$(brew --prefix jump)" ]; then
 		eval "$(jump shell)"

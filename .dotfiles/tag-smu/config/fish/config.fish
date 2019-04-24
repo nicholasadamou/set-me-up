@@ -25,6 +25,12 @@ if test -e "$HOME/.sdkman/bin/sdkman-init.sh"
     source "$SDKMAN_DIR/bin/sdkman-init.sh"
 end
 
+# load 'autojump' configurations
+# see: https://github.com/wting/autojump
+if test -e "/usr/local/share/autojump/autojump.fish"
+    source "/usr/local/share/autojump/autojump.fish"
+end
+
 # load 'z.lua' configs.
 # see: https://github.com/skywind3000/z.lua#install
 if test -e "$HOME"/.z.lua
