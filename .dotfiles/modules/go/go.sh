@@ -178,6 +178,7 @@ install_go_packages() {
     print_in_yellow "\n   Install go packages\n\n"
 
     go_install "github.com/jesseduffield/lazygit"
+    go_install "go.coder.com/sshcode"
 
 }
 
