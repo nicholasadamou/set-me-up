@@ -10,6 +10,7 @@ brew "dark-mode"
 brew "wallpaper"
 brew "blacktop/tap/lporg"
 cask "latest"
+cask "gas-mask"
 
 # Image processing
 brew "webkit2png"
