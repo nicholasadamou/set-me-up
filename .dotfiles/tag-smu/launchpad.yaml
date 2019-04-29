@@ -211,6 +211,7 @@ apps:
         - VNC Viewer
         - Alfred 3
         - Memory Cleaner
+        - Gas Mask
     - folder: Other
       pages:
       - number: 1
