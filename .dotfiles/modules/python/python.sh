@@ -174,6 +174,7 @@ install_pip3_packages() {
 
     pip3_install "pip-review"
     pip3_install "advance-touch"
+    pip3_install "git-up"
 
 }
 
