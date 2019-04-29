@@ -164,6 +164,7 @@ install_pip_packages() {
     pip_install "howdoi"
     pip_install "glances"
     pip_install "pockyt"
+    pip_install "percol"
 
 }
 
