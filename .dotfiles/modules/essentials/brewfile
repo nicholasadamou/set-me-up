@@ -11,6 +11,7 @@ brew "wallpaper"
 brew "blacktop/tap/lporg"
 cask "latest"
 cask "gas-mask"
+cask "endurance"
 
 # Image processing
 brew "webkit2png"
@@ -101,6 +102,7 @@ brew "htop-osx", args: ["with-ncurses"]
 
 # Music players
 brew "cmus"
+cask "macmediakeyforwarder"
 
 # Security
 cask "avast-security"
