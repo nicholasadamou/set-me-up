@@ -39,7 +39,7 @@ function update --description "Updates Kali, fisher, omf, and their installed pa
         end
     end
 
-    if test -f $HOME/.vim/plugins/Vundle.vim
+    if test -d $HOME/.vim/plugins/Vundle.vim
         vim +PluginUpdate +qall
     end
 end
