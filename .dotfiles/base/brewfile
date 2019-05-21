@@ -9,12 +9,12 @@ brew "rcm"
 brew "coreutils"
 
 # Install GNU `grep`, overwriting the built-in `grep`.
-brew "grep", args: ["with-default-names"]
+brew "grep"
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew "gnu-sed"
 
 # Install a more recent version of 'vim', overwriting the built-in `vi`.
-brew "vim", args: ["override-system-vi"]
+brew "vim"
 
 # Install some other useful utilities like `sponge`.
 brew "moreutils"
