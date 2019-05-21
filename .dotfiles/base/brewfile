@@ -23,7 +23,7 @@ brew "moreutils"
 brew "findutils"
 
 # Install `wget` with IRI support.
-brew "wget", args: ["with-iri"]
+brew "wget"
 
 # A modern version of ‘ls’.
 brew "exa"
