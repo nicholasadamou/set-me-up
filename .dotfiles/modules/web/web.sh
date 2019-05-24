@@ -13,8 +13,10 @@ LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 LOCAL_FISH_CONFIG_FILE="${HOME}/.fish.local"
 
 declare -r N_DIRECTORY="$HOME/n"
+declare -r NVM_DIRECTORY="$HOME/.nvm"
 
 declare -r N_URL="https://git.io/n-install"
+declare -r NVM_URL="https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -47,10 +49,32 @@ set -xU N_PREFIX \"\$HOME/n\"
 set -U fish_user_paths \"\$N_PREFIX/bin\" \$fish_user_paths
 "
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then    
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         execute \
             "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
             "n (update $LOCAL_FISH_CONFIG_FILE)"
+    fi
+
+}
+
+# If needed, add the necessary configs in the
+# local shell configuration files.
+add_nvm_configs() {
+
+    # bash
+
+    declare -r BASH_CONFIGS="
+# nvm - Node version management.
+export NVM_DIR=\"$HOME/.nvm\"
+[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"  # This loads nvm
+[ -s \"$NVM_DIR/bash_completion\" ] && \. \"$NVM_DIR/bash_completion\"  # This loads nvm bash_completion
+"
+
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+        execute \
+            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
+                && . $LOCAL_BASH_CONFIG_FILE" \
+            "nvm (update $LOCAL_BASH_CONFIG_FILE)"
     fi
 
 }
@@ -67,6 +91,19 @@ install_n() {
 
 }
 
+install_nvm() {
+
+    # Install `nvm` and add the necessary
+    # configs in the local shell config files.
+
+    execute \
+        "curl -o- $NVM_URL | bash -s -- -q" \
+        "nvm (install)" \
+        && add_nvm_configs
+
+}
+
+
 update_n() {
 
     execute \
@@ -76,7 +113,21 @@ update_n() {
 
 }
 
-install_latest_stable_node() {
+update_nvm() {
+
+    execute \
+        ". $LOCAL_BASH_CONFIG_FILE \
+		( \
+			cd \"$NVM_DIR\" && \
+			git fetch --tags origin && \
+			git checkout $(git describe --abbrev=0 --tags --match \"v[0-9]*\" "$(git rev-list --tags --max-count=1)") \
+		) \
+		\. \"$NVM_DIR/nvm.sh\" -q" \
+        "nvm (upgrade)"
+
+}
+
+install_latest_stable_node_with_n() {
 
     # Install the latest stable version of Node
     # (this will also set it as the default).
@@ -111,6 +162,46 @@ install_latest_stable_node() {
             ". $LOCAL_BASH_CONFIG_FILE && \
                 n lts" \
             "n (install node v$latest_version)"
+    else
+        print_success "(node) is already on the latest version"
+    fi
+
+}
+
+install_latest_stable_node_with_nvm() {
+
+    # Install the latest stable version of Node
+    # (this will also set it as the default).
+
+    local latest_version
+    local current_version
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Check if `n` is installed
+
+    if ! cmd_exists "nvm"; then
+        return 1
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    latest_version="$(
+     . "$LOCAL_BASH_CONFIG_FILE" && \
+        nvm ls stable | xargs | cut -d ' ' -f 2
+    )"
+
+    current_version="$(
+        node -v
+    )"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ ! -d "$NVM_DIRECTORY/versions/node/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
+        execute \
+            ". $LOCAL_BASH_CONFIG_FILE && \
+                nvm install --lts" \
+            "nvm (install node v$latest_version)"
     else
         print_success "(node) is already on the latest version"
     fi
@@ -229,7 +320,7 @@ main() {
 
     printf "\n"
 
-    install_latest_stable_node
+    install_latest_stable_node_with_n
 
     install_npm_packages
 
