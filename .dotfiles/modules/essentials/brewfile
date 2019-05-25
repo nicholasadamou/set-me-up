@@ -30,6 +30,7 @@ brew "tig"
 
 # File/directory management
 brew "ranger"
+cask "path-finder"
 brew "fzf"
 brew "fzy"
 brew "z"
