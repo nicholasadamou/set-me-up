@@ -4,7 +4,7 @@
 set -gx PATH
 
 # Sets necessary PATH defaults
-set -gx PATH $PATH /usr/local/bin /usr/bin /bin /sbin /usr/sbin /usr/local/sbin /sbin \$HOME/.local/bin \$HOME/"set-me-up"
+set -gx PATH $PATH /usr/local/bin /usr/bin /bin /sbin /usr/sbin /usr/local/sbin /sbin $HOME/.local/bin $HOME/"set-me-up"
 
 # Paths to your tackle
 set tacklebox_path ~/.tackle ~/.tacklebox
@@ -29,7 +29,7 @@ if test -d ~/.iterm2
 end
 
 # Dotfiles directory
-set DOTFILES $HOME/set-me-up
+set DOTFILES $HOME/"set-me-up"
 
 # Theme
 # set tacklebox_theme entropy
