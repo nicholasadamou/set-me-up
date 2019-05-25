@@ -23,7 +23,7 @@ edit() {
 
 update() {
   [ -d "$SMU_PATH" ] && \
-	"$SMU_PATH"/smu -p -m macosupdate --no-base
+	  "$SMU_PATH"/smu -p -m macosupdate --no-base
 }
 
 clean() {
@@ -33,14 +33,15 @@ clean() {
 	command -v "gem" &>/dev/null && \
 		gem cleanup
 
-	command -v "nvm" &>/dev/null && \
+	command -v "nvm" &>/dev/null && {
 		. "$NVM_DIR/nvm.sh" && \
     nvm cache clear
+  }
 }
 
 macos() {
   [ -d "$SMU_PATH" ] && \
-	"$SMU_PATH"/smu -p -m preferences --no-base
+	  "$SMU_PATH"/smu -p -m preferences --no-base
 }
 
 case "$COMMAND_NAME" in
