@@ -2,7 +2,6 @@
 
 BIN_NAME=$(basename "$0")
 COMMAND_NAME=$1
-SUB_COMMAND_NAME=$2
 
 SMU_PATH="$HOME"/set-me-up
 
@@ -18,7 +17,7 @@ help () {
 }
 
 edit() {
-	command -v "code" && \
+	command -v "code" &>/dev/null && \
   		sh -c "code $SMU_PATH"
 }
 
@@ -28,14 +27,15 @@ update() {
 }
 
 clean() {
-	command -v "brew" && \
+	command -v "brew" &>/dev/null && \
 		brew cleanup
 
-	command -v "gem" && \
+	command -v "gem" &>/dev/null && \
 		gem cleanup
 
-	command -v "nvm" && \
-		. "$NVM_DIR/nvm.sh"; nvm cache clear
+	command -v "nvm" &>/dev/null && \
+		. "$NVM_DIR/nvm.sh" && \
+    nvm cache clear
 }
 
 macos() {
@@ -49,7 +49,7 @@ case "$COMMAND_NAME" in
     ;;
   *)
     shift
-    "${COMMAND_NAME}" $@
+    "${COMMAND_NAME}" "$@"
     if [ $? = 127 ]; then
       echo "'$COMMAND_NAME' is not a known command." >&2
       help
