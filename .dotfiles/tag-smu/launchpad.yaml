@@ -2,6 +2,7 @@ apps:
   pages:
   - number: 1
     items:
+    - Path Finder
     - Station
     - folder: Browsers
       pages:
@@ -84,6 +85,7 @@ apps:
         - RubyMine
         - Android Studio
         - Xcode
+        - VirtualBox
         - MacDown
         - CodeKit
         - Prepros
@@ -103,6 +105,8 @@ apps:
         - Canopy
         - SnippetsLab
         - BrowserStack Local
+      - number: 2
+        items:
         - CodePilot.ai
     - folder: Graphics & Design
       pages:
@@ -117,6 +121,7 @@ apps:
         - ImageOptim
         - iMazing HEIC Converter
         - CleanShot
+        - PixelSnap 2
         - Gyazo
         - Gyazo GIF
         - Gifox
@@ -136,16 +141,15 @@ apps:
         - VeraCrypt
         - Outline Manager
         - Outline
+        - Little Snitch Configuration
         - Micro Snitch
         - LuLu
         - TaskExplorer
         - OverSight
         - ReiKey
-        - Do Not Disturb
         - KnockKnock
         - WhatsYourSign
         - SafeConnect
-        - Little Snitch Configuration
     - folder: System
       pages:
       - number: 1
@@ -180,7 +184,6 @@ apps:
         - TouchSwitcher
         - Ubuntu Linux Applications
         - Parallels Desktop
-        - VirtualBox
         - Vagrant Manager
         - Docker
         - balenaEtcher
@@ -208,9 +211,11 @@ apps:
         - Yoink
         - Droplr
         - Muse
+        - MacMediaKeyForwarder
         - VNC Viewer
         - Alfred 3
         - Memory Cleaner
+        - Endurance
         - Gas Mask
     - folder: Other
       pages:
@@ -266,6 +271,7 @@ apps:
 widgets:
   pages: []
 dock_items:
+- Path Finder
 - Station
 - Google Chrome
 - Google Chrome Canary
