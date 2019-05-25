@@ -138,13 +138,12 @@ function confirm() {
 
 function obtain() {
 	local -r DOWNLOAD_URL="${1}"
-	local -r EXCLUDED_PATHS="${2}"
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	curl --progress-bar -L "${DOWNLOAD_URL}" | \
 		tar -xmz --strip-components 1 \
-		--exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc,"${EXCLUDED_PATHS}"}
+		--exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
 }
 
 function setup() {
