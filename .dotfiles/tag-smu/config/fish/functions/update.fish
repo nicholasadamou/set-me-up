@@ -1,4 +1,4 @@
-function update --description "Updates Kali, fisher, omf, and their installed packages"
+function update --description "Updates debian, fisher, omf, brew, npm, pip, and their installed packages"
     sudo apt update
     sudo apt upgrade -y
     sudo apt full-upgrade -y
