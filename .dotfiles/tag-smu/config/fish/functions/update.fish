@@ -23,7 +23,7 @@ function update --description "Updates debian, fisher, omf, brew, npm, pip, and 
     fish_update_completions
 
     if type -q npm
-        npm install npm@latest -g
+        sudo npm install npm@latest -g
 
         if type -q npm-check
             npm-check --global --update-all
