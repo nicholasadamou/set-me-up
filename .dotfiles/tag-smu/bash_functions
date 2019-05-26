@@ -360,7 +360,7 @@ function du() {
 	fi
 
     if command -v "npm" &> /dev/null; then
-        npm i -g npm@latest
+        sudo npm i -g npm@latest
 
         if command -v "npm-check" &> /dev/null; then
             npm-check --global --update-all
