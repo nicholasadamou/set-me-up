@@ -17,18 +17,22 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
         fisher self-update
     end
 
-	if type -q omf
-		omf update
-	end
+    if type -q omf
+        omf update
+    end
 
     fish_update_completions
 
     if type -q npm
-        sudo npm install npm@latest -g
+        npm install npm@latest -g
 
         if type -q npm-check
-            sudo npm-check --global --update-all
+            npm-check --global --update-all
         end
+    end
+
+    if type -q pip3
+        pip3 install -U pip
     end
 
     if type -q pip
