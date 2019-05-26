@@ -330,7 +330,7 @@ function du() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Updates MacOS apps, brew, npm, fisher, omf update, pip, pip3 and their installed packages
+# Updates MacOS apps, brew, npm, fish, fisher, omf, pip, pip3 and their installed packages
 
 function u() {
     sudo softwareupdate --install --all
@@ -348,6 +348,17 @@ function u() {
     if command -v "basher" &> /dev/null; then
         basher update
     fi
+
+	if command -v "fish" &> /dev/null; then
+		fish -c "type -q fisher && \
+			fisher && \
+			fisher self-update"
+
+		fish -c "type -q omf && \
+			omf update"
+
+		fish -c "fish_update_completions"
+	fi
 
     if command -v "npm" &> /dev/null; then
         npm i -g npm@latest
