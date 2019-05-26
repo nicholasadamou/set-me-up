@@ -23,10 +23,10 @@ function update --description "Updates Kali, fisher, omf, and their installed pa
     fish_update_completions
 
     if type -q npm
-        sudo npm install npm@latest -g
+        npm install npm@latest -g
 
         if type -q npm-check
-            sudo npm-check --global --update-all
+            npm-check --global --update-all
         end
     end
 
