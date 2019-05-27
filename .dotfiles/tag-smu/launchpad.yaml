@@ -51,7 +51,6 @@ apps:
       pages:
       - number: 1
         items:
-        - iStudiez Pro
         - Microsoft Word
         - Microsoft Excel
         - Microsoft OneNote
@@ -188,9 +187,9 @@ apps:
         - Docker
         - balenaEtcher
         - DAEMON Tools
+        - LaCie Setup
       - number: 2
         items:
-        - LaCie Setup
         - NTFS for Mac
         - Paragon CampTune
         - extFS for Mac
@@ -214,7 +213,6 @@ apps:
         - MacMediaKeyForwarder
         - VNC Viewer
         - Alfred 3
-        - Memory Cleaner
         - Endurance
         - Gas Mask
     - folder: Other
@@ -268,6 +266,7 @@ apps:
         - Notes
         - Photo Booth
         - XQuartz
+    - Memory Diag
 widgets:
   pages: []
 dock_items:
@@ -285,7 +284,6 @@ dock_items:
 - Slack
 - Fantastical 2
 - CARROT Weather
-- iStudiez Pro
 - Kindle
 - Microsoft OneNote
 - Microsoft PowerPoint
