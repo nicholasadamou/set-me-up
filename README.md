@@ -176,8 +176,6 @@ Runs the Mac OS updater via the command-line.
 
 Should your system require a system restart due to an `macosupdate` caused update, re-run the `smu` script after rebooting. The update module should be satisfied by the previous run and result in no action.
 
-⚠️ **Note**: _macosupdate script checks if the `u` function is set. If it is, it will run more than just the Mac OS updater, so take a look at the [`.bash_functions`](.dotfiles/tag-smu/bash_functions#335) file to see what it does._
-
 #### [php](.dotfiles/modules/php)
 
 Installs `PHP5`, `PHP7` and [composer](https://getcomposer.org/) for package management via `brew`. `PHP7` will be defined as the global version.
