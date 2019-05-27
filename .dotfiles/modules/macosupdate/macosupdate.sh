@@ -15,15 +15,9 @@ main() {
 
     ask_for_sudo
 
-	if command -v u &>/dev/null; then
-		execute \
-			"u" \
-			"MacOS (Install all available updates)"
-	else
-		execute \
-			"sudo softwareupdate -i -a" \
-			"MacOS (Install all available updates)"
-	fi
+	execute \
+		"sudo softwareupdate -i -a" \
+		"MacOS (Install all available updates)"
 
 }
 
