@@ -215,6 +215,7 @@ apps:
         - Alfred 3
         - Endurance
         - Gas Mask
+        - Memory Diag
     - folder: Other
       pages:
       - number: 1
@@ -266,7 +267,6 @@ apps:
         - Notes
         - Photo Booth
         - XQuartz
-    - Memory Diag
 widgets:
   pages: []
 dock_items:
