@@ -27,6 +27,7 @@ brew "git-extras"
 brew "hub"
 brew "gitsh"
 brew "tig"
+cask "kaleidoscope"
 
 # File/directory management
 brew "ranger"
