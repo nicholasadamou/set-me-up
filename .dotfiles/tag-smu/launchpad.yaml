@@ -95,6 +95,7 @@ apps:
         - Transmit
         - ForkLift
         - Tower
+        - Kaleidoscope
         - Sublime Merge
         - iTerm
         - Core Shell
@@ -104,8 +105,6 @@ apps:
         - Canopy
         - SnippetsLab
         - BrowserStack Local
-      - number: 2
-        items:
         - CodePilot.ai
     - folder: Graphics & Design
       pages:
@@ -216,6 +215,7 @@ apps:
         - Endurance
         - Gas Mask
         - Memory Diag
+        - Alfred 4
     - folder: Other
       pages:
       - number: 1
@@ -267,6 +267,7 @@ apps:
         - Notes
         - Photo Booth
         - XQuartz
+    - Combin
 widgets:
   pages: []
 dock_items:
