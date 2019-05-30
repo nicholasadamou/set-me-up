@@ -28,6 +28,7 @@ brew "hub"
 brew "gitsh"
 brew "tig"
 cask "kaleidoscope"
+cask "sublime-merge"
 
 # File/directory management
 brew "ranger"
