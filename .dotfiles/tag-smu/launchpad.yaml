@@ -211,10 +211,10 @@ apps:
         - Muse
         - MacMediaKeyForwarder
         - VNC Viewer
-        - Alfred 3
         - Endurance
         - Gas Mask
         - Memory Diag
+        - Alfred 3
         - Alfred 4
     - folder: Other
       pages:
@@ -267,7 +267,6 @@ apps:
         - Notes
         - Photo Booth
         - XQuartz
-    - Combin
 widgets:
   pages: []
 dock_items:
