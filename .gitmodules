@@ -22,3 +22,6 @@
 [submodule ".dotfiles/modules/preferences/apps/iTerm2/ayu-iTerm"]
 	path = .dotfiles/modules/preferences/apps/iTerm2/ayu-iTerm
 	url = https://github.com/hwyncho/ayu-iTerm
+[submodule ".dotfiles/modules/preferences/apps/alfred/alfred-ayu-mirage"]
+	path = .dotfiles/modules/preferences/apps/alfred/alfred-ayu-mirage
+	url = https://github.com/michelegera/alfred-ayu-mirage.git
