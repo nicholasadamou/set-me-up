@@ -112,10 +112,12 @@
 
 [color "diff"]
 
-    frag = magenta
-    meta = yellow
-    new = green
-    old = red
+	frag = magenta bold
+	meta = yellow
+	new = green bold
+	old = red bold
+	commit = yellow bold
+	whitespace = red reverse
 
 [color "status"]
 
@@ -130,6 +132,7 @@
     autocrlf = input
     editor = vim
     excludesfile = ~/.gitignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [diff "bin"]
 
@@ -164,6 +167,8 @@
     # https://github.com/git/git/blob/90f7b16b3adc78d4bbabbd426fb69aa78c714f71/Documentation/config.txt#L2847-L2855
 
     useConfigOnly = true
+	name = Nicholas Adamou
+	email = nicholasadamouemail@gmail.com
 
     # [!] DO NOT store sensitive information such as the Git user
     # credentials (`name` / `email`), or things such as the `signingkey`
@@ -181,3 +186,15 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
+
+[mergetool]
+	keepBackup = true
+
+[color]
+	ui = true
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
