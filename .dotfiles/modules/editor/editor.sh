@@ -50,16 +50,6 @@ install_diff_and_merge_tools() {
         print_success "(p4merge) is already installed"
     fi
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [ "$(git config --global --get core.pager)" != "diff-so-fancy | less --tabs=4 -RFX" ]; then
-        execute \
-            "git config --global core.pager \"diff-so-fancy | less --tabs=4 -RFX\"" \
-            "diff-so-fancy (configure)"
-    else
-        print_success "(diff-so-fancy) is already installed"
-    fi
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -78,7 +68,7 @@ main() {
 
     configure_visual_studio_code
 
-    print_in_yellow "\n   Install diff- and merge tools\n\n"
+    print_in_yellow "\n   Install diff and merge tools\n\n"
 
     install_diff_and_merge_tools
 
