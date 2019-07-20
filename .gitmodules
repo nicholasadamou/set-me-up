@@ -25,3 +25,6 @@
 [submodule ".dotfiles/modules/preferences/apps/alfred/alfred-ayu-mirage"]
 	path = .dotfiles/modules/preferences/apps/alfred/alfred-ayu-mirage
 	url = https://github.com/michelegera/alfred-ayu-mirage.git
+[submodule ".dotfiles/tag-smu/asimov"]
+	path = .dotfiles/tag-smu/asimov
+	url = git@github.com:stevegrunwell/asimov.git
