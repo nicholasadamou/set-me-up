@@ -331,22 +331,22 @@ function du() {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Updates debian apps, brew, npm, fisher, omf update, pip, pip3 and their installed packages
+function u() {
+	sudo apt update
+	sudo apt upgrade -y
+	sudo apt full-upgrade -y
+	sudo apt autoremove -y
+	sudo apt clean
 
-    sudo apt update
-    sudo apt upgrade -y
-    sudo apt full-upgrade -y
-    sudo apt autoremove -y
-    sudo apt clean
+	if command -v "brew" &> /dev/null; then
+		brew update
+		brew upgrade
+		brew cleanup
+	fi
 
-    if command -v "brew" &> /dev/null; then
-        brew update
-        brew upgrade
-        brew cleanup
-    fi
-
-    if command -v "basher" &> /dev/null; then
-        basher update
-    fi
+	if command -v "basher" &> /dev/null; then
+		basher update
+	fi
 
 	if command -v "fish" &> /dev/null; then
 		fish -c "type -q fisher && \
@@ -359,29 +359,28 @@ function du() {
 		fish -c "fish_update_completions"
 	fi
 
-    if command -v "npm" &> /dev/null; then
-        sudo npm i -g npm@latest
+	if command -v "npm" &> /dev/null; then
+		sudo npm i -g npm@latest
 
-        if command -v "npm-check" &> /dev/null; then
-            npm-check --global --update-all
-        fi
-    fi
+		if command -v "npm-check" &> /dev/null; then
+		    npm-check --global --update-all
+		fi
+	fi
 
-    if command -v "pip3" &> /dev/null; then
-        pip3 install -U pip
-    fi
+	if command -v "pip3" &> /dev/null; then
+		pip3 install -U pip
+	fi
 
-    if command -v "pip" &> /dev/null; then
-        pip install --quiet --user --upgrade pip
-        pip install --quiet --user --upgrade setuptools
+	if command -v "pip" &> /dev/null; then
+		pip install --quiet --user --upgrade pip
+		pip install --quiet --user --upgrade setuptools
 
 		if command -v "pip-review" &> /dev/null; then
-        	pip-review -a
-    	fi
-    fi
+			pip-review -a
+		fi
+	fi
 
-    if [ -d "$HOME/.vim/plugins/Vundle.vim" ]; then
-        vim +PluginUpdate +qall
-    fi
+	if [ -d "$HOME/.vim/plugins/Vundle.vim" ]; then
+		vim +PluginUpdate +qall
+	fi
 }
-
