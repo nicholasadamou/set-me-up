@@ -1,9 +1,11 @@
 function update --description "Updates debian, fisher, omf, brew, npm, pip, and their installed packages"
     sudo apt update
     sudo apt upgrade -y
+    sudo apt dist-upgrade -y
     sudo apt full-upgrade -y
-    sudo apt autoremove -y
+    sudo apt autoremove -y --purge
     sudo apt clean
+    sudo apt autoclean
 
     if type -q brew
         brew update
