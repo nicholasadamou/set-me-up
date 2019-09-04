@@ -1,4 +1,11 @@
 function update --description "Updates debian, fisher, omf, brew, npm, pip, and their installed packages"
+    if type -q nordvpn
+        nordvpn connect
+    end
+    
+    sudo killall apt apt-get -q
+    sudo dpkg --configure -a
+    
     sudo apt update
     sudo apt upgrade -y
     sudo apt dist-upgrade -y
