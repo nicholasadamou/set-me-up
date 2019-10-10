@@ -346,7 +346,8 @@ function fdu() {
     sudo rm -rf "$DOTFILES" && \
         bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/"${os}"/.dotfiles/modules/install.sh) && \
         bash "$DOTFILES"/smu --rcup && \
-        symlinks -rd "$HOME"
+        symlinks -rd "$HOME" && \
+        . "$HOME"/.bash_profile
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
