@@ -337,8 +337,8 @@ function fdu() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if ! package_is_installed "symlinks"; then
-        install_package "symlinks" "symlinks"
+    if [ "$os" == "macos" ]; then
+        os='master'
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
