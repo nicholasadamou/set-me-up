@@ -116,6 +116,13 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Add /snap/bin to $PATH
+if [ -d "/snap/bin" ]; then
+	export PATH="/snap/bin:$PATH"
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Make a global variable to access the dotfiles repository
 
 export DOTFILES="$HOME/set-me-up"

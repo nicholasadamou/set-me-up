@@ -37,6 +37,11 @@ if test -e "$HOME"/.z.lua
     source (lua "$HOME"/.z.lua/z.lua --init fish | psub)
 end
 
+# load local fish configs.
+if test -e "$HOME"/.config.fish.local
+    source "$HOME"/.config.fish.local
+end
+
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.).
 

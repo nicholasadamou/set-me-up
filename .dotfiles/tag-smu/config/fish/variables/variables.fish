@@ -17,6 +17,12 @@ if test -d (gem environment gemdir)/bin
   set -gx PATH $PATH (gem environment gemdir)/bin
 end
 
+# Snap Daemon configurations
+# Adds '/snap/bin' to "$PATH"
+if test -d /snap/bin
+    set -gx PATH $PATH /snap/bin
+end
+
 # Dotfiles directory
 set DOTFILES $HOME/set-me-up
 

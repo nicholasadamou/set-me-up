@@ -328,13 +328,26 @@ function du() {
     fi
 }
 
+function fdu() {
+    source <(curl -s "https://raw.githubusercontent.com/nicholasadamou/utilities/master/utilities.sh")
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    os="$(get_os)"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    sudo rm -rf "$DOTFILES" && \
+        bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/"${os}"/.dotfiles/modules/install.sh) && \
+        bash "$DOTFILES"/smu --rcup
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Updates debian apps, brew, npm, fisher, omf update, pip, pip3 and their installed packages
 function u() {
 	sudo apt update
 	sudo apt upgrade -y
-	sudo apt full-upgrade -y
 	sudo apt autoremove -y
 	sudo apt clean
 
