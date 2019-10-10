@@ -33,8 +33,10 @@ end
 
 # load 'z.lua' configs.
 # see: https://github.com/skywind3000/z.lua#install
-if test -e "$HOME"/.z.lua
-    source (lua "$HOME"/.z.lua/z.lua --init fish | psub)
+if type -q lua
+    if test -e "$HOME"/.z.lua
+        source (lua "$HOME"/.z.lua/z.lua --init fish | psub)
+    end
 end
 
 # load local fish configs.
