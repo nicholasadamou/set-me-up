@@ -337,9 +337,16 @@ function fdu() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    if ! package_is_installed "symlinks"; then
+        install_package "symlinks" "symlinks"
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     sudo rm -rf "$DOTFILES" && \
         bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/"${os}"/.dotfiles/modules/install.sh) && \
-        bash "$DOTFILES"/smu --rcup
+        bash "$DOTFILES"/smu --rcup && \
+        symlinks -rd "$HOME"
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
