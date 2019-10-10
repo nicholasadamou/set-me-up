@@ -329,23 +329,9 @@ function du() {
 }
 
 function fdu() {
-    source <(curl -s "https://raw.githubusercontent.com/nicholasadamou/utilities/master/utilities.sh")
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    os="$(get_os)"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [ "$os" == "macos" ]; then
-        os='master'
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     if [ -d "$DOTFILES" ]; then
         sudo rm -rf "$DOTFILES" && \
-            bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/"${os}"/.dotfiles/modules/install.sh) && \
+            bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/master/.dotfiles/modules/install.sh) && \
             bash "$DOTFILES"/smu --rcup && \
             . "$HOME"/.bash_profile
     else
