@@ -328,6 +328,31 @@ function du() {
     fi
 }
 
+function fdu() {
+    source <(curl -s "https://raw.githubusercontent.com/nicholasadamou/utilities/master/utilities.sh")
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    os="$(get_os)"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if ! package_is_installed "symlinks"; then
+        install_package "symlinks" "symlinks"
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ -d "$DOTFILES" ]; then
+        sudo rm -rf "$DOTFILES" && \
+            bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/"${os}"/.dotfiles/modules/install.sh) && \
+            bash "$DOTFILES"/smu --rcup && \
+            . "$HOME"/.bash_profile
+    else
+        echo "($DOTFILES) does not exist"
+    fi
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Updates MacOS apps, brew, npm, fish, fisher, omf, pip, pip3 and their installed packages
