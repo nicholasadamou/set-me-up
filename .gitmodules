@@ -27,4 +27,4 @@
 	url = https://github.com/michelegera/alfred-ayu-mirage.git
 [submodule ".dotfiles/tag-smu/asimov"]
 	path = .dotfiles/tag-smu/asimov
-	url = git@github.com:stevegrunwell/asimov.git
+	url = https://github.com/stevegrunwell/asimov.git
