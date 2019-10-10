@@ -65,8 +65,10 @@ unsymlink() {
 }
 
 symlink() {
-	# Remove broken symlinks in '$HOME' directory.
-	find -L "$HOME" -name . -o -type d -prune -o -type l -exec rm {} +
+	if command -v symlinks; then
+		# Remove broken symlinks in '$HOME' directory.
+		symlinks -rd "$HOME"
+	fi
 
 	# Symlink files listed within set-me-up/.dotifles/rcrc to the '$HOME' directory.
     export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcup -v -f -d "${SMU_HOME_DIR}/.dotfiles"
