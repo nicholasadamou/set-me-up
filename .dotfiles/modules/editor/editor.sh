@@ -11,7 +11,7 @@ declare current_dir && \
 
 configure_visual_studio_code() {
 
-    local extension="golf1052.code-sync"
+    local extension="Shan.code-settings-sync"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
