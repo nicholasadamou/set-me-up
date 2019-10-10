@@ -48,7 +48,7 @@ print_help ()
 	printf '\t%s\n' "--selfupdate,--no-selfupdate: Update set-me-up (off by default)"
 	printf '\t%s\n' "-p,--provision,--no-provision: Provision given modules (off by default)"
 	printf '\t%s\n' "-m,--modules: Modules to provision (empty by default)"
-	printf '\t%s\n' "--lsrc,--no-lsrc: List files that will be symlinked via 'rcm' into your home directory"
+	printf '\t%s\n' "--lsrc: List files that will be symlinked via 'rcm' into your home directory"
 	printf '\t%s\n' "--rcup: Symlink files via 'rcm' into your home directory"
 	printf '\t%s\n' "--rcdn: Remove files that were symlinked via 'rcup'"
 	printf '\t%s\n' "-h,--help: Prints help"
