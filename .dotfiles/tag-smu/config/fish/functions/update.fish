@@ -1,5 +1,5 @@
 function update --description "Updates debian, fisher, omf, brew, npm, pip, and their installed packages"
-    if type -q nordvpn && nordvpn status | grep "Status" | grep "connected"
+    if type -q nordvpn && nordvpn status | grep -q "Status" | grep -q "connected"
         nordvpn connect
     end
     
