@@ -345,8 +345,6 @@ function fdu() {
 
     if [ -d "$DOTFILES" ]; then
         sudo rm -rf "$DOTFILES"
-    else
-        echo "($DOTFILES) does not exist"
     fi
 
     bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/"${os}"/.dotfiles/modules/install.sh) && \
