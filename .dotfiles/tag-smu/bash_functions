@@ -344,7 +344,7 @@ function fdu() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ -d "$DOTFILES" ]; then
-        sudo rm -rf "$DOTFILES" && \
+        sudo rm -rf "$DOTFILES" || \
             bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/"${os}"/.dotfiles/modules/install.sh) && \
             bash "$DOTFILES"/smu --rcup && \
             . "$HOME"/.bash_profile
