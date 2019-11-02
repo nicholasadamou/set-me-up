@@ -19,12 +19,6 @@ if test -e $HOME/.tacklebox/tacklebox.fish
     source $HOME/.tacklebox/tacklebox.fish
 end
 
-# load 'sdkman' configurations
-# see: https://sdkman.io/install
-if test -e "$HOME/.sdkman/bin/sdkman-init.sh"
-    source "$SDKMAN_DIR/bin/sdkman-init.sh"
-end
-
 # load 'autojump' configurations
 # see: https://github.com/wting/autojump
 if test -e "/usr/local/share/autojump/autojump.fish"

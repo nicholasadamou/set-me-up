@@ -160,7 +160,7 @@ install_latest_stable_node_with_n() {
     if [ ! -d "$N_DIRECTORY/n/versions/node/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
         execute \
             ". $LOCAL_BASH_CONFIG_FILE && \
-                n lts" \
+                sudo n lts" \
             "n (install node v$latest_version)"
     else
         print_success "(node) is already on the latest version"
@@ -200,7 +200,7 @@ install_latest_stable_node_with_nvm() {
     if [ ! -d "$NVM_DIRECTORY/versions/node/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
         execute \
             ". $LOCAL_BASH_CONFIG_FILE && \
-                nvm install --lts" \
+                sudo nvm install --lts" \
             "nvm (install node v$latest_version)"
     else
         print_success "(node) is already on the latest version"
@@ -228,13 +228,10 @@ install_npm_packages() {
     npm_install "md-to-pdf"
     npm_install "favicon-emoji"
     npm_install "tldr"
-    npm_install "carbon-now-cli"
     npm_install "emma-cli"
-    npm_install "terminalizer"
     npm_install "@rafaelrinaldi/whereami"
     npm_install "create-dmg"
     npm_install "castnow"
-    npm_install "terminal-image-cli"
     npm_install "gitmoji-cli"
     npm_install "fx"
     npm_install "screenshoteer"
@@ -312,11 +309,15 @@ main() {
 
     ask_for_sudo
 
-    if [ ! -d "$N_DIRECTORY" ] && ! cmd_exists "n"; then
-        install_n
-    else
-        update_n
-    fi
+#     if [ ! -d "$N_DIRECTORY" ] && ! cmd_exists "n"; then
+#         install_n
+#     else
+#         update_n
+#     fi
+
+    print_in_yellow "   Install brew packages\n\n"
+
+    brew_bundle_install "brewfile"
 
     printf "\n"
 
