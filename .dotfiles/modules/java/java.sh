@@ -121,7 +121,7 @@ main() {
 
     printf "\n"
 
-    sdk_install "java" ""
+    sdk_install "java"
 
 }
 
