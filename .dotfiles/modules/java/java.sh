@@ -13,8 +13,6 @@ LOCAL_FISH_CONFIG_FILE="${HOME}/.fish.local"
 declare -r JENV_DIRECTORY="$HOME/.jenv"
 declare -r JENV_GIT_REPO_URL="https://github.com/gcuisinier/jenv.git"
 
-readonly java11=${java11:-"11.0.1-open"}
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 install_sdkman() {
@@ -123,9 +121,7 @@ main() {
 
     printf "\n"
 
-    sdk_install "java" "${java11}"
-
-    set_default_sdk "java" "${java11}"
+    sdk_install "java" ""
 
 }
 
