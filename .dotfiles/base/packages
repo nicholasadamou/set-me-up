@@ -1,5 +1,6 @@
 apt "linuxbrew-wrapper"
 apt "tmux"
+apt "python3-distutils"
 apt "thefuck"
 apt "gdebi"
 apt "symlinks"
