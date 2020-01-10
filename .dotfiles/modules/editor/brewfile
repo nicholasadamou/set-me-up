@@ -6,11 +6,7 @@ brew "vim", args: ["override-system-vi", "with-lua"]
 brew "neovim"
 
 # IDEs
-cask "intellij-idea"
 cask "webstorm"
-cask "pycharm"
-cask "visual-studio-code"
-cask "macdown"
 
 # diff
 brew "diff-so-fancy"
