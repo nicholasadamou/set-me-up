@@ -27,7 +27,6 @@ brew "git-extras"
 brew "hub"
 brew "gitsh"
 brew "tig"
-cask "kaleidoscope"
 cask "sublime-merge"
 
 # File/directory management
@@ -57,9 +56,7 @@ brew "xz"
 cask "alfred"
 cask "iterm2"
 cask "codekit"
-cask "tower"
 cask "dash"
-cask "imageoptim"
 brew "travis"
 
 # Web browsers
@@ -67,11 +64,8 @@ cask "google-chrome"
 cask "google-chrome-canary"
 cask "firefox"
 cask "firefox-developer-edition"
-
-# Database management
-cask "sequel-pro"
-cask "psequel"
-cask "pgadmin4"
+cask "brave-browser"
+cask "blisk"
 
 # Everything VM related
 cask "virtualbox"
@@ -82,7 +76,6 @@ brew "docker"
 brew "boot2docker"
 
 # Window management
-cask "tuck"
 cask "finderminder"
 cask "moom"
 cask "witch"
@@ -111,8 +104,6 @@ cask "macmediakeyforwarder"
 cask "avast-security"
 cask "1password"
 cask "1password-cli"
-cask "bitwarden"
-brew "bitwarden-cli"
 brew "wifi-password"
 cask "reikey"
 cask "lulu"
@@ -121,8 +112,6 @@ cask "do-not-disturb"
 cask "knockknock"
 cask "oversight"
 cask "whatsyoursign"
-cask "outline"
-cask "outline-manager"
 brew "maliceio/tap/malice"
 
 # Install developer friendly quick look plugins
@@ -141,28 +130,20 @@ cask "qlvideo"
 # Example:
 # mas "The Unarchiver", id: 425424353
 brew "mas"
-mas "1026349850" # Copied
 mas "449830122" # HyperDock
 mas "880001334" # Reeder"
 mas "918858936" # Airmail
 mas "969418666" # ColorSnapper2
-mas "402989379" # iStudiez Pro
 mas "736189492" # Notability
 mas "1082624744" # Gifox
 mas "585829637" # Todoist
-mas "1130783329" # Archiver 3
-mas "1419224245" # Canopy
-mas "924726344" # Deliveries
-mas "639968404" # Parcel
+mas "470158793" # Keka
 mas "937984704" # Amphetamine
-mas "1354319581" # Core Shell
-mas "1354318707" # Core Tunnel
 mas "993487541" # CARROT Weather
 mas "441258766" # Magnet
 mas "1191449274" # ToothFairy
 mas "1006087419" # SnippetsLab
 mas "568494494" # Pocket
-mas "553245401" # Friendly Streaming
 mas "1152443474" # Squash
 mas "445189367" # PopClip
 mas "668429425" # Downcast
@@ -171,9 +152,7 @@ mas "411643860" # DaisyDisk
 mas "405399194# # Kindle
 mas "457622435" # Yoink
 mas "915542151" # Monity
-mas "430798174" # HazeOver
 mas "897118787" # Shazam
-mas "1292198261" # iMazing HEIC Converter
 
 # Install other useful binaries.
 brew "thefuck"
