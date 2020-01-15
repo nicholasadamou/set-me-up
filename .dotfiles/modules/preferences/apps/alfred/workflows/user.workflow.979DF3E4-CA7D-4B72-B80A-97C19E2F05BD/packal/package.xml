@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<workflow>
-  <name>VagrantUP</name>
-  <version>2.0</version>
-  <bundle>com.sverdlik.michael</bundle>
-  <updated>1464811275</updated>
-  <file>vagrantup.alfredworkflow</file>
-</workflow>

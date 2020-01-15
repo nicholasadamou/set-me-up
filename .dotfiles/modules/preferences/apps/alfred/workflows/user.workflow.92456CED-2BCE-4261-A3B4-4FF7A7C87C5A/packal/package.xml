@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<workflow>
-  <name>Digital Ocean status</name>
-  <version>2.1</version>
-  <bundle>fspinillo.alfredv2.digitalocean</bundle>
-  <updated>1420662435</updated>
-  <file>digital_ocean_status.alfredworkflow</file>
-</workflow>

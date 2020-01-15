@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<workflow>
-  <name>Base64 Image</name>
-  <version>1.0.0</version>
-  <bundle>com.spr.base64image</bundle>
-  <updated>1446933550</updated>
-  <file>base64_image.alfredworkflow</file>
-</workflow>
