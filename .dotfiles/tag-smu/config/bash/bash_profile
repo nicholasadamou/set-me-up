@@ -31,7 +31,7 @@ source_bash_files() {
 
     for i in ${!FILES_TO_SOURCE[*]}; do
 
-        file="$HOME/.${FILES_TO_SOURCE[$i]}"
+        file="$CURRENT_DIRECTORY/${FILES_TO_SOURCE[$i]}"
 
         [ -r "$file" ] \
             && . "$file"
