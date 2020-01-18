@@ -9,6 +9,72 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+change_default_bash() {
+
+    local configs=""
+    local pathConfig=""
+
+    local newShellPath=""
+    local brewPrefix=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Try to get the path of the `Bash`
+    # version installed through `Homebrew`.
+
+    brewPrefix="$(brew --prefix)"
+
+    pathConfig="PATH=\"$brewPrefix/bin:\$PATH\""
+    configs="# Homebrew bash configurations
+$pathConfig
+export PATH"
+
+    newShellPath="$brewPrefix/bin/bash"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Add the path of the `Bash` version installed through `Homebrew`
+    # to the list of login shells from the `/etc/shells` file.
+    #
+    # This needs to be done because applications use this file to
+    # determine whether a shell is valid (e.g.: `chsh` consults the
+    # `/etc/shells` to determine whether an unprivileged user may
+    # change the login shell for their own account).
+    #
+    # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
+
+    if ! grep -q "$(<<<"$newShellPath" tr '\n' '\01')" < <(less "/etc/shells" | tr '\n' '\01'); then
+        execute \
+            "printf '%s\n' '$newShellPath' | sudo tee -a /etc/shells" \
+            "Bash (add '$newShellPath' in '/etc/shells')"
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Set latest version of `Bash` as the default
+    # (macOS uses by default an older version of `Bash`).
+
+    if [ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${newShellPath}" ]; then
+        chsh -s "$newShellPath" &> /dev/null
+        print_result $? "Bash (use latest version)"
+    else
+        print_success "(bash) is already on the latest version"
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # If needed, add the necessary configs in the
+    # local shell configuration file.
+
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$configs" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+        execute \
+            "printf '%s\n' '$configs' >> $LOCAL_BASH_CONFIG_FILE \
+                && . $LOCAL_BASH_CONFIG_FILE" \
+            "Bash (update $LOCAL_BASH_CONFIG_FILE)"
+    fi
+
+}
+
 # see: https://github.com/oh-my-fish/oh-my-fish/issues/189
 install_omf() {
 
@@ -49,7 +115,7 @@ install_fisher() {
 
     if ! is_fisher_installed; then
         execute \
-            "curl -Lo $HOME/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher" \
+            "curl -Lo $HOME/.config/fish/functions/fisher.fish --create-dirs --silent https://git.io/fisher" \
             "fisher (install)"
     else
         print_success "(fisher) is already installed."
@@ -81,7 +147,11 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    printf "\n"
+    print_in_yellow "\n   Upgrade bash\n\n"
+
+    change_default_bash
+
+	printf "\n"
 
     install_omf
 

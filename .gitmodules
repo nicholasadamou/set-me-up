@@ -16,12 +16,3 @@
 [submodule ".dotfiles/tag-smu/z.lua"]
 	path = .dotfiles/tag-smu/z.lua
 	url = https://github.com/skywind3000/z.lua
-[submodule ".dotfiles/modules/preferences/apps/iTerm2/ayu-iTerm"]
-	path = .dotfiles/modules/preferences/apps/iTerm2/ayu-iTerm
-	url = https://github.com/hwyncho/ayu-iTerm
-[submodule ".dotfiles/modules/preferences/apps/alfred/alfred-ayu-mirage"]
-	path = .dotfiles/modules/preferences/apps/alfred/alfred-ayu-mirage
-	url = https://github.com/michelegera/alfred-ayu-mirage.git
-[submodule ".dotfiles/tag-smu/asimov"]
-	path = .dotfiles/tag-smu/asimov
-	url = https://github.com/stevegrunwell/asimov.git

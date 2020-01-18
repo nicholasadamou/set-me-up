@@ -1,24 +1,10 @@
-tap "sebglazebrook/aliases"
-
-# bash5
+# Install a more recent version of 'bash'.
 brew "bash"
 brew "bash-completion2"
 
 brew "fish"
-brew "coreutils"
-brew "pigz"
-brew "p7zip"
 
 # https://github.com/sharkdp/fd
 brew "fd"
-
-# https://github.com/garabik/grc
-brew "grc"
-
-# https://github.com/clvv/fasd
-brew "fasd"
-
-# https://github.com/sebglazebrook/aliases
-brew "aliases"
 
 cask "iterm2"

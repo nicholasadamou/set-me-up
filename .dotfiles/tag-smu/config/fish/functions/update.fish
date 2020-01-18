@@ -8,6 +8,7 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
     if type -q brew
         brew update
         brew upgrade
+        brew tap buo/cask-upgrade
         brew cu --all --yes --cleanup --quiet
         brew cleanup
     end
@@ -42,9 +43,5 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
         if type -q pip-review
             pip-review -a
         end
-    end
-
-    if test -d $HOME/.vim/plugins/Vundle.vim
-        vim +PluginUpdate +qall
     end
 end

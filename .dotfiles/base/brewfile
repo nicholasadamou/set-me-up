@@ -22,15 +22,11 @@ brew "moreutils"
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`
 brew "findutils"
 
-# Install `wget` with IRI support.
+# Install `wget`.
 brew "wget"
 
 # A modern version of ‘ls’.
 brew "exa"
-
-# Install a more recent version of 'bash'.
-brew "bash"
-brew "bash-completion@2"
 
 # Misc.
 brew "thefuck"

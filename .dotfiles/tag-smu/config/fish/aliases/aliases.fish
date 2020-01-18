@@ -208,7 +208,7 @@ alias show-desktop-icons "defaults write com.apple.finder CreateDesktop -bool tr
 
 # Get local IP.
 
-alias lip "ipconfig getifaddr en1"
+alias lip "ipconfig getifaddr en0"
 
 # Get external IP.
 
