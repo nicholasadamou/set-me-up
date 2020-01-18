@@ -50,6 +50,7 @@ function u() {
     if command -v "brew" &> /dev/null; then
         brew update
         brew upgrade
+				brew tap buo/cask-upgrade
         brew cu --all --yes --cleanup --quiet
     fi
 
