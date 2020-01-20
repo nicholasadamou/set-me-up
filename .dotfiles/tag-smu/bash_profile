@@ -14,7 +14,6 @@ source_bash_files() {
         "bash_options"
         "bash_prompt"
         "keybindings"
-		"inputrc"
     )
 
     local file=""
