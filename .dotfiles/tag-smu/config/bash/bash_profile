@@ -14,6 +14,7 @@ source_bash_files() {
         "bash_options"
         "bash_prompt"
         "keybindings"
+		"inputrc"
     )
 
     local file=""
@@ -80,10 +81,3 @@ fi
 if [ -d "$HOME"/.z.lua ]; then
   eval "$(lua "$HOME"/.z.lua/z.lua --init bash)"
 fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Clear system messages (system copyright notice, the date
-# and time of the last login, the message of the day, etc.)
-
-clear
