@@ -29,8 +29,8 @@ export LS_COLORS
 
 if [ -x /usr/bin/dircolors ]; then
 
-    if test -r ~/.dircolors; then
-        eval "$(dircolors -b ~/.dircolors)"
+    if test -r ~/.config/bash/dircolors; then
+        eval "$(dircolors -b ~/.config/bash/dircolors)"
     else
         eval "$(dircolors -b)"
     fi
