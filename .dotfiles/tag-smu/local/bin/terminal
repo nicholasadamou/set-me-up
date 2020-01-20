@@ -1,8 +1,8 @@
 #!/bin/bash
-#
-# Open new terminal window from the command line using v3 syntax for applescript as needed in terminal Version 3+
-# This script blocks until the cmd is executed in the new terminal window.  It then leaves the window open.
 
+# Open new terminal window from the command line using v3 syntax for applescript as needed in terminal Version 3+
+# This script blocks until the cmd is executed in the new terminal window then closes the new terminal window.
+#
 # Usage:
 #     terminal                   Opens the current directory in a new terminal window
 #     terminal [PATH]            Open PATH in a new terminal window
@@ -39,13 +39,22 @@ function terminal() {
         cmd="$args"
     fi
 
+	# Force Terminal window to close on command "exit"
+	sudo defaults read com.apple.terminal shellExitAction &> /dev/null || {
+		sudo defaults write com.apple.terminal shellExitAction -int 0
+	}
+
+	defaults read com.apple.terminal shellExitAction &> /dev/null || {
+		defaults write com.apple.terminal shellExitAction -int 0
+	}
+
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     osascript <<EOF
 tell application "Terminal"
 	activate
 	tell window 1
-		do script "cd $wd ; $cmd"
+		do script "cd $wd ; $cmd ; exit"
 		repeat while busy
 			delay 1
 		end repeat
