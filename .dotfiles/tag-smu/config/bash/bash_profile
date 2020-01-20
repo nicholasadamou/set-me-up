@@ -20,8 +20,6 @@ source_bash_files() {
         "bash_options"
         "bash_prompt"
         "keybindings"
-        "bash.local"  # For local settings that should
-					  # not be under version control.
     )
 
     local file=""

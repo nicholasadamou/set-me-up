@@ -47,8 +47,8 @@ tell application "Terminal"
 	tell window 1
 		do script "cd $wd ; $cmd"
 		repeat while busy
-            delay 1
-        end repeat
+			delay 1
+		end repeat
 	end tell
 end tell
 EOF
