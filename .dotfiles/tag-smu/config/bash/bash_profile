@@ -6,12 +6,6 @@
 
 source_bash_files() {
 
-    declare CURRENT_DIRECTORY
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    CURRENT_DIRECTORY="$(pwd)"
-
     declare -r -a FILES_TO_SOURCE=(
         "bash_aliases"
         "bash_autocomplete"
@@ -35,10 +29,6 @@ source_bash_files() {
             && . "$file"
 
     done
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    cd "$CURRENT_DIRECTORY" || return
 
 }
 
