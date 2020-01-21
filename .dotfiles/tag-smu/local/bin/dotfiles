@@ -12,7 +12,7 @@ help () {
   echo "   clean            Clean up caches (brew, nvm, gem)"
   echo "   edit             Open dotfiles in visual-studio-code"
   echo "   macos            Apply macOS system defaults"
-  echo "   update           Update packages and pkg managers (OS, brew, npm, gem, etc)"
+  echo "   update           Update MacOS and set-me-up"
   echo "   help             This help message"
 }
 
@@ -23,7 +23,9 @@ edit() {
 
 update() {
   [ -d "$SMU_PATH" ] && \
-	  "$SMU_PATH"/smu -p -m macosupdate --no-base
+	  "$SMU_PATH"/smu -p -m macosupdate --no-base && \
+		rm -rf "$SMU_PATH" && \
+		bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/master/.dotfiles/modules/install.sh)
 }
 
 clean() {
