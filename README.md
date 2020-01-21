@@ -133,12 +133,6 @@ The last task that the base module executes is upgrading the outdated `bash` ver
 
 For more on what the base module does, please consult [`base.sh`](.dotfiles/base/base.sh).
 
-#### [basher](.dotfiles/modules/basher)
-
-The basher module configures and installs the [`basher package manager`](https://github.com/basherpm/basher) for shell scripts.
-
-_Basher allows you to quickly install shell packages directly from github (or other sites). Instead of looking for specific install instructions for each package and messing with your path, basher will create a central location for all packages and manage their binaries for you._ [basherpm/basher](https://github.com/basherpm/basher)
-
 #### [editor](.dotfiles/modules/editor)
 
 The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`.
@@ -197,6 +191,8 @@ When the terminal module is used, the `ruby` installation will work out-of-the-b
 I primarily install the Rust toolchain because I like to use the `cargo` package manager. I then can gain access to an easy install of [`topgrade`](https://github.com/r-darwish/topgrade) which simply _upgrades all the things_ on your Linux or Mac OS system.
 
 #### [terminal](.dotfiles/modules/terminal)
+
+Configures an upgraded version of `bash`, version 5.
 
 Configures `fish` with sane `fish` options and provides you with a list of useful plugins managed via [Fisherman](https://fisherman.github.io) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish).
 
