@@ -43,7 +43,7 @@ _arg_modules=()
 print_help ()
 {
 	printf '%s\n' "set-me-up installer"
-	printf 'Usage: %s [-b|--(no-)base] [--(no-)selfupdate] [-p|--(no-)provision] [-m|--modules <arg>] [--(no-)lsrc] [-h|--help]\n' "$0"
+	printf 'Usage: %s [-b|--(no-)base] [--(no-)selfupdate] [-p|--(no-)provision] [-m|--modules <arg>] [--lsrc] [--rcup] [--rcdn] [-h|--help]\n' "$0"
 	printf '\t%s\n' "-b,--base,--no-base: Run base module (on by default)"
 	printf '\t%s\n' "--selfupdate,--no-selfupdate: Update set-me-up (off by default)"
 	printf '\t%s\n' "-p,--provision,--no-provision: Provision given modules (off by default)"
