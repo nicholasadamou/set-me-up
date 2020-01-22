@@ -43,13 +43,14 @@ function terminal() {
 
     osascript <<EOF
 tell application "Terminal"
-	activate
-	tell window 1
-		do script "cd $wd ; $cmd"
-		repeat while busy
-			delay 1
-		end repeat
-	end tell
+	set newTab to do script
+	set theWindow to first window of (every window whose tabs contains newTab)
+
+	do script "cd $wd; $cmd" in newTab
+	repeat
+		delay 0.05
+		if not busy of newTab then exit repeat
+	end repeat
 end tell
 EOF
 }
