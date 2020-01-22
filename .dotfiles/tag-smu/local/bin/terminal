@@ -42,14 +42,13 @@ function terminal() {
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     osascript <<EOF
-tell application "Terminal"
-	set newTab to do script
-	set theWindow to first window of (every window whose tabs contains newTab)
-
-	do script "cd $wd; $cmd" in newTab
+tell application id "com.apple.Terminal"
+	set T to do script
+	set W to the id of window 1 where its tab 1 = T
+	do script "cd $wd ; $cmd" in T
 	repeat
 		delay 0.05
-		if not busy of newTab then exit repeat
+		if not busy of T then exit repeat
 	end repeat
 end tell
 EOF
