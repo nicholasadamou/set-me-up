@@ -136,10 +136,9 @@ export PATH=\"/usr/local/sbin:\$PATH\"
     # local shell configuration file.
 
     if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "brew (update $LOCAL_BASH_CONFIG_FILE)"
+		printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" && . "$LOCAL_BASH_CONFIG_FILE"
+
+		print_result $? "brew (update $LOCAL_BASH_CONFIG_FILE)"
     fi
 
 }
