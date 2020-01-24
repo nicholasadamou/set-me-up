@@ -65,8 +65,7 @@ end
 
 basher_upgrade() {
 
-	cd "$BASHER_DIRECTORY" \
-            && git fetch --quiet origin
+    git -C "$BASHER_DIRECTORY" fetch --quiet origin
 
 }
 
