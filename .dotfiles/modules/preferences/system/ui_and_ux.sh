@@ -1,5 +1,9 @@
 #!/bin/bash
 
+declare current_dir && \
+    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    cd "${current_dir}" || exit
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 declare -r DESKTOP_WALLPAPER_PATH="./wallpaper/wheat-field.jpeg"
