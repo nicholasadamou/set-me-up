@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare current_dir && \
-    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    current_dir="$PWD" && \
     cd "${current_dir}" || exit
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -54,10 +54,6 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 		sudo scutil --set LocalHostName 'macOS'
 
 sudo systemsetup -setrestartfreeze on
-
-sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 1 && \
-		sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist && \
-		sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
 
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
             sudo defaults write "${domain}" dontAutoLoad -array \
