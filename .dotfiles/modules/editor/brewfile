@@ -1,13 +1,7 @@
 cask_args appdir: "/Applications"
 
-brew "jq"
-
 brew "vim", args: ["override-system-vi", "with-lua"]
-brew "neovim"
 
 # IDEs
 cask "webstorm"
 cask "visual-studio-code"
-
-# diff
-brew "diff-so-fancy"
