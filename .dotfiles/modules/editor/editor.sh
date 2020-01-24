@@ -27,21 +27,6 @@ configure_visual_studio_code() {
 
 }
 
-# see: https://pempek.net/articles/2014/04/18/git-p4merge/
-# see: https://github.com/so-fancy/diff-so-fancy
-install_diff_and_merge_tools() {
-
-    if ! cmd_exists "p4merge"; then
-        curl -fsSL https://pempek.net/files/git-p4merge/mac/p4merge > /usr/local/bin/p4merge \
-            && chmod +x /usr/local/bin/p4merge
-
-        git config --global merge.tool p4merge \
-                && git config --global mergetool.keepTemporaries false \
-                && git config --global mergetool.prompt false
-    fi
-
-}
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
@@ -51,8 +36,6 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     configure_visual_studio_code
-
-    install_diff_and_merge_tools
 
 }
 
