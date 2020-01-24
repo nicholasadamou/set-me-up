@@ -6,7 +6,7 @@ declare current_dir && \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-declare -r DESKTOP_WALLPAPER_PATH="./wallpaper/wheat-field.jpeg"
+declare -r DESKTOP_WALLPAPER_PATH="${current_dir}/wallpaper/wheat-field.jpeg"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
