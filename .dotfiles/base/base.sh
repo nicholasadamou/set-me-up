@@ -91,10 +91,6 @@ create_vimrc_local() {
 
     if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
         touch "$FILE_PATH"
-
-        print_result $? "$FILE_PATH"
-    else
-        print_success "($FILE_PATH) already exists."
     fi
 
 }
