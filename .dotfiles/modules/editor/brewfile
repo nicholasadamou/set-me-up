@@ -7,6 +7,7 @@ brew "neovim"
 
 # IDEs
 cask "webstorm"
+cask "visual-studio-code"
 
 # diff
 brew "diff-so-fancy"
