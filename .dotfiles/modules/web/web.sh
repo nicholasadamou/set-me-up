@@ -7,8 +7,6 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
 
-readonly SMU_PATH="$HOME/set-me-up"
-
 LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 LOCAL_FISH_CONFIG_FILE="${HOME}/.fish.local"
 
@@ -33,10 +31,8 @@ export N_PREFIX=\"\$HOME/n\";
 "
 
     if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "n (update $LOCAL_BASH_CONFIG_FILE)"
+        printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
+                && . "$LOCAL_BASH_CONFIG_FILE"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -50,9 +46,7 @@ set -U fish_user_paths \"\$N_PREFIX/bin\" \$fish_user_paths
 "
 
     if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
-        execute \
-            "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
-            "n (update $LOCAL_FISH_CONFIG_FILE)"
+        printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
     fi
 
 }
@@ -71,10 +65,8 @@ export NVM_DIR=\"$HOME/.nvm\"
 "
 
     if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "nvm (update $LOCAL_BASH_CONFIG_FILE)"
+        printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
+                && . "$LOCAL_BASH_CONFIG_FILE"
     fi
 
 }
@@ -84,9 +76,7 @@ install_n() {
     # Install `n` and add the necessary
     # configs in the local shell config files.
 
-    execute \
-        "curl -sL $N_URL | N_PREFIX=$N_DIRECTORY bash -s -- -q -n" \
-        "n (install)" \
+    curl -sL "$N_URL" | N_PREFIX="$N_DIRECTORY" bash -s -- -q -n\
         && add_n_configs
 
 }
@@ -96,9 +86,7 @@ install_nvm() {
     # Install `nvm` and add the necessary
     # configs in the local shell config files.
 
-    execute \
-        "curl -o- $NVM_URL | bash -s -- -q" \
-        "nvm (install)" \
+    curl -o- "$NVM_URL" | bash -s -- -q \
         && add_nvm_configs
 
 }
@@ -106,24 +94,20 @@ install_nvm() {
 
 update_n() {
 
-    execute \
-        ". $LOCAL_BASH_CONFIG_FILE \
-            && n-update -y" \
-        "n (upgrade)"
+    . "$LOCAL_BASH_CONFIG_FILE" \
+            && n-update -y
 
 }
 
 update_nvm() {
 
-    execute \
-        ". $LOCAL_BASH_CONFIG_FILE \
-		( \
-			cd \"$NVM_DIR\" && \
-			git fetch --tags origin && \
-			git checkout $(git describe --abbrev=0 --tags --match \"v[0-9]*\" "$(git rev-list --tags --max-count=1)") \
-		) \
-		\. \"$NVM_DIR/nvm.sh\" -q" \
-        "nvm (upgrade)"
+    . "$LOCAL_BASH_CONFIG_FILE" && \
+		(
+			git -C "$NVM_DIR" fetch --tags origin && \
+			git -C "$NVM_DIR" checkout \
+				"$(git -C "$NVM_DIR" describe --abbrev=0 --tags --match \"v[0-9]*\" "$(git -C "$NVM_DIR" rev-list --tags --max-count=1)")" \
+		) && \
+	. "$NVM_DIR/nvm.sh" -q
 
 }
 
@@ -158,12 +142,8 @@ install_latest_stable_node_with_n() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ ! -d "$N_DIRECTORY/n/versions/node/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
-        execute \
-            ". $LOCAL_BASH_CONFIG_FILE && \
-                sudo n lts" \
-            "n (install node v$latest_version)"
-    else
-        print_success "(node) is already on the latest version"
+        . "$LOCAL_BASH_CONFIG_FILE" && \
+                sudo n lts
     fi
 
 }
@@ -198,19 +178,13 @@ install_latest_stable_node_with_nvm() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ ! -d "$NVM_DIRECTORY/versions/node/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
-        execute \
-            ". $LOCAL_BASH_CONFIG_FILE && \
-                sudo nvm install --lts" \
-            "nvm (install node v$latest_version)"
-    else
-        print_success "(node) is already on the latest version"
+        . "$LOCAL_BASH_CONFIG_FILE" && \
+                sudo nvm install --lts
     fi
 
 }
 
 install_npm_packages() {
-
-    print_in_yellow "\n   Install npm packages\n\n"
 
     # working with npm
     npm_install "npm-check"
@@ -305,8 +279,6 @@ install_npm_packages() {
 
 main() {
 
-    print_in_purple "  n & npm\n\n"
-
     ask_for_sudo
 
 #     if [ ! -d "$N_DIRECTORY" ] && ! cmd_exists "n"; then
@@ -315,11 +287,7 @@ main() {
 #         update_n
 #     fi
 
-    print_in_yellow "   Install brew packages\n\n"
-
     brew_bundle_install "brewfile"
-
-    printf "\n"
 
     install_latest_stable_node_with_n
 

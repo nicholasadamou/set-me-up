@@ -49,19 +49,13 @@ install_latest_stable_ruby() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ ! -d "$RBENV_DIRECTORY/versions/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
-        execute \
-            "rbenv install $latest_version \
-                && rbenv global $latest_version" \
-            "rbenv (install ruby v$latest_version)"
-    else
-         print_success "(ruby) is already on the latest version"
+        rbenv install "$latest_version" \
+                && rbenv global "$latest_version"
     fi
 
 }
 
 install_ruby_gems() {
-
-    print_in_yellow "\n   Install ruby gems\n\n"
 
     gem_install "bundler"
     gem_install "tmuxinator"
@@ -72,13 +66,9 @@ install_ruby_gems() {
 
 main() {
 
-    print_in_purple "  rbenv & Ruby\n\n"
-
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    
-    printf "\n"
 
     install_latest_stable_ruby
 

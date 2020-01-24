@@ -46,9 +46,7 @@ export PATH"
     # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
 
     if ! grep -q "$(<<<"$newShellPath" tr '\n' '\01')" < <(less "/etc/shells" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$newShellPath' | sudo tee -a /etc/shells" \
-            "Bash (add '$newShellPath' in '/etc/shells')"
+        printf '%s\n' "$newShellPath" | sudo tee -a /etc/shells
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -58,9 +56,6 @@ export PATH"
 
     if [ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${newShellPath}" ]; then
         chsh -s "$newShellPath" &> /dev/null
-        print_result $? "Bash (use latest version)"
-    else
-        print_success "(bash) is already on the latest version"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -69,10 +64,8 @@ export PATH"
     # local shell configuration file.
 
     if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$configs" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$configs' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "Bash (update $LOCAL_BASH_CONFIG_FILE)"
+        printf '%s\n' "$configs" >> "$LOCAL_BASH_CONFIG_FILE" \
+                && . "$LOCAL_BASH_CONFIG_FILE"
     fi
 
 }
@@ -90,24 +83,16 @@ install_omf() {
 
 		# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        execute \
-            "fish <(curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install) \
-				--noninteractive --yes --path=$HOME/.local/share/omf --config=$HOME/.config/omf" \
-            "omf (install)"
-    else
-        print_success "(omf) is already installed."
+        fish <(curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install) \
+				--noninteractive --yes --path="$HOME"/.local/share/omf --config="$HOME"/.config/omf
     fi
 
 }
 
 install_omf_packages() {
 
-    print_in_yellow "\n  Install omf packages\n\n"
-
 	omf_install "z"
     omf_install "thefuck"
-
-    printf "\n"
 
     omf_update
 
@@ -116,26 +101,18 @@ install_omf_packages() {
 install_fisher() {
 
     if ! is_fisher_installed; then
-        execute \
-            "curl -Lo $HOME/.config/fish/functions/fisher.fish --create-dirs --silent https://git.io/fisher" \
-            "fisher (install)"
-    else
-        print_success "(fisher) is already installed."
+        curl -Lo "$HOME"/.config/fish/functions/fisher.fish --create-dirs --silent https://git.io/fisher
     fi
 
 }
 
 install_fisher_packages() {
 
-    print_in_yellow "\n   Install fisher packages\n\n"
-
-    does_fishfile_exist && {
+	does_fishfile_exist && {
         cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
             fisher_install "$PACKAGE"
         done
     }
-
-    printf "\n"
 
     fisher_update
 
@@ -143,23 +120,15 @@ install_fisher_packages() {
 
 main() {
 
-    print_in_purple "  Terminal\n\n"
-
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_in_yellow "\n   Upgrade bash\n\n"
-
     change_default_bash
-
-	printf "\n"
 
     install_omf
 
     install_omf_packages
-
-    printf "\n"
 
     install_fisher
 

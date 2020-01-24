@@ -1,17 +1,5 @@
 #!/bin/bash
 
-# shellcheck source=/dev/null
-
-declare current_dir && \
-    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    cd "${current_dir}" && \
-    source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-print_in_purple "\n   Firefox\n\n"
-
-execute "defaults write org.mozilla.firefox AppleEnableSwipeNavigateWithScrolls -bool false" \
-    "Disable backswipe"
+defaults write org.mozilla.firefox AppleEnableSwipeNavigateWithScrolls -bool false
 
 killall "firefox" &> /dev/null

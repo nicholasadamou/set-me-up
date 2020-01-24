@@ -1,29 +1,13 @@
 #!/bin/bash
 
-# shellcheck source=/dev/null
+defaults write com.apple.appstore ShowDebugMenu -bool true
 
-declare current_dir && \
-    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    cd "${current_dir}" && \
-    source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
+defaults write com.apple.commerce AutoUpdate -bool true
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
 
-print_in_purple "\n   App Store\n\n"
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
 
-execute "defaults write com.apple.appstore ShowDebugMenu -bool true" \
-    "Enable debug menu"
-
-execute "defaults write com.apple.commerce AutoUpdate -bool true" \
-    "Turn on auto-update"
-
-execute "defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true" \
-    "Enable automatic update check"
-
-execute "defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1" \
-    "Download newly available updates in background"
-
-execute "defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1" \
-    "Install System data files and security updates"
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 
 killall "App Store" &> /dev/null

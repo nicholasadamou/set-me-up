@@ -1,101 +1,69 @@
 #!/bin/bash
 
-# shellcheck source=/dev/null
-
-declare current_dir && \
-    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    cd "${current_dir}" && \
-    source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 declare -r DESKTOP_WALLPAPER_PATH="./wallpaper/wheat-field.jpeg"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   UI & UX\n\n"
+sqlite3 "$HOME"/Library/Application\ Support/Dock/desktoppicture.db "UPDATE data SET value=$DESKTOP_WALLPAPER_PATH;"
 
-execute "sqlite3 $HOME/Library/Application\ Support/Dock/desktoppicture.db \"UPDATE data SET value='$DESKTOP_WALLPAPER_PATH';\"" \
-	"Set Desktop Wallpaper ($DESKTOP_WALLPAPER_PATH)"
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true && \
+		defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
-execute "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true && \
-         defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true" \
-   "Avoid creating '.DS_Store' files on network or USB volumes"
+sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
 
-execute "sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true" \
-    "Show language menu in the top right corner of the boot screen"
+defaults write com.apple.CrashReporter UseUNC 1
 
-execute "defaults write com.apple.CrashReporter UseUNC 1" \
-    "Make crash reports appear as notifications"
+defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-execute "defaults write com.apple.LaunchServices LSQuarantine -bool false" \
-    "Disable 'Are you sure you want to open this application?' dialog"
+defaults write com.apple.print.PrintingPrefs 'Quit When Finished' -bool true
 
-execute "defaults write com.apple.print.PrintingPrefs 'Quit When Finished' -bool true" \
-    "Automatically quit the printer app once the print jobs are completed"
+defaults write com.apple.screencapture disable-shadow -bool true
 
-execute "defaults write com.apple.screencapture disable-shadow -bool true" \
-    "Disable shadow in screenshots"
+defaults write com.apple.screencapture location -string "$HOME/Desktop"
 
-execute "defaults write com.apple.screencapture location -string '$HOME/Desktop'" \
-    "Save screenshots to the Desktop"
+defaults write com.apple.screencapture type -string 'png'
 
-execute "defaults write com.apple.screencapture type -string 'png'" \
-    "Save screenshots as PNGs"
+defaults write com.apple.screensaver askForPassword -int 1 && \
+		defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-execute "defaults write com.apple.screensaver askForPassword -int 1 && \
-         defaults write com.apple.screensaver askForPasswordDelay -int 0"\
-    "Require password immediately after into sleep or screen saver mode"
+defaults write -g AppleFontSmoothing -int 2
 
-execute "defaults write -g AppleFontSmoothing -int 2" \
-    "Enable subpixel font rendering on non-Apple LCDs"
+defaults write -g AppleShowScrollBars -string 'Always'
 
-execute "defaults write -g AppleShowScrollBars -string 'Always'" \
-    "Always show scrollbars"
+defaults write -g NSDisableAutomaticTermination -bool true
 
-execute "defaults write -g NSDisableAutomaticTermination -bool true" \
-    "Disable automatic termination of inactive apps"
+defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
 
-execute "defaults write -g NSNavPanelExpandedStateForSaveMode -bool true" \
-    "Expand save panel by default"
+defaults write -g NSTableViewDefaultSizeMode -int 2
 
-execute "defaults write -g NSTableViewDefaultSizeMode -int 2" \
-    "Set sidebar icon size to medium"
+defaults write -g NSUseAnimatedFocusRing -bool false
 
-execute "defaults write -g NSUseAnimatedFocusRing -bool false" \
-    "Disable the over-the-top focus ring animation"
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
-execute "defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false" \
-    "Disable resume system-wide"
+defaults write -g PMPrintingExpandedStateForPrint -bool true
 
-execute "defaults write -g PMPrintingExpandedStateForPrint -bool true" \
-    "Expand print panel by default"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'macOS' && \
+		sudo scutil --set ComputerName 'macOS' && \
+		sudo scutil --set HostName 'macOS' && \
+		sudo scutil --set LocalHostName 'macOS'
 
-execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'macOS' && \
-         sudo scutil --set ComputerName 'macOS' && \
-         sudo scutil --set HostName 'macOS' && \
-         sudo scutil --set LocalHostName 'macOS'" \
-    "Set computer name"
+sudo systemsetup -setrestartfreeze on
 
-execute "sudo systemsetup -setrestartfreeze on" \
-    "Restart automatically if the computer freezes"
+sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 1 && \
+		sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist && \
+		sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
 
-execute "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 1 && \
-         sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist && \
-         sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist" \
-    "Turn Bluetooth on"
-
-execute "for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-            sudo defaults write \"\${domain}\" dontAutoLoad -array \
+for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
+            sudo defaults write "${domain}" dontAutoLoad -array \
                 '/System/Library/CoreServices/Menu Extras/TimeMachine.menu' \
                 '/System/Library/CoreServices/Menu Extras/Volume.menu'
-         done \
+		done \
             && sudo defaults write com.apple.systemuiserver menuExtras -array \
                 '/System/Library/CoreServices/Menu Extras/Bluetooth.menu' \
                 '/System/Library/CoreServices/Menu Extras/AirPort.menu' \
                 '/System/Library/CoreServices/Menu Extras/Battery.menu' \
                 '/System/Library/CoreServices/Menu Extras/Clock.menu'
-        " \
-    "Hide Time Machine and Volume icons from the menu bar"
 
 killall "SystemUIServer" &> /dev/null

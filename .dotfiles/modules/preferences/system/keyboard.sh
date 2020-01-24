@@ -1,40 +1,20 @@
 #!/bin/bash
 
-# shellcheck source=/dev/null
+defaults write -g AppleKeyboardUIMode -int 3
 
-declare current_dir && \
-    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    cd "${current_dir}" && \
-    source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
+defaults write -g ApplePressAndHoldEnabled -bool false
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+defaults write -g 'InitialKeyRepeat_Level_Saved' -int 10
 
-print_in_purple "\n   Keyboard\n\n"
+defaults write -g KeyRepeat -int 2 \
+        && defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
-execute "defaults write -g AppleKeyboardUIMode -int 3" \
-    "Enable full keyboard access for all controls"
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 
-execute "defaults write -g ApplePressAndHoldEnabled -bool false" \
-    "Disable press-and-hold in favor of key repeat"
+defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 
-execute "defaults write -g 'InitialKeyRepeat_Level_Saved' -int 10" \
-    "Set delay until repeat"
+defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
 
-execute "defaults write -g KeyRepeat -int 2 \
-        && defaults write NSGlobalDomain InitialKeyRepeat -int 15" \
-    "Set the key repeat rate to fast"
+defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
 
-execute "defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false" \
-    "Disable automatic capitalization"
-
-execute "defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false" \
-    "Disable automatic correction"
-
-execute "defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false" \
-    "Disable automatic period substitution"
-
-execute "defaults write -g NSAutomaticDashSubstitutionEnabled -bool false" \
-    "Disable smart dashes"
-
-execute "defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false" \
-    "Disable smart quotes"
+defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false

@@ -11,14 +11,9 @@ declare current_dir && \
 
 main() {
 
-    print_in_purple "  MacOS Preferences\n\n"
-
-
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    printf "\n"
 
     # Close any open `System Preferences` panes in order to
     # avoid overriding the preferences that are being changed.
@@ -55,9 +50,7 @@ main() {
 	# see: https://github.com/lra/mackup
 
 	command -v "mackup" &> /dev/null && [ -d "$HOME/Dropbox/Mackup" ] && {
-		execute \
-			"mackup restore" \
-			"mackup (restore)"
+		mackup restore
 	}
 
 }

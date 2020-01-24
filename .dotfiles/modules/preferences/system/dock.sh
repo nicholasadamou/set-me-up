@@ -1,44 +1,23 @@
 #!/bin/bash
 
-# shellcheck source=/dev/null
+defaults write com.apple.dock autohide -bool true
 
-declare current_dir && \
-    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    cd "${current_dir}" && \
-    source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
+defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+defaults write com.apple.dock expose-group-by-app -bool false
 
-print_in_purple "\n   Dock\n\n"
+defaults write com.apple.dock mineffect -string 'scale'
 
-execute "defaults write com.apple.dock autohide -bool true" \
-    "Automatically hide/show the Dock"
+defaults write com.apple.dock minimize-to-application -bool true
 
-execute "defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true" \
-    "Enable spring loading for all Dock items"
+defaults write com.apple.dock mru-spaces -bool false
 
-execute "defaults write com.apple.dock expose-group-by-app -bool false" \
-    "Do not group windows by application in Mission Control"
+defaults write com.apple.dock mru-spaces -bool false
 
-execute "defaults write com.apple.dock mineffect -string 'scale'" \
-    "Change minimize/maximize window effect"
+defaults write com.apple.dock showhidden -bool true
 
-execute "defaults write com.apple.dock minimize-to-application -bool true" \
-    "Reduce clutter by minimizing windows into their application icons"
+defaults write com.apple.dock tilesize -int 60
 
-execute "defaults write com.apple.dock mru-spaces -bool false" \
-    "Do not automatically rearrange spaces based on most recent use"
-
-execute "defaults write com.apple.dock show-process-indicators -bool true" \
-    "Show indicator lights for open applications"
-
-execute "defaults write com.apple.dock showhidden -bool true" \
-    "Make icons of hidden applications translucent"
-
-execute "defaults write com.apple.dock tilesize -int 60" \
-    "Set icon size"
-
-execute "defaults write com.apple.dock pinning -string start" \
-    "Adjust the Dock to the left side corner"
+defaults write com.apple.dock pinning -string start
 
 killall "Dock" &> /dev/null

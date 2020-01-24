@@ -33,11 +33,7 @@ create_bash_local() {
 
     if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
         printf "%s\n" "#!/bin/bash" >> "$FILE_PATH"
-
-        print_result $? "$FILE_PATH"
-    else
-        print_success "($FILE_PATH) already exists."
-    fi
+	fi
 
 }
 
@@ -50,11 +46,7 @@ create_fish_local() {
 
     if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
         touch "$FILE_PATH"
-
-        print_result $? "$FILE_PATH"
-    else
-        print_success "($FILE_PATH) already exists."
-    fi
+	fi
 
 }
 
@@ -87,11 +79,7 @@ create_gitconfig_local() {
     email = $EMAIL
     # signingkey =" \
         >> "$FILE_PATH"
-
-        print_result $? "$FILE_PATH"
-    else
-        print_success "($FILE_PATH) already exists."
-    fi
+	fi
 
 }
 
@@ -114,11 +102,9 @@ create_vimrc_local() {
 
 install_homebrew() {
 
-    printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
-    #       └─ simulate the ENTER keypress
-
-    print_result $? "Homebrew (install)" && \
+    if printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; then
         add_brew_configs
+	fi
 
 }
 
@@ -137,9 +123,7 @@ export PATH=\"/usr/local/sbin:\$PATH\"
 
     if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
 		printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" && . "$LOCAL_BASH_CONFIG_FILE"
-
-		print_result $? "brew (update $LOCAL_BASH_CONFIG_FILE)"
-    fi
+	fi
 
 }
 
@@ -153,7 +137,6 @@ get_homebrew_git_config_file_path() {
         printf "%s" "$path"
         return 0
     else
-        print_error "Homebrew (get config file path)"
         return 1
     fi
 
@@ -179,8 +162,6 @@ opt_out_of_analytics() {
         git config --file="$path" --replace-all homebrew.analyticsdisabled true &> /dev/null
     fi
 
-    print_result $? "Homebrew (opt-out of analytics)"
-
 }
 
 symlink() {
@@ -195,10 +176,8 @@ symlink() {
     # <path-to-smu>/.dotfiles/somedotfile vs <path-to-smu>/.dotfiles/base/../somedotfile
     readonly dotfiles="${SMU_PATH}/.dotfiles"
 
-    execute \
-        "export RCRC=\"$dotfiles/rcrc\" && \
-            rcup -v -f -d \"${dotfiles}\"" \
-        "symlink (${dotfiles})"
+    export RCRC="$dotfiles/rcrc" && \
+            rcup -v -f -d "${dotfiles}"
 
 }
 
@@ -220,19 +199,15 @@ install_plugins() {
 
     # Install plugins.
 
-    execute \
-        "git clone --quiet '$VUNDLE_GIT_REPO_URL' '$VUNDLE_DIR' \
-            && printf '\n' | vim +PluginInstall +qall" \
-        "vim (install plugins)" \
+    git clone --quiet "$VUNDLE_GIT_REPO_URL" "$VUNDLE_DIR" \
+            && printf '\n' | vim +PluginInstall +qall \
         || return 1
 
 }
 
 update_plugins() {
 
-    execute \
-        "vim +PluginUpdate +qall" \
-        "vim (update plugins)"
+    vim +PluginUpdate +qall
 
 }
 
@@ -240,16 +215,10 @@ update_plugins() {
 
 main() {
 
-    print_in_purple "  Base\n"
-
-    print_in_yellow "\n   Create local config files\n\n"
-
     create_bash_local
     create_fish_local
     create_gitconfig_local
     create_vimrc_local
-
-    print_in_yellow "\n   Homebrew\n\n"
 
     ask_for_sudo
 
@@ -261,23 +230,15 @@ main() {
         brew_update
     fi
 
-    printf "\n"
-
     brew_bundle_install "brewfile"
-
-    print_in_yellow "\n   Cleanup\n\n"
 
     brew_cleanup
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_in_yellow "\n   Symlink dotfiles\n\n"
-
     symlink
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_in_yellow "\n   Vim\n\n"
 
     if [ ! -d "$VUNDLE_DIR" ]; then
         install_plugins

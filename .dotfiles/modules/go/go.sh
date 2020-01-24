@@ -7,8 +7,6 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
 
-readonly SMU_PATH="$HOME/set-me-up"
-
 LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 LOCAL_FISH_CONFIG_FILE="${HOME}/.fish.local"
 
@@ -32,10 +30,8 @@ export PATH=\"\$GOENV_ROOT/bin:\$PATH\"
 eval \"\$(goenv init -)\""
 
     if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "goenv (update $LOCAL_BASH_CONFIG_FILE)"
+        printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
+                && . "$LOCAL_BASH_CONFIG_FILE"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -48,9 +44,7 @@ set -gx GOENV_ROOT $GOENV_DIRECTORY
 set -gx PATH \$PATH \$GOENV_ROOT/bin"
 
     if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
-         execute \
-            "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
-            "goenv (update $LOCAL_FISH_CONFIG_FILE)"
+		printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
     fi
 
 }
@@ -75,10 +69,8 @@ export PATH=\"\$GOPATH/bin:\$PATH\""
 
 
     if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "go (update $LOCAL_BASH_CONFIG_FILE)"
+        printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
+                && . "$LOCAL_BASH_CONFIG_FILE"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -92,9 +84,7 @@ set -gx GOBIN \$GOPATH/bin
 set -gx PATH \$PATH \$GOPATH/bin"
 
     if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
-            "go (update $LOCAL_FISH_CONFIG_FILE)"
+        printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
     fi
 
 }
@@ -104,19 +94,14 @@ install_goenv() {
     # Install `goenv` and add the necessary
     # configs in the local shell config files.
 
-    execute \
-        "git clone --quiet $GOENV_GIT_REPO_URL $GOENV_DIRECTORY" \
-        "goenv (install)" \
+    git clone --quiet "$GOENV_GIT_REPO_URL" "$GOENV_DIRECTORY" \
     && add_goenv_configs
 
 }
 
 update_goenv() {
 
-    execute \
-        "cd $GOENV_DIRECTORY \
-            && git pull --quiet" \
-        "goenv (upgrade)"
+    git -C"$GOENV_DIRECTORY" pull --quiet
 
 }
 
@@ -161,23 +146,17 @@ install_latest_stable_go() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ ! -d "$GOENV_DIRECTORY/versions/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
-        execute \
-            ". $LOCAL_BASH_CONFIG_FILE \
-                && goenv install $latest_version \
-                && goenv global $latest_version" \
-            "goenv (install go v$latest_version)" \
+        . "$LOCAL_BASH_CONFIG_FILE" \
+                && goenv install "$latest_version" \
+                && goenv global "$latest_version" \
             && add_go_configs
-    else
-        print_success "(go) is already on the latest version"
     fi
 
 }
 
 install_go_packages() {
 
-    print_in_yellow "\n   Install go packages\n\n"
-
-    go_install "github.com/jesseduffield/lazygit"
+	go_install "github.com/jesseduffield/lazygit"
     go_install "go.coder.com/sshcode"
 
 }
@@ -186,15 +165,9 @@ install_go_packages() {
 
 main() {
 
-    print_in_purple "   goenv & Go\n\n"
-
-    print_in_yellow "   Install brew packages\n\n"
-
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    printf "\n"
 
     ask_for_sudo
 
@@ -203,8 +176,6 @@ main() {
     else
         update_goenv
     fi
-
-    printf "\n"
 
     install_latest_stable_go
 

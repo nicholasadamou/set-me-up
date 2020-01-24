@@ -7,8 +7,6 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
 
-readonly SMU_PATH="$HOME/set-me-up"
-
 LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 LOCAL_FISH_CONFIG_FILE="${HOME}/.fish.local"
 
@@ -34,10 +32,8 @@ export PATH=\"$HOME/Library/Python/3.7/bin:\$PATH\"
 eval \"\$(pyenv init -)\""
 
     if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "pyenv (update $LOCAL_BASH_CONFIG_FILE)"
+        printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
+                && . "$LOCAL_BASH_CONFIG_FILE"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -54,9 +50,7 @@ set -gx PATH \$PATH $HOME/Library/Python/2.7/bin
 set -gx PATH \$PATH $HOME/Library/Python/3.7/bin"
 
     if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
-            "pyenv (update $LOCAL_FISH_CONFIG_FILE)"
+        printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
     fi
 
 }
@@ -66,25 +60,18 @@ install_pyenv() {
     # Install `pyenv` and add the necessary
     # configs in the local shell config files.
 
-    execute \
-        "curl -sL $PYENV_INSTALLER_URL | bash" \
-        "pyenv (install)" \
-    && add_pyenv_configs
+    curl -sL $PYENV_INSTALLER_URL | bash && add_pyenv_configs
 
 }
 
 update_pyenv() {
 
-    execute \
-        ". $LOCAL_BASH_CONFIG_FILE \
-            && pyenv update" \
-        "pyenv (upgrade)"
+    . "$LOCAL_BASH_CONFIG_FILE" \
+            && pyenv update
 
 }
 
 install_pyenv_plugin() {
-
-    print_in_yellow "\n   Install pyenv plugins\n\n"
 
     pyenv_install "https://github.com/momo-lab/pyenv-install-latest.git"
 
@@ -130,35 +117,23 @@ install_latest_stable_python() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ ! -d "$PYENV_DIRECTORY/versions/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
-        execute \
-            "sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target / \
-                && . $LOCAL_BASH_CONFIG_FILE \
-                && pyenv install $latest_version \
-                && pyenv global $latest_version" \
-            "pyenv (install python v$latest_version)"
-    else
-         print_success "(python) is already on the latest version"
+        sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target / \
+                && . "$LOCAL_BASH_CONFIG_FILE" \
+                && pyenv install "$latest_version" \
+                && pyenv global "$latest_version"
     fi
 
 }
 
 install_pip() {
 
-    print_in_yellow "\n   Install pip\n\n"
-
-    if ! cmd_exists "pip"; then
-        execute \
-            "sudo easy_install pip" \
-            "pip (install)"
-    else
-        print_success "(pip) is already installed"
+	if ! cmd_exists "pip"; then
+        sudo easy_install pip
     fi
 
 }
 
 install_pip_packages() {
-
-    print_in_yellow "\n   Install pip packages\n\n"
 
     pip_install "pip-review"
     pip_install "howdoi"
@@ -170,8 +145,6 @@ install_pip_packages() {
 
 install_pip3_packages() {
 
-    print_in_yellow "\n   Install pip3 packages\n\n"
-
     pip3_install "pip-review"
     pip3_install "advance-touch"
     pip3_install "git-up"
@@ -182,13 +155,9 @@ install_pip3_packages() {
 
 main() {
 
-    print_in_purple "  pyenv & Python\n\n"
-
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    printf "\n"
 
     ask_for_sudo
 
@@ -199,8 +168,6 @@ main() {
     fi
 
     install_pyenv_plugin
-
-    printf "\n"
 
     install_latest_stable_python
 

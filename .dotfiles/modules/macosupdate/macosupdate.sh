@@ -11,13 +11,9 @@ declare current_dir && \
 
 main() {
 
-    print_in_purple "  MacOS Update\n\n"
-
     ask_for_sudo
 
-	execute \
-		"sudo softwareupdate -i -a" \
-		"MacOS (Install all available updates)"
+	sudo softwareupdate -i -a
 
 }
 

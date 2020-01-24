@@ -18,11 +18,7 @@ install_composer() {
     ACTUAL_SIGNATURE="$(php -r "echo hash_file('SHA384', 'composer-setup.php');")"
 
     if [ "$EXPECTED_SIGNATURE" == "$ACTUAL_SIGNATURE" ]; then
-        execute \
-            "php composer-setup.php --install-dir=\"$COMPOSER_DIRECTORY\" --filename=composer --quiet" \
-            "composer (install)"
-    else
-        print_error "ERROR:" "Invalid installer signature"
+        php composer-setup.php --install-dir="$COMPOSER_DIRECTORY" --filename=composer --quiet
     fi
 
     rm composer-setup.php
@@ -31,9 +27,7 @@ install_composer() {
 
 update_composer() {
 
-    execute \
-        "php $COMPOSER_DIRECTORY/composer self-update --quiet" \
-        "composer (update)"
+    php "$COMPOSER_DIRECTORY"/composer self-update --quiet
 
 }
 
@@ -41,15 +35,9 @@ update_composer() {
 
 main() {
 
-    print_in_purple "  composer & PHP\n\n"
-
-    print_in_yellow "   Install brew packages\n\n"
-
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    printf "\n"
 
     ask_for_sudo
 

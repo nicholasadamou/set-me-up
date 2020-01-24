@@ -1,21 +1,7 @@
 #!/bin/bash
 
-# shellcheck source=/dev/null
+defaults write -g AppleLanguages -array 'en_US'
 
-declare current_dir && \
-    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    cd "${current_dir}" && \
-    source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
+defaults write -g AppleMeasurementUnits -string 'Inches'
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-print_in_purple "\n   Language & Region\n\n"
-
-execute "defaults write -g AppleLanguages -array 'en_US'" \
-    "Set language"
-
-execute "defaults write -g AppleMeasurementUnits -string 'Inches'" \
-    "Set measurement units"
-
-execute "defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false" \
-    "Disable auto-correct"
+defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false

@@ -11,10 +11,6 @@ declare current_dir && \
 
 main() {
 
-    print_in_purple "  Essentials\n\n"
-
-    print_in_yellow "   Install brew packages\n\n"
-
     brew_bundle_install "brewfile"
 
 }

@@ -1,97 +1,62 @@
 #!/bin/bash
 
-# shellcheck source=/dev/null
+defaults write com.apple.Safari UniversalSearchEnabled -bool false \
+    && defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 
-declare current_dir && \
-    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    cd "${current_dir}" && \
-    source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
-print_in_purple "\n   Safari\n\n"
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
 
-execute "defaults write com.apple.Safari UniversalSearchEnabled -bool false \
-    && defaults write com.apple.Safari SuppressSearchSuggestions -bool true" \
-    "Privacy: don't send search queries to Apple"
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true && \
+		defaults write com.apple.Safari IncludeDevelopMenu -bool true && \
+		defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 
-execute "defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true" \
-    "Enable \"Do Not Track\""
+defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
-execute "defaults write com.apple.Safari AutoOpenSafeDownloads -bool false" \
-    "Disable opening 'safe' files automatically"
+defaults write com.apple.Safari HomePage -string 'about:blank'
 
-execute "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true" \
-    "Set backspace key to go to the previous page in history"
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
-execute "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true && \
-         defaults write com.apple.Safari IncludeDevelopMenu -bool true && \
-         defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true" \
-    "Enable the 'Develop' menu and the 'Web Inspector'"
+defaults write com.apple.Safari ShowFavoritesBar -bool false
 
-execute "defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false" \
-    "Set search type to 'Contains' instead of 'Starts With'"
+defaults write com.apple.Safari ShowSidebarInTopSites -bool false
 
-execute "defaults write com.apple.Safari HomePage -string 'about:blank'" \
-    "Set home page to 'about:blank'"
+defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true \
+    && defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
 
-execute "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true" \
-    "Enable 'Debug' menu"
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
-execute "defaults write com.apple.Safari ShowFavoritesBar -bool false" \
-    "Hide bookmarks bar by default"
+defaults write com.apple.Safari ProxiesInBookmarksBar "()"
 
-execute "defaults write com.apple.Safari ShowSidebarInTopSites -bool false" \
-    "Hide Safari's sidebar in Top Sites"
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
-execute "defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true \
-    && defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true" \
-    "Press Tab to highlight each item on a web page"
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true && \
+        defaults write com.apple.Safari UniversalSearchEnabled -bool false
 
-execute "defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true" \
-    "Show the full URL in the address bar (note: this still hides the scheme)"
+defaults write -g WebKitDeveloperExtras -bool true
 
-execute "defaults write com.apple.Safari ProxiesInBookmarksBar \"()\"" \
-    "Remove useless icons from Safari's bookmarks bar"
-
-execute "defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true" \
-    "Show the full URL in the address bar"
-
-execute "defaults write com.apple.Safari SuppressSearchSuggestions -bool true && \
-         defaults write com.apple.Safari UniversalSearchEnabled -bool false" \
-    "Don’t send search queries to Apple"
-
-execute "defaults write -g WebKitDeveloperExtras -bool true" \
-    "Add a context menu item for showing the 'Web Inspector' in web views"
-
-execute "defaults write com.apple.Safari AutoFillFromAddressBook -bool false \
+defaults write com.apple.Safari AutoFillFromAddressBook -bool false \
     && defaults write com.apple.Safari AutoFillPasswords -bool false \
     && defaults write com.apple.Safari AutoFillCreditCardData -bool false \
-    && defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false" \
-    "Disable AutoFill"
+    && defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
 
-execute "defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true" \
-    "Enable continuous spellchecking"
+defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
 
-execute "defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false" \
-    "Disable auto-correct"
+defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
 
-execute "defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true" \
-    "Warn about fraudulent websites"
+defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
 
-execute "defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false \
-    && defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false" \
-    "Block pop-up windows"
+defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false \
+    && defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
 
-execute "defaults write com.apple.Safari WebKitJavaEnabled -bool false \
-    && defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false" \
-    "Disable Java"
+defaults write com.apple.Safari WebKitJavaEnabled -bool false \
+    && defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
 
-execute "defaults write com.apple.Safari WebKitPluginsEnabled -bool false \
-    && defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2PluginsEnabled -bool false" \
-    "Disable plug-ins"
+defaults write com.apple.Safari WebKitPluginsEnabled -bool false \
+    && defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2PluginsEnabled -bool false
 
-execute "defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true" \
-    "Update extensions automatically"
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 killall "Safari" &> /dev/null

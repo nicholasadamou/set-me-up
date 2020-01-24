@@ -15,7 +15,6 @@ agree_with_xcode_license() {
     # https://github.com/alrra/dotfiles/issues/10
 
     sudo xcodebuild -license accept &> /dev/null
-    print_result $? "Agree to the terms of the Xcode license"
 
 }
 
@@ -37,11 +36,9 @@ install_xcode() {
 
     # Wait until `Xcode` is installed.
 
-    execute \
-        "until is_xcode_installed; do \
+    until is_xcode_installed; do \
             sleep 5; \
-         done" \
-        "Xcode.app"
+		done
 
 }
 
@@ -56,11 +53,9 @@ install_xcode_command_line_tools() {
 
     # Wait until the `Xcode Command Line Tools` are installed.
 
-    execute \
-        "until are_xcode_command_line_tools_installed; do \
+    until are_xcode_command_line_tools_installed; do \
             sleep 5; \
-         done" \
-        "Xcode Command Line Tools"
+		done
 
 }
 
@@ -78,15 +73,11 @@ set_xcode_developer_directory() {
     # https://github.com/alrra/dotfiles/issues/13
 
     sudo xcode-select -switch "/Applications/Xcode.app/Contents/Developer" &> /dev/null
-    print_result $? "Make 'xcode-select' developer directory point to the appropriate directory from within Xcode.app"
-
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-
-    print_in_purple "   Xcode\n\n"
 
     install_xcode_command_line_tools
     install_xcode

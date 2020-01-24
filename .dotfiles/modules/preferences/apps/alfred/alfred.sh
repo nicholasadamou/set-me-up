@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# shellcheck source=/dev/null
-
-declare current_dir && \
-    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
-    cd "${current_dir}" && \
-    source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-print_in_purple "   Alfred\n\n"
-
 # install alfred packages
 npm_install "awm"
 
