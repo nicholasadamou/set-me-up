@@ -134,10 +134,12 @@ install_latest_stable_node_with_n() {
         n --lts
     )"
 
-    current_version="$(
-        node -v | \
-        cut -d "v" -f 2
-    )"
+	if cmd_exists "node"; then
+		current_version="$(
+			node -v | \
+			cut -d "v" -f 2
+		)"
+	fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
