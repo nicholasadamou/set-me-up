@@ -1,5 +1,9 @@
 #!/bin/bash
 
+declare current_dir && \
+    current_dir="$(dirname "${BASH_SOURCE[0]}")" && \
+    cd "${current_dir}" || exit
+
 defaults write com.apple.terminal FocusFollowsMouse -string true
 
 defaults write com.apple.terminal SecureKeyboardEntry -bool true
