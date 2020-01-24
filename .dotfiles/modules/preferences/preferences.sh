@@ -24,6 +24,7 @@ main() {
 
     # App preferences
     ./apps/terminal/terminal.sh
+	./apps/iTerm2/iterm2.sh
     ./apps/app_store.sh
     ./apps/finder.sh
     ./apps/chrome.sh
