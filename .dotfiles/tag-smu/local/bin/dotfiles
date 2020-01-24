@@ -22,9 +22,7 @@ edit() {
 }
 
 update() {
-  [ -d "$SMU_PATH" ] && \
-	  "$SMU_PATH"/smu -p -m macosupdate --no-base && \
-		rm -rf "$SMU_PATH" && \
+  rm -rf "$SMU_PATH" && \
 		bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/master/.dotfiles/modules/install.sh)
 }
 
