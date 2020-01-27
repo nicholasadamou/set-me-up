@@ -1,5 +1,19 @@
 #!/bin/bash
 
+declare current_dir && \
+    current_dir="$PWD" && \
+    cd "${current_dir}" || exit
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+declare -r DESKTOP_WALLPAPER_PATH="${current_dir}/wallpaper/winter.jpeg"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+if brew info wallpaper &>/dev/null; then
+	wallpaper set "$DESKTOP_WALLPAPER_PATH"
+fi
+
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true && \
 		defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 

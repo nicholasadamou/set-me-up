@@ -1,2 +1,4 @@
 brew "mackup"
+brew "wallpaper"
+
 cask "dropbox"
