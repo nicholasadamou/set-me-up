@@ -1,12 +1,6 @@
 #!/bin/bash
 
-declare current_dir && \
-    current_dir="$PWD" && \
-    cd "${current_dir}" || exit
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-declare -r DESKTOP_WALLPAPER_PATH="${current_dir}/wallpapers/winter.jpeg"
+declare -r DESKTOP_WALLPAPER_PATH="${PWD}/wallpapers/winter.jpeg"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
