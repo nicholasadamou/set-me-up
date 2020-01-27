@@ -1,10 +1,11 @@
 #!/bin/bash
 
-declare -r DESKTOP_WALLPAPER_PATH="${PWD}/wallpapers/winter.jpeg"
+declare -r DESKTOP_WALLPAPER_PATH="${PWD}/system/wallpapers/winter.jpeg"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 if brew info wallpaper &>/dev/null; then
+	echo "$DESKTOP_WALLPAPER_PATH"
 	wallpaper set "$DESKTOP_WALLPAPER_PATH"
 fi
 
