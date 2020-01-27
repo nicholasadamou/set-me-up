@@ -10,7 +10,9 @@ declare -r DESKTOP_WALLPAPER_PATH="${current_dir}/wallpaper/wheat-field.jpeg"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-sqlite3 "$HOME"/Library/Application\ Support/Dock/desktoppicture.db "UPDATE data SET value=$DESKTOP_WALLPAPER_PATH;"
+osascript <<EOF
+tell application "Finder" to set desktop picture to POSIX file $DESKTOP_WALLPAPER_PATH
+EOF
 
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true && \
 		defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
