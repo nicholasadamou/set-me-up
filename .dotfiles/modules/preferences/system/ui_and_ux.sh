@@ -10,9 +10,7 @@ declare -r DESKTOP_WALLPAPER_PATH="${current_dir}/wallpaper/wheat-field.jpeg"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-osascript <<EOF
-tell application "Finder" to set desktop picture to POSIX file $DESKTOP_WALLPAPER_PATH
-EOF
+osascript -e "tell application Finder to set desktop picture to POSIX file $DESKTOP_WALLPAPER_PATH"
 
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true && \
 		defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
