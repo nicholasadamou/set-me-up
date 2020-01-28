@@ -1,0 +1,27 @@
+# Mac App Store applications
+# Example:
+# mas "The Unarchiver", id: 425424353
+brew "mas"
+mas "449830122" # HyperDock
+mas "880001334" # Reeder"
+mas "918858936" # Airmail
+mas "969418666" # ColorSnapper2
+mas "736189492" # Notability
+mas "1082624744" # Gifox
+mas "585829637" # Todoist
+mas "470158793" # Keka
+mas "937984704" # Amphetamine
+mas "993487541" # CARROT Weather
+mas "441258766" # Magnet
+mas "1191449274" # ToothFairy
+mas "1006087419" # SnippetsLab
+mas "568494494" # Pocket
+mas "1152443474" # Squash
+mas "445189367" # PopClip
+mas "668429425" # Downcast
+mas "975937182" # Fantastical 2
+mas "411643860" # DaisyDisk
+mas "405399194# # Kindle
+mas "457622435" # Yoink
+mas "915542151" # Monity
+mas "897118787" # Shazam

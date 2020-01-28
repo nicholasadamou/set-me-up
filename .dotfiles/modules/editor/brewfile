@@ -1,7 +1,0 @@
-cask_args appdir: "/Applications"
-
-brew "vim", args: ["override-system-vi", "with-lua"]
-
-# IDEs
-cask "webstorm"
-cask "visual-studio-code"

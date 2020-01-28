@@ -33,7 +33,7 @@ main() {
 
     brew_bundle_install "brewfile"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     configure_visual_studio_code
 

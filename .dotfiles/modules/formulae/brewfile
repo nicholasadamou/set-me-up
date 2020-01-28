@@ -1,0 +1,92 @@
+tap "homebrew/versions"
+tap "bramstein/webfonttools"
+
+# Mac OS management
+brew "m-cli"
+brew "dark-mode"
+brew "wallpaper"
+brew "blacktop/tap/lporg"
+
+# Image processing
+brew "webkit2png"
+brew "zopfli"
+brew "pngcrush"
+brew "imagemagick", args: ["with-webp"]
+
+# VCS related
+brew "git"
+brew "git-lfs"
+brew "git-flow"
+brew "git-extras"
+brew "hub"
+brew "gitsh"
+brew "tig"
+
+# File/directory management
+brew "ranger"
+brew "fzf"
+brew "fzy"
+brew "z"
+brew "goto"
+brew "autojump"
+brew "jump"
+brew "bat"
+brew "ext4fuse"
+brew "tree"
+brew "rename"
+brew "piknik"
+brew "dropbox-uploader"
+
+# Compression utilities
+brew "p7zip"
+brew "pigz"
+brew "unrar"
+brew "xz"
+
+# Core development
+brew "travis"
+
+# Everything VM related
+brew "docker"
+brew "boot2docker"
+
+# Terminal multiplexing
+brew "tmux"
+brew "tmuxinator-completions"
+brew "reattach-to-user-namespace"
+
+# Networking
+brew "speedtest_cli"
+brew "httpie"
+brew "ssh-copy-id"
+brew "pv"
+
+# Process management
+brew "htop-osx", args: ["with-ncurses"]
+
+# Music players
+brew "cmus"
+
+# Security
+brew "wifi-password"
+brew "maliceio/tap/malice"
+
+# Install other useful binaries.
+brew "thefuck"
+brew "the_silver_searcher"
+brew "asciinema"
+brew "sebglazebrook/aliases/aliases"
+brew "screen"
+brew "ack"
+brew "buku"
+brew "exa"
+brew "shellcheck"
+brew "borg"
+brew "micro"
+brew "pandoc"
+brew "emojify"
+brew "ansiweather"
+brew "googler"
+brew "hh"
+brew "yarn", args: ["without-node"]
+brew "entr"
