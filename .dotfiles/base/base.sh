@@ -11,9 +11,6 @@ readonly SMU_PATH="$HOME/set-me-up"
 
 declare LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 
-declare -r VUNDLE_DIR="$HOME/.vim/plugins/Vundle.vim"
-declare -r VUNDLE_GIT_REPO_URL="https://github.com/VundleVim/Vundle.vim.git"
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Overrides `utils.sh` -> print_question()
@@ -33,19 +30,6 @@ create_bash_local() {
 
     if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
         printf "%s\n" "#!/bin/bash" >> "$FILE_PATH"
-	fi
-
-}
-
-
-create_fish_local() {
-
-    declare -r FILE_PATH="$HOME/.fish.local"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
-        touch "$FILE_PATH"
 	fi
 
 }
@@ -82,19 +66,6 @@ create_gitconfig_local() {
 	fi
 
 }
-
-create_vimrc_local() {
-
-    declare -r FILE_PATH="$HOME/.vimrc.local"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
-        touch "$FILE_PATH"
-    fi
-
-}
-
 
 install_homebrew() {
 
@@ -177,44 +148,12 @@ symlink() {
 
 }
 
-install_plugins() {
-
-    # Make sure 'backups', 'swaps' & 'undos' directories exist.
-    # If not, create them.
-
-    [ ! -d "$HOME/.vim/backups" ] && \
-        mkdir -p "$HOME/.vim/backups"
-
-    [ ! -d "$HOME/.vim/swaps" ] && \
-        mkdir -p "$HOME/.vim/swaps"
-
-    [ ! -d "$HOME/.vim/undos" ] && \
-        mkdir -p "$HOME/.vim/undos"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Install plugins.
-
-    git clone --quiet "$VUNDLE_GIT_REPO_URL" "$VUNDLE_DIR" \
-            && printf '\n' | vim +PluginInstall +qall \
-        || return 1
-
-}
-
-update_plugins() {
-
-    vim +PluginUpdate +qall
-
-}
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
     create_bash_local
-    create_fish_local
     create_gitconfig_local
-    create_vimrc_local
 
     ask_for_sudo
 
@@ -233,14 +172,6 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     symlink
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [ ! -d "$VUNDLE_DIR" ]; then
-        install_plugins
-    else
-        update_plugins
-    fi
 
 }
 

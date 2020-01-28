@@ -70,6 +70,18 @@ export PATH"
 
 }
 
+create_fish_local() {
+
+    declare -r FILE_PATH="$HOME/.fish.local"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+        touch "$FILE_PATH"
+	fi
+
+}
+
 # see: https://github.com/oh-my-fish/oh-my-fish/issues/189
 install_omf() {
 
@@ -125,6 +137,8 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     change_default_bash
+
+	create_fish_local
 
     install_omf
 
