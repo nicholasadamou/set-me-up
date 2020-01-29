@@ -1,4 +1,3 @@
-tap "homebrew/versions"
 tap "bramstein/webfonttools"
 
 # Mac OS management
