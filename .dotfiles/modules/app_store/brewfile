@@ -2,8 +2,8 @@
 # Example:
 # mas "The Unarchiver", id: 425424353
 brew "mas"
-mas HyperDock, id: 449830122
-mas "Reeder", id: 880001334
+mas "HyperDock", id: 449830122
+mas "reeder", id: 880001334
 mas "Airmail", id: 918858936
 mas "ColorSnapper2", id: 969418666
 mas "Notability", id: 736189492
