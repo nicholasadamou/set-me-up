@@ -34,6 +34,18 @@ create_bash_local() {
 
 }
 
+create_fish_local() {
+
+    declare -r FILE_PATH="$HOME/.fish.local"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+        touch "$FILE_PATH"
+	fi
+
+}
+
 create_gitconfig_local() {
 
     declare -r FILE_PATH="$HOME/.gitconfig.local"
@@ -190,18 +202,6 @@ export PATH"
 
 }
 
-create_fish_local() {
-
-    declare -r FILE_PATH="$HOME/.fish.local"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
-        touch "$FILE_PATH"
-	fi
-
-}
-
 # see: https://github.com/oh-my-fish/oh-my-fish/issues/189
 install_omf() {
 
@@ -272,8 +272,8 @@ symlink() {
 main() {
 
     create_bash_local
-    create_gitconfig_local
 	create_fish_local
+	create_gitconfig_local
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
