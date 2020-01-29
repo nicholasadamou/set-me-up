@@ -47,6 +47,7 @@ cask "visual-studio-code"
 # File/directory management
 cask "path-finder"
 cask "osxfuse"
+brew "ext4fuse"
 
 # VCS related
 cask "sublime-merge"

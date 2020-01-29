@@ -10,7 +10,7 @@ brew "blacktop/tap/lporg"
 brew "webkit2png"
 brew "zopfli"
 brew "pngcrush"
-brew "imagemagick", args: ["with-webp"]
+brew "imagemagick"
 
 # VCS related
 brew "git"
@@ -30,7 +30,6 @@ brew "goto"
 brew "autojump"
 brew "jump"
 brew "bat"
-brew "ext4fuse"
 brew "tree"
 brew "rename"
 brew "piknik"
@@ -51,7 +50,6 @@ brew "boot2docker"
 
 # Terminal multiplexing
 brew "tmux"
-brew "tmuxinator-completions"
 brew "reattach-to-user-namespace"
 
 # Networking
@@ -61,7 +59,7 @@ brew "ssh-copy-id"
 brew "pv"
 
 # Process management
-brew "htop-osx", args: ["with-ncurses"]
+brew "htop-osx"
 
 # Music players
 brew "cmus"
@@ -80,12 +78,10 @@ brew "ack"
 brew "buku"
 brew "exa"
 brew "shellcheck"
-brew "borg"
 brew "micro"
 brew "pandoc"
 brew "emojify"
 brew "ansiweather"
 brew "googler"
 brew "hh"
-brew "yarn", args: ["without-node"]
 brew "entr"
