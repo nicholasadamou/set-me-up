@@ -170,7 +170,7 @@ When the terminal module is used, the `go` installation will work-out-of-the-box
 
 #### [java](.dotfiles/modules/java)
 
-Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`and `java10` are installed via `sdkman`. **java8** will be defined as the global version. Android Studio is installed via `brew` cask.
+Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`and `java10` are installed via `sdkman`. **java8** will be defined as the global version.
 
 #### [preferences](.dotfiles/modules/perferences)
 
