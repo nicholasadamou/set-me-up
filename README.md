@@ -91,7 +91,7 @@ To use hooks provide a `before.sh` or `after.sh` inside the module directory. Us
 
 Through the power of [rcm tags](http://thoughtbot.github.io/rcm/rcup.1.html) `set-me-up` can favor your version of a file when you provide one. This mitigates the need to tinker directly with `set-me-up` source files.
 
-[Create your own `rcm` tag](#creating-a-custom-tag) and then duplicate the directory structure and files you would like to adapt. `rcm` will combine all files from the given tags in the order you define. For example, when you would like to modify the `brewfile` of the essentials module, the path should look like this: `.dotfiles/tag-my/modules/essentials/brewfile`.
+[Create your own `rcm` tag](#creating-a-custom-tag) and then duplicate the directory structure and files you would like to modify. `rcm` will combine all files from the given tags in the order you define. For example, when you would like to modify the `brewfile` of the app_store module, the path should look like this: `.dotfiles/tag-my/modules/app_store/brewfile`.
 
 Use the `smu --lsrc` command to show how `rcm` would manage your dotfiles and to verify your setup.
 
