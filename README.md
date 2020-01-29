@@ -152,7 +152,7 @@ For more on what the base module does, please consult [`base.sh`](.dotfiles/base
 
 The app store module installs all Mac OS App Store applications via `mas`.
 
-For more on what the app store module does, please consult [`app_store.sh`](.dotfiles/app_store/app_store.sh).
+For more on what the app store module does, please consult [`app_store.sh`](.dotfiles/modules/app_store/app_store.sh).
 
 #### [casks](.dotfiles/modules/casks)
 
