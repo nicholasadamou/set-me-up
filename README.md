@@ -121,7 +121,7 @@ For more on using the `smu` script, simply run `smu --help`.
 
 The base module is the only module that is required to run at least once on your system to ensure the minimum required constraints for `set-me-up` to work.
 
-It will install `brew` and `rcm`. Afterwards `rcup` will be executed to `symlink` the dotfiles from the `.dotfiles/tag-smu` folder into your home directory.
+It will install `brew` and `rcm`. Afterwords `rcup` will be executed to `symlink` the dotfiles from the `.dotfiles/tag-smu` folder into your home directory.
 
 It will also create the [local settings](#local-settings) files such as `~/.bash.local` or `~/.fish.local` if they haven't already been created. These files are used vastly throughout the `smu` provisioning process in order to install and configure other tools, such as [basher](#basher) or [pyenv](#python) for python version management.
 
@@ -131,21 +131,36 @@ You can use `smu --lsrc` command to show which files will be symlink'ed to your 
 
 The last task that the base module executes is upgrading the outdated `bash` version using `brew`.
 
+This module also configures an upgraded version of `bash`, version 5.
+
+Configures `fish` with sane `fish` options and provides you with a list of useful plugins managed via [Fisherman](https://fisherman.github.io) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish).
+
+Some of the installed plugins are:
+
+- fzf
+- fnm
+- z
+- fzy
+- bass
+- ... and more.
+
+**⚠️ Note**: _Take a look at the [fishfile](.dotfiles/tag-smu/config/fish/fishfile) for a full overview._
+
 For more on what the base module does, please consult [`base.sh`](.dotfiles/base/base.sh).
 
-#### [editor](.dotfiles/modules/editor)
+#### [app_store](.dotfiles/modules/app_store)
 
-The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`.
+The app store module installs all Mac OS App Store applications via `mas`.
 
-For tasks you don't want to solve in `vi` you can use [Intellij IDEA](https://www.jetbrains.com/idea/), [PyCharm](https://www.jetbrains.com/pycharm/), [WebStorm](https://www.jetbrains.com/webstorm/), [Android Studio](https://developer.android.com/studio/), or [Visual Studio Code](https://code.visualstudio.com/). The Visual Studio Code configuration comes with a few [useful plugins](.dotfiles/modules/editor/vscode).
+For more on what the app store module does, please consult [`app_store.sh`](.dotfiles/app_store/app_store.sh).
 
-[Macdown](https://macdown.uranusjr.com/) for Markdown editing, [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) for merging/diffing and [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) as default git difftool are also part of the editor module.
+#### [casks](.dotfiles/modules/casks)
 
-Apart from theme and fonts, all editors come pre-configured (e.g. [VSCode](.dotfiles/modules/preferences/apps/vscode)). To synchronize your Intellij configuration I recommend using the official [Settings Sync plugin](https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#IDE_settings_sync)
+Installs a multitude of `brew` casks. Check the [brewfile](.dotfiles/modules/casks/brewfile) to get an overview.
 
-#### [essentials](.dotfiles/modules/essentials)
+#### [formulae](.dotfiles/modules/formulae)
 
-Installs a multitude of `brew` packages, casks and Mac App Store applications. Check the [brewfile](.dotfiles/modules/essentials/brewfile) to get an overview.
+Installs a multitude of `brew` formulae. Check the [brewfile](.dotfiles/modules/formulae/brewfile) to get an overview.
 
 #### [go](.dotfiles/modules/go)
 
@@ -189,23 +204,6 @@ When the terminal module is used, the `ruby` installation will work out-of-the-b
 #### [rust](.dotfiles/modules/rust)
 
 I primarily install the Rust toolchain because I like to use the `cargo` package manager. I then can gain access to an easy install of [`topgrade`](https://github.com/r-darwish/topgrade) which simply _upgrades all the things_ on your Linux or Mac OS system.
-
-#### [terminal](.dotfiles/modules/terminal)
-
-Configures an upgraded version of `bash`, version 5.
-
-Configures `fish` with sane `fish` options and provides you with a list of useful plugins managed via [Fisherman](https://fisherman.github.io) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish).
-
-Some of the installed plugins are:
-
-- fzf
-- fnm
-- z
-- fzy
-- bass
-- ... and more.
-
-**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/modules/terminal/terminal.sh) and [fishfile](.dotfiles/tag-smu/config/fish/fishfile) for a full overview._
 
 #### [web](.dotfiles/modules/web)
 
