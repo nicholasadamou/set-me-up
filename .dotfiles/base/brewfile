@@ -28,5 +28,14 @@ brew "wget"
 # A modern version of ‘ls’.
 brew "exa"
 
+# Install a more recent version of 'bash'.
+brew "bash"
+brew "bash-completion2"
+
+brew "fish"
+
+# https://github.com/sharkdp/fd
+brew "fd"
+
 # Misc.
 brew "thefuck"
