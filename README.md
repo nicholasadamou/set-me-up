@@ -70,7 +70,7 @@ You can change the `smu` home directory by setting an environment variable calle
 
 2.  Afterwards, provision your machine with [further modules](#available-modules) via the `smu` script. Repeat the `-m` switch to specify more then one module.
 
-        smu -p -m essentials -m terminal -m php --no-base
+        smu -p -m app_store -m casks -m php --no-base
 
     As a general rule of thumb, only pick the modules you need, running all modules can take quite some time.
     Fear not, all modules can be installed when you need it.
