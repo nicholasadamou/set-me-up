@@ -18,7 +18,7 @@ main() {
 	print_in_purple "  Configure a MacOS Catalina bootable disk\n\n"
 
 	ask "Enter the '/Volumes' path to where we should makes a bootable disk: "
-	readonly VOLUME_PATH="$(get_answer)"
+	readonly VOLUME_PATH=$(get_answer)
 
 	if [[ -r "$INSTALL_APP_PATH/Contents/SharedSupport/InstallESD.dmg" ]]; then
 		print_warning "Found the install app, create an install disk."
