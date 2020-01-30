@@ -152,7 +152,7 @@ For more on what the base module does, please consult [`base.sh`](.dotfiles/base
 
 This module will allow you to create a MacOS Catalina boot disk for installing MacOS Catalina.
 
-For more on what the create_boot_disk module does, please consult [`create_boot_disk.sh`](.dotfiles/create_boot_disk/create_boot_disk.sh).
+For more on what the create_boot_disk module does, please consult [`create_boot_disk.sh`](.dotfiles/modules/create_boot_disk/create_boot_disk.sh).
 
 #### [app_store](.dotfiles/modules/app_store)
 
