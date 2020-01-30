@@ -7,6 +7,7 @@
 # ARG_OPTIONAL_ACTION([lsrc],[],[List files that will be symlinked via 'rcm' into your home directory],[list_symlinks])
 # ARG_OPTIONAL_ACTION([rcup],[],[Symlink files via 'rcm' into your home directory],[symlink])
 # ARG_OPTIONAL_ACTION([rcdn],[],[Remove files that were symlinked via 'rcup'],[remove_symlinks])
+# ARG_OPTIONAL_ACTION([create_boot_disk],[],[Creates a MacOS Catalina boot disk],[create_boot_disk])
 # ARG_HELP([set-me-up installer])
 # ARGBASH_GO()
 # needed because of Argbash --> m4_ignore([
@@ -64,6 +65,7 @@ print_help()
 	printf '\t%s\n' "--lsrc: List files that will be symlinked via 'rcm' into your home directory"
 	printf '\t%s\n' "--rcup: Symlink files via 'rcm' into your home directory"
 	printf '\t%s\n' "--rcdn: Remove files that were symlinked via 'rcup'"
+	printf '\t%s\n' "--create_boot_disk: Creates a MacOS Catalina boot disk"
 	printf '\t%s\n' "-h, --help: Prints help"
 }
 
@@ -196,6 +198,11 @@ symlink() {
 remove_symlinks() {
 	# Remove files that were symlinked via 'rcup'.
 	export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcdn -v -d "${SMU_HOME_DIR}/.dotfiles"
+}
+
+create_boot_disk() {
+	# Creates a MacOS Catalina boot disk.
+	"${module_path}"/create_boot_disk/create_boot_disk.sh
 }
 
 provision_enabled() {

@@ -148,6 +148,12 @@ Some of the installed plugins are:
 
 For more on what the base module does, please consult [`base.sh`](.dotfiles/base/base.sh).
 
+#### [create_boot_disk](.dotfiles/modules/create_boot_disk)
+
+This module will allow you to create a MacOS Catalina boot disk for installing MacOS Catalina.
+
+For more on what the create_boot_disk module does, please consult [`create_boot_disk.sh`](.dotfiles/create_boot_disk/create_boot_disk.sh).
+
 #### [app_store](.dotfiles/modules/app_store)
 
 The app store module installs all Mac OS App Store applications via `mas`.
