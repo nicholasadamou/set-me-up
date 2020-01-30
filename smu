@@ -153,6 +153,11 @@ parse_commandline()
 				exit 0
 				;;
 			# See the comment of option '--base' to see what's going on here - principle is the same.
+			--create_boot_disk)
+				create_boot_disk
+				exit 0
+				;;
+			# See the comment of option '--base' to see what's going on here - principle is the same.
 			-h|--help)
 				print_help
 				exit 0
