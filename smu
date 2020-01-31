@@ -247,7 +247,6 @@ provision_module() {
 }
 
 main() {
-
 	if [[ ${_arg_selfupdate} == "on" ]]; then
 		if [ -e "${module_path}"/install.sh ]; then
 			"${module_path}"/install.sh
@@ -296,7 +295,6 @@ main() {
 	echo "------------------------------"
 	echo "Completed running set-me-up, restart your computer to ensure all updates take effect."
 	echo "------------------------------"
-
 }
 
 main
