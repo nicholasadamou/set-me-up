@@ -246,53 +246,59 @@ provision_module() {
     )
 }
 
-if [[ ${_arg_selfupdate} == "on" ]]; then
-	if [ -e "${module_path}"/install.sh ]; then
-    	"${module_path}"/install.sh
-	else
-		echo -e "${module_path}/install.sh does not seem to exist.\nPlease run the 'base' module prior to executing a 'selfupdate'."
+main() {
+
+	if [[ ${_arg_selfupdate} == "on" ]]; then
+		if [ -e "${module_path}"/install.sh ]; then
+			"${module_path}"/install.sh
+		else
+			echo -e "${module_path}/install.sh does not seem to exist.\nPlease run the 'base' module prior to executing a 'selfupdate'."
+		fi
+
+		! provision_enabled && exit 0
 	fi
 
-    ! provision_enabled && exit 0
-fi
+	if ! provision_enabled ; then
+		_PRINT_HELP=yes die "Please provide the --provision switch to run set-me-up." 1
+		exit 0
+	fi
 
-if ! provision_enabled ; then
-    _PRINT_HELP=yes die "Please provide the --provision switch to run set-me-up." 1
-    exit 0
-fi
+	read -r -p "set-me-up may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+	echo "";
+	[[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
 
-read -r -p "set-me-up may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-echo "";
-[[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
+	modules=("${_arg_modules[@]}")
 
-modules=("${_arg_modules[@]}")
+	# by default, run the base module as early as possible.
+	if [[ ${_arg_base} == "on" ]]; then
+		modules=("base" "${modules[@]}")
+	fi
 
-# by default, run the base module as early as possible.
-if [[ ${_arg_base} == "on" ]]; then
-    modules=("base" "${modules[@]}")
-fi
+	# check if macosupdate is contained in module list and if so, queue it at the beginning.
+	if [[ " ${modules[@]} " =~ " macosupdate " ]]; then
+		modules=("macosupdate" "${modules[@]}")
+	fi
 
-# check if macosupdate is contained in module list and if so, queue it at the beginning.
-if [[ " ${modules[@]} " =~ " macosupdate " ]]; then
-    modules=("macosupdate" "${modules[@]}")
-fi
+	# list of executed modules, so we only run them once.
+	done=()
 
-# list of executed modules, so we only run them once.
-done=()
+	# run modules
+	for module in "${modules[@]}"
+	do
+		if [[ ! " ${done[@]} " =~ " ${module} " ]]; then
+			provision_module "${module}"
+			done=("${module}" "${done[@]}")
+		fi
+	done
 
-# run modules
-for module in "${modules[@]}"
-do
-    if [[ ! " ${done[@]} " =~ " ${module} " ]]; then
-        provision_module "${module}"
-        done=("${module}" "${done[@]}")
-    fi
-done
+	printf "\n"
 
-printf "\n"
+	echo "------------------------------"
+	echo "Completed running set-me-up, restart your computer to ensure all updates take effect."
+	echo "------------------------------"
 
-echo "------------------------------"
-echo "Completed running set-me-up, restart your computer to ensure all updates take effect."
-echo "------------------------------"
+}
+
+main
 
 # ] <-- needed because of Argbash
