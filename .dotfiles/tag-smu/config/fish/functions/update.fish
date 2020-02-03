@@ -33,15 +33,7 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
     end
 
     if type -q pip3
-        pip3 install -U pip
-    end
-
-    if type -q pip
-        pip install --quiet --user --upgrade pip
-        pip install --quiet --user --upgrade setuptools
-
-        if type -q pip-review
-            pip-review -a
-        end
+        python3 -m pip install --quiet --user --upgrade pip
+        python3 -m pip install --upgrade setuptools pip
     end
 end
