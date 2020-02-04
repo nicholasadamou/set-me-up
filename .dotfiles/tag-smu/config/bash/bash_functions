@@ -50,7 +50,7 @@ function u() {
     if command -v "brew" &> /dev/null; then
         brew update
         brew upgrade
-	brew tap buo/cask-upgrade
+				brew tap buo/cask-upgrade
         brew cu --all --yes --cleanup --quiet
     fi
 
@@ -78,8 +78,20 @@ function u() {
     fi
 
     if command -v "pip3" &> /dev/null; then
-        python3 -m pip install --quiet --user --upgrade pip
-        python3 -m pip install --upgrade setuptools pip
+        pip3 install -U pip
+    fi
+
+    if command -v "pip" &> /dev/null; then
+        pip install --quiet --user --upgrade pip
+        pip install --quiet --user --upgrade setuptools
+
+		if command -v "pip-review" &> /dev/null; then
+        	pip-review -a
+    	fi
+    fi
+
+    if [ -d "$HOME/.vim/plugins/Vundle.vim" ]; then
+        vim +PluginUpdate +qall
     fi
 }
 
