@@ -209,7 +209,7 @@ install_omf() {
 		# Make sure '$HOME/.local/share/omf' does not exist prior
 		# to 'omf' installation.
 
-		if [ -d "$HOME/.local/share/omf" ]; then
+		if [[ -d "$HOME/.local/share/omf" ]]; then
 			sudo rm -rf "$HOME/.local/share/omf"
 		fi
 
