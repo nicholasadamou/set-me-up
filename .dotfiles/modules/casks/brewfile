@@ -19,6 +19,9 @@ cask "moom"
 cask "witch"
 cask "contexts"
 
+# File Management
+cask "keka"
+
 # Everything VM related
 cask "virtualbox"
 cask "virtualbox-extension-pack"
