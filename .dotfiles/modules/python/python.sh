@@ -49,7 +49,7 @@ set -gx PATH \$PATH $HOME/.local/bin
 set -gx PATH \$PATH $HOME/Library/Python/2.7/bin
 set -gx PATH \$PATH $HOME/Library/Python/3.7/bin"
 
-    if [[ ! -e "$LOCAL_FISH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
         printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
     fi
 
@@ -116,7 +116,7 @@ install_latest_stable_python() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [[ ! -d "$PYENV_DIRECTORY/versions/$latest_version" ]] && [[ "$current_version" != "$latest_version" ]]; then
+    if [ ! -d "$PYENV_DIRECTORY/versions/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
         sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target / \
                 && . "$LOCAL_BASH_CONFIG_FILE" \
                 && pyenv install "$latest_version" \
@@ -161,7 +161,7 @@ main() {
 
     ask_for_sudo
 
-    if [[ ! -d "$PYENV_DIRECTORY" ]]; then
+    if [ ! -d "$PYENV_DIRECTORY" ]; then
         install_pyenv
     else
         update_pyenv

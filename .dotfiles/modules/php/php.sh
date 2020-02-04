@@ -41,7 +41,7 @@ main() {
 
     ask_for_sudo
 
-    if ! cmd_exists "composer" && [[ ! -e "$COMPOSER_DIRECTORY/composer" ]]; then
+    if ! cmd_exists "composer" && [ ! -e "$COMPOSER_DIRECTORY/composer" ]; then
         install_composer
     else
         update_composer

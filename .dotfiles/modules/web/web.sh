@@ -30,7 +30,7 @@ export N_PREFIX=\"\$HOME/n\";
 [[ :\$PATH: == *\":\$N_PREFIX/bin:\"* ]] || PATH+=\":\$N_PREFIX/bin\"
 "
 
-    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
                 && . "$LOCAL_BASH_CONFIG_FILE"
     fi
@@ -45,7 +45,7 @@ set -xU N_PREFIX \"\$HOME/n\"
 set -U fish_user_paths \"\$N_PREFIX/bin\" \$fish_user_paths
 "
 
-    if [[ ! -e "$LOCAL_FISH_CONFIG_FILE" ]] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
+    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q -z "$FISH_CONFIGS" "$LOCAL_BASH_CONFIG_FILE" &> /dev/null; then
         printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
     fi
 
@@ -64,7 +64,7 @@ export NVM_DIR=\"$HOME/.nvm\"
 [ -s \"$NVM_DIR/bash_completion\" ] && \. \"$NVM_DIR/bash_completion\"  # This loads nvm bash_completion
 "
 
-    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
                 && . "$LOCAL_BASH_CONFIG_FILE"
     fi
@@ -143,7 +143,7 @@ install_latest_stable_node_with_n() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [[ ! -d "$N_DIRECTORY/n/versions/node/$latest_version" ]] && [[ "$current_version" != "$latest_version" ]]; then
+    if [ ! -d "$N_DIRECTORY/n/versions/node/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
         . "$LOCAL_BASH_CONFIG_FILE" && \
                 sudo n lts
     fi
@@ -179,7 +179,7 @@ install_latest_stable_node_with_nvm() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [[ ! -d "$NVM_DIRECTORY/versions/node/$latest_version" ]] && [[ "$current_version" != "$latest_version" ]]; then
+    if [ ! -d "$NVM_DIRECTORY/versions/node/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
         . "$LOCAL_BASH_CONFIG_FILE" && \
                 sudo nvm install --lts
     fi
