@@ -20,7 +20,7 @@ install_sdkman() {
     # Install `sdkman` and source the necessary shell scripts.
 
     curl -s "https://get.sdkman.io" | bash \
-        && [ -d "$HOME"/.sdkman ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+        && [[ -d "$HOME"/.sdkman ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 }
 
@@ -41,7 +41,7 @@ add_jenv_configs() {
 export PATH=\"$JENV_DIRECTORY/bin:\$PATH\"
 eval \"\$(jenv  init -)\""
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
                 && . "$LOCAL_BASH_CONFIG_FILE"
     fi
@@ -54,7 +54,7 @@ eval \"\$(jenv  init -)\""
 # JEnv - Manage your Java environment.
 set -gx PATH \$PATH $JENV_DIRECTORY/bin"
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
+    if [[ ! -e "$LOCAL_FISH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
         printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
     fi
 
@@ -86,7 +86,7 @@ main() {
 
     ask_for_sudo
 
-    if [ ! -d "$JENV_DIRECTORY" ]; then
+    if [[ ! -d "$JENV_DIRECTORY" ]]; then
         install_jenv
     else
         update_jenv

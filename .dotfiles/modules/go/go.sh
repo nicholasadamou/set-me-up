@@ -29,7 +29,7 @@ export GOENV_ROOT=\"$GOENV_DIRECTORY\"
 export PATH=\"\$GOENV_ROOT/bin:\$PATH\"
 eval \"\$(goenv init -)\""
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
                 && . "$LOCAL_BASH_CONFIG_FILE"
     fi
@@ -43,7 +43,7 @@ eval \"\$(goenv init -)\""
 set -gx GOENV_ROOT $GOENV_DIRECTORY
 set -gx PATH \$PATH \$GOENV_ROOT/bin"
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
+    if [[ ! -e "$LOCAL_FISH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
 		printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
     fi
 
@@ -68,7 +68,7 @@ export GOBIN=\"\$GOPATH/bin\"
 export PATH=\"\$GOPATH/bin:\$PATH\""
 
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
                 && . "$LOCAL_BASH_CONFIG_FILE"
     fi
@@ -145,7 +145,7 @@ install_latest_stable_go() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -d "$GOENV_DIRECTORY/versions/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
+    if [[ ! -d "$GOENV_DIRECTORY/versions/$latest_version" ]] && [[ "$current_version" != "$latest_version" ]]; then
         . "$LOCAL_BASH_CONFIG_FILE" \
                 && goenv install "$latest_version" \
                 && goenv global "$latest_version" \
@@ -171,7 +171,7 @@ main() {
 
     ask_for_sudo
 
-    if [ ! -d "$GOENV_DIRECTORY" ]; then
+    if [[ ! -d "$GOENV_DIRECTORY" ]]; then
         install_goenv
     else
         update_goenv

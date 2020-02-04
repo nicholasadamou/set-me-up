@@ -17,7 +17,7 @@ install_composer() {
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
     ACTUAL_SIGNATURE="$(php -r "echo hash_file('SHA384', 'composer-setup.php');")"
 
-    if [ "$EXPECTED_SIGNATURE" == "$ACTUAL_SIGNATURE" ]; then
+    if [[ "$EXPECTED_SIGNATURE" == "$ACTUAL_SIGNATURE" ]]; then
         php composer-setup.php --install-dir="$COMPOSER_DIRECTORY" --filename=composer --quiet
     fi
 
@@ -41,7 +41,7 @@ main() {
 
     ask_for_sudo
 
-    if ! cmd_exists "composer" && [ ! -e "$COMPOSER_DIRECTORY/composer" ]; then
+    if ! cmd_exists "composer" && [[ ! -e "$COMPOSER_DIRECTORY/composer" ]]; then
         install_composer
     else
         update_composer
