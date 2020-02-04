@@ -28,7 +28,7 @@ create_bash_local() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
         printf "%s\n" "#!/bin/bash" >> "$FILE_PATH"
 	fi
 
@@ -40,7 +40,7 @@ create_fish_local() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
         touch "$FILE_PATH"
 	fi
 
@@ -52,9 +52,9 @@ create_gitconfig_local() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
 
-        if [ "$(git -C "$SMU_PATH" config --global --get user.name)" = "" ] && [ "$(git -C "$SMU_PATH" config --global --get user.email)" = "" ]; then
+        if [[ "$(git -C "$SMU_PATH" config --global --get user.name)" = "" ]] && [[ "$(git -C "$SMU_PATH" config --global --get user.email)" = "" ]]; then
             print_in_yellow "\n   Git Configuration\n\n"
 
             ask "What is your name? [e.g. John Smith]: "; NAME="$(get_answer)"
@@ -100,7 +100,7 @@ export PATH=\"/usr/local/sbin:\$PATH\"
     # If needed, add the necessary configs in the
     # local shell configuration file.
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
 		printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" && . "$LOCAL_BASH_CONFIG_FILE"
 	fi
 
@@ -137,7 +137,7 @@ opt_out_of_analytics() {
     # Opt-out of Homebrew's analytics.
     # https://github.com/Homebrew/brew/blob/0c95c60511cc4d85d28f66b58d51d85f8186d941/share/doc/homebrew/Analytics.md#opting-out
 
-    if [ "$(git config --file="$path" --get homebrew.analyticsdisabled)" != "true" ]; then
+    if [[ "$(git config --file="$path" --get homebrew.analyticsdisabled)" != "true" ]]; then
         git config --file="$path" --replace-all homebrew.analyticsdisabled true &> /dev/null
     fi
 
@@ -186,7 +186,7 @@ export PATH"
     # Set latest version of `Bash` as the default
     # (macOS uses by default an older version of `Bash`).
 
-    if [ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${newShellPath}" ]; then
+    if [[ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${newShellPath}" ]]; then
         chsh -s "$newShellPath" &> /dev/null
     fi
 
@@ -195,7 +195,7 @@ export PATH"
     # If needed, add the necessary configs in the
     # local shell configuration file.
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$configs" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$configs" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
         printf '%s\n' "$configs" >> "$LOCAL_BASH_CONFIG_FILE" \
                 && . "$LOCAL_BASH_CONFIG_FILE"
     fi

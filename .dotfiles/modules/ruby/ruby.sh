@@ -48,7 +48,7 @@ install_latest_stable_ruby() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -d "$RBENV_DIRECTORY/versions/$latest_version" ] && [ "$current_version" != "$latest_version" ]; then
+    if [[ ! -d "$RBENV_DIRECTORY/versions/$latest_version" ]] && [[ "$current_version" != "$latest_version" ]]; then
         rbenv install "$latest_version" \
                 && rbenv global "$latest_version"
     fi
