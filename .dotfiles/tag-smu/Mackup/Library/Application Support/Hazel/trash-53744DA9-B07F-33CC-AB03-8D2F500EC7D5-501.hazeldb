@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Contents</key>
+	<dict>
+		<key>2019-01-28-064223.inProgress</key>
+		<dict>
+			<key>File ID</key>
+			<string>36329228</string>
+			<key>Predicted Process Time</key>
+			<real>570459174</real>
+			<key>Uninstall Prompted Date</key>
+			<date>2019-01-28T13:56:14Z</date>
+		</dict>
+		<key>2019-01-28-115623.inProgress</key>
+		<dict>
+			<key>File ID</key>
+			<string>36387225</string>
+			<key>Predicted Process Time</key>
+			<real>570477411</real>
+			<key>Uninstall Prompted Date</key>
+			<date>2019-01-28T17:56:53Z</date>
+		</dict>
+		<key>Backups.backupdb</key>
+		<dict>
+			<key>File ID</key>
+			<string>575</string>
+			<key>Predicted Process Time</key>
+			<real>570479432</real>
+			<key>Uninstall Prompted Date</key>
+			<date>2019-01-28T18:38:07Z</date>
+		</dict>
+	</dict>
+	<key>File Map</key>
+	<dict>
+		<key>36329228</key>
+		<dict>
+			<key>Name</key>
+			<string>2019-01-28-064223.inProgress</string>
+		</dict>
+		<key>36387225</key>
+		<dict>
+			<key>Name</key>
+			<string>2019-01-28-115623.inProgress</string>
+		</dict>
+		<key>575</key>
+		<dict>
+			<key>Name</key>
+			<string>Backups.backupdb</string>
+		</dict>
+	</dict>
+	<key>Last Poll Time</key>
+	<date>2019-01-28T18:38:07Z</date>
+	<key>Version</key>
+	<integer>3</integer>
+</dict>
+</plist>

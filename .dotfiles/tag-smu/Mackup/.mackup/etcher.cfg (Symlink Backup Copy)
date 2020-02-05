@@ -1,0 +1,5 @@
+[application]
+name = Balena Etcher
+
+[configuration_files]
+Library/Application\ Support/balena-etcher

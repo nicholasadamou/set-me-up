@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# shellcheck source=/dev/null
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+source_bash_files() {
+
+    declare -r -a FILES_TO_SOURCE=(
+        "bash_aliases"
+        "bash_autocomplete"
+        "bash_exports"
+        "bash_functions"
+        "bash_options"
+        "bash_prompt"
+        "keybindings"
+    )
+
+    local file=""
+    local i=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    for i in ${!FILES_TO_SOURCE[*]}; do
+
+        file="$HOME/.config/bash/${FILES_TO_SOURCE[$i]}"
+
+        [ -r "$file" ] \
+            && . "$file"
+
+    done
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+source_bash_files
+unset -f source_bash_files
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load 'bash-sensible' configs.
+# see: https://github.com/mrzool/bash-sensible
+
+if [ -d "$HOME"/.config/bash-sensible ]; then
+    . "$HOME"/.config/bash-sensible/sensible.bash
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load 'autojump' configs.
+# see: https://github.com/wting/autojump
+
+if [ -f "/usr/local/etc/profile.d/autojump.sh" ]; then
+    . /usr/local/etc/profile.d/autojump.sh
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load 'autojump' configs.
+# see: https://github.com/wting/autojump
+if command -v brew &> /dev/null; then
+	if [ -f "$(brew --prefix jump)" ]; then
+		eval "$(jump shell)"
+	fi
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load 'fzf' configs.
+# see: https://github.com/junegunn/fzf#using-homebrew-or-linuxbrew
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load 'z.lua' configs.
+# see: https://github.com/skywind3000/z.lua#install
+
+if [ -d "$HOME"/.z.lua ]; then
+  eval "$(lua "$HOME"/.z.lua/z.lua --init bash)"
+fi

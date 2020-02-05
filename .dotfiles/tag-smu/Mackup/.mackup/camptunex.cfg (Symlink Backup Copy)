@@ -1,0 +1,5 @@
+[application]
+name = Paragon CampTuneX
+
+[configuration_files]
+Library/Application\ Support/com.paragon-software.camptunex

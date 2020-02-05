@@ -1,0 +1,6 @@
+[application]
+name = Workspaces
+
+[configuration_files]
+Library/Application\ Support/Workspaces
+Library/Application\ Support/com.apptorium.Workspaces-dm
