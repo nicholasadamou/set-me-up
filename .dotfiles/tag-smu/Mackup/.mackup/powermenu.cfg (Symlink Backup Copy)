@@ -1,6 +1,0 @@
-[application]
-name = PowerMenu
-
-[configuration_files]
-Library/Application\ Support/com.fiplab.powermenu
-Library/Application\ Support/Power\ Menu
