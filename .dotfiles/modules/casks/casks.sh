@@ -24,7 +24,7 @@ configure_visual_studio_code() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if ! [ "$(code --list-extensions | grep $extension)" == "$extension" ]; then
+    if ! [[ "$(code --list-extensions | grep ${extension})" == "$extension" ]]; then
         code --install-extension "$extension"
     fi
 
@@ -36,7 +36,7 @@ create_vimrc_local() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
         touch "$FILE_PATH"
     fi
 
@@ -47,13 +47,13 @@ install_plugins() {
     # Make sure 'backups', 'swaps' & 'undos' directories exist.
     # If not, create them.
 
-    [ ! -d "$HOME/.vim/backups" ] && \
+    [[ ! -d "$HOME/.vim/backups" ]] && \
         mkdir -p "$HOME/.vim/backups"
 
-    [ ! -d "$HOME/.vim/swaps" ] && \
+    [[ ! -d "$HOME/.vim/swaps" ]] && \
         mkdir -p "$HOME/.vim/swaps"
 
-    [ ! -d "$HOME/.vim/undos" ] && \
+    [[ ! -d "$HOME/.vim/undos" ]] && \
         mkdir -p "$HOME/.vim/undos"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -86,7 +86,7 @@ main() {
 
 	create_vimrc_local
 
-	if [ ! -d "$VUNDLE_DIR" ]; then
+	if [[ ! -d "$VUNDLE_DIR" ]]; then
         install_plugins
     else
         update_plugins
