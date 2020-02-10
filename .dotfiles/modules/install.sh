@@ -143,7 +143,7 @@ function obtain() {
 
 	curl --progress-bar -L "${DOWNLOAD_URL}" | \
 		tar -xmz --strip-components 1 \
-		--exclude=README.md =LICENSE =.gitignore =.dotfiles/rcrc
+		--exclude={README.md,LICENSE,.gitignore,.dotfiles/rcrc}
 }
 
 function setup() {
