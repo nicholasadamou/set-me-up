@@ -1,4 +1,4 @@
 brew "mackup"
 brew "wallpaper"
-
 cask "dropbox"
+cask "launchpad-manager"

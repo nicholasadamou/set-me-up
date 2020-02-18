@@ -41,7 +41,6 @@ main() {
     ./system/dock.sh
     ./system/keyboard.sh
     ./system/language_and_region.sh
-    ./system/trackpad.sh
     ./system/ui_and_ux.sh
 	./system/launchpad.sh
 
