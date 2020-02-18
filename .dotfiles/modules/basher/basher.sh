@@ -41,6 +41,25 @@ eval \"\$(basher init -)\""
                 && . "$LOCAL_BASH_CONFIG_FILE"
     fi
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # fish
+
+    declare -r FISH_CONFIGS="
+# Basher package manager configurations
+# see: https://github.com/basherpm/basher
+if type -q basher
+    if test -d ~/.basher
+        set basher ~/.basher/bin
+    end
+    set -gx PATH \$basher \$PATH
+end
+"
+
+    if [[ ! -e "$LOCAL_FISH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
+        printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
+    fi
+
 }
 
 basher_upgrade() {
