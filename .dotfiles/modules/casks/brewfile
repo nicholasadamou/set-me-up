@@ -65,6 +65,9 @@ cask "endurance"
 # Music players
 cask "macmediakeyforwarder"
 
+# Office
+cask "microsoft-office"
+
 # Install developer friendly quick look plugins
 # see https://github.com/sindresorhus/quick-look-plugins
 cask "qlcolorcode"
