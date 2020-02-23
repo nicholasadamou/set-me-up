@@ -80,12 +80,3 @@ fi
 if [[ -d "$HOME"/.z.lua ]]; then
   eval "$(lua "$HOME"/.z.lua/z.lua --init bash)"
 fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# load 'enhancd' configs
-# see: https://github.com/b4b4r07/enhancd#bash
-
-if [[ -d "$HOME"/.config/enhancd ]]; then
-	. "$HOME"/.config/enhancd/init.sh
-fi
