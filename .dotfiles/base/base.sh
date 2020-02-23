@@ -202,34 +202,6 @@ export PATH"
 
 }
 
-# see: https://github.com/oh-my-fish/oh-my-fish/issues/189
-install_omf() {
-
-    if ! is_omf_installed; then
-		# Make sure '$HOME/.local/share/omf' does not exist prior
-		# to 'omf' installation.
-
-		if [[ -d "$HOME/.local/share/omf" ]]; then
-			sudo rm -rf "$HOME/.local/share/omf"
-		fi
-
-		# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-        fish <(curl -Ls https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install) \
-				--noninteractive --yes --path="$HOME"/.local/share/omf --config="$HOME"/.config/omf
-    fi
-
-}
-
-install_omf_packages() {
-
-	omf_install "z"
-    omf_install "thefuck"
-
-    omf_update
-
-}
-
 install_fisher() {
 
     if ! is_fisher_installed; then
@@ -294,12 +266,6 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	change_default_bash
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    install_omf
-
-    install_omf_packages
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
