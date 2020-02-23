@@ -39,3 +39,8 @@ brew "fd"
 
 # Misc.
 brew "thefuck"
+brew "fzf"
+brew "fzy"
+brew "ccat"
+brew "percol"
+brew "peco"

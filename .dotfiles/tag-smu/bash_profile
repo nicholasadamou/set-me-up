@@ -25,7 +25,7 @@ source_bash_files() {
 
         file="$HOME/.config/bash/${FILES_TO_SOURCE[$i]}"
 
-        [ -r "$file" ] \
+        [[ -r "$file" ]] \
             && . "$file"
 
     done
@@ -42,7 +42,7 @@ unset -f source_bash_files
 # load 'bash-sensible' configs.
 # see: https://github.com/mrzool/bash-sensible
 
-if [ -d "$HOME"/.config/bash-sensible ]; then
+if [[ -d "$HOME"/.config/bash-sensible ]]; then
     . "$HOME"/.config/bash-sensible/sensible.bash
 fi
 
@@ -51,7 +51,7 @@ fi
 # load 'autojump' configs.
 # see: https://github.com/wting/autojump
 
-if [ -f "/usr/local/etc/profile.d/autojump.sh" ]; then
+if [[ -f "/usr/local/etc/profile.d/autojump.sh" ]]; then
     . /usr/local/etc/profile.d/autojump.sh
 fi
 
@@ -60,7 +60,7 @@ fi
 # load 'autojump' configs.
 # see: https://github.com/wting/autojump
 if command -v brew &> /dev/null; then
-	if [ -f "$(brew --prefix jump)" ]; then
+	if [[ -f "$(brew --prefix jump)" ]]; then
 		eval "$(jump shell)"
 	fi
 fi
@@ -70,13 +70,22 @@ fi
 # load 'fzf' configs.
 # see: https://github.com/junegunn/fzf#using-homebrew-or-linuxbrew
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # load 'z.lua' configs.
 # see: https://github.com/skywind3000/z.lua#install
 
-if [ -d "$HOME"/.z.lua ]; then
+if [[ -d "$HOME"/.z.lua ]]; then
   eval "$(lua "$HOME"/.z.lua/z.lua --init bash)"
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# load 'enhancd' configs
+# see: https://github.com/b4b4r07/enhancd#bash
+
+if [[ -d "$HOME"/.config/enhancd ]]; then
+	. "$HOME"/.config/enhancd/init.sh
 fi
