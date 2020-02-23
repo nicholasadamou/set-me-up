@@ -7,6 +7,14 @@ source "$HOME/.config/fish/variables/variables.fish"
 # load local fish configurations
 source "$HOME/.fish.local"
 
+# bootstrap installation of fisher
+# see: https://github.com/jorgebucaran/fisher#bootstrap-installation
+if not functions -q fisher
+    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+    fish -c fisher
+end
+
 # load 'thefuck' configurations
 # see: https://github.com/nvbn/thefuck/wiki/Shell-aliases#fish
 if type -q thefuck
