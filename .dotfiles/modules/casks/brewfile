@@ -19,9 +19,6 @@ cask "moom"
 cask "witch"
 cask "contexts"
 
-# File Management
-cask "keka"
-
 # Everything VM related
 cask "virtualbox"
 cask "virtualbox-extension-pack"
@@ -50,6 +47,8 @@ cask "visual-studio-code"
 cask "path-finder"
 cask "osxfuse"
 brew "ext4fuse"
+cask "filepane"
+cask "keka"
 
 # VCS related
 cask "sublime-merge"
