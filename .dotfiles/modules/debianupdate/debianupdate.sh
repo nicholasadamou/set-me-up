@@ -11,17 +11,13 @@ declare current_dir && \
 
 main() {
 
-    print_in_purple "  Debian Update\n\n"
-
     ask_for_sudo
 
-    execute \
-        "sudo apt update \
+	sudo apt update \
 			&& sudo apt upgrade -y \
 			&& sudo apt full-upgrade -y \
 			&& sudo apt autoremove -y \
-			&& sudo apt clean" \
-        "Debian (Install all available updates)"
+			&& sudo apt clean
 
 }
 

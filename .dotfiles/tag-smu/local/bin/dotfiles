@@ -11,8 +11,7 @@ help () {
   echo "Commands:"
   echo "   clean            Clean up caches (brew, nvm, gem)"
   echo "   edit             Open dotfiles in visual-studio-code"
-  echo "   debian           Apply debian system defaults"
-  echo "   update           Update packages and pkg managers (OS, brew, npm, gem, etc)"
+  echo "   update           Update Linux and set-me-up"
   echo "   help             This help message"
 }
 
@@ -22,8 +21,9 @@ edit() {
 }
 
 update() {
-  [ -d "$SMU_PATH" ] && \
-	  "$SMU_PATH"/smu -p -m macosupdate --no-base
+	rm -rf "$SMU_PATH"
+
+	bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/debian/.dotfiles/modules/install.sh)
 }
 
 clean() {
@@ -37,11 +37,8 @@ clean() {
 		. "$NVM_DIR/nvm.sh" && \
     nvm cache clear
   }
-}
 
-debian() {
-  [ -d "$SMU_PATH" ] && \
-	  "$SMU_PATH"/smu -p -m preferences --no-base
+  apt cache clean
 }
 
 case "$COMMAND_NAME" in
@@ -51,7 +48,7 @@ case "$COMMAND_NAME" in
   *)
     shift
     "${COMMAND_NAME}" "$@"
-    if [ $? = 127 ]; then
+    if [[ $? = 127 ]]; then
       echo "'$COMMAND_NAME' is not a known command." >&2
       help
       exit 1

@@ -43,9 +43,3 @@ set menu-complete-display-prefix on
 # Display a list of the matching files
 
 set show-all-if-ambiguous on
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Fix issue where Caffeine application will automatically type F15 to keep system alive
-# see: https://superuser.com/a/1203637/684201
-"\e[28~":""

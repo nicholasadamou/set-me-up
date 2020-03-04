@@ -33,7 +33,7 @@ function mkcd() {
 }
 
 function is_git_repo() {
-	[ -d "${SMU_HOME_DIR}/.git" ] || [[ $(git -C "${SMU_HOME_DIR}" rev-parse --is-inside-work-tree 2> /dev/null) ]]
+	[[ -d "${SMU_HOME_DIR}/.git" ]] || [[ $(git -C "${SMU_HOME_DIR}" rev-parse --is-inside-work-tree 2> /dev/null) ]]
 }
 
 function has_remote_origin() {
@@ -41,7 +41,7 @@ function has_remote_origin() {
 }
 
 function has_submodules() {
-    [ -f "${SMU_HOME_DIR}"/.gitmodules ]
+    [[ -f "${SMU_HOME_DIR}"/.gitmodules ]]
 }
 
 function has_active_submodules() {
@@ -64,7 +64,7 @@ function is_git_repo_out_of_date() {
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	[ "$LOCAL" = "$BASE" ] && [ "$LOCAL" != "$REMOTE" ]
+	[ "$LOCAL" = "$BASE" ]] && [ "$LOCAL" != "$REMOTE" ]]
 }
 
 function is_dir_empty() {
@@ -75,10 +75,10 @@ function install_submodules() {
     git -C "${SMU_HOME_DIR}" config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
         while read -r KEY MODULE_PATH
         do
-			if [ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && ! is_dir_empty "${MODULE_PATH}" && does_repo_contain "${MODULE_PATH}"; then
+			if [[ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ]] && ! is_dir_empty "${MODULE_PATH}" && does_repo_contain "${MODULE_PATH}"; then
 				continue
 			else
-				[ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ] && is_dir_empty "${MODULE_PATH}" && {
+				[[ -d "${SMU_HOME_DIR:?}/${MODULE_PATH}" ]] && is_dir_empty "${MODULE_PATH}" && {
 					rm -rf "${SMU_HOME_DIR:?}/${MODULE_PATH}"
 				}
 
@@ -98,7 +98,7 @@ function install_submodules() {
 }
 
 function confirm() {
-	if [ -n "$SMU_BLUEPRINT" ] && [ -n "$SMU_BLUEPRINT_BRANCH" ]; then
+	if [[ -n "$SMU_BLUEPRINT" ]] && [[ -n "$SMU_BLUEPRINT_BRANCH" ]]; then
 		echo "➜ This script will download '$SMU_BLUEPRINT' on branch '$SMU_BLUEPRINT_BRANCH' to ${SMU_HOME_DIR}"
 	else
 		echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
@@ -155,7 +155,7 @@ function setup() {
 				# Make sure '$SMU_IGNORED_PATHS' is set prior to
 				# obtaining list of modified files
 
-				if [ -n "$SMU_IGNORED_PATHS" ]; then
+				if [[ -n "$SMU_IGNORED_PATHS" ]]; then
 					IGNORED_PATHS=".gitmodules|.dotfiles/modules/install.sh|${SMU_IGNORED_PATHS}"
 				else
 					IGNORED_PATHS=".gitmodules|.dotfiles/modules/install.sh"
@@ -178,7 +178,7 @@ function setup() {
 				# If it is not empty then, commit changes
 				# to the (nicholasadamou/set-me-up-blueprint) repo.
 
-				if [ -n "$files" ]; then
+				if [[ -n "$files" ]]; then
 					git -C "${SMU_HOME_DIR}" \
 						add -f "$files" &> /dev/null
 
@@ -187,7 +187,7 @@ function setup() {
 						-c user.email="set-me-up@gmail.com" \
 						commit -m "✅ UPDATED: '$files'" &> /dev/null
 
-					if [ "$?" -eq 0 ]; then
+					if [[ "$?" -eq 0 ]]; then
 						echo -e "✔︎ UPDATED: '$files'\n"
 					fi
 				fi
@@ -231,7 +231,7 @@ function setup() {
 				# append its contents to the set-me-up-blueprint
 				#'.gitmodules' file.
 
-				if [ -n "$submodules" ]; then
+				if [[ -n "$submodules" ]]; then
 					if ! grep -q "$(<<<"$submodules" tr '\n' '\01')" < <(less "${SMU_HOME_DIR}/.gitmodules" | tr '\n' '\01'); then
 						echo "$submodules" >> "${SMU_HOME_DIR}"/.gitmodules
 						git -C "${SMU_HOME_DIR}" \
@@ -257,4 +257,4 @@ function main() {
     setup
 }
 
-main "$@"
+main

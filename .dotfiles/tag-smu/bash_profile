@@ -6,12 +6,6 @@
 
 source_bash_files() {
 
-    declare CURRENT_DIRECTORY
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    CURRENT_DIRECTORY="$(pwd)"
-
     declare -r -a FILES_TO_SOURCE=(
         "bash_aliases"
         "bash_autocomplete"
@@ -20,8 +14,6 @@ source_bash_files() {
         "bash_options"
         "bash_prompt"
         "keybindings"
-        "bash.local"  # For local settings that should
-                      # not be under version control.
     )
 
     local file=""
@@ -31,16 +23,12 @@ source_bash_files() {
 
     for i in ${!FILES_TO_SOURCE[*]}; do
 
-        file="$HOME/.${FILES_TO_SOURCE[$i]}"
+        file="$HOME/.config/bash/${FILES_TO_SOURCE[$i]}"
 
-        [ -r "$file" ] \
+        [[ -r "$file" ]] \
             && . "$file"
 
     done
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    cd "$CURRENT_DIRECTORY" || return
 
 }
 
@@ -54,19 +42,8 @@ unset -f source_bash_files
 # load 'bash-sensible' configs.
 # see: https://github.com/mrzool/bash-sensible
 
-if [ -d "$HOME"/.config/bash-sensible ]; then
+if [[ -d "$HOME"/.config/bash-sensible ]]; then
     . "$HOME"/.config/bash-sensible/sensible.bash
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# load 'autoenv' configs.
-# see: https://github.com/kennethreitz/autoenv
-
-if command -v brew &> /dev/null; then
-	if [ -f "$(brew --prefix autoenv)"/activate.sh ]; then
-		. "$(brew --prefix autoenv)"/activate.sh
-	fi
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -74,7 +51,7 @@ fi
 # load 'autojump' configs.
 # see: https://github.com/wting/autojump
 
-if [ -f "/usr/local/etc/profile.d/autojump.sh" ]; then
+if [[ -f "/usr/local/etc/profile.d/autojump.sh" ]]; then
     . /usr/local/etc/profile.d/autojump.sh
 fi
 
@@ -83,38 +60,9 @@ fi
 # load 'autojump' configs.
 # see: https://github.com/wting/autojump
 if command -v brew &> /dev/null; then
-	if [ -f "$(brew --prefix jump)" ]; then
+	if [[ -f "$(brew --prefix jump)" ]]; then
 		eval "$(jump shell)"
 	fi
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# load 'commacd' configs.
-# see: https://github.com/shyiko/commacd
-
-if [ -f "$HOME"/.commacd.bash ]; then
-    . "$HOME"/.commacd.bash
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# load 'aliasme' configs.
-# see: https://github.com/Jintin/aliasme
-
-if [ -f "$HOME"/.aliasme/aliasme.sh ]; then
-    . "$HOME"/.aliasme/aliasme.sh
-fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# load 'fz' configs.
-# see: https://github.com/changyuheng/fz#bash
-
-if [ -d "$HOME"/.bash_completion.d ]; then
-  for file in "$HOME"/.bash_completion.d/*; do
-    . "$file"
-  done
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -122,25 +70,13 @@ fi
 # load 'fzf' configs.
 # see: https://github.com/junegunn/fzf#using-homebrew-or-linuxbrew
 
-if [ -f ~/.fzf.bash ]; then
-	source ~/.fzf.bash
-elif [ -d ~/.fzf/shell/ ]; then
-	source ~/.fzf/shell/completion.bash
-	source ~/.fzf/shell/key-bindings.bash
-fi
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # load 'z.lua' configs.
 # see: https://github.com/skywind3000/z.lua#install
 
-if [ -d "$HOME"/.z.lua ]; then
+if [[ -d "$HOME"/.z.lua ]]; then
   eval "$(lua "$HOME"/.z.lua/z.lua --init bash)"
 fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Clear system messages (system copyright notice, the date
-# and time of the last login, the message of the day, etc.)
-
-clear

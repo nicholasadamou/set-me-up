@@ -1,8 +1,38 @@
+deb "fzy" [args: "https://github.com/jhawthorn/fzy/releases/download/0.9/fzy_0.9-1_amd64.deb", "$HOME", "fzy_0.9-1_amd64.deb"]
+
+deb "bat" [args: "https://github.com/sharkdp/bat/releases/download/v0.4.1/bat_0.4.1_amd64.deb", "$HOME", "bat_0.4.1_amd64.deb"]
+
+deb "hstr" [args: "https://github.com/dvorka/hstr/releases/download/1.27/hstr_1.27.0-1_amd64.deb", "$HOME", "hstr_1.27.0-1_amd64.deb"]
+
+# shell utils.
+apt "shellcheck"
+apt "htop"
+apt "asciinema"
+apt "yank"
+apt "thefuck"
+apt "googler"
+apt "buku"
 apt "linuxbrew-wrapper"
 apt "tmux"
 apt "python3-distutils"
-apt "thefuck"
 apt "fzf"
 apt "gdebi"
 apt "symlinks"
+
+# package managers
+apt "aptitude"
+
+# files
+apt "tree"
+apt "symlinks"
+apt "p7zip-rar"
+apt "silversearcher-ag"
+
+# terminal
+apt "fish"
+apt "peco"
+apt "fonts-firacode"
+apt "terminator"
+
+# misc.
 apt "flameshot"

@@ -18,44 +18,44 @@ alias +x "chmod +x"
 
 function du --description "Updates the dotfiles directory"
     if test -d $DOTFILES
-      eval $DOTFILES/smu --selfupdate
+        eval $DOTFILES/smu --selfupdate
     else
-      echo "($DOTFILES) does not exist"
+        echo "($DOTFILES) does not exist"
     end
 end
 
 function randpw --description "generate a random password"
-  dd if=/dev/urandom bs=1 count=16 2>/dev/null | base64 | rev | cut -b 2- | rev
+    dd if=/dev/urandom bs=1 count=16 2>/dev/null | base64 | rev | cut -b 2- | rev
 end
 
 function cd --description "auto exa for each cd"
-  if type -q exa
-    if [ -n $argv[1] ]
-      builtin cd $argv[1]
-      and exa
+    if type -q exa
+        if [ -n $argv[1] ]
+            builtin cd $argv[1]
+            and exa
+        else
+            builtin cd ~
+            and exa
+        end
     else
-      builtin cd ~
-      and exa
+        if [ -n $argv[1] ]
+            builtin cd $argv[1]
+        else
+            builtin cd ~
+        end
     end
-  else
-    if [ -n $argv[1] ]
-      builtin cd $argv[1]
-    else
-      builtin cd ~
-    end
-  end
 end
 
 function pkill --description "pkill a process interactively"
-  ps aux | peco | awk "{ print $2 }" | xargs kill
+    ps aux | peco | awk "{ print $2 }" | xargs kill
 end
 
 function ppkill --description "kill -9 a process interactively"
-  ps aux | peco | awk "{ print $2 }" | xargs kill -KILL
+    ps aux | peco | awk "{ print $2 }" | xargs kill -KILL
 end
 
 function pgrep --description "pgrep a process interactively"
-  ps aux | peco | awk "{ print $2 }"
+    ps aux | peco | awk "{ print $2 }"
 end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -63,10 +63,10 @@ end
 # 'ls' aliases
 
 if type -q exa
-  alias ls "exa"
+    alias ls "exa"
 
-  # List all files colorized in long format
-  alias l "exa -l"
+    # List all files colorized in long format
+    alias l "exa -l"
 end
 
 # List only directories
@@ -79,16 +79,22 @@ alias lsh "ls -ld .?*"
 # 'fzy' aliases
 
 if type -q fzy
-  alias fzyf "find . -type f | fzy"
-  alias fzyd "find . -type d | fzy"
+    alias fzyf "find . -type f | fzy"
+    alias fzyd "find . -type d | fzy"
 end
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Lock screen.
+
+alias afk "/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # `git` aliases
 
 if type -q hub
-  alias git "hub"
+    alias git "hub"
 end
 
 alias acp "git add -A ;and git commit -v ;and git push"
@@ -98,7 +104,7 @@ alias acp "git add -A ;and git commit -v ;and git push"
 # `lazygit` aliases
 
 if type -q lazygit
-  alias lg "lazygit"
+    alias lg "lazygit"
 end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -112,16 +118,16 @@ alias wttr "curl wttr.in"
 # Shorter commands for `Homebrew`.
 
 if type -q brew
-  alias brewd "brew doctor"
-  alias brewi "brew install"
-  alias brewr "brew uninstall"
-  alias brews "brew search"
+    alias brewd "brew doctor"
+    alias brewi "brew install"
+    alias brewr "brew uninstall"
+    alias brews "brew search"
 
-  function brewu --description "updates and upgrades brew"
-      brew upgrade
-      brew cleanup
-      brew cask cleanup
-  end
+    function brewu --description "updates and upgrades brew"
+        brew upgrade
+        brew cleanup
+        brew cask cleanup
+    end
 end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -131,12 +137,11 @@ end
 # alias n "npm" # Do not use if using 'n' for Node version control
 
 if type -q npm
-  alias npm "sudo npm"
-  alias npmi "npm i -g"
-  alias npmr "npm uninstall"
-  alias npmls "npm list -g --depth 0"
-  alias npms "npm s"
-  alias npmu "npm i -g npm@latest"
+    alias npmi "npm i -g"
+    alias npmr "npm uninstall"
+    alias npmls "npm list -g --depth 0"
+    alias npms "npm s"
+    alias npmu "npm i -g npm@latest"
 end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -144,9 +149,9 @@ end
 # Shorter commands for the `Yarn Package Manager`
 
 if type -q yarn
-  alias yr "yarn remove"
-  alias ya "yarn add"
-  alias yu "yarn self-update ;and yarn upgrade ;and yarn upgrade-interactive"
+    alias yr "yarn remove"
+    alias ya "yarn add"
+    alias yu "yarn self-update ;and yarn upgrade ;and yarn upgrade-interactive"
 end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -154,11 +159,11 @@ end
 # Shorter commands for `pip`
 
 if type -q pip
-  alias pipi "pip install"
-  alias pipr "pip uninstall"
-  alias pipls "pip list"
-  alias pips "pip search"
-  alias pipu "sudo pip install --upgrade pip and sudo pip install --upgrade setuptools"
+    alias pipi "pip install"
+    alias pipr "pip uninstall"
+    alias pipls "pip list"
+    alias pips "pip search"
+    alias pipu "sudo pip install --upgrade pip and sudo pip install --upgrade setuptools"
 end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -166,11 +171,11 @@ end
 # Shorter commands for `pip3`
 
 if type -q pip3
-  alias pip3i "pip3 install"
-  alias pip3r "pip3 uninstall"
-  alias pip3ls "pip3 list"
-  alias pip3s "pip3 search"
-  alias pip3u "pip3 install -U pip and sudo -H pip3 install -U pip"
+    alias pip3i "pip3 install"
+    alias pip3r "pip3 uninstall"
+    alias pip3ls "pip3 list"
+    alias pip3s "pip3 search"
+    alias pip3u "pip3 install -U pip and sudo -H pip3 install -U pip"
 end
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -178,22 +183,32 @@ end
 # Shorter commands for `Composer`
 
 if type -q composer
-  alias ci "composer install"
-  alias cr "composer remove"
-  alias cls "composer list"
-  alias cs "composer search"
-  alias cu "composer self-update"
+    alias ci "composer install"
+    alias cr "composer remove"
+    alias cls "composer list"
+    alias cs "composer search"
+    alias cu "composer self-update"
 end
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Clear DNS cache.
+
+alias clear-dns-cache "sudo dscacheutil -flushcache and sudo killall -HUP mDNSResponder"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Hide/Show desktop icons.
+
+alias hide-desktop-icons "defaults write com.apple.finder CreateDesktop -bool false; killall Finder"
+
+alias show-desktop-icons "defaults write com.apple.finder CreateDesktop -bool true; killall Finder"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Get local IP.
 
-alias lip "ifconfig \
-						| grep 'inet addr' \
-						| grep -v '127.0.0.1' \
-						| cut -d: -f2 \
-						| cut -d' ' -f1"
+alias lip "ipconfig getifaddr en0"
 
 # Get external IP.
 
@@ -213,18 +228,18 @@ end
 # see: https://github.com/jedisct1/piknik#suggested-shell-aliases
 
 if type -q piknik
-  # pkc : read the content to copy to the clipboard from STDIN
-  alias pkc "piknik -copy"
+    # pkc : read the content to copy to the clipboard from STDIN
+    alias pkc "piknik -copy"
 
-  # pkp : paste the clipboard content
-  alias pkp "piknik -paste"
+    # pkp : paste the clipboard content
+    alias pkp "piknik -paste"
 
-  # pkm : move the clipboard content
-  alias pkm "piknik -move"
+    # pkm : move the clipboard content
+    alias pkm "piknik -move"
 
-  # pkz : delete the clipboard content
-  alias pkz "piknik -copy < /dev/null"
+    # pkz : delete the clipboard content
+    alias pkz "piknik -copy < /dev/null"
 
-  # pkpr : extract clipboard content sent using the pkfr command
-  alias pkpr "piknik -paste | tar xzhpvf -"
+    # pkpr : extract clipboard content sent using the pkfr command
+    alias pkpr "piknik -paste | tar xzhpvf -"
 end

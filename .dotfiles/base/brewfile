@@ -1,9 +1,19 @@
 tap "thoughtbot/formulae"
 
-# Install 'rcm' for dot-file symlinking
+brew "git"
+brew "hub"
+
 brew "rcm"
 
-# Install a more recent version of 'vim'
+# Install GNU-related tools
+brew "coreutils"
+
+# Install GNU `grep`, overwriting the built-in `grep`.
+brew "grep"
+# Install GNU `sed`, overwriting the built-in `sed`.
+brew "gnu-sed"
+
+# Install a more recent version of 'vim', overwriting the built-in `vi`.
 brew "vim"
 
 # Install some other useful utilities like `sponge`.
@@ -12,8 +22,22 @@ brew "moreutils"
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`
 brew "findutils"
 
-# Install `wget`
+# Install `wget`.
 brew "wget"
 
 # A modern version of ‘ls’.
 brew "exa"
+
+brew "fish"
+
+# https://github.com/sharkdp/fd
+brew "fd"
+
+# Misc.
+brew "thefuck"
+brew "fzf"
+brew "fzy"
+brew "ccat"
+brew "percol"
+brew "peco"
+brew "micro"

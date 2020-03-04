@@ -31,13 +31,9 @@ create_bash_local() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
         printf "%s\n" "#!/bin/bash" >> "$FILE_PATH"
-
-        print_result $? "$FILE_PATH"
-    else
-        print_success "($FILE_PATH) already exists."
-    fi
+	fi
 
 }
 
@@ -47,13 +43,9 @@ create_fish_local() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
         touch "$FILE_PATH"
-
-        print_result $? "$FILE_PATH"
-    else
-        print_success "($FILE_PATH) already exists."
-    fi
+	fi
 
 }
 
@@ -63,9 +55,9 @@ create_gitconfig_local() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
 
-        if [ "$(git -C "$SMU_PATH" config --global --get user.name)" = "" ] && [ "$(git -C "$SMU_PATH" config --global --get user.email)" = "" ]; then
+        if [[ "$(git -C "$SMU_PATH" config --global --get user.name)" = "" ]] && [[ "$(git -C "$SMU_PATH" config --global --get user.email)" = "" ]]; then
             print_in_yellow "\n   Git Configuration\n\n"
 
             ask "What is your name? [e.g. John Smith]: "; NAME="$(get_answer)"
@@ -84,11 +76,7 @@ create_gitconfig_local() {
     email = $EMAIL
     # signingkey =" \
         >> "$FILE_PATH"
-
-        print_result $? "$FILE_PATH"
-    else
-        print_success "($FILE_PATH) already exists."
-    fi
+	fi
 
 }
 
@@ -98,23 +86,17 @@ create_vimrc_local() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
         touch "$FILE_PATH"
-
-        print_result $? "$FILE_PATH"
-    else
-        print_success "($FILE_PATH) already exists."
-    fi
+	fi
 
 }
 
 install_homebrew() {
 
-    printf "\n" | brew &> /dev/null
-	#       └─ simulate the ENTER keypress
-
-	print_result $? "Homebrew (install)" && \
-        add_brew_configs
+    if printf "\n" | brew &> /dev/null; then
+    	add_brew_configs
+    fi
 
 }
 
@@ -132,11 +114,9 @@ $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     # If needed, add the necessary configs in the
     # local shell configuration file.
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "brew (update $LOCAL_BASH_CONFIG_FILE)"
+    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+        printf '%s\n' '$BASH_CONFIGS' >> "$LOCAL_BASH_CONFIG_FILE" \
+                && . "$LOCAL_BASH_CONFIG_FILE"
     fi
 
 }
@@ -151,7 +131,6 @@ get_homebrew_git_config_file_path() {
         printf "%s" "$path"
         return 0
     else
-        print_error "Homebrew (get config file path)"
         return 1
     fi
 
@@ -173,23 +152,33 @@ opt_out_of_analytics() {
     # Opt-out of Homebrew's analytics.
     # https://github.com/Homebrew/brew/blob/0c95c60511cc4d85d28f66b58d51d85f8186d941/share/doc/homebrew/Analytics.md#opting-out
 
-    if [ "$(git config --file="$path" --get homebrew.analyticsdisabled)" != "true" ]; then
+    if [[ "$(git config --file="$path" --get homebrew.analyticsdisabled)" != "true" ]]; then
         git config --file="$path" --replace-all homebrew.analyticsdisabled true &> /dev/null
     fi
 
-    print_result $? "Homebrew (opt-out of analytics)"
+}
+
+install_fisher() {
+
+    if ! is_fisher_installed; then
+        curl -Lo "$HOME"/.config/fish/functions/fisher.fish --create-dirs --silent https://git.io/fisher
+    fi
+
+}
+
+install_fisher_packages() {
+
+	does_fishfile_exist && {
+        cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
+            fisher_install "$PACKAGE"
+        done
+    }
+
+    fisher_update
 
 }
 
 symlink() {
-
-	# Delete any broken symlinks within the '$HOME' directory.
-
-	execute \
-		"find -L $HOME -name . -o -type d -prune -o -type l -exec rm {} +" \
-		"fix broken symlinks in ($HOME)"
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Update and/or install dotfiles. These dotfiles are stored in the .dotfiles directory.
     # rcup is used to install files from the tag-specific dotfiles directory.
@@ -201,47 +190,8 @@ symlink() {
     # <path-to-smu>/.dotfiles/somedotfile vs <path-to-smu>/.dotfiles/base/../somedotfile
     readonly dotfiles="${SMU_PATH}/.dotfiles"
 
-    execute \
-        ". $LOCAL_BASH_CONFIG_FILE && \
-			export RCRC=\"$dotfiles/rcrc\" && \
-            rcup -v -f -d \"${dotfiles}\"" \
-        "symlink (${dotfiles})"
-
-}
-
-install_plugins() {
-
-    # Make sure 'backups', 'swaps' & 'undos' directories exist.
-    # If not, create them.
-
-    [ ! -d "$HOME/.vim/backups" ] && \
-        mkdir -p "$HOME/.vim/backups"
-
-    [ ! -d "$HOME/.vim/swaps" ] && \
-        mkdir -p "$HOME/.vim/swaps"
-
-    [ ! -d "$HOME/.vim/undos" ] && \
-        mkdir -p "$HOME/.vim/undos"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Install plugins.
-
-    execute \
-        ". $LOCAL_BASH_CONFIG_FILE \
-			&& git clone --quiet '$VUNDLE_GIT_REPO_URL' '$VUNDLE_DIR' \
-            && printf '\n' | vim +PluginInstall +qall" \
-        "vim (install plugins)" \
-        || return 1
-
-}
-
-update_plugins() {
-
-    execute \
-        ". $LOCAL_BASH_CONFIG_FILE \
-			&& vim +PluginUpdate +qall" \
-        "vim (update plugins)"
+    export RCRC="$dotfiles/rcrc" && \
+            rcup -v -f -d "${dotfiles}"
 
 }
 
@@ -249,13 +199,9 @@ update_plugins() {
 
 main() {
 
-    print_in_purple "  Base\n\n"
-
 	apt_install_from_file "packages"
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_in_yellow "\n   Create local config files\n\n"
 
     create_bash_local
 	create_fish_local
@@ -264,11 +210,9 @@ main() {
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	print_in_yellow "\n   Homebrew\n\n"
-
     ask_for_sudo
 
-    if [ ! -d "/home/linuxbrew" ]; then
+    if [[ ! -d "/home/linuxbrew" ]]; then
         install_homebrew
         opt_out_of_analytics
     else
@@ -276,29 +220,20 @@ main() {
         brew_update
     fi
 
-    printf "\n"
-
     brew_bundle_install "brewfile"
-
-    print_in_yellow "\n   Cleanup\n\n"
 
     brew_cleanup
 
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    install_fisher
+
+    install_fisher_packages
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_in_yellow "\n   Symlink dotfiles\n\n"
-
     symlink
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_in_yellow "\n   Vim\n\n"
-
-    if [ ! -d "$VUNDLE_DIR" ]; then
-        install_plugins
-    else
-        update_plugins
-    fi
 
 }
 

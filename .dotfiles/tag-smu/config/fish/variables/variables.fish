@@ -4,27 +4,32 @@
 set -gx PATH
 
 # Sets necessary PATH defaults
-set -gx PATH $PATH /usr/local/bin /usr/bin /bin /sbin /usr/sbin /usr/local/sbin /sbin
+set -gx PATH $PATH /usr/local/bin /usr/bin /bin /sbin /usr/sbin /usr/local/sbin /sbin $HOME/.local/bin $HOME/"set-me-up"
 
 # Paths to your tackle
 set tacklebox_path ~/.tackle ~/.tacklebox
+
+# Homebrew configurations
+# Make all homebrew casks and fonts be installed to a
+# specific directory
+set -gx HOMEBREW_CASK_OPTS "--appdir=/Applications --fontdir=/Library/Fonts"
 
 # Ruby configurations
 # Adds "GEMS_PATH" to "$PATH"
 # Fixes "I INSTALLED GEMS WITH --user-install AND THEIR COMMANDS ARE NOT AVAILABLE"
 # see: https://guides.rubygems.org/faqs/#user-install
 if test -d (gem environment gemdir)/bin
-  set -gx PATH $PATH (gem environment gemdir)/bin
+    set -gx PATH $PATH (gem environment gemdir)/bin
 end
 
-# Snap Daemon configurations
-# Adds '/snap/bin' to "$PATH"
-if test -d /snap/bin
-    set -gx PATH $PATH /snap/bin
+# iTerm2 integration
+# Adds ~/.iterm2 to "$PATH"
+if test -d ~/.iterm2
+    set -gx PATH $PATH ~/.iterm2
 end
 
 # Dotfiles directory
-set DOTFILES $HOME/set-me-up
+set DOTFILES $HOME/"set-me-up"
 
 # Theme
 # set tacklebox_theme entropy

@@ -1,20 +1,15 @@
-function update --description "Updates debian, fisher, omf, brew, npm, pip, and their installed packages"
-    if type -q nordvpn && nordvpn status | grep -q "Status" | grep -q "connected"
-        nordvpn connect
+function update --description "Updates MacOS apps, brew, npm, fisher, omf update, pip, pip3 and their installed packages"
+    sudo softwareupdate --install --all
+
+    if type -q mas
+        mas upgrade
     end
-    
-    sudo killall apt apt-get -q
-    sudo dpkg --configure -a
-    
-    sudo apt update
-    sudo apt upgrade -y
-    sudo apt autoremove -y --purge
-    sudo apt clean
-    sudo apt autoclean
 
     if type -q brew
         brew update
         brew upgrade
+        brew tap buo/cask-upgrade
+        brew cu --all --yes --cleanup --quiet
         brew cleanup
     end
 
@@ -37,16 +32,8 @@ function update --description "Updates debian, fisher, omf, brew, npm, pip, and 
         end
     end
 
-    if type -q pip
-        pip install --quiet --user --upgrade pip
-        pip install --quiet --user --upgrade setuptools
-
-        if type -q pip-review
-            pip-review -a
-        end
-    end
-
-    if test -d $HOME/.vim/plugins/Vundle.vim
-        vim +PluginUpdate +qall
+    if type -q pip3
+        python3 -m pip install --quiet --user --upgrade pip
+        python3 -m pip install --upgrade setuptools pip
     end
 end

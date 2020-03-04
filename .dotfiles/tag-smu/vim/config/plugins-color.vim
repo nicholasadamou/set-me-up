@@ -60,7 +60,7 @@ let g:airline_powerline_fonts = 0
 " ----------------------------------------------------------------------
 " | Color Scheme                                                       |
 " ----------------------------------------------------------------------
-Plugin 'ayu-theme/ayu-vim'
+Plugin 'lifepillar/vim-solarized8'
 
 " Enable full-color support.
 set t_Co=256
@@ -70,13 +70,14 @@ set t_Co=256
 set background=dark
 
 " set' mirage' version of ayu theme
-let ayucolor="mirage"
+" let ayucolor="mirage"
 
 " Since the colorscheme is in a plugin, it may not always be there at first, so
 " we put it into a try-catch
 try
     " A nice dark color scheme that's easy on the eyes
-    colorscheme ayu
+    " colorscheme ayu
+    colorscheme solarized8
 catch
     " Don't do anything, just supress the 'colorscheme doesn't exist' error.
 endtry

@@ -11,8 +11,6 @@ declare current_dir && \
 
 main() {
 
-    print_in_purple "  NordVPN\n\n"
-
 	apt_install_from_file "packages"
 
 }

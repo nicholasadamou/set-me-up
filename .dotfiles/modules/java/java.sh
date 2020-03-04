@@ -13,26 +13,20 @@ LOCAL_FISH_CONFIG_FILE="${HOME}/.fish.local"
 declare -r JENV_DIRECTORY="$HOME/.jenv"
 declare -r JENV_GIT_REPO_URL="https://github.com/gcuisinier/jenv.git"
 
-readonly java11=${java11:-"11.0.1-open"}
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 install_sdkman() {
 
     # Install `sdkman` and source the necessary shell scripts.
 
-    execute \
-        "curl -s \"https://get.sdkman.io\" | bash" \
-        "sdkman (install)" \
-        && [ -d "$HOME"/.sdkman ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+    curl -s "https://get.sdkman.io" | bash \
+        && [[ -d "$HOME"/.sdkman ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 }
 
 update_sdkman() {
 
-    execute \
-        "sdk selfupdate force" \
-        "sdkman (update)"
+    sdk selfupdate force
 
 }
 
@@ -47,11 +41,9 @@ add_jenv_configs() {
 export PATH=\"$JENV_DIRECTORY/bin:\$PATH\"
 eval \"\$(jenv  init -)\""
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "jenv (update $LOCAL_BASH_CONFIG_FILE)"
+    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+        printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
+                && . "$LOCAL_BASH_CONFIG_FILE"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -62,10 +54,8 @@ eval \"\$(jenv  init -)\""
 # JEnv - Manage your Java environment.
 set -gx PATH \$PATH $JENV_DIRECTORY/bin"
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
-            "jenv (update $LOCAL_FISH_CONFIG_FILE)"
+    if [[ ! -e "$LOCAL_FISH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
+        printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
     fi
 
 }
@@ -75,19 +65,14 @@ install_jenv() {
     # Install `jenv` and add the necessary
     # configs in the local shell config files.
 
-    execute \
-        "git clone --quiet $JENV_GIT_REPO_URL $JENV_DIRECTORY" \
-        "jenv (install)" \
+    git clone --quiet "$JENV_GIT_REPO_URL" "$JENV_DIRECTORY" \
     && add_jenv_configs
 
 }
 
 update_jenv() {
 
-    execute \
-        "cd $JENV_DIRECTORY \
-            && git fetch --quiet origin" \
-        "jenv (upgrade)"
+    git -C "$JENV_DIRECTORY" fetch --quiet origin
 
 }
 
@@ -95,15 +80,13 @@ update_jenv() {
 
 main() {
 
-    print_in_purple "  jenv & Java\n\n"
+    apt_install_from_file "packages"
 
-	apt_install_from_file "packages"
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ask_for_sudo
 
-    if [ ! -d "$JENV_DIRECTORY" ]; then
+    if [[ ! -d "$JENV_DIRECTORY" ]]; then
         install_jenv
     else
         update_jenv
@@ -111,19 +94,13 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    print_in_purple "\n  sdkman\n\n"
-
     if ! is_sdkman_installed; then
         install_sdkman
     else
         update_sdkman
     fi
 
-    printf "\n"
-
-    sdk_install "java" "${java11}"
-
-    set_default_sdk "java" "${java11}"
+    sdk_install "java"
 
 }
 

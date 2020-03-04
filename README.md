@@ -121,7 +121,7 @@ For more on using the `smu` script, simply run `smu --help`.
 
 The base module is the only module that is required to run at least once on your system to ensure the minimum required constraints for `set-me-up` to work.
 
-It will install `rcm`. Afterwards `rcup` will be executed to `symlink` the dotfiles from the `.dotfiles/tag-smu` folder into your home directory.
+It will install `brew` and `rcm`. Afterwords `rcup` will be executed to `symlink` the dotfiles from the `.dotfiles/tag-smu` folder into your home directory.
 
 It will also create the [local settings](#local-settings) files such as `~/.bash.local` or `~/.fish.local` if they haven't already been created. These files are used vastly throughout the `smu` provisioning process in order to install and configure other tools, such as [basher](#basher) or [pyenv](#python) for python version management.
 
@@ -129,23 +129,36 @@ This is the only module that is not over-writable via `rcm` tag management becau
 
 You can use `smu --lsrc` command to show which files will be symlink'ed to your home directory.
 
+The last task that the base module executes is upgrading the outdated `bash` version using `brew`.
+
+This module also configures an upgraded version of `bash`, version 5.
+
+Configures `fish` with sane `fish` options and provides you with a list of useful plugins managed via [Fisherman](https://fisherman.github.io) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish).
+
+Some of the installed plugins are:
+
+- fzf
+- fnm
+- z
+- fzy
+- bass
+- ... and more.
+
+**⚠️ Note**: _Take a look at the [fishfile](.dotfiles/tag-smu/config/fish/fishfile) for a full overview._
+
 For more on what the base module does, please consult [`base.sh`](.dotfiles/base/base.sh).
 
-#### [basher](.dotfiles/modules/basher)
+#### [formulae](.dotfiles/modules/formulae)
 
-The basher module configures and installs the [`basher package manager`](https://github.com/basherpm/basher) for shell scripts.
-
-_Basher allows you to quickly install shell packages directly from github (or other sites). Instead of looking for specific install instructions for each package and messing with your path, basher will create a central location for all packages and manage their binaries for you._ [basherpm/basher](https://github.com/basherpm/basher)
+Installs a multitude of `brew` formulae. Check the [brewfile](.dotfiles/modules/formulae/brewfile) to get an overview.
 
 #### [editor](.dotfiles/modules/editor)
 
-The editor module comes with [neovim](https://neovim.io/) and [vim](https://www.vim.org/), although `neovim` is considered to be used over `vim`.
+The editor module comes with [neovim](https://neovim.io/), [vim](https://www.vim.org/) (although `neovim` is considered to be used over `vim`), [visual-studio-code](https://code.visualstudio.com/), and [visual-studio-code-insiders](https://code.visualstudio.com/insiders/).
 
-[Macdown](https://macdown.uranusjr.com/) for Markdown editing, [p4merge](https://www.perforce.com/products/helix-core-apps/merge-diff-tool-p4merge) for merging/diffing and [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) as default git difftool are also part of the editor module.
+#### [debianupdate](.dotfiles/modules/debianupdate)
 
-#### [essentials](.dotfiles/modules/essentials)
-
-Installs a multitude of `brew` packages, casks and Mac App Store applications. Check the [brewfile](.dotfiles/modules/essentials/brewfile) to get an overview.
+Should your system require a system restart due to an `debianupdate` caused update, re-run the `smu` script after rebooting. The update module should be satisfied by the previous run and result in no action.
 
 #### [go](.dotfiles/modules/go)
 
@@ -156,10 +169,6 @@ When the terminal module is used, the `go` installation will work-out-of-the-box
 #### [java](.dotfiles/modules/java)
 
 Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`and `java10` are installed via `sdkman`. **java8** will be defined as the global version.
-
-#### [debianupdate](.dotfiles/modules/debianupdate)
-
-Should your system require a system restart due to an `debianupdate` caused update, re-run the `smu` script after rebooting. The update module should be satisfied by the previous run and result in no action.
 
 #### [php](.dotfiles/modules/php)
 
@@ -177,26 +186,19 @@ Installs [rbenv](https://github.com/rbenv/rbenv) for version management and [bun
 
 When the terminal module is used, the `ruby` installation will work out-of-the-box because the required `rbenv` code is already in place.
 
-#### [terminal](.dotfiles/modules/terminal)
+#### [rust](.dotfiles/modules/rust)
 
-Configures `fish` with sane `fish` options and provides you with a list of useful plugins managed via [Fisherman](https://fisherman.github.io) and [Oh-My-Fish](https://github.com/oh-my-fish/oh-my-fish).
-
-Some of the installed plugins are:
-
-- fzf
-- fnm
-- z
-- fzy
-- bass
-- ... and more.
-
-**⚠️ Note**: _Take a look at the [terminal file](.dotfiles/modules/terminal/terminal.sh) and [fishfile](.dotfiles/tag-smu/config/fish/fishfile) for a full overview._
+I primarily install the Rust toolchain because I like to use the `cargo` package manager. I then can gain access to an easy install of [`topgrade`](https://github.com/r-darwish/topgrade) which simply _upgrades all the things_ on your Linux or Mac OS system.
 
 #### [web](.dotfiles/modules/web)
 
 Installs [n](https://github.com/tj/n) for version management, `npm` comes with node for package management. The latest `node` and `npm` versions are installed using `n`.
 
 It also install a set of globally installed `npm` packages. For a complete list of packages installed please see [`web.sh`](.dotfiles/modules/web/web.sh#120).
+
+#### [nordvpn](.dotfiles/modules/nordvpn)
+
+Installs and configures [nordvpn](https://nordvpn.com/tutorials/linux/).
 
 ### Other components
 
@@ -304,6 +306,7 @@ such as the `git` user credentials, e.g.:
 
 - [omares/set-me-up](https://github.com/omares/set-me-up) for the initial platform that [nicholasadamou/set-me-up](https://github.com/nicholasadamou/set-me-up) was built on.
 - [donnemartin/dev-setup](https://github.com/donnemartin/dev-setup)
+- [mathiasbynens](https://github.com/mathiasbynens/dotfiles) for his popular [macOS script](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
 - [argbash.io](https://argbash.io/) enabling library free and sane argument parsing.
 - [brew](https://brew.sh/) and [brew bundle](https://github.com/Homebrew/homebrew-bundle) for the awesome package management.
 - [thoughtbot rcm](https://github.com/thoughtbot/rcm) for easy dotfile management.
@@ -321,4 +324,4 @@ Yes please! This is a GitHub repo. I encourage anyone to contribute. 😃
 
 ## License
 
-The code is available under the [MIT license](LICENSE).
+The code is available under the [MIT license](LICENSE.txt).

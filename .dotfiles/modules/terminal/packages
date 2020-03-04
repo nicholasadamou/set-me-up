@@ -1,4 +1,0 @@
-apt "fish"
-apt "peco"
-apt "fonts-firacode"
-apt "terminator"

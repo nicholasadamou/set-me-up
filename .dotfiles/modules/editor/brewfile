@@ -2,6 +2,3 @@ brew "jq"
 
 brew "vim"
 brew "neovim"
-
-# diff
-brew "diff-so-fancy"

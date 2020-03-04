@@ -7,8 +7,6 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
 
-readonly SMU_PATH="$HOME/set-me-up"
-
 LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 LOCAL_FISH_CONFIG_FILE="${HOME}/.fish.local"
 
@@ -22,9 +20,7 @@ install_basher() {
     # Install `basher` and add the necessary
     # configs in the local shell config files.
 
-    execute \
-        "git clone --quiet $BASHER_GIT_REPO_URL $BASHER_DIRECTORY" \
-        "basher (install)" \
+    git clone --quiet "$BASHER_GIT_REPO_URL" "$BASHER_DIRECTORY" \
         && add_basher_configs
 
 }
@@ -40,11 +36,9 @@ add_basher_configs() {
 export PATH=\"$HOME/.basher/bin:\$PATH\"
 eval \"\$(basher init -)\""
 
-    if [ ! -e "$LOCAL_BASH_CONFIG_FILE" ] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$BASH_CONFIGS' >> $LOCAL_BASH_CONFIG_FILE \
-                && . $LOCAL_BASH_CONFIG_FILE" \
-            "basher (update $LOCAL_BASH_CONFIG_FILE)"
+    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
+        printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" \
+                && . "$LOCAL_BASH_CONFIG_FILE"
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -59,32 +53,24 @@ if type -q basher
         set basher ~/.basher/bin
     end
     set -gx PATH \$basher \$PATH
-    status --is-interactive; and . (basher init -|psub)
 end
 "
 
-    if [ ! -e "$LOCAL_FISH_CONFIG_FILE" ] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
-        execute \
-            "printf '%s\n' '$FISH_CONFIGS' >> $LOCAL_FISH_CONFIG_FILE" \
-            "basher (update $LOCAL_FISH_CONFIG_FILE)"
+    if [[ ! -e "$LOCAL_FISH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$FISH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_FISH_CONFIG_FILE" | tr '\n' '\01'); then
+        printf '%s\n' "$FISH_CONFIGS" >> "$LOCAL_FISH_CONFIG_FILE"
     fi
 
 }
 
 basher_upgrade() {
 
-     execute \
-        "cd $BASHER_DIRECTORY \
-            && git fetch --quiet origin" \
-        "basher (upgrade)"
+    git -C "$BASHER_DIRECTORY" fetch --quiet origin
 
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-
-    print_in_purple "  Basher\n\n"
 
     if ! cmd_exists "basher"; then
         install_basher

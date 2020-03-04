@@ -7,6 +7,9 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
 
+declare -r VUNDLE_DIR="$HOME/.vim/plugins/Vundle.vim"
+declare -r VUNDLE_GIT_REPO_URL="https://github.com/VundleVim/Vundle.vim.git"
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 configure_visual_studio_code() {
@@ -21,44 +24,51 @@ configure_visual_studio_code() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    if ! [ "$(code --list-extensions | grep $extension)" == "$extension" ]; then
-        execute \
-            "code --install-extension $extension" \
-            "code ($extension)"
-    else
-        print_success "($extension) is already installed"
+    if ! [[ "$(code --list-extensions | grep ${extension})" == "$extension" ]]; then
+        code --install-extension "$extension"
     fi
 
 }
 
-# see: https://pempek.net/articles/2014/04/18/git-p4merge/
-# see: https://github.com/so-fancy/diff-so-fancy
-install_diff_and_merge_tools() {
+create_vimrc_local() {
 
-    if ! cmd_exists "p4merge"; then
-        execute \
-            "curl -fsSL https://pempek.net/files/git-p4merge/mac/p4merge > /usr/local/bin/p4merge \
-            && chmod +x /usr/local/bin/p4merge" \
-            "p4merge (install)"
+    declare -r FILE_PATH="$HOME/.vimrc.local"
 
-        execute \
-            "git config --global merge.tool p4merge \
-                && git config --global mergetool.keepTemporaries false \
-                && git config --global mergetool.prompt false" \
-            "p4merge (configure)"
-    else
-        print_success "(p4merge) is already installed"
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
+        touch "$FILE_PATH"
     fi
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+}
 
-    if [ "$(git config --global --get core.pager)" != "diff-so-fancy | less --tabs=4 -RFX" ]; then
-        execute \
-            "git config --global core.pager \"diff-so-fancy | less --tabs=4 -RFX\"" \
-            "diff-so-fancy (configure)"
-    else
-        print_success "(diff-so-fancy) is already installed"
-    fi
+install_plugins() {
+
+    # Make sure 'backups', 'swaps' & 'undos' directories exist.
+    # If not, create them.
+
+    [[ ! -d "$HOME/.vim/backups" ]] && \
+        mkdir -p "$HOME/.vim/backups"
+
+    [[ ! -d "$HOME/.vim/swaps" ]] && \
+        mkdir -p "$HOME/.vim/swaps"
+
+    [[ ! -d "$HOME/.vim/undos" ]] && \
+        mkdir -p "$HOME/.vim/undos"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Install plugins.
+
+    git clone --quiet "$VUNDLE_GIT_REPO_URL" "$VUNDLE_DIR" \
+            && printf '\n' | vim +PluginInstall +qall \
+        || return 1
+
+}
+
+update_plugins() {
+
+    vim +PluginUpdate +qall
 
 }
 
@@ -66,25 +76,25 @@ install_diff_and_merge_tools() {
 
 main() {
 
-    print_in_purple "  Editor\n\n"
-
-	apt_install_from_file "packages"
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    print_in_yellow "   Install brew packages\n\n"
-
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	print_in_yellow "\n   Configure Visual Studio Code\n\n"
+    apt_install_from_file "packages"
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     configure_visual_studio_code
 
-    print_in_yellow "\n   Install diff- and merge tools\n\n"
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    install_diff_and_merge_tools
+	create_vimrc_local
+
+	if [[ ! -d "$VUNDLE_DIR" ]]; then
+        install_plugins
+    else
+        update_plugins
+    fi
 
 }
 
