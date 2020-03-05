@@ -6,13 +6,13 @@ COMMAND_NAME=$1
 SMU_PATH="$HOME"/set-me-up
 
 help () {
-  echo "Usage: $BIN_NAME <command>"
+  echo "Usage: $BIN_NAME <command> <option>"
   echo
   echo "Commands:"
-  echo "   clean            Clean up caches (brew, nvm, gem)"
-  echo "   edit             Open dotfiles in visual-studio-code"
-  echo "   update           Update Linux and set-me-up"
-  echo "   help             This help message"
+  echo "   clean             Clean up caches (brew, nvm, gem)"
+  echo "   edit              Open dotfiles in visual-studio-code"
+  echo "   update <\$BRANCH> Update set-me-up using given \$BRANCH from nicholasadamou/dotfiles"
+  echo "   help              This help message"
 }
 
 edit() {
@@ -21,9 +21,11 @@ edit() {
 }
 
 update() {
+	branch="$1"
+
 	rm -rf "$SMU_PATH"
 
-	bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/debian/.dotfiles/modules/install.sh)
+	bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/"$branch"/.dotfiles/modules/install.sh)
 }
 
 clean() {
