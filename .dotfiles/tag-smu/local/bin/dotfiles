@@ -23,6 +23,8 @@ edit() {
 update() {
 	branch="$1"
 
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 	rm -rf "$SMU_PATH"
 
 	bash <(curl -s -L https://raw.githubusercontent.com/nicholasadamou/dotfiles/"$branch"/.dotfiles/modules/install.sh)
