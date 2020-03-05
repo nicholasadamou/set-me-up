@@ -224,7 +224,6 @@ main() {
 
     brew_cleanup
 
-
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     install_fisher
