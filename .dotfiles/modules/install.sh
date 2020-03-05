@@ -64,7 +64,7 @@ function is_git_repo_out_of_date() {
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	[ "$LOCAL" = "$BASE" ]] && [ "$LOCAL" != "$REMOTE" ]]
+	[[ "$LOCAL" = "$BASE" ]] && [[ "$LOCAL" != "$REMOTE" ]]
 }
 
 function is_dir_empty() {
