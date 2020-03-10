@@ -4,7 +4,7 @@
 brew "mas"
 mas "HyperDock", id: 449830122
 mas "Reeder", id: 880001334
-mas "Airmail", id: 918858936
+mas "Spark", id: 1176895641
 mas "ColorSnapper2", id: 969418666
 mas "Notability", id: 736189492
 mas "Gifox", id: 1082624744
