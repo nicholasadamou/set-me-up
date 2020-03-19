@@ -5,6 +5,7 @@ deb "bat" [args: "https://github.com/sharkdp/bat/releases/download/v0.4.1/bat_0.
 deb "hstr" [args: "https://github.com/dvorka/hstr/releases/download/1.27/hstr_1.27.0-1_amd64.deb", "$HOME", "hstr_1.27.0-1_amd64.deb"]
 
 # shell utils.
+apt "rcm"
 apt "shellcheck"
 apt "htop"
 apt "asciinema"
