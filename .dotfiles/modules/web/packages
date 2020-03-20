@@ -1,1 +1,2 @@
 snap "webstorm" [args: "--classic"]
+umake "firefox-dev" [args: "web"]
