@@ -35,3 +35,4 @@ apt "terminator"
 
 # misc.
 apt "flameshot"
+apt "lua5.3"
