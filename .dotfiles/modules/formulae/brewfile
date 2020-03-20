@@ -1,7 +1,6 @@
 tap "bramstein/webfonttools"
 
 # Image processing
-brew "webkit2png"
 brew "zopfli"
 brew "pngcrush"
 brew "imagemagick"
