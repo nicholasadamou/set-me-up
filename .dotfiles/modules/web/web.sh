@@ -283,13 +283,15 @@ main() {
 
     ask_for_sudo
 
-#     if [[ ! -d "$N_DIRECTORY" ]] && ! cmd_exists "n"; then
-#         install_n
-#     else
-#         update_n
-#     fi
-
     apt_install_from_file "packages"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+     if [[ ! -d "$N_DIRECTORY" ]] && ! cmd_exists "n"; then
+         install_n
+     else
+         update_n
+     fi
 
     install_latest_stable_node_with_n
 
