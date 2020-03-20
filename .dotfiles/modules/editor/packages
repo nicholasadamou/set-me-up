@@ -1,3 +1,5 @@
 # text editors
+apt "vim"
+apt "neovim"
 snap "code" [args: "--classic"]
 snap "code-insiders" [args: "--classic"]
