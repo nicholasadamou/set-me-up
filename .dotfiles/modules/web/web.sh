@@ -206,7 +206,6 @@ install_npm_packages() {
     npm_install "tldr"
     npm_install "emma-cli"
     npm_install "@rafaelrinaldi/whereami"
-    npm_install "create-dmg"
     npm_install "castnow"
     npm_install "gitmoji-cli"
     npm_install "fx"
