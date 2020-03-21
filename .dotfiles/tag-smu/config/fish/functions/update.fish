@@ -2,8 +2,6 @@ function update --description "Updates Linux apps, brew, npm, fisher, omf update
     if type -q brew
         brew update
         brew upgrade
-        brew tap buo/cask-upgrade
-        brew cu --all --yes --cleanup --quiet
         brew cleanup
     end
 
