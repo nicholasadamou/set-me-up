@@ -11,7 +11,6 @@ brew "git-lfs"
 brew "git-flow"
 brew "git-extras"
 brew "hub"
-brew "gitsh"
 brew "tig"
 
 # File/directory management
@@ -49,9 +48,6 @@ brew "httpie"
 brew "ssh-copy-id"
 brew "pv"
 
-# Music players
-brew "cmus"
-
 # Security
 brew "wifi-password"
 brew "maliceio/tap/malice"
@@ -63,7 +59,6 @@ brew "asciinema"
 brew "sebglazebrook/aliases/aliases"
 brew "screen"
 brew "ack"
-brew "buku"
 brew "exa"
 brew "shellcheck"
 brew "micro"
