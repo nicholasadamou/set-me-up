@@ -286,13 +286,13 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-#     if [[ ! -d "$N_DIRECTORY" ]] && ! cmd_exists "n"; then
-#         install_n
-#     else
-#         update_n
-#     fi
-#
-#    install_latest_stable_node_with_n
+     if [[ ! -d "$N_DIRECTORY" ]] && ! cmd_exists "n"; then
+         install_n
+     else
+         update_n
+     fi
+
+    install_latest_stable_node_with_n
 
     install_npm_packages
 

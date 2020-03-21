@@ -1,3 +1,2 @@
-snap "node" [args: "--classic --channel=12"]
 snap "webstorm" [args: "--classic"]
 umake "firefox-dev" [args: "web", "en-US"]
