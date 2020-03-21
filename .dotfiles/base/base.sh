@@ -11,9 +11,6 @@ readonly SMU_PATH="$HOME/set-me-up"
 
 declare LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 
-declare -r VUNDLE_DIR="$HOME/.vim/plugins/Vundle.vim"
-declare -r VUNDLE_GIT_REPO_URL="https://github.com/VundleVim/Vundle.vim.git"
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Overrides `utils.sh` -> print_question()
@@ -56,24 +53,14 @@ create_gitconfig_local() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
-
-        if [[ "$(git -C "$SMU_PATH" config --global --get user.name)" = "" ]] && [[ "$(git -C "$SMU_PATH" config --global --get user.email)" = "" ]]; then
-            print_in_yellow "\n   Git Configuration\n\n"
-
-            ask "What is your name? [e.g. John Smith]: "; NAME="$(get_answer)"
-            ask "What is your email address? [e.g. johnsmith@gmail.com]: "; EMAIL="$(get_answer)"
-
-            printf "\n"
-        fi
-
         printf "%s\n" \
 "[commit]
     # Sign commits using GPG.
     # https://help.github.com/articles/signing-commits-using-gpg/
     # gpgsign = true
 [user]
-    name = $NAME
-    email = $EMAIL
+    name = Nicholas Adamou
+    email = nicholasadamouemail@gmail.com
     # signingkey =" \
         >> "$FILE_PATH"
 	fi
