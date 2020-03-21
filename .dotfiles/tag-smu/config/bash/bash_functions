@@ -41,6 +41,13 @@ cype() {
 # Description: Update environment with latest software.
 # Updates Linux apps, brew, npm, fish, fisher, omf, pip, pip3 and their installed packages.
 function u() {
+   sudo apt update
+   sudo apt upgrade -y
+   sudo apt dist-upgrade -y
+   sudo apt full-upgrade -y
+   sudo apt autoremove -y
+   sudo apt clean
+   
     if command -v "brew" &> /dev/null; then
         brew update
         brew upgrade
