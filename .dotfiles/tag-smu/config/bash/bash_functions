@@ -39,14 +39,8 @@ cype() {
 
 # Label: Environment Update
 # Description: Update environment with latest software.
-# Updates MacOS apps, brew, npm, fish, fisher, omf, pip, pip3 and their installed packages.
+# Updates Linux apps, brew, npm, fish, fisher, omf, pip, pip3 and their installed packages.
 function u() {
-    sudo softwareupdate --install --all
-
-    if command -v "mas" &> /dev/null; then
-        mas upgrade
-    fi
-
     if command -v "brew" &> /dev/null; then
         brew update
         brew upgrade
@@ -90,7 +84,7 @@ function u() {
     	fi
     fi
 
-    if [ -d "$HOME/.vim/plugins/Vundle.vim" ]; then
+    if [[ -d "$HOME/.vim/plugins/Vundle.vim" ]]; then
         vim +PluginUpdate +qall
     fi
 }

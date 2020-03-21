@@ -1,10 +1,4 @@
-function update --description "Updates MacOS apps, brew, npm, fisher, omf update, pip, pip3 and their installed packages"
-    sudo softwareupdate --install --all
-
-    if type -q mas
-        mas upgrade
-    end
-
+function update --description "Updates Linux apps, brew, npm, fisher, omf update, pip, pip3 and their installed packages"
     if type -q brew
         brew update
         brew upgrade
