@@ -1,2 +1,2 @@
-deb "nordvpn" [args: "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb" "$HOME/Downloads" "nordvpn-release_1.0.0_all.deb"]
+deb "nordvpn" [args: "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb", "$HOME/Downloads", "nordvpn-release_1.0.0_all.deb"]
 apt "nordvpn"
