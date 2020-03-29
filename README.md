@@ -153,6 +153,12 @@ This module will allow you to create a MacOS Catalina boot disk for installing M
 
 For more on what the create_boot_disk module does, please consult [`create_boot_disk.sh`](.dotfiles/modules/create_boot_disk/create_boot_disk.sh).
 
+#### [brew](.dotfiles/modules/brew)
+
+This module will install 'brew', the package manager for Mac OS.
+
+For more on what the brew module does, please consult [`brew.sh`](.dotfiles/modules/brew/brew.sh).
+
 #### [app_store](.dotfiles/modules/app_store)
 
 The app store module installs all Mac OS App Store applications via `mas`.
