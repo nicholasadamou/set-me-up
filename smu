@@ -60,9 +60,6 @@ list_symlinks() {
 }
 
 symlink() {
-	# Remove broken symlinks in '$HOME' directory.
-	"${SMU_HOME_DIR}"/symlinks -rd "$HOME"
-
 	# Symlink files listed within set-me-up/.dotifles/rcrc to the '$HOME' directory.
     export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcup -v -f -d "${SMU_HOME_DIR}/.dotfiles"
 }
