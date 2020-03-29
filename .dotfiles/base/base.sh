@@ -161,19 +161,9 @@ main() {
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ask_for_sudo
-
-    if ! cmd_exists "brew"; then
-        install_homebrew
-        opt_out_of_analytics
-    else
-        brew_upgrade
-        brew_update
-    fi
+    bash ${SMU_PATH}/.dotfiles/modules/brew/brew.sh
 
     brew_bundle_install "brewfile"
-
-    brew_cleanup
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
