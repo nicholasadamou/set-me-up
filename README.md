@@ -153,6 +153,12 @@ This module will allow you to create a MacOS Catalina boot disk for installing M
 
 For more on what the create_boot_disk module does, please consult [`create_boot_disk.sh`](.dotfiles/modules/create_boot_disk/create_boot_disk.sh).
 
+#### [macosupdate](.dotfiles/modules/macosupdate)
+
+Runs the Mac OS updater via the command-line.
+
+Should your system require a system restart due to an `macosupdate` caused update, re-run the `smu` script after rebooting. The update module should be satisfied by the previous run and result in no action.
+
 #### [brew](.dotfiles/modules/brew)
 
 This module will install 'brew', the package manager for Mac OS.
@@ -173,6 +179,13 @@ Installs a multitude of `brew` casks. Check the [brewfile](.dotfiles/modules/cas
 
 Installs a multitude of `brew` formulae. Check the [brewfile](.dotfiles/modules/formulae/brewfile) to get an overview.
 
+#### [preferences](.dotfiles/modules/preferences)
+
+Sets a bunch of Mac OS settings. The file is based on [`.macos`](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
+
+⚠️ **Note**: _The `.macos` script **has** been heavily modified from the version provided by [Mathias Bynens](https://github.com/mathiasbynens)._
+**It is highly recommended to work with a copy that is adapted to your needs!**
+
 #### [go](.dotfiles/modules/go)
 
 Installs [goenv](https://github.com/syndbg/goenv) for version management and [dep](https://github.com/golang/dep) for package management. `go` is installed and defined as the global version via `goenv`.
@@ -182,19 +195,6 @@ When the terminal module is used, the `go` installation will work-out-of-the-box
 #### [java](.dotfiles/modules/java)
 
 Installs [sdkman](http://sdkman.io/) to manage all java related packages. `java8`and `java10` are installed via `sdkman`. **java8** will be defined as the global version.
-
-#### [preferences](.dotfiles/modules/perferences)
-
-Sets a bunch of Mac OS settings. The file is based on [`.macos`](https://github.com/mathiasbynens/dotfiles/blob/master/.macos).
-
-⚠️ **Note**: _The `.macos` script **has** been heavily modified from the version provided by [Mathias Bynens](https://github.com/mathiasbynens)._
-**It is highly recommended to work with a copy that is adapted to your needs!**
-
-#### [macosupdate](.dotfiles/modules/macosupdate)
-
-Runs the Mac OS updater via the command-line.
-
-Should your system require a system restart due to an `macosupdate` caused update, re-run the `smu` script after rebooting. The update module should be satisfied by the previous run and result in no action.
 
 #### [php](.dotfiles/modules/php)
 
