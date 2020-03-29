@@ -18,6 +18,7 @@ cask "finderminder"
 cask "moom"
 cask "witch"
 cask "contexts"
+cask "mission-control-plus"
 
 # Everything VM related
 cask "virtualbox"

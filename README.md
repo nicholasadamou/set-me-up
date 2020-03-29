@@ -22,7 +22,6 @@ Instead of enforcing a certain setup it tries to act as a solid template that is
   - [🌐 Local Settings](#local-settings)
     - [🐠 `~/.fish.local`](#fishlocal)
     - [🐚 `~/.bash.local`](#bashlocal)
-    - [🔁 `~/.gitconfig.local`](#gitconfiglocal)
 - [🙇🏻 Credits](#credits)
 - [👨🏼‍⚖️ Liability](#liability)
 - [🔃 Contributions](#contributions)
@@ -290,33 +289,6 @@ alias starwars "telnet towel.blinkenlights.nl"
 # Set PATH additions.
 
 set -gx PATH $PATH "$HOME/dotfiles/src/symlinks/.local/bin"
-```
-
-#### `~/.gitconfig.local`
-
-The `~/.gitconfig.local` file it will be automatically included
-after the configurations from `~/.gitconfig`, thus, allowing its
-content to overwrite or add to the existing `git` configurations.
-
-During the [base](#base) installation, it will prompt you for your _name_ and _email address_ to configure `git` if it hasn't already been configured _globally_.
-
-**Note:** Use `~/.gitconfig.local` to store sensitive information
-such as the `git` user credentials, e.g.:
-
-```bash
-[commit]
-
-    # Sign commits using GPG.
-    # https://help.github.com/articles/signing-commits-using-gpg/
-
-    gpgsign = true
-
-
-[user]
-
-    name = Nicholas Adamou
-    email = nicholasadamou@example.com
-    signingkey = XXXXXXXX
 ```
 
 ## Credits

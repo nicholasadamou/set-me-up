@@ -9,18 +9,7 @@ declare current_dir && \
 
 readonly SMU_PATH="$HOME/set-me-up"
 
-declare LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Overrides `utils.sh` -> print_question()
-# in order to add a few more spaces b/w '[?]'
-# & the left-most edge of the terminal window.
-print_question() {
-
-    print_in_yellow "     [?] $1"
-
-}
 
 create_bash_local() {
 
@@ -46,63 +35,9 @@ create_fish_local() {
 
 }
 
-create_gitconfig_local() {
-
-    declare -r FILE_PATH="$HOME/.gitconfig.local"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
-
-        if [[ "$(git -C "$SMU_PATH" config --global --get user.name)" = "" ]] && [[ "$(git -C "$SMU_PATH" config --global --get user.email)" = "" ]]; then
-            print_in_yellow "\n   Git Configuration\n\n"
-
-            ask "What is your name? [e.g. John Smith]: "; NAME="$(get_answer)"
-            ask "What is your email address? [e.g. johnsmith@gmail.com]: "; EMAIL="$(get_answer)"
-
-            printf "\n"
-        fi
-
-        printf "%s\n" \
-"[commit]
-
-    # Sign commits using GPG.
-    # https://help.github.com/articles/signing-commits-using-gpg/
-    # gpgsign = true
-[user]
-
-    name = $NAME
-    email = $EMAIL
-    # signingkey =" \
-        >> "$FILE_PATH"
-	fi
-
-}
-
 install_homebrew() {
 
-    if printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; then
-        add_brew_configs
-	fi
-
-}
-
-add_brew_configs() {
-
-    declare -r BASH_CONFIGS="
-# Homebrew - The missing package manager for macOS.
-export PATH=\"/usr/local/bin:\$PATH\"
-export PATH=\"/usr/local/sbin:\$PATH\"
-"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # If needed, add the necessary configs in the
-    # local shell configuration file.
-
-    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-		printf '%s\n' "$BASH_CONFIGS" >> "$LOCAL_BASH_CONFIG_FILE" && . "$LOCAL_BASH_CONFIG_FILE"
-	fi
+    printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 }
 
@@ -143,27 +78,15 @@ opt_out_of_analytics() {
 
 }
 
-change_default_bash() {
+change_default_bash_version() {
 
-    local configs=""
-    local pathConfig=""
-
-    local newShellPath=""
-    local brewPrefix=""
+    local PATH_TO_HOMEBREW_BASH=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Try to get the path of the `Bash`
-    # version installed through `Homebrew`.
+    # Get the path of the `Bash` version installed through `Homebrew`.
 
-    brewPrefix="$(brew --prefix)"
-
-    pathConfig="PATH=\"$brewPrefix/bin:\$PATH\""
-    configs="# Homebrew bash configurations
-$pathConfig
-export PATH"
-
-    newShellPath="$brewPrefix/bin/bash"
+    PATH_TO_HOMEBREW_BASH="$(brew --prefix)/bin/bash"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -177,8 +100,8 @@ export PATH"
     #
     # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
 
-    if ! grep -q "$(<<<"$newShellPath" tr '\n' '\01')" < <(less "/etc/shells" | tr '\n' '\01'); then
-        printf '%s\n' "$newShellPath" | sudo tee -a /etc/shells
+    if ! grep -q "$(<<<"$PATH_TO_HOMEBREW_BASH" tr '\n' '\01')" < <(less "/etc/shells" | tr '\n' '\01'); then
+        printf '%s\n' "$PATH_TO_HOMEBREW_BASH" | sudo tee -a /etc/shells
     fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -186,18 +109,8 @@ export PATH"
     # Set latest version of `Bash` as the default
     # (macOS uses by default an older version of `Bash`).
 
-    if [[ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${newShellPath}" ]]; then
-        chsh -s "$newShellPath" &> /dev/null
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # If needed, add the necessary configs in the
-    # local shell configuration file.
-
-    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$configs" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        printf '%s\n' "$configs" >> "$LOCAL_BASH_CONFIG_FILE" \
-                && . "$LOCAL_BASH_CONFIG_FILE"
+    if [[ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${PATH_TO_HOMEBREW_BASH}" ]]; then
+        chsh -s "$PATH_TO_HOMEBREW_BASH" &> /dev/null
     fi
 
 }
@@ -245,7 +158,6 @@ main() {
 
     create_bash_local
 	create_fish_local
-	create_gitconfig_local
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -265,7 +177,7 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	change_default_bash
+	change_default_bash_version
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

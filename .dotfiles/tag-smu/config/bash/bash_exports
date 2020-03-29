@@ -98,7 +98,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 # see: https://guides.rubygems.org/faqs/#user-install
 
 if command -v gem &> /dev/null; then
-	if [ -d "$(gem environment gemdir)/bin" ]; then
+	if [[ -d "$(gem environment gemdir)/bin" ]]; then
 		export PATH="$(gem environment gemdir)/bin:$PATH"
 	fi
 fi
@@ -107,7 +107,7 @@ fi
 
 # Add ~/.local/bin to $PATH
 
-if [ -d "$HOME/.local/bin" ]; then
+if [[ -d "$HOME/.local/bin" ]]; then
 	export PATH="$HOME/.local/bin:$PATH"
 fi
 
@@ -115,7 +115,7 @@ fi
 
 # Add ~/.iterm2 to $PATH
 
-if [ -d "$HOME/.iterm2" ]; then
+if [[ -d "$HOME/.iterm2" ]]; then
 	export PATH="$HOME/.iterm2:$PATH"
 fi
 
@@ -123,17 +123,21 @@ fi
 
 # Add ~/set-me-up to $PATH
 
-if [ -d "$HOME/set-me-up" ]; then
+if [[ -d "$HOME/set-me-up" ]]; then
 	export PATH="$HOME/set-me-up:$PATH"
 fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Add /usr/local/bin to $PATH
+# Add /usr/local/bin, /usr/local/sbin to $PATH
 
 if command -v brew &> /dev/null; then
-	if [ -d "$(brew --prefix)/bin" ]; then
+	if [[ -d "$(brew --prefix)/bin" ]]; then
 		export PATH="$(brew --prefix)/bin:$PATH"
+	fi
+
+	if [[ -d "$(brew --prefix)/sbin" ]]; then
+		export PATH="$(brew --prefix)/sbin:$PATH"
 	fi
 fi
 
