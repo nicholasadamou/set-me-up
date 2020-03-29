@@ -220,7 +220,7 @@ I primarily install the Rust toolchain because I like to use the `cargo` package
 
 Installs [n](https://github.com/tj/n) for version management, `npm` comes with node for package management. The latest `node` and `npm` versions are installed using `n`.
 
-It also install a set of globally installed `npm` packages. For a complete list of packages installed please see [`web.sh`](.dotfiles/modules/web/web.sh#120).
+It also installs a set of globally installed `npm` packages. For a complete list of packages installed please see [`web.sh`](.dotfiles/modules/web/web.sh#120).
 
 ### Other components
 
