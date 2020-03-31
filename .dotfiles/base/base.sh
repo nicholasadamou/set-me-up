@@ -125,13 +125,15 @@ symlink() {
 
 main() {
 
+	create_bash_local
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     bash ${SMU_PATH}/.dotfiles/modules/brew/brew.sh
 
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	create_bash_local
 
 	change_default_bash_version
 
