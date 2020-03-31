@@ -11,30 +11,6 @@ readonly SMU_PATH="$HOME/set-me-up"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-create_bash_local() {
-
-    declare -r FILE_PATH="$HOME/.bash.local"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
-        printf "%s\n" "#!/bin/bash" >> "$FILE_PATH"
-	fi
-
-}
-
-create_fish_local() {
-
-    declare -r FILE_PATH="$HOME/.fish.local"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
-        touch "$FILE_PATH"
-	fi
-
-}
-
 install_homebrew() {
 
     printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -78,6 +54,18 @@ opt_out_of_analytics() {
 
 }
 
+create_bash_local() {
+
+    declare -r FILE_PATH="$HOME/.bash.local"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
+        printf "%s\n" "#!/bin/bash" >> "$FILE_PATH"
+	fi
+
+}
+
 change_default_bash_version() {
 
     local PATH_TO_HOMEBREW_BASH=""
@@ -103,6 +91,18 @@ change_default_bash_version() {
     if ! grep -q "$(<<<"$PATH_TO_HOMEBREW_BASH" tr '\n' '\01')" < <(less "/etc/shells" | tr '\n' '\01'); then
         printf '%s\n' "$PATH_TO_HOMEBREW_BASH" | sudo tee -a /etc/shells
     fi
+
+}
+
+create_fish_local() {
+
+    declare -r FILE_PATH="$HOME/.fish.local"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if [[ ! -e "$FILE_PATH" ]] || [[ -z "$FILE_PATH" ]]; then
+        touch "$FILE_PATH"
+	fi
 
 }
 
@@ -168,20 +168,19 @@ symlink() {
 
 main() {
 
-    create_bash_local
-	create_fish_local
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     bash ${SMU_PATH}/.dotfiles/modules/brew/brew.sh
 
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+	create_bash_local
+
 	change_default_bash_version
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	create_fish_local
 
 	change_default_shell_to_fish
 
