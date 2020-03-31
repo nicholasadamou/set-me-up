@@ -104,16 +104,28 @@ change_default_bash_version() {
         printf '%s\n' "$PATH_TO_HOMEBREW_BASH" | sudo tee -a /etc/shells
     fi
 
+}
+
+change_default_shell_to_fish() {
+
+    local PATH_TO_FISH=""
+
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Set latest version of `Bash` as the default
-    # (macOS uses by default an older version of `Bash`).
+    # Get the path of `fish` which was installed through `Homebrew`.
 
-    if [[ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${PATH_TO_HOMEBREW_BASH}" ]]; then
-        chsh -s "$PATH_TO_HOMEBREW_BASH" &> /dev/null
+    PATH_TO_FISH="$(brew --prefix)/bin/fish"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Set latest version of `fish` as the default shell
+
+    if [[ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${$PATH_TO_FISH}" ]]; then
+        chsh -s "$PATH_TO_FISH" &> /dev/null
     fi
 
 }
+
 
 install_fisher() {
 
@@ -170,6 +182,8 @@ main() {
 	change_default_bash_version
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	change_default_shell_to_fish
 
     install_fisher
 
