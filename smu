@@ -303,8 +303,8 @@ main() {
 	warn "It is recommended to restart your computer to ensure all updates take effect."
 
 	printf "\n"
-	
-	success "Completed running '${bold}set-me-up${normal}'"
+
+	success "Completed running '${bold}set-me-up${normal}'."
 }
 
 main
