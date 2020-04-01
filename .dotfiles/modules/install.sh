@@ -306,7 +306,7 @@ function main() {
 
 	warn "${bold}Ensure your Mac system is fully up-to-date and only${normal}"
 	warn "${bold}run this script in terminal.app (NOT in iTerm)${normal}"
-	warn "=> ${bold}CTRL+C now to abort\e[0m or ${bold}ENTER${normal} to continue."
+	warn "=> ${bold}CTRL+C now to abort${normal} or ${bold}ENTER${normal} to continue."
 	read -n 1
 
 	header
