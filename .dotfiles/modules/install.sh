@@ -136,6 +136,7 @@ function confirm() {
 		warn "This script will download '${bold}set-me-up${normal}' to ${bold}${SMU_HOME_DIR}${normal}"
 	fi
 
+	printf "\n"
 	read -r -p "Would you like '${bold}set-me-up${normal}' to continue? (y/n) " -n 1;
     echo "";
 
