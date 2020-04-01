@@ -138,7 +138,7 @@ function confirm() {
 
 	printf "\n"
 	bot "This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
-	echo -e "\nPress ${bold}ENTER${normal} to continue."
+	echo -e "\nPress ${bold}CTRL-C${normal} to abort or ${bold}ENTER${normal} to continue."
 	read -n 1
 }
 
@@ -306,8 +306,6 @@ function main() {
 
 	warn "${bold}Ensure your Mac system is fully up-to-date and only${normal}"
 	warn "${bold}run this script in terminal.app (NOT in iTerm)${normal}"
-	warn "=> ${bold}CTRL+C now to abort${normal} or ${bold}ENTER${normal} to continue."
-	read -n 1
 
 	header
 
