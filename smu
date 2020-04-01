@@ -300,7 +300,11 @@ main() {
 
 	printf "\n"
 
-	success "Completed running '${bold}set-me-up${normal}', restart your computer to ensure all updates take effect."
+	warn "It is recommended to restart your computer to ensure all updates take effect."
+
+	printf "\n"
+	
+	success "Completed running '${bold}set-me-up${normal}'"
 }
 
 main
