@@ -136,7 +136,6 @@ function confirm() {
 		warn "This script will download '${bold}set-me-up${normal}' to ${bold}${SMU_HOME_DIR}${normal}"
 	fi
 
-	printf "\n"
 	echo -e "\nPress ${bold}CTRL-C${normal} to abort or ${bold}ENTER${normal} to continue."
 	read -n 1
 }
