@@ -137,7 +137,7 @@ function confirm() {
 	fi
 
 	echo -e "\n"
-	echo -e "${COL_BLUE}(っ◕‿◕)っ${COL_RESET} This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
+	bot "This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
 	echo -e "\nPress ${bold}ENTER${normal} to continue."
 	read -n 1
 }
@@ -290,12 +290,12 @@ function setup() {
 }
 
 function header() {
-	echo -en "\n${COL_BLUE}███████╗███████╗████████╗   ███╗   ███╗███████╗    ██╗   ██╗██████╗ ${COL_RESET}"
-	echo -en "\n${COL_BLUE}██╔════╝██╔════╝╚══██╔══╝   ████╗ ████║██╔════╝    ██║   ██║██╔══██╗${COL_RESET}"
-	echo -en "\n${COL_BLUE}███████╗█████╗     ██║█████╗██╔████╔██║█████╗█████╗██║   ██║██████╔╝${COL_RESET}"
-	echo -en "\n${COL_BLUE}╚════██║██╔══╝     ██║╚════╝██║╚██╔╝██║██╔══╝╚════╝██║   ██║██╔═══╝ ${COL_RESET}"
-	echo -en "\n${COL_BLUE}███████║███████╗   ██║      ██║ ╚═╝ ██║███████╗    ╚██████╔╝██║     ${COL_RESET}"
-	echo -en "\n${COL_BLUE}╚══════╝╚══════╝   ╚═╝      ╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝     ${COL_RESET}"
+	echo -en "\n███████╗███████╗████████╗   ███╗   ███╗███████╗    ██╗   ██╗██████╗"
+	echo -en "\n██╔════╝██╔════╝╚══██╔══╝   ████╗ ████║██╔════╝    ██║   ██║██╔══██╗"
+	echo -en "\n███████╗█████╗     ██║█████╗██╔████╔██║█████╗█████╗██║   ██║██████╔╝"
+	echo -en "\n╚════██║██╔══╝     ██║╚════╝██║╚██╔╝██║██╔══╝╚════╝██║   ██║██╔═══╝"
+	echo -en "\n███████║███████╗   ██║      ██║ ╚═╝ ██║███████╗    ╚██████╔╝██║"
+	echo -en "\n╚══════╝╚══════╝   ╚═╝      ╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝"
 	echo -en "\n\n"
 }
 
