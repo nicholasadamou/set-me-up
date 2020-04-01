@@ -291,9 +291,9 @@ function setup() {
     success "'${bold}set-me-up${normal}' has been successfully installed on your system."
 
     if [[ -n "$SMU_BLUEPRINT" ]]; then
-    	echo -e "For more information concerning how to install various modules, please see: [https://github.com/$SMU_BLUEPRINT]"
+    	echo -e "\nFor more information concerning how to install various modules, please see: [https://github.com/$SMU_BLUEPRINT]"
     else
-   		echo -e "For more information concerning how to install various modules, please see: [https://github.com/nicholasadamou/set-me-up]"
+   		echo -e "\nFor more information concerning how to install various modules, please see: [https://github.com/nicholasadamou/set-me-up]"
     fi
 }
 
