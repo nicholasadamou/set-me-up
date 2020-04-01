@@ -157,7 +157,7 @@ function setup() {
     mkcd "${SMU_HOME_DIR}"
 
 	echo "\n"
-	action "Obtaining 'set-me-up'."
+	action "Obtaining '${bold}set-me-up${normal}'."
 	obtain "${smu_download}"
 	printf "\n"
 
