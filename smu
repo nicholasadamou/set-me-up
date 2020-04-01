@@ -1,5 +1,9 @@
 #!/bin/bash
 
+source /dev/stdin <<<"$(curl -s "https://raw.githubusercontent.com/nicholasadamou/utilities/master/scripts/base/base.sh")"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # ARG_OPTIONAL_BOOLEAN([base],[b],[Run base module],[on])
 # ARG_OPTIONAL_BOOLEAN([selfupdate],[],[Update set-me-up],[])
 # ARG_OPTIONAL_BOOLEAN([provision],[p],[Provision given modules],[off])
@@ -110,7 +114,7 @@ parse_commandline()
 			# We support getopts-style short arguments clustering,
 			# so as -b doesn't accept value, other short options may be appended to it, so we watch for -b*.
 			# After stripping the leading -b from the argument, we have to make sure
-			# that the first character that follows coresponds to a short option.
+			# that the first character that follows corresponds to a short option.
 			-b*)
 				_arg_base="on"
 				_next="${_key##-b}"
@@ -226,12 +230,12 @@ provision_module() {
     local -r script="${1}.sh"
 
     if [[ ! -e "${path}/${script}" ]]; then
-        echo "${path}/${script} does not seem to exist, skipping."
+        warn "${path}/${script} does not seem to exist, skipping."
         false
         return
     fi
 
-    echo "Running ${path}/${script} module"
+    action "Running ${path}/${script} module"
 
 	printf "\n"
 
@@ -248,7 +252,7 @@ main() {
 		if [[ -e "${module_path}"/install.sh ]]; then
 			"${module_path}"/install.sh
 		else
-			echo -e "${module_path}/install.sh does not seem to exist.\nPlease run the 'base' module prior to executing a 'selfupdate'."
+			warn "${bold}${module_path}/install.sh${normal} does not seem to exist.\nPlease run the '${bold}base${normal}' module prior to executing a '${bold}selfupdate${normal}'."
 		fi
 
 		! provision_enabled && exit 0
@@ -259,8 +263,13 @@ main() {
 		exit 0
 	fi
 
-	read -r -p "set-me-up may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+	warn "${bold}set-me-up${normal} may overwrite existing files in your home directory."
+
+	printf "\n"
+
+	read -r -p "Are you sure you want to continue? (y/n) " -n 1;
 	echo "";
+
 	[[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
 
 	modules=("${_arg_modules[@]}")
@@ -289,9 +298,7 @@ main() {
 
 	printf "\n"
 
-	echo "------------------------------"
-	echo "Completed running set-me-up, restart your computer to ensure all updates take effect."
-	echo "------------------------------"
+	success "Completed running set-me-up, restart your computer to ensure all updates take effect."
 }
 
 main
