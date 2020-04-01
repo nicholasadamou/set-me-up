@@ -126,7 +126,7 @@ function install_xcode_command_line_tools() {
     done
 
     are_xcode_command_line_tools_installed && \
-        success "'\e[1mXcode Command Line Tools\e[0m' has been successfully installed\n"
+        success "'${bold}Xcode Command Line Tools${normal} has been successfully installed\n"
 }
 
 function confirm() {
@@ -137,8 +137,8 @@ function confirm() {
 	fi
 
 	echo -e "\n"
-	echo -e "$COL_BLUE(っ◕‿◕)っ$COL_RESET This script sets up new machines, \e[1m*use with caution*\e[0m. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
-	echo -e "\nPress \e[1mENTER\e[0m to continue."
+	echo -e "$COL_BLUE(っ◕‿◕)っ$COL_RESET This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
+	echo -e "\nPress ${bold}ENTER${normal} to continue."
 	read -n 1
 }
 
@@ -300,13 +300,13 @@ function header() {
 }
 
 function main() {
-	echo -e "\n\e[1m\$HOME sweet /~\n\e[0m"
+	echo -e "\n$bold\$HOME sweet /~\n$normal"
 
-	echo -e "Welcome to the '\e[1mset-me-up\e[0m' installer.\nPlease follow the on-screen instructions.\n"
+	echo -e "Welcome to the '${bold}set-me-up${normal}' installer.\nPlease follow the on-screen instructions.\n"
 
-	warn "\e[1mEnsure your Mac system is fully up-to-date and only\e[0m"
-	warn "\e[1mrun this script in terminal.app (NOT in iTerm)\e[0m"
-	warn "=> \e[1mCTRL+C now to abort\e[0m or \e[1mENTER\e[0m to continue."
+	warn "${bold}Ensure your Mac system is fully up-to-date and only${normal}"
+	warn "${bold}run this script in terminal.app (NOT in iTerm)${normal}"
+	warn "=> ${bold}CTRL+C now to abort\e[0m or ${bold}ENTER${normal} to continue."
 	read -n 1
 
 	header
