@@ -136,8 +136,7 @@ function confirm() {
 		warn "This script will download '${bold}set-me-up${normal}' to ${bold}${SMU_HOME_DIR}${normal}"
 	fi
 
-	read -n "\nPress ${bold}CTRL-C${normal} to abort or ${bold}ENTER${normal} to continue." response
-	[[ -z ${response} ]] && exit 0
+	echo -e "\nPress ${bold}CTRL-C${normal} to abort or ${bold}ANY KEY${normal} to continue."
 }
 
 function obtain() {
