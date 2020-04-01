@@ -145,6 +145,8 @@ symlink() {
 
 main() {
 
+	# We must first create the $HOME/.bash.local configuration file
+	# in order for the brew module to properly install Homebrew.
 	create_bash_local
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

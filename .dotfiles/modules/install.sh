@@ -2,6 +2,10 @@
 
 # shellcheck disable=SC2001
 
+source /dev/stdin <<<"$(curl -s "https://raw.githubusercontent.com/nicholasadamou/utilities/master/scripts/base/base.sh")"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # GitHub user/repo & branch value of your set-me-up blueprint (e.g.: nicholasadamou/set-me-up-blueprint/master).
 # Set this value when the installer should additionally obtain your blueprint.
 readonly SMU_BLUEPRINT=${SMU_BLUEPRINT:-""}
@@ -23,6 +27,8 @@ readonly SMU_HOME_DIR=${SMU_HOME_DIR:-"${HOME}/set-me-up"}
 
 readonly smu_download="https://github.com/nicholasadamou/set-me-up/tarball/${SMU_VERSION}"
 readonly smu_blueprint_download="https://github.com/${SMU_BLUEPRINT}/tarball/${SMU_BLUEPRINT_BRANCH}"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 function mkcd() {
     local -r dir="${1}"
@@ -107,7 +113,7 @@ function install_xcode_command_line_tools() {
     # If necessary, prompt user to install
     # the `Xcode Command Line Tools`.
 
-    echo "➜ Installing 'Xcode Command Line Tools'"
+    action "Installing 'Xcode Command Line Tools'"
 
     xcode-select --install &> /dev/null
 
@@ -120,20 +126,20 @@ function install_xcode_command_line_tools() {
     done
 
     are_xcode_command_line_tools_installed && \
-        echo -e "✔︎ 'Xcode Command Line Tools' is installed\n"
+        success "'\e[1mXcode Command Line Tools\e[0m' has been successfully installed\n"
 }
 
 function confirm() {
 	if [[ -n "$SMU_BLUEPRINT" ]] && [[ -n "$SMU_BLUEPRINT_BRANCH" ]]; then
-		echo "➜ This script will download '$SMU_BLUEPRINT' on branch '$SMU_BLUEPRINT_BRANCH' to ${SMU_HOME_DIR}"
+		action "This script will download '$SMU_BLUEPRINT' on branch '$SMU_BLUEPRINT_BRANCH' to ${SMU_HOME_DIR}"
 	else
-		echo "➜ This script will download 'set-me-up' to ${SMU_HOME_DIR}"
+		action "This script will download 'set-me-up' to ${SMU_HOME_DIR}"
 	fi
 
-	read -r -p "Would you like 'set-me-up' to configure in that directory? (y/n) " -n 1;
-    echo "";
-
-    [[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
+	echo -e "\n"
+	echo -e "$COL_BLUE(っ◕‿◕)っ$COL_RESET This script sets up new machines, \e[1m*use with caution*\e[0m. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
+	echo -e "\nPress \e[1mENTER\e[0m to continue."
+	read -n 1
 }
 
 function obtain() {
@@ -150,7 +156,8 @@ function setup() {
     confirm
     mkcd "${SMU_HOME_DIR}"
 
-	echo -e "\n➜ Obtaining 'set-me-up'."
+	echo "\n"
+	action "Obtaining 'set-me-up'."
 	obtain "${smu_download}"
 	printf "\n"
 
@@ -169,7 +176,7 @@ function setup() {
 
 			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-			echo "➜ Installing 'set-me-up' submodules."
+			action "Installing 'set-me-up' submodules."
 
 			install_submodules
 
@@ -216,7 +223,7 @@ function setup() {
 						commit -m "✅ UPDATED: '$files'" &> /dev/null
 
 					if [[ "$?" -eq 0 ]]; then
-						echo -e "✔︎ UPDATED: '$files'\n"
+						success "UPDATED: '$files'\n"
 					fi
 				fi
 
@@ -226,22 +233,23 @@ function setup() {
 			fi
 
 			if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
-				echo "➜ Updating your 'set-me-up' blueprint."
+				action "Updating your 'set-me-up' blueprint."
 
 				git -C "${SMU_HOME_DIR}" pull --ff
 			else
-				echo "Already up-to-date"
+				success "Already up-to-date"
 			fi
 
 			if has_submodules; then
-				echo -e "\n➜ Updating your 'set-me-up' blueprint submodules."
+				echo -e "\n"
+				action "Updating your 'set-me-up' blueprint submodules."
 
 				install_submodules
 
 				git -C "${SMU_HOME_DIR}" submodule foreach git pull
 			fi
 		else
-			echo "➜ Cloning your 'set-me-up' blueprint."
+			action "Cloning your 'set-me-up' blueprint."
 
 			git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
 			git -C "${SMU_HOME_DIR}" fetch
@@ -250,7 +258,8 @@ function setup() {
 			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 			if has_submodules; then
-				echo -e "\n➜ Installing your 'set-me-up' blueprint submodules."
+				echo -e "\n"
+				action "Installing your 'set-me-up' blueprint submodules."
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -276,16 +285,36 @@ function setup() {
 		fi
 	fi
 
-    echo -e "\n✔︎ Done. Enjoy."
+	echo -e "\n"
+    success "Done. Enjoy."
+}
+
+function header() {
+	echo -en "\n$COL_BLUE███████╗███████╗████████╗   ███╗   ███╗███████╗    ██╗   ██╗██████╗ $COL_RESET"
+	echo -en "\n$COL_BLUE██╔════╝██╔════╝╚══██╔══╝   ████╗ ████║██╔════╝    ██║   ██║██╔══██╗$COL_RESET"
+	echo -en "\n$COL_BLUE███████╗█████╗     ██║█████╗██╔████╔██║█████╗█████╗██║   ██║██████╔╝$COL_RESET"
+	echo -en "\n$COL_BLUE╚════██║██╔══╝     ██║╚════╝██║╚██╔╝██║██╔══╝╚════╝██║   ██║██╔═══╝ $COL_RESET"
+	echo -en "\n$COL_BLUE███████║███████╗   ██║      ██║ ╚═╝ ██║███████╗    ╚██████╔╝██║     $COL_RESET"
+	echo -en "\n$COL_BLUE╚══════╝╚══════╝   ╚═╝      ╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝     $COL_RESET"
+	echo -en "\n\n"
 }
 
 function main() {
-	echo -e "Welcome to the 'set-me-up' installer.\nPlease follow the on-screen instructions.\n"
+	echo -e "\n\e[1m\$HOME sweet /~\n\e[0m"
+
+	echo -e "Welcome to the '\e[1mset-me-up\e[0m' installer.\nPlease follow the on-screen instructions.\n"
+
+	warn "\e[1mEnsure your Mac system is fully up-to-date and only\e[0m"
+	warn "\e[1mrun this script in terminal.app (NOT in iTerm)\e[0m"
+	warn "=> \e[1mCTRL+C now to abort\e[0m or \e[1mENTER\e[0m to continue."
+	read -n 1
+
+	header
 
 	if ! are_xcode_command_line_tools_installed; then
         install_xcode_command_line_tools
     else
-        echo -e "✔︎ 'Xcode Command Line Tools' are already installed\n"
+        success "'\e[1mXcode Command Line Tools\e[0m' are already installed\n"
     fi
 
 	setup
