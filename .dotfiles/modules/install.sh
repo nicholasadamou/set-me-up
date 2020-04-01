@@ -131,11 +131,12 @@ function install_xcode_command_line_tools() {
 
 function confirm() {
 	if [[ -n "$SMU_BLUEPRINT" ]] && [[ -n "$SMU_BLUEPRINT_BRANCH" ]]; then
-		action "This script will download '${bold}$SMU_BLUEPRINT${normal}' on branch '${bold}$SMU_BLUEPRINT_BRANCH${normal}' to ${bold}${SMU_HOME_DIR}${normal}"
+		warning "This script will download '${bold}$SMU_BLUEPRINT${normal}' on branch '${bold}$SMU_BLUEPRINT_BRANCH${normal}' to ${bold}${SMU_HOME_DIR}${normal}"
 	else
-		action "This script will download '${bold}set-me-up${normal}' to ${bold}${SMU_HOME_DIR}${normal}"
+		warning "This script will download '${bold}set-me-up${normal}' to ${bold}${SMU_HOME_DIR}${normal}"
 	fi
 
+	printf "\n"
 	bot "This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
 	echo -e "\nPress ${bold}ENTER${normal} to continue."
 	read -n 1
