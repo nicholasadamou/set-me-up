@@ -302,8 +302,6 @@ function main() {
 
 	echo -e "Welcome to the '${bold}set-me-up${normal}' installer.\nPlease follow the on-screen instructions.\n"
 
-	printf "\n"
-
 	warn "This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
 
 	printf "\n"
