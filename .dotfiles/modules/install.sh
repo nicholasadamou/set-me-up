@@ -302,7 +302,12 @@ function main() {
 	echo -e "\n${bold}\$HOME sweet /~\n${normal}"
 
 	echo -e "Welcome to the '${bold}set-me-up${normal}' installer.\nPlease follow the on-screen instructions.\n"
-	echo -e "This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
+
+	printf "\n"
+
+	warn "This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
+
+	printf "\n"
 
 	warn "${bold}Ensure your Mac system is fully up-to-date and only${normal}"
 	warn "${bold}run this script in terminal.app (NOT in iTerm)${normal}"
