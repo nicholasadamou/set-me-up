@@ -137,7 +137,7 @@ function confirm() {
 	fi
 
 	read -n "\nPress ${bold}CTRL-C${normal} to abort or ${bold}ENTER${normal} to continue." response
-	[[ ${#response} -eq 0 ]] && exit 0
+	[[ -z ${response} ]] && exit 0
 }
 
 function obtain() {
@@ -300,11 +300,11 @@ function header() {
 function main() {
 	echo -e "\n${bold}\$HOME sweet /~\n${normal}"
 
-	echo -e "Welcome to the '${bold}set-me-up${normal}' installer.\n"
-	echo -e "For more information, please see [https://github.com/nicholasadamou/set-me-up].\n"
+	echo -e "Welcome to the '${bold}set-me-up${normal}' installer."
+	echo -e "For more information, please see [https://github.com/nicholasadamou/set-me-up]."
 	echo -e "Please follow the on-screen instructions.\n"
 
-	warn "This script sets up new machines, ${bold}*use with caution*${normal}."
+	warn "${bold}This script sets up new machines, *use with caution*${normal}."
 	warn "${bold}Ensure your Mac system is fully up-to-date and only${normal}"
 	warn "${bold}run this script in terminal.app (NOT in iTerm)${normal}"
 
