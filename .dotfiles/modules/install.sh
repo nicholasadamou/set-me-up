@@ -290,10 +290,10 @@ function setup() {
 
     success "'${bold}set-me-up${normal}' has been successfully installed on your system."
 
-    if [[ -n "$SMU_BLUEPRINT" ]]; then
-    	echo -e "\nFor more information concerning how to install various modules, please see: [https://github.com/$SMU_BLUEPRINT]"
+    if [[ -n "$SMU_BLUEPRINT" ]] && [[ -n "$SMU_BLUEPRINT_BRANCH" ]]; then
+    	echo -e "\nFor more information concerning how to install various modules, please see: [https://github.com/$SMU_BLUEPRINT/tree/$SMU_BLUEPRINT_BRANCH]"
     else
-   		echo -e "\nFor more information concerning how to install various modules, please see: [https://github.com/nicholasadamou/set-me-up]"
+   		echo -e "\nFor more information concerning how to install various modules, please see: [https://github.com/nicholasadamou/set-me-up/tree/$SMU_VERSION]"
     fi
 }
 
