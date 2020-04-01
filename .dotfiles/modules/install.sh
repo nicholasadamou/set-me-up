@@ -136,7 +136,6 @@ function confirm() {
 		action "This script will download '${bold}set-me-up${normal}' to ${bold}${SMU_HOME_DIR}${normal}"
 	fi
 
-	echo -e "\n"
 	bot "This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
 	echo -e "\nPress ${bold}ENTER${normal} to continue."
 	read -n 1
