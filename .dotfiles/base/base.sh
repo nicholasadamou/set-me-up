@@ -65,7 +65,7 @@ change_default_shell_to_fish() {
 
     # Set latest version of `fish` as the default shell
 
-    if [[ "$(dscl . -read /Users/"${USER}"/ UserShell | cut -d ' ' -f2)" != "${PATH_TO_FISH}" ]]; then
+    if [[ "$(echo $SHELL | grep ${PATH_TO_FISH})" != ${PATH_TO_FISH} ]]; then
         chsh -s "$PATH_TO_FISH" &> /dev/null
     fi
 
