@@ -110,11 +110,7 @@ install_fisher() {
 
 install_fisher_packages() {
 
-	local SMU_HOME="$SMU_PATH/.dotfiles/tag-smu"
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	cat < "$SMU_HOME/config/fish/fishfile" | while read -r PACKAGE; do
+	cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
 		fisher_install "$PACKAGE"
 	done
 
@@ -145,6 +141,10 @@ symlink() {
 
 main() {
 
+	symlink
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 	# We must first create the $HOME/.bash.local configuration file
 	# in order for the brew module to properly install Homebrew.
 	create_bash_local
@@ -168,10 +168,6 @@ main() {
     install_fisher
 
     install_fisher_packages
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    symlink
 
 }
 
