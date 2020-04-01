@@ -141,10 +141,6 @@ symlink() {
 
 main() {
 
-	symlink
-
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 	# We must first create the $HOME/.bash.local configuration file
 	# in order for the brew module to properly install Homebrew.
 	create_bash_local
@@ -156,6 +152,13 @@ main() {
     brew_bundle_install "brewfile"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # We must now symlink the dotfiles prior to executing any other function.
+    # This is required because any further action will require our dotfiles
+    # to be present in our $HOME directory.
+    symlink
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	change_default_bash_version
 
