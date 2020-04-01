@@ -176,7 +176,7 @@ function setup() {
 
 			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-			action "Installing 'set-me-up' submodules."
+			action "Installing '${bold}set-me-up${normal}' submodules."
 
 			install_submodules
 
@@ -233,7 +233,7 @@ function setup() {
 			fi
 
 			if is_git_repo_out_of_date "$SMU_BLUEPRINT_BRANCH"; then
-				action "Updating your 'set-me-up' blueprint."
+				action "Updating your '${bold}set-me-up${normal}' blueprint."
 
 				git -C "${SMU_HOME_DIR}" pull --ff
 			else
@@ -242,14 +242,14 @@ function setup() {
 
 			if has_submodules; then
 				echo -e "\n"
-				action "Updating your 'set-me-up' blueprint submodules."
+				action "Updating your '${bold}set-me-up${normal}' blueprint submodules."
 
 				install_submodules
 
 				git -C "${SMU_HOME_DIR}" submodule foreach git pull
 			fi
 		else
-			action "Cloning your 'set-me-up' blueprint."
+			action "Cloning your '${bold}set-me-up${normal}' blueprint."
 
 			git -C "${SMU_HOME_DIR}" remote add origin "https://github.com/${SMU_BLUEPRINT}.git"
 			git -C "${SMU_HOME_DIR}" fetch
@@ -259,7 +259,7 @@ function setup() {
 
 			if has_submodules; then
 				echo -e "\n"
-				action "Installing your 'set-me-up' blueprint submodules."
+				action "Installing your '${bold}set-me-up${normal}' blueprint submodules."
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -300,7 +300,7 @@ function header() {
 }
 
 function main() {
-	echo -e "\n$bold\$HOME sweet /~\n$normal"
+	echo -e "\n${bold}\$HOME sweet /~\n${normal}"
 
 	echo -e "Welcome to the '${bold}set-me-up${normal}' installer.\nPlease follow the on-screen instructions.\n"
 
