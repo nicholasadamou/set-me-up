@@ -1,5 +1,7 @@
 # `set-me-up`
 
+![preview](preview.png)
+
 `set-me-up` aims to simplify the dull setup and maintenance of Mac OS development environments.
 It does so by automating the process through a collection of dotfiles and shell scripts [bundled into modules](#available-modules).
 
