@@ -113,7 +113,7 @@ function install_xcode_command_line_tools() {
     # If necessary, prompt user to install
     # the `Xcode Command Line Tools`.
 
-    action "Installing 'Xcode Command Line Tools'"
+    action "Installing '${bold}Xcode Command Line Tools${normal}'"
 
     xcode-select --install &> /dev/null
 
@@ -126,18 +126,18 @@ function install_xcode_command_line_tools() {
     done
 
     are_xcode_command_line_tools_installed && \
-        success "'${bold}Xcode Command Line Tools${normal} has been successfully installed\n"
+        success "'${bold}Xcode Command Line Tools${normal}' has been successfully installed\n"
 }
 
 function confirm() {
 	if [[ -n "$SMU_BLUEPRINT" ]] && [[ -n "$SMU_BLUEPRINT_BRANCH" ]]; then
-		action "This script will download '$SMU_BLUEPRINT' on branch '$SMU_BLUEPRINT_BRANCH' to ${SMU_HOME_DIR}"
+		action "This script will download '${bold}$SMU_BLUEPRINT${normal}' on branch '${bold}$SMU_BLUEPRINT_BRANCH${normal}' to ${bold}${SMU_HOME_DIR}${normal}"
 	else
-		action "This script will download 'set-me-up' to ${SMU_HOME_DIR}"
+		action "This script will download '${bold}set-me-up${normal}' to ${bold}${SMU_HOME_DIR}${normal}"
 	fi
 
 	echo -e "\n"
-	echo -e "$COL_BLUE(っ◕‿◕)っ$COL_RESET This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
+	echo -e "${COL_BLUE}(っ◕‿◕)っ${COL_RESET} This script sets up new machines, ${bold}*use with caution*${normal}. For more information, please see [https://github.com/nicholasadamou/set-me-up]."
 	echo -e "\nPress ${bold}ENTER${normal} to continue."
 	read -n 1
 }
@@ -290,12 +290,12 @@ function setup() {
 }
 
 function header() {
-	echo -en "\n$COL_BLUE███████╗███████╗████████╗   ███╗   ███╗███████╗    ██╗   ██╗██████╗ $COL_RESET"
-	echo -en "\n$COL_BLUE██╔════╝██╔════╝╚══██╔══╝   ████╗ ████║██╔════╝    ██║   ██║██╔══██╗$COL_RESET"
-	echo -en "\n$COL_BLUE███████╗█████╗     ██║█████╗██╔████╔██║█████╗█████╗██║   ██║██████╔╝$COL_RESET"
-	echo -en "\n$COL_BLUE╚════██║██╔══╝     ██║╚════╝██║╚██╔╝██║██╔══╝╚════╝██║   ██║██╔═══╝ $COL_RESET"
-	echo -en "\n$COL_BLUE███████║███████╗   ██║      ██║ ╚═╝ ██║███████╗    ╚██████╔╝██║     $COL_RESET"
-	echo -en "\n$COL_BLUE╚══════╝╚══════╝   ╚═╝      ╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝     $COL_RESET"
+	echo -en "\n${COL_BLUE}███████╗███████╗████████╗   ███╗   ███╗███████╗    ██╗   ██╗██████╗ ${COL_RESET}"
+	echo -en "\n${COL_BLUE}██╔════╝██╔════╝╚══██╔══╝   ████╗ ████║██╔════╝    ██║   ██║██╔══██╗${COL_RESET}"
+	echo -en "\n${COL_BLUE}███████╗█████╗     ██║█████╗██╔████╔██║█████╗█████╗██║   ██║██████╔╝${COL_RESET}"
+	echo -en "\n${COL_BLUE}╚════██║██╔══╝     ██║╚════╝██║╚██╔╝██║██╔══╝╚════╝██║   ██║██╔═══╝ ${COL_RESET}"
+	echo -en "\n${COL_BLUE}███████║███████╗   ██║      ██║ ╚═╝ ██║███████╗    ╚██████╔╝██║     ${COL_RESET}"
+	echo -en "\n${COL_BLUE}╚══════╝╚══════╝   ╚═╝      ╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝     ${COL_RESET}"
 	echo -en "\n\n"
 }
 
@@ -314,7 +314,7 @@ function main() {
 	if ! are_xcode_command_line_tools_installed; then
         install_xcode_command_line_tools
     else
-        success "'\e[1mXcode Command Line Tools\e[0m' are already installed\n"
+        success "'${bold}Xcode Command Line Tools${normal}' are already installed\n"
     fi
 
 	setup
