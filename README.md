@@ -1,5 +1,7 @@
 # `set-me-up`
 
+![preview](preview.png)
+
 `set-me-up` aims to simplify the dull setup and maintenance of debian-based development environments.
 It does so by automating the process through a collection of dotfiles and shell scripts [bundled into modules](#available-modules).
 
@@ -148,6 +150,12 @@ Some of the installed plugins are:
 
 For more on what the base module does, please consult [`base.sh`](.dotfiles/base/base.sh).
 
+#### [brew](.dotfiles/modules/brew)
+
+This module will install 'brew', the best package manager for linux.
+
+For more on what the brew module does, please consult [`brew.sh`](.dotfiles/modules/brew/brew.sh).
+
 #### [formulae](.dotfiles/modules/formulae)
 
 Installs a multitude of `brew` formulae. Check the [brewfile](.dotfiles/modules/formulae/brewfile) to get an overview.
@@ -155,6 +163,10 @@ Installs a multitude of `brew` formulae. Check the [brewfile](.dotfiles/modules/
 #### [editor](.dotfiles/modules/editor)
 
 The editor module comes with [neovim](https://neovim.io/), [vim](https://www.vim.org/) (although `neovim` is considered to be used over `vim`), [visual-studio-code](https://code.visualstudio.com/), and [visual-studio-code-insiders](https://code.visualstudio.com/insiders/).
+
+#### [nordvpn](.dotfiles/modules/nordvpn)
+
+Installs and configures [nordvpn](https://nordvpn.com/tutorials/linux/).
 
 #### [debianupdate](.dotfiles/modules/debianupdate)
 
@@ -195,10 +207,6 @@ I primarily install the Rust toolchain because I like to use the `cargo` package
 Installs [n](https://github.com/tj/n) for version management, `npm` comes with node for package management. The latest `node` and `npm` versions are installed using `n`.
 
 It also install a set of globally installed `npm` packages. For a complete list of packages installed please see [`web.sh`](.dotfiles/modules/web/web.sh#120).
-
-#### [nordvpn](.dotfiles/modules/nordvpn)
-
-Installs and configures [nordvpn](https://nordvpn.com/tutorials/linux/).
 
 ### Other components
 
@@ -273,33 +281,6 @@ alias starwars "telnet towel.blinkenlights.nl"
 # Set PATH additions.
 
 set -gx PATH $PATH "$HOME/dotfiles/src/symlinks/.local/bin"
-```
-
-#### `~/.gitconfig.local`
-
-The `~/.gitconfig.local` file it will be automatically included
-after the configurations from `~/.gitconfig`, thus, allowing its
-content to overwrite or add to the existing `git` configurations.
-
-During the [base](#base) installation, it will prompt you for your _name_ and _email address_ to configure `git` if it hasn't already been configured _globally_.
-
-**Note:** Use `~/.gitconfig.local` to store sensitive information
-such as the `git` user credentials, e.g.:
-
-```bash
-[commit]
-
-    # Sign commits using GPG.
-    # https://help.github.com/articles/signing-commits-using-gpg/
-
-    gpgsign = true
-
-
-[user]
-
-    name = Nicholas Adamou
-    email = nicholasadamou@example.com
-    signingkey = XXXXXXXX
 ```
 
 ## Credits

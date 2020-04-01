@@ -1,5 +1,9 @@
 #!/bin/bash
 
+source /dev/stdin <<<"$(curl -s "https://raw.githubusercontent.com/nicholasadamou/utilities/master/scripts/base/base.sh")"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # ARG_OPTIONAL_BOOLEAN([base],[b],[Run base module],[on])
 # ARG_OPTIONAL_BOOLEAN([selfupdate],[],[Update set-me-up],[])
 # ARG_OPTIONAL_BOOLEAN([provision],[p],[Provision given modules],[off])
@@ -69,11 +73,6 @@ symlink() {
 remove_symlinks() {
 	# Remove files that were symlinked via 'rcup'.
 	export RCRC="${SMU_HOME_DIR}/.dotfiles/rcrc" && rcdn -v -d "${SMU_HOME_DIR}/.dotfiles"
-}
-
-create_boot_disk() {
-	# Creates a MacOS Catalina boot disk.
-	"${module_path}"/create_boot_disk/create_boot_disk.sh
 }
 
 
@@ -222,12 +221,12 @@ provision_module() {
     local -r script="${1}.sh"
 
     if [[ ! -e "${path}/${script}" ]]; then
-        echo "${path}/${script} does not seem to exist, skipping."
+        warn "${path}/${script} does not seem to exist, skipping."
         false
         return
     fi
 
-    echo "Running ${path}/${script} module"
+   	action "Running ${path}/${script} module"
 
 	printf "\n"
 
@@ -239,12 +238,22 @@ provision_module() {
     )
 }
 
+header() {
+	echo -en "\n███████╗███████╗████████╗   ███╗   ███╗███████╗    ██╗   ██╗██████╗"
+	echo -en "\n██╔════╝██╔════╝╚══██╔══╝   ████╗ ████║██╔════╝    ██║   ██║██╔══██╗"
+	echo -en "\n███████╗█████╗     ██║█████╗██╔████╔██║█████╗█████╗██║   ██║██████╔╝"
+	echo -en "\n╚════██║██╔══╝     ██║╚════╝██║╚██╔╝██║██╔══╝╚════╝██║   ██║██╔═══╝"
+	echo -en "\n███████║███████╗   ██║      ██║ ╚═╝ ██║███████╗    ╚██████╔╝██║"
+	echo -en "\n╚══════╝╚══════╝   ╚═╝      ╚═╝     ╚═╝╚══════╝     ╚═════╝ ╚═╝"
+	echo -en "\n\n"
+}
+
 main() {
 	if [[ ${_arg_selfupdate} == "on" ]]; then
 		if [[ -e "${module_path}"/install.sh ]]; then
 			"${module_path}"/install.sh
 		else
-			echo -e "${module_path}/install.sh does not seem to exist.\nPlease run the 'base' module prior to executing a 'selfupdate'."
+			warn "${bold}${module_path}/install.sh${normal} does not seem to exist.\nPlease run the '${bold}base${normal}' module prior to executing a '${bold}selfupdate${normal}'."
 		fi
 
 		! provision_enabled && exit 0
@@ -255,9 +264,27 @@ main() {
 		exit 0
 	fi
 
-	read -r -p "set-me-up may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+	echo -e "\n${bold}\$HOME sweet /~\n${normal}"
+
+	echo -e "Welcome to the '${bold}set-me-up${normal}' installer."
+	echo -e "For more information, please see [https://github.com/nicholasadamou/set-me-up/tree/debian]."
+	echo -e "Please follow the on-screen instructions.\n"
+
+	warn "${bold}This script sets up new machines, *use with caution*${normal}."
+	warn "${bold}Ensure your Linux system is fully up-to-date${normal}."
+
+	header
+
+	warn "${bold}set-me-up${normal} may overwrite existing files in your home directory."
+
+	printf "\n"
+
+	read -r -p "Are you sure you want to continue? (y/n) " -n 1;
 	echo "";
+
 	[[ ! $REPLY =~ ^[Yy]$ ]] && exit 0
+
+	printf "\n"
 
 	modules=("${_arg_modules[@]}")
 
@@ -285,9 +312,11 @@ main() {
 
 	printf "\n"
 
-	echo "------------------------------"
-	echo "Completed running set-me-up, restart your computer to ensure all updates take effect."
-	echo "------------------------------"
+	warn "It is recommended to restart your computer to ensure all updates take effect."
+
+	printf "\n"
+
+	success "Completed running '${bold}set-me-up${normal}'."
 }
 
 main
