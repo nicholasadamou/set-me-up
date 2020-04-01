@@ -242,7 +242,7 @@ function setup() {
 			fi
 
 			if has_submodules; then
-				echo -e "\n"
+				printf "\n"
 				action "Updating your '${bold}set-me-up${normal}' blueprint submodules."
 
 				install_submodules
@@ -259,7 +259,7 @@ function setup() {
 			# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 			if has_submodules; then
-				echo -e "\n"
+				printf "\n"
 				action "Installing your '${bold}set-me-up${normal}' blueprint submodules."
 
 				# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -286,7 +286,7 @@ function setup() {
 		fi
 	fi
 
-	echo -e "\n"
+	printf "\n"
     success "Done. Enjoy."
 }
 
