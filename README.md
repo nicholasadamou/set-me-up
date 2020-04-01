@@ -24,7 +24,6 @@ Instead of enforcing a certain setup it tries to act as a solid template that is
   - [🌐 Local Settings](#local-settings)
     - [🐠 `~/.fish.local`](#fishlocal)
     - [🐚 `~/.bash.local`](#bashlocal)
-    - [🔁 `~/.gitconfig.local`](#gitconfiglocal)
 - [🙇🏻 Credits](#credits)
 - [👨🏼‍⚖️ Liability](#liability)
 - [🔃 Contributions](#contributions)
