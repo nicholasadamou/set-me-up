@@ -135,16 +135,16 @@ main() {
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    bash "${SMU_PATH}"/.dotfiles/modules/brew/brew.sh
-
-    brew_bundle_install "brewfile"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     # We must now symlink our dotfiles prior to executing any other function.
     # This is required because any further action will require our dotfiles
     # to be present in our $HOME directory.
     symlink
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    bash "${SMU_PATH}"/.dotfiles/modules/brew/brew.sh
+
+    brew_bundle_install "brewfile"
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
