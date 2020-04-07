@@ -85,13 +85,6 @@ export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Make all homebrew casks and fonts be installed to a
-# specific directory
-
-export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Ruby configurations
 # Adds "GEMS_PATH" to "$PATH"
 # Fixes "I INSTALLED GEMS WITH --user-install AND THEIR COMMANDS ARE NOT AVAILABLE"
@@ -129,11 +122,15 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Add /usr/local/bin to $PATH
+# Add /usr/local/bin, $HOME/.linuxbrew/bin to $PATH
 
 if command -v brew &> /dev/null; then
 	if [ -d "$(brew --prefix)/bin" ]; then
 		export PATH="$(brew --prefix)/bin:$PATH"
+	fi
+
+	if [ -d "$HOME/.linuxbrew/bin" ]; then
+		export PATH="$HOME/.linuxbrew/bin:$PATH"
 	fi
 fi
 

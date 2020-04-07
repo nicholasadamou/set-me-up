@@ -135,7 +135,7 @@ main() {
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    bash ${SMU_PATH}/.dotfiles/modules/brew/brew.sh
+    bash "${SMU_PATH}"/.dotfiles/modules/brew/brew.sh
 
     brew_bundle_install "brewfile"
 
