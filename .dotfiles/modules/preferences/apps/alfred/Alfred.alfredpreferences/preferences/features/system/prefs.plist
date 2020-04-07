@@ -7,11 +7,10 @@
 		<string>com.apple.TimeMachine*</string>
 		<string>Macintosh HD*</string>
 		<string>MobileBackups</string>
+		<string>Recovery</string>
 	</array>
 	<key>ejectKeywordEnabled</key>
 	<true/>
-	<key>ejectType</key>
-	<integer>0</integer>
 	<key>ejectallKeywordEnabled</key>
 	<true/>
 </dict>
