@@ -117,6 +117,18 @@ main() {
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # Install thoughtbot/RCM for dotfile management.
+    # see: https://github.com/thoughtbot/rcm#installation
+
+    ! package_is_installed "rcm" && {
+        wget -qO - https://apt.thoughtbot.com/thoughtbot.gpg.key | sudo apt-key add -
+        echo "deb https://apt.thoughtbot.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/thoughtbot.list
+        sudo apt update
+        sudo apt install -y "rcm"
+    }
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 	# We must first create the $HOME/.bash.local configuration file
 	# in order for the brew module to properly install Homebrew.
 	create_bash_local

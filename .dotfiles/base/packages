@@ -1,5 +1,4 @@
 # shell utils.
-apt "rcm"
 apt "shellcheck"
 apt "htop"
 apt "asciinema"

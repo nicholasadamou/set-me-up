@@ -1,9 +1,5 @@
-tap "thoughtbot/formulae"
-
 brew "git"
 brew "hub"
-
-brew "rcm"
 
 # Install GNU-related tools
 brew "coreutils"
