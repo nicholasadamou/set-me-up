@@ -65,7 +65,7 @@ change_default_shell_to_fish() {
 
     # Set latest version of `fish` as the default shell
 
-    if [[ "$(getent passwd $USER | awk -F: '{print $NF}')" != ${PATH_TO_FISH} ]]; then
+    if [[ "$(getent passwd "$USER" | awk -F: '{print $NF}')" != "${PATH_TO_FISH}" ]]; then
 		sudo usermod -s "$PATH_TO_FISH" "$USER" &> /dev/null
     fi
 
