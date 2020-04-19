@@ -90,6 +90,12 @@ install_fisher_packages() {
 
 }
 
+install_oh_my_fish() {
+
+	curl -L https://get.oh-my.fish | fish
+
+}
+
 symlink() {
 
 	# Get the absolute path of the .dotfiles directory.
@@ -155,6 +161,8 @@ main() {
     install_fisher
 
     install_fisher_packages
+
+	install_oh_my_fish
 
 }
 
