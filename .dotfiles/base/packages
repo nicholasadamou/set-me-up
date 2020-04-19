@@ -10,7 +10,6 @@ apt "tmux"
 apt "python3-distutils"
 apt "fzf"
 apt "fzy"
-apt "bat"
 apt "gdebi"
 apt "symlinks"
 
