@@ -80,9 +80,3 @@ fi
 if [[ -d "$HOME"/.z.lua ]]; then
 	eval "$(lua "$HOME"/.z.lua/z.lua --init bash)"
 fi
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# start fish on start up of bash
-
-fish
