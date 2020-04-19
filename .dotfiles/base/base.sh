@@ -92,7 +92,9 @@ install_fisher_packages() {
 
 install_oh_my_fish() {
 
-	curl -L https://get.oh-my.fish | fish
+	if ! is_omf_installed; then
+		curl -L https://get.oh-my.fish | fish
+	fi
 
 }
 
