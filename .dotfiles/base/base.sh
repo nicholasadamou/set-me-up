@@ -43,7 +43,7 @@ change_default_shell_to_fish() {
 
     # Get the path of `fish` which was installed through `Homebrew`.
 
-    PATH_TO_FISH="$(brew --prefix)/bin/fish"
+    PATH_TO_FISH="$(which fish)"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
