@@ -45,8 +45,3 @@ if status is-interactive
 and not set -q TMUX
     exec tmux
 end
-
-# Clear system messages (system copyright notice, the date
-# and time of the last login, the message of the day, etc.).
-
-clear
