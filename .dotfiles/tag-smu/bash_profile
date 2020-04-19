@@ -80,3 +80,23 @@ fi
 if [[ -d "$HOME"/.z.lua ]]; then
 	eval "$(lua "$HOME"/.z.lua/z.lua --init bash)"
 fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# start tmux on start up of bash
+# see: https://unix.stackexchange.com/a/260248
+
+if test -z "$TMUX"; then
+  session_num=$(
+    tmux list-sessions |
+    grep -v attached |
+    grep -oE '^\d+:' |
+    grep -oE '^\d+' |
+    head -1
+  )
+  if test "$session_num"; then
+    exec tmux attach -t "$session_num"
+  else
+    exec tmux
+  fi
+fi
