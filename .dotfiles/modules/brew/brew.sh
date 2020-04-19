@@ -9,8 +9,6 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
 
-declare LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 install_homebrew() {
