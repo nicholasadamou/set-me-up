@@ -124,9 +124,8 @@ fi
 
 # Add /usr/local/bin, $HOME/.linuxbrew/bin to $PATH
 
-export PATH="/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current/bin:$PATH"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
