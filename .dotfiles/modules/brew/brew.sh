@@ -15,7 +15,7 @@ declare LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 
 install_homebrew() {
 
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+	printf "\n" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 }
 
