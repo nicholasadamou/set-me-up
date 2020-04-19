@@ -60,7 +60,7 @@ let g:airline_powerline_fonts = 0
 " ----------------------------------------------------------------------
 " | Color Scheme                                                       |
 " ----------------------------------------------------------------------
-Plugin 'lifepillar/vim-solarized8'
+Plugin 'dracula/vim', { 'name': 'dracula' }
 
 " Enable full-color support.
 set t_Co=256
@@ -76,8 +76,7 @@ set background=dark
 " we put it into a try-catch
 try
     " A nice dark color scheme that's easy on the eyes
-    " colorscheme ayu
-    colorscheme solarized8
+    colorscheme dracula
 catch
     " Don't do anything, just supress the 'colorscheme doesn't exist' error.
 endtry
