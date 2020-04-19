@@ -15,30 +15,7 @@ declare LOCAL_BASH_CONFIG_FILE="${HOME}/.bash.local"
 
 install_homebrew() {
 
-    if printf "\n" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"; then
-    	add_brew_configs
-    fi
-
-}
-
-add_brew_configs() {
-
-    declare -r BASH_CONFIGS="
-# Homebrew - The missing package manager for linux.
-export PATH=\"/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current/bin:\$PATH\"
-export PATH=\"/home/linuxbrew/.linuxbrew/bin:\$PATH\"
-$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # If needed, add the necessary configs in the
-    # local shell configuration file.
-
-    if [[ ! -e "$LOCAL_BASH_CONFIG_FILE" ]] || ! grep -q "$(<<<"$BASH_CONFIGS" tr '\n' '\01')" < <(less "$LOCAL_BASH_CONFIG_FILE" | tr '\n' '\01'); then
-        printf '%s\n' '$BASH_CONFIGS' >> "$LOCAL_BASH_CONFIG_FILE" \
-                && . "$LOCAL_BASH_CONFIG_FILE"
-    fi
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 }
 

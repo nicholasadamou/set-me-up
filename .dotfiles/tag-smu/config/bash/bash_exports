@@ -124,15 +124,9 @@ fi
 
 # Add /usr/local/bin, $HOME/.linuxbrew/bin to $PATH
 
-if command -v brew &> /dev/null; then
-	if [ -d "$(brew --prefix)/bin" ]; then
-		export PATH="$(brew --prefix)/bin:$PATH"
-	fi
-
-	if [ -d "$HOME/.linuxbrew/bin" ]; then
-		export PATH="$HOME/.linuxbrew/bin:$PATH"
-	fi
-fi
+export PATH="/home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby/current/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
