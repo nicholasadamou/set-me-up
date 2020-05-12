@@ -7,7 +7,7 @@ declare current_dir && \
     cd "${current_dir}" && \
     source "$HOME/set-me-up/.dotfiles/utilities/utilities.sh"
 
-declare -r VUNDLE_DIR="$HOME/.vim/plugins/Vundle.vim"
+declare -r VUNDLE_DIR="$HOME/.vim/bundle/Vundle.vim"
 declare -r VUNDLE_GIT_REPO_URL="https://github.com/VundleVim/Vundle.vim.git"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
