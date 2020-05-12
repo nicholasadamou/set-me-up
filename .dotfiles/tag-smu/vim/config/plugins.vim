@@ -11,6 +11,17 @@
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+" be iMproved, required
+set nocompatible
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" Set bash as default shell
+
+set shell=/bin/bash
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " Disable file type detection
 " (this is required by Vundle).
 
@@ -20,7 +31,7 @@ filetype off
 
 " Include Vundle in the runtime path.
 
-set runtimepath+=~/.vim/plugins/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
