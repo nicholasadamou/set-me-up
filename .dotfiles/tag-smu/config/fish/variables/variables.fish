@@ -13,8 +13,10 @@ set tacklebox_path ~/.tackle ~/.tacklebox
 # Adds "GEMS_PATH" to "$PATH"
 # Fixes "I INSTALLED GEMS WITH --user-install AND THEIR COMMANDS ARE NOT AVAILABLE"
 # see: https://guides.rubygems.org/faqs/#user-install
-if test -d (gem environment gemdir)/bin
-    set -gx PATH $PATH (gem environment gemdir)/bin
+if type -q gem
+	if test -d (gem environment gemdir)/bin
+		set -gx PATH $PATH (gem environment gemdir)/bin
+	end
 end
 
 # Dotfiles directory
