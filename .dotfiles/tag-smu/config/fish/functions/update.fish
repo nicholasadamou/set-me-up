@@ -6,23 +6,13 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
     end
 
     if type -q brew
+        sudo rm -rf /usr/local/var/homebrew/locks/*
         brew update
         brew upgrade
         brew tap buo/cask-upgrade
         brew cu --all --yes --cleanup --quiet
         brew cleanup
     end
-
-    if type -q fisher
-        fisher
-        fisher self-update
-    end
-
-    if type -q omf
-        omf update
-    end
-
-    fish_update_completions
 
     if type -q npm
         sudo npm install npm@latest -g
