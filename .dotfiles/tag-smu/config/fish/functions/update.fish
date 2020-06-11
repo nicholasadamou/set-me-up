@@ -6,7 +6,7 @@ function update --description "Updates MacOS apps, brew, npm, fisher, omf update
     end
 
     if type -q brew
-        sudo rm -rf /usr/local/var/homebrew/locks/*
+        sudo rm -rf /usr/local/var/homebrew/locks/* &> /dev/null
         brew update
         brew upgrade
         brew tap buo/cask-upgrade
