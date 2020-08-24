@@ -12,6 +12,7 @@ cask "taskexplorer"
 cask "knockknock"
 cask "oversight"
 cask "whatsyoursign"
+cask "adguard"
 
 # Window management
 cask "finderminder"
@@ -31,18 +32,19 @@ cask "google-chrome"
 cask "google-chrome-canary"
 cask "firefox"
 cask "firefox-developer-edition"
-cask "brave-browser"
-cask "blisk"
+cask "safari-technology-preview"
 
 # Core development
 cask "alfred"
 cask "iterm2"
 cask "codekit"
 cask "dash"
+cask "datagrip"
 
 # IDEs
 cask "webstorm"
 cask "visual-studio-code"
+cask "intellij-idea"
 
 # File/directory management
 cask "path-finder"
@@ -53,6 +55,7 @@ cask "keka"
 
 # VCS related
 cask "sublime-merge"
+cask "tower"
 
 # Networking
 cask "ngrok"
@@ -80,3 +83,7 @@ cask "webpquicklook"
 cask "suspicious-package"
 cask "quicklookase"
 cask "qlvideo"
+
+# Misc.
+cask "pixelsnap"
+cask "cleanshot"
