@@ -41,10 +41,13 @@ end
 
 # start tmux upon executing fish
 # see: https://github.com/fish-shell/fish-shell/issues/4434#issuecomment-332743061
-if status is-interactive
-and not set -q TMUX
-    exec tmux
-end
+# if status is-interactive
+# and not set -q TMUX
+#    exec tmux
+# end
+
+# bobthefish configurations
+set -g theme_color_scheme light
 
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.).
