@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -r DESKTOP_WALLPAPER_PATH="${PWD}/system/wallpapers/winter.jpeg"
+declare -r DESKTOP_WALLPAPER_PATH="${PWD}/system/wallpapers/fall.jpeg"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
