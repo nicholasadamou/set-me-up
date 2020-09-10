@@ -1,0 +1,61 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 10,
+      "subtext" : {
+        "size" : 12,
+        "colorSelected" : "#919191FF",
+        "font" : "System",
+        "color" : "#ADADADFF"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#0000007F",
+        "font" : "System",
+        "color" : "#0000003F"
+      },
+      "backgroundSelected" : "#F4F4F4F9",
+      "text" : {
+        "size" : 16,
+        "colorSelected" : "#151515FF",
+        "font" : "System",
+        "color" : "#00000072"
+      },
+      "iconPaddingHorizontal" : 14,
+      "paddingVertical" : 4,
+      "iconSize" : 40
+    },
+    "search" : {
+      "paddingVertical" : 8,
+      "background" : "#FFFFFF00",
+      "spacing" : 4,
+      "text" : {
+        "size" : 24,
+        "colorSelected" : "#FBFBFBFF",
+        "font" : "System",
+        "color" : "#000000E5"
+      },
+      "backgroundSelected" : "#00000072"
+    },
+    "window" : {
+      "color" : "#FAFAFAFF",
+      "paddingHorizontal" : 0,
+      "width" : 568,
+      "borderPadding" : 0,
+      "borderColor" : "#000000FF",
+      "blur" : 40,
+      "roundness" : 2,
+      "paddingVertical" : 10
+    },
+    "credit" : "Maurice Donovan",
+    "separator" : {
+      "color" : "#00000000",
+      "thickness" : 1
+    },
+    "scrollbar" : {
+      "color" : "#00000019",
+      "thickness" : 4
+    },
+    "name" : "Paper (v3)"
+  }
+}
