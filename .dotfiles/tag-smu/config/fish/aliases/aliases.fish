@@ -69,6 +69,10 @@ if type -q exa
     alias l "exa -l"
 end
 
+if type -q colorls
+	alias cls "colorls --dark -lA --sd"
+end
+
 # List only directories
 alias lsd "ls -lF --color | grep --color=never '^d'"
 # List only hidden files

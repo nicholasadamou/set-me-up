@@ -59,6 +59,7 @@ install_ruby_gems() {
 
     gem_install "bundler"
     gem_install "tmuxinator"
+	gem_install "colorls"
 
 }
 

@@ -30,6 +30,10 @@ command -v "exa" &> /dev/null && {
     alias l="exa -l"
 }
 
+command -v "colorls" &> /dev/null && {
+	alias cls="colorls --dark -lA --sd"
+}
+
 # List only directories
 alias lsd="ls -lF --color | grep --color=never '^d'"
 # List only hidden files
