@@ -121,19 +121,25 @@ install_fisher_packages() {
 symlink() {
 
 	# Get the absolute path of the .dotfiles directory.
-    # This is only for aesthetic reasons to have an absolute symlink path instead of a relative one
-    # <path-to-smu>/.dotfiles/somedotfile vs <path-to-smu>/.dotfiles/base/../somedotfile
-    readonly dotfiles="${SMU_PATH}/.dotfiles"
+	# This is only for aesthetic reasons to have an absolute symlink path instead of a relative one
+	# <path-to-smu>/.dotfiles/somedotfile vs <path-to-smu>/.dotfiles/base/../somedotfile
+	readonly dotfiles="${SMU_PATH}/.dotfiles"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Update and/or install dotfiles. These dotfiles are stored in the .dotfiles directory.
-    # rcup is used to install files from the tag-specific dotfiles directory.
-    # rcup is part of rcm, a management suite for dotfiles.
-    # Check https://github.com/thoughtbot/rcm for more info.
+	# Update and/or install dotfiles. These dotfiles are stored in the .dotfiles directory.
+	# rcup is used to install files from the tag-specific dotfiles directory.
+	# rcup is part of rcm, a management suite for dotfiles.
+	# Check https://github.com/thoughtbot/rcm for more info.
 
-    export RCRC="$dotfiles/rcrc" && \
-            rcup -v -f -d "${dotfiles}"
+	export RCRC="$dotfiles/rcrc" && \
+					rcup -v -f -d "${dotfiles}"
+
+}
+
+install_space_vim() {
+
+	curl -sLf https://spacevim.org/install.sh | bash
 
 }
 
@@ -147,7 +153,7 @@ main() {
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    bash ${SMU_PATH}/.dotfiles/modules/brew/brew.sh
+    bash" ${SMU_PATH}"/.dotfiles/modules/brew/brew.sh
 
     brew_bundle_install "brewfile"
 
@@ -168,9 +174,11 @@ main() {
 
 	change_default_shell_to_fish
 
-    install_fisher
+	install_fisher
 
-    install_fisher_packages
+	install_fisher_packages
+
+	install_space_vim
 
 }
 
