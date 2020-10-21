@@ -70,7 +70,7 @@ if type -q exa
 end
 
 if type -q colorls
-	alias cls "colorls --dark -lA --sd"
+	alias lc "colorls --dark -lA --sd"
 end
 
 # List only directories

@@ -31,7 +31,7 @@ command -v "exa" &> /dev/null && {
 }
 
 command -v "colorls" &> /dev/null && {
-	alias cls="colorls --dark -lA --sd"
+	alias lc="colorls --dark -lA --sd"
 }
 
 # List only directories
