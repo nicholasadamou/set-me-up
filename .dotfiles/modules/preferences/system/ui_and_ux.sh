@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -r DESKTOP_WALLPAPER_PATH="${PWD}/system/wallpapers/dracula-base.png"
+declare -r DESKTOP_WALLPAPER_PATH="${PWD}/system/wallpapers/dracula.png"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
