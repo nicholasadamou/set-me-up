@@ -1,7 +1,3 @@
 [options]
-  colorscheme = "dracula"
+  colorscheme = "nord"
   colorscheme_bg = "dark"
-[[custom_plugins]]
-  repo = "dracula/vim"
-  name = "dracula"
-  merged = false
