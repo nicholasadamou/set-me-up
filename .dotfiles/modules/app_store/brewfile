@@ -3,7 +3,7 @@
 # mas "The Unarchiver", id: 425424353
 brew "mas"
 mas "HyperDock", id: 449830122
-mas "Reeder", id: 880001334
+mas "Reeder 5.", id: 1529448980
 mas "Spark", id: 1176895641
 mas "ColorSnapper2", id: 969418666
 mas "Notability", id: 736189492
