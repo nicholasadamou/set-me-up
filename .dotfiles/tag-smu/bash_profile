@@ -12,7 +12,7 @@ source_bash_files() {
         "bash_exports"
         "bash_functions"
         "bash_options"
-        "bash_prompt"
+#        "bash_prompt" Note: Using starship prompt instead (see: https://starship.rs).
         "keybindings"
     )
 
@@ -83,20 +83,27 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# load starship prompt
+# see: https://starship.rs
+
+eval "$(starship init bash)"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # start tmux on start up of bash
 # see: https://unix.stackexchange.com/a/260248
 
-if test -z "$TMUX"; then
-  session_num=$(
-    tmux list-sessions |
-    grep -v attached |
-    grep -oE '^\d+:' |
-    grep -oE '^\d+' |
-    head -1
-  )
-  if test "$session_num"; then
-    exec tmux attach -t "$session_num"
-  else
-    exec tmux
-  fi
-fi
+#if test -z "$TMUX"; then
+#  session_num=$(
+#    tmux list-sessions |
+#    grep -v attached |
+#    grep -oE '^\d+:' |
+#    grep -oE '^\d+' |
+#    head -1
+#  )
+#  if test "$session_num"; then
+#    exec tmux attach -t "$session_num"
+#  else
+#    exec tmux
+#  fi
+#fi

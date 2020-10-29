@@ -46,8 +46,9 @@ end
 #    exec tmux
 # end
 
-# bobthefish configurations
-set -g theme_color_scheme light
+# load starship prompt
+# see: https://starship.rs
+starship init fish | source
 
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.).
