@@ -14,7 +14,7 @@ declare -r N_DIRECTORY="$HOME/n"
 declare -r NVM_DIRECTORY="$HOME/.nvm"
 
 declare -r N_URL="https://git.io/n-install"
-declare -r NVM_URL="https://raw.githubusercontent.com/creationix/nvm/v0.36.0/install.sh"
+declare -r NVM_URL="https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
