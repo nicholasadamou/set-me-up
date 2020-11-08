@@ -1,6 +1,6 @@
 brew "git"
 brew "hub"
-
+brew "gh"
 
 # Install GNU-related tools
 brew "coreutils"
