@@ -82,7 +82,7 @@ install_fisher() {
 
 install_fisher_packages() {
 
-	cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
+	cat < "$HOME/.config/fish/fish_plugins" | while read -r PACKAGE; do
 		fisher_install "$PACKAGE"
 	done
 
