@@ -154,8 +154,8 @@ main() {
 	# Configure linuxbrew
 	# see: https://docs.brew.sh/Homebrew-on-Linux#install
 
-	test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+	test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+	test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
     brew_bundle_install "brewfile"
 
