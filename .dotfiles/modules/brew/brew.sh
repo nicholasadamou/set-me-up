@@ -58,6 +58,9 @@ main() {
 
 	ask_for_sudo
 
+	test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
 	if [[ ! -d "/home/linuxbrew" ]]; then
 		install_homebrew
 		opt_out_of_analytics
