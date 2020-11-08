@@ -41,7 +41,9 @@ end
 
 # load starship prompt
 # see: https://starship.rs
-starship init fish | source
+if type -q starship
+	starship init fish | source
+end
 
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.).
