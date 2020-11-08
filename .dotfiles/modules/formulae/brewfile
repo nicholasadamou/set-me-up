@@ -12,7 +12,7 @@ brew "git-flow"
 brew "git-extras"
 brew "hub"
 brew "tig"
-brew "github/gh/gh"
+brew "gh"
 
 # File/directory management
 brew "ranger"
@@ -50,7 +50,6 @@ brew "ssh-copy-id"
 brew "pv"
 
 # Security
-brew "wifi-password"
 brew "maliceio/tap/malice"
 
 # Install other useful binaries.
