@@ -14,7 +14,7 @@ declare -r N_DIRECTORY="$HOME/n"
 declare -r NVM_DIRECTORY="$HOME/.nvm"
 
 declare -r N_URL="https://git.io/n-install"
-declare -r NVM_URL="https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh"
+declare -r NVM_URL="https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -189,90 +189,90 @@ install_latest_stable_node_with_nvm() {
 install_npm_packages() {
 
     # working with npm
-    npm_install "npm-check"
-    npm_install "yarn-check"
-    npm_install "np"
-    npm_install "npm-name-cli"
+    npx_install "npm-check"
+    npx_install "yarn-check"
+    npx_install "np"
+    npx_install "npm-name-cli"
 
     # package managers
-    npm_install "yarn"
-    npm_install "bower"
-    npm_install "pnpm"
-    npm_install "parcel-bundler"
+    npx_install "yarn"
+    npx_install "bower"
+    npx_install "pnpm"
+    npx_install "parcel-bundler"
 
     # useful binaries
-    npm_install "md-to-pdf"
-    npm_install "favicon-emoji"
-    npm_install "tldr"
-    npm_install "emma-cli"
-    npm_install "@rafaelrinaldi/whereami"
-    npm_install "castnow"
-    npm_install "gitmoji-cli"
-    npm_install "fx"
-    npm_install "screenshoteer"
-    npm_install "how-2"
-    npm_install "undollar"
+    npx_install "md-to-pdf"
+    npx_install "favicon-emoji"
+    npx_install "tldr"
+    npx_install "emma-cli"
+    npx_install "@rafaelrinaldi/whereami"
+    npx_install "castnow"
+    npx_install "gitmoji-cli"
+    npx_install "fx"
+    npx_install "screenshoteer"
+    npx_install "how-2"
+    npx_install "undollar"
 
     # process management
-    npm_install "fkill-cli"
-    npm_install "gtop"
-    npm_install "vtop"
+    npx_install "fkill-cli"
+    npx_install "gtop"
+    npx_install "vtop"
 
     # fonts
-    npm_install "google-font-installer"
+    npx_install "google-font-installer"
 
     # directory management
-    npm_install "empty-trash-cli"
-    npm_install "spot"
+    npx_install "empty-trash-cli"
+    npx_install "spot"
 
     # version control
-    npm_install "ghub"
-    npm_install "ghwd"
-    npm_install "github-is-starred-cli"
+    npx_install "ghub"
+    npx_install "ghwd"
+    npx_install "github-is-starred-cli"
 
     # wallpaper management
-    npm_install "wallpaper-cli"
-    npm_install "splash-cli"
+    npx_install "wallpaper-cli"
+    npx_install "splash-cli"
 
     # linters
-    npm_install "eslint"
-    npm_install "eslint-config-standard"
+    npx_install "eslint"
+    npx_install "eslint-config-standard"
 
     # deployment
-    npm_install "netlify-cli"
-    npm_install "surge"
-    npm_install "now"
+    npx_install "netlify-cli"
+    npx_install "surge"
+    npx_install "now"
 
     # task runneries
-    npm_install "gulp-cli"
+    npx_install "gulp-cli"
 
     # networking
-    npm_install "wt-cli"
-    npm_install "speed-test"
-    npm_install "is-up-cli"
-    npm_install "localtunnel"
-    npm_install "spoof"
-    npm_install "http-server"
+    npx_install "wt-cli"
+    npx_install "speed-test"
+    npx_install "is-up-cli"
+    npx_install "localtunnel"
+    npx_install "spoof"
+    npx_install "http-server"
 
     # javascript packages
-    npm_install "next"
-    npm_install "nodemon"
+    npx_install "next"
+    npx_install "nodemon"
 
     # vue packages
-    npm_install "@vue/cli"
+    npx_install "@vue/cli"
 
     # react packages
-    npm_install "create-react-app"
-    npm_install "create-react-library"
-    npm_install "react-native-cli"
+    npx_install "create-react-app"
+    npx_install "create-react-library"
+    npx_install "react-native-cli"
 
     # database packages
-    npm_install "prisma"
-    npm_install "graphql-cli"
-    npm_install "firebase-tools"
+    npx_install "prisma"
+    npx_install "graphql-cli"
+    npx_install "firebase-tools"
 
     # continuous integration (CI) bots
-    npm_install "snyk"
+    npx_install "snyk"
 
 }
 
@@ -286,15 +286,23 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-     if [[ ! -d "$N_DIRECTORY" ]] && ! cmd_exists "n"; then
-         install_n
+    #  if [[ ! -d "$N_DIRECTORY" ]] && ! cmd_exists "n"; then
+    #      install_n
+    #  else
+    #      update_n
+    #  fi
+
+	if [[ ! -d "$NVM_DIRECTORY" ]] && ! cmd_exists "nvm"; then
+         install_nvm
      else
-         update_n
+         update_nvm
      fi
 
-    install_latest_stable_node_with_n
+    # install_latest_stable_node_with_n
 
-    install_npm_packages
+	install_latest_stable_node_with_nvm
+
+    # install_npm_packages
 
 }
 

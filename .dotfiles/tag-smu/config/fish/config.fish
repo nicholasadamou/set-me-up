@@ -39,7 +39,19 @@ if test -e "$HOME"/.z.lua
     source (lua "$HOME"/.z.lua/z.lua --init fish | psub)
 end
 
+# load starship prompt
+# see: https://starship.rs
+starship init fish | source
+
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.).
 
 clear
+
+# start tmux upon executing fish
+# see: https://github.com/fish-shell/fish-shell/issues/4434#issuecomment-332743061
+# if status is-interactive
+# and not set -q TMUX
+#    exec tmux
+# end
+

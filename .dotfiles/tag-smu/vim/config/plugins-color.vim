@@ -53,14 +53,15 @@ let g:syntastic_mode_map = {
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-let g:airline_theme='ayu_mirage'
+let g:airline_theme='base16_nord'
 
 let g:airline_powerline_fonts = 0
 
 " ----------------------------------------------------------------------
 " | Color Scheme                                                       |
 " ----------------------------------------------------------------------
-Plugin 'dracula/vim', { 'name': 'dracula' }
+" Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'arcticicestudio/nord-vim'
 
 " Enable full-color support.
 set t_Co=256
@@ -76,7 +77,8 @@ set background=dark
 " we put it into a try-catch
 try
     " A nice dark color scheme that's easy on the eyes
-    colorscheme dracula
+    " colorscheme dracula
+	colorscheme nord
 catch
     " Don't do anything, just supress the 'colorscheme doesn't exist' error.
 endtry

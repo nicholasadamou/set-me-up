@@ -12,6 +12,7 @@ brew "git-flow"
 brew "git-extras"
 brew "hub"
 brew "tig"
+brew "github/gh/gh"
 
 # File/directory management
 brew "ranger"
@@ -68,3 +69,5 @@ brew "ansiweather"
 brew "googler"
 brew "hh"
 brew "entr"
+brew "emacs-dracula"
+brew "starship"

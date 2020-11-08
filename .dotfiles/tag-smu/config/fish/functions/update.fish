@@ -12,17 +12,6 @@ function update --description "Updates Linux apps, brew, npm, fisher, omf update
         brew cleanup
     end
 
-    if type -q fisher
-        fisher
-        fisher self-update
-    end
-
-    if type -q omf
-        omf update
-    end
-
-    fish_update_completions
-
     if type -q npm
         sudo npm install npm@latest -g
 

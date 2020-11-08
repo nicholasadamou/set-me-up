@@ -119,6 +119,13 @@ symlink() {
 
 }
 
+install_space_vim() {
+
+	curl -sLf https://spacevim.org/install.sh | bash
+
+}
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
@@ -167,6 +174,8 @@ main() {
     install_fisher_packages
 
 	install_oh_my_fish
+
+	install_space_vim
 
 }
 
