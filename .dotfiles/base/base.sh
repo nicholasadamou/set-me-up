@@ -110,7 +110,7 @@ install_fisher() {
 
 install_fisher_packages() {
 
-	cat < "$HOME/.config/fish/fishfile" | while read -r PACKAGE; do
+	cat < "$HOME/.config/fish/fish_plugins" | while read -r PACKAGE; do
 		fisher_install "$PACKAGE"
 	done
 
@@ -154,6 +154,16 @@ main() {
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     bash" ${SMU_PATH}"/.dotfiles/modules/brew/brew.sh
+
+	if command -v brew &> /dev/null; then
+		if [[ -d "$(brew --prefix)/bin" ]]; then
+			export PATH="$(brew --prefix)/bin:$PATH"
+		fi
+
+		if [[ -d "$(brew --prefix)/sbin" ]]; then
+			export PATH="$(brew --prefix)/sbin:$PATH"
+		fi
+	fi
 
     brew_bundle_install "brewfile"
 

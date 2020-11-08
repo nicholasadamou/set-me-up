@@ -58,6 +58,16 @@ main() {
 
     ask_for_sudo
 
+	if command -v brew &> /dev/null; then
+		if [[ -d "$(brew --prefix)/bin" ]]; then
+			export PATH="$(brew --prefix)/bin:$PATH"
+		fi
+
+		if [[ -d "$(brew --prefix)/sbin" ]]; then
+			export PATH="$(brew --prefix)/sbin:$PATH"
+		fi
+	fi
+
     if ! cmd_exists "brew"; then
         install_homebrew
         opt_out_of_analytics
