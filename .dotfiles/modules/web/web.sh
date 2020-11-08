@@ -283,17 +283,25 @@ main() {
 
     ask_for_sudo
 
-#     if [[ ! -d "$N_DIRECTORY" ]] && ! cmd_exists "n"; then
-#         install_n
-#     else
-#         update_n
-#     fi
+    # if [[ ! -d "$N_DIRECTORY" ]] && ! cmd_exists "n"; then
+    #     install_n
+    # else
+    #     update_n
+    # fi
+
+	# if [[ ! -d "$NVM_DIRECTORY" ]] && ! cmd_exists "nvm"; then
+    #     install_nvm
+    # else
+    #     update_nvm
+    # fi
 
     brew_bundle_install "brewfile"
 
     install_latest_stable_node_with_n
 
-    install_npm_packages
+	# install_latest_stable_node_with_nvm
+
+    # install_npm_packages
 
 }
 
