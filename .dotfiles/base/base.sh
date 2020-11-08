@@ -90,16 +90,6 @@ install_fisher_packages() {
 
 }
 
-install_oh_my_fish() {
-
-	if ! is_omf_installed; then
-		curl -L https://get.oh-my.fish > install
-		fish -c "install --path=~/.local/share/omf --config=~/.config/omf"
-		sudo rm -rf install
-	fi
-
-}
-
 symlink() {
 
 	# Get the absolute path of the .dotfiles directory.
@@ -178,8 +168,6 @@ main() {
     install_fisher
 
     install_fisher_packages
-
-	install_oh_my_fish
 
 	install_space_vim
 
