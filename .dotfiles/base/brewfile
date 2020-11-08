@@ -1,6 +1,7 @@
 brew "git"
 brew "hub"
 
+
 # Install GNU-related tools
 brew "coreutils"
 
@@ -39,3 +40,4 @@ brew "peco"
 brew "micro"
 brew "hstr"
 brew "bat"
+brew "starship"
