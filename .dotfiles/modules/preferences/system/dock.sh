@@ -20,4 +20,6 @@ defaults write com.apple.dock tilesize -int 60
 
 defaults write com.apple.dock pinning -string start
 
+defaults write com.apple.dock workspaces-auto-swoosh -bool false
+
 killall "Dock" &> /dev/null
