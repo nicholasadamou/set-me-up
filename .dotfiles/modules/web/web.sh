@@ -121,6 +121,12 @@ install_latest_stable_node_with_n() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+	# Source local bash config file to attempt to load nvm configuration.
+
+	. "$LOCAL_BASH_CONFIG_FILE"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Check if `n` is installed
 
     if ! cmd_exists "n"; then
@@ -160,7 +166,13 @@ install_latest_stable_node_with_nvm() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Check if `n` is installed
+	# Source local bash config file to attempt to load nvm configuration.
+
+	. "$LOCAL_BASH_CONFIG_FILE"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Check if `nvm` is installed
 
     if ! cmd_exists "nvm"; then
         return 1
