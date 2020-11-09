@@ -136,18 +136,17 @@ install_latest_stable_node_with_nvm() {
     # Install the latest stable version of Node
     # (this will also set it as the default).
 
-	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Check if `nvm` is installed
-
-    if ! cmd_exists "nvm"; then
-        return 1
-    fi
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	. "$LOCAL_BASH_CONFIG_FILE" && \
-		sudo nvm install --lts
+	# Load `nvm` from $NVM_DIR
+
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	sudo nvm install --lts
 
 }
 
