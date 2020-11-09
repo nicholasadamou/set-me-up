@@ -269,6 +269,8 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+	brew_bundle_install "brewfile"
+
     #  if [[ ! -d "$N_DIRECTORY" ]] && ! cmd_exists "n"; then
     #      install_n
     #  else
