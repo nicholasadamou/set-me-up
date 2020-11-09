@@ -116,15 +116,6 @@ install_latest_stable_node_with_n() {
     # Install the latest stable version of Node
     # (this will also set it as the default).
 
-    local latest_version
-    local current_version
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	# Source local bash config file to attempt to load nvm configuration.
-
-	. "$LOCAL_BASH_CONFIG_FILE"
-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if `n` is installed
@@ -135,24 +126,8 @@ install_latest_stable_node_with_n() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    latest_version="$(
-     . "$LOCAL_BASH_CONFIG_FILE" && \
-        n --lts
-    )"
-
-	if cmd_exists "node"; then
-		current_version="$(
-			node -v | \
-			cut -d "v" -f 2
-		)"
-	fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [[ ! -d "$N_DIRECTORY/n/versions/node/$latest_version" ]] && [[ "$current_version" != "$latest_version" ]]; then
-        . "$LOCAL_BASH_CONFIG_FILE" && \
-                sudo n lts
-    fi
+    . "$LOCAL_BASH_CONFIG_FILE" && \
+		sudo n lts
 
 }
 
@@ -161,16 +136,7 @@ install_latest_stable_node_with_nvm() {
     # Install the latest stable version of Node
     # (this will also set it as the default).
 
-    local latest_version
-    local current_version
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-	# Source local bash config file to attempt to load nvm configuration.
-
-	. "$LOCAL_BASH_CONFIG_FILE"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Check if `nvm` is installed
 
@@ -180,21 +146,8 @@ install_latest_stable_node_with_nvm() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    latest_version="$(
-     . "$LOCAL_BASH_CONFIG_FILE" && \
-        nvm ls stable | xargs | cut -d ' ' -f 2
-    )"
-
-    current_version="$(
-        node -v
-    )"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if [[ ! -d "$NVM_DIRECTORY/versions/node/$latest_version" ]] && [[ "$current_version" != "$latest_version" ]]; then
-        . "$LOCAL_BASH_CONFIG_FILE" && \
-                sudo nvm install --lts
-    fi
+	. "$LOCAL_BASH_CONFIG_FILE" && \
+		sudo nvm install --lts
 
 }
 
