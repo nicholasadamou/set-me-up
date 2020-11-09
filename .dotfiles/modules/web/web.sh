@@ -94,20 +94,33 @@ install_nvm() {
 
 update_n() {
 
-    . "$LOCAL_BASH_CONFIG_FILE" \
-            && n-update -y
+    # Load `n`
+
+	export N_PREFIX="$N_DIRECTORY";
+	[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    n-update -y
 
 }
 
 update_nvm() {
 
-    . "$LOCAL_BASH_CONFIG_FILE" && \
-		(
-			git -C "$NVM_DIR" fetch --tags origin && \
-			git -C "$NVM_DIR" checkout \
-				"$(git -C "$NVM_DIR" describe --abbrev=0 --tags --match \"v[0-9]*\" "$(git -C "$NVM_DIR" rev-list --tags --max-count=1)")" \
-		) && \
-	. "$NVM_DIR/nvm.sh" -q
+	# Load `nvm` from $NVM_DIR
+
+	export NVM_DIR="$NVM_DIRECTORY"
+	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+	[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	(
+		git -C "$NVM_DIR" fetch --tags origin && \
+		git -C "$NVM_DIR" checkout \
+			"$(git -C "$NVM_DIR" describe --abbrev=0 --tags --match \"v[0-9]*\" "$(git -C "$NVM_DIR" rev-list --tags --max-count=1)")" \
+	) && \
+		. "$NVM_DIR/nvm.sh" -q
 
 }
 
@@ -126,8 +139,14 @@ install_latest_stable_node_with_n() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    . "$LOCAL_BASH_CONFIG_FILE" && \
-		sudo n lts
+	# Load `n`
+
+	export N_PREFIX="$N_DIRECTORY";
+	[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+
+	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+	sudo n lts
 
 }
 
@@ -140,7 +159,7 @@ install_latest_stable_node_with_nvm() {
 
 	# Load `nvm` from $NVM_DIR
 
-	export NVM_DIR="$HOME/.nvm"
+	export NVM_DIR="$NVM_DIRECTORY"
 	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 	[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
@@ -257,10 +276,10 @@ main() {
     #  fi
 
 	if [[ ! -d "$NVM_DIRECTORY" ]] && ! cmd_exists "nvm"; then
-         install_nvm
-     else
-         update_nvm
-     fi
+		install_nvm
+	else
+		update_nvm
+	fi
 
     # install_latest_stable_node_with_n
 
