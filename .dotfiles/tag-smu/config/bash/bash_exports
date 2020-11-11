@@ -114,6 +114,14 @@ fi
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Add /snap/bin to $PATH
+
+if [ -d "/snap/bin" ]; then
+	export PATH="/snap/bin:$PATH"
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Add ~/set-me-up to $PATH
 
 if [ -d "$HOME/set-me-up" ]; then
