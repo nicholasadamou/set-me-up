@@ -62,11 +62,13 @@ cask "tower"
 cask "ngrok"
 
 # Mac OS management
+cask "setapp"
 cask "latest"
 cask "gas-mask"
 cask "endurance"
 cask "bettertouchtool"
 cask "switchresx"
+cask "appcleaner"
 
 # Music players
 cask "macmediakeyforwarder"
