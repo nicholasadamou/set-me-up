@@ -90,6 +90,14 @@ eval "$(starship init bash)"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# load nord theme
+# see: https://github.com/lemnos/theme.sh
+if command -v theme &> /dev/null; then
+	theme nord
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # start tmux on start up of bash
 # see: https://unix.stackexchange.com/a/260248
 
