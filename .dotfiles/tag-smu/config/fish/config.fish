@@ -45,6 +45,12 @@ if type -q starship
 	starship init fish | source
 end
 
+# load nord theme
+# see: https://github.com/lemnos/theme.sh
+if type -q theme
+	theme nord
+end
+
 # Clear system messages (system copyright notice, the date
 # and time of the last login, the message of the day, etc.).
 
