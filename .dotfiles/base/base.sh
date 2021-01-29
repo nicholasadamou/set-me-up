@@ -153,7 +153,7 @@ main() {
 
 	# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    bash" ${SMU_PATH}"/.dotfiles/modules/brew/brew.sh
+    bash "${SMU_PATH}"/.dotfiles/modules/brew/brew.sh
 
 	if command -v brew &> /dev/null; then
 		if [[ -d "$(brew --prefix)/bin" ]]; then
