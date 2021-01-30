@@ -1,46 +1,33 @@
 cask_args appdir: "/Applications"
 
 tap "buo/cask-upgrade"
+tap "homebrew/cask-fonts"
 
 # Security
 cask "avast-security"
 cask "1password"
 cask "1password-cli"
-cask "reikey"
-cask "lulu"
-cask "taskexplorer"
-cask "knockknock"
-cask "oversight"
-cask "whatsyoursign"
 cask "adguard"
+cask "nordvpn"
 
 # Window management
-cask "finderminder"
 cask "moom"
 cask "witch"
-cask "contexts"
 cask "mission-control-plus"
 
 # Everything VM related
 cask "virtualbox"
 cask "virtualbox-extension-pack"
-cask "vagrant"
-cask "vagrant-manager"
+cask "docker"
 
 # Web browsers
 cask "google-chrome"
-cask "google-chrome-canary"
 cask "firefox"
-cask "firefox-developer-edition"
-cask "safari-technology-preview"
 
 # Core development
-cask "alfred"
 cask "iterm2"
-cask "codekit"
 cask "dash"
-cask "datagrip"
-cask "emacs"
+cask "insomnia"
 
 # IDEs
 cask "webstorm"
@@ -48,15 +35,13 @@ cask "visual-studio-code"
 cask "intellij-idea"
 
 # File/directory management
-cask "path-finder"
 cask "osxfuse"
 brew "ext4fuse"
 cask "filepane"
-cask "keka"
+cask "default-folder-x"
 
 # VCS related
 cask "sublime-merge"
-cask "tower"
 
 # Networking
 cask "ngrok"
@@ -64,17 +49,33 @@ cask "ngrok"
 # Mac OS management
 cask "setapp"
 cask "latest"
-cask "gas-mask"
 cask "endurance"
 cask "bettertouchtool"
+cask "haptic-touch-bar"
 cask "switchresx"
 cask "appcleaner"
+cask "bartender"
+cask "muzzle"
+cask "switchresx"
+cask "browserosaurus"
+cask "jettison"
+cask "alfred"
 
-# Music players
+# Media players
 cask "macmediakeyforwarder"
+cask "iina"
+
+# Backups
+cask "backblaze"
+cask "imazing"
+
+# Sync Services
+cask "dropbox"
+cask "google-backup-and-sync"
 
 # Office
 cask "microsoft-office"
+cask "pdf-expert"
 
 # Install developer friendly quick look plugins
 # see https://github.com/sindresorhus/quick-look-plugins
@@ -88,6 +89,11 @@ cask "suspicious-package"
 cask "quicklookase"
 cask "qlvideo"
 
+# Fonts
+cask "font-fira-code"
+cask "font-hack"
+cask "font-hack-nerd-font-mono"
+
 # Misc.
-cask "pixelsnap"
 cask "cleanshot"
+cask "rocket"

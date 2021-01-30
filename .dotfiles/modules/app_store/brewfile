@@ -2,28 +2,14 @@
 # Example:
 # mas "The Unarchiver", id: 425424353
 brew "mas"
-mas "HyperDock", id: 449830122
-mas "Reeder 5.", id: 1529448980
 mas "Spark", id: 1176895641
-mas "ColorSnapper2", id: 969418666
-mas "Notability", id: 736189492
-mas "Gifox", id: 1082624744
-mas "Todoist", id: 585829637
-mas "Keka", id: 470158793
-mas "Amphetamine", id: 937984704
 mas "CARROT Weather", id: 993487541
-mas "Magnet", id: 441258766
-mas "ToothFairy", id: 1191449274
-mas "SnippetsLab", id: 1006087419
-mas "Pocket", id: 568494494
-mas "Squash", id: 1152443474
-mas "PopClip", id: 445189367
-mas "Downcast", id: 668429425
 mas "Fantastical 2", id: 975937182
-mas "DaisyDisk", id: 411643860
-mas "Kindle", id: 405399194
+mas "Drafts", id: 1435957248
+mas "HyperDock", id: 449830122
+mas "ColorSnapper2", id: 969418666
+mas "Keka", id: 470158793
+mas "Magnet", id: 441258766
+mas "PopClip", id: 445189367
 mas "Yoink", id: 457622435
-mas "Monity", id: 915542151
-mas "Shazam", id: 897118787
-mas "Lockdown", id: 1039598025
-mas "Draft Writing", id: 1180883279
+mas "kaleidoscope", id: 587512244
